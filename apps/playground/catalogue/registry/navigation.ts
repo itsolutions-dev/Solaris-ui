@@ -9,7 +9,7 @@ import {
   NavigationDrawer,
   TopAppBar,
   Toolbar,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 import {
   NavigationRailDemo,

@@ -59,7 +59,7 @@ const CardBase = ({
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     base: {
-      borderRadius: theme.shape.medium,
+      borderRadius: theme.shape.large,
       padding: theme.spacing.m,
       overflow: "hidden",
       ...Platform.select({

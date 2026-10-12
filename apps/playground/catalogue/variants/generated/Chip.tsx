@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Chip.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Chip, Typography } from "@its/glowup-ui";
+import { Chip, Typography } from "@its/solaris-ui";
 
 const row: ViewStyle = {
   flexDirection: "row",
@@ -23,7 +23,7 @@ export const Modes = () => (
   <View style={row}>
     <Chip label="React Native" mode="filled" onPress={() => {}} />
     <Chip label="Expo" mode="tonal" onPress={() => {}} />
-    <Chip label="Material You" mode="outlined" onPress={() => {}} />
+    <Chip label="Material" mode="outlined" onPress={() => {}} />
   </View>
 );
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { Autocomplete, Typography } from "@its/glowup-ui";
+import { Autocomplete, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo } from "./shared";
 

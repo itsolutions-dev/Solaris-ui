@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Banner.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Banner, Typography, Card, Chip } from "@its/glowup-ui";
+import { Banner, Typography, Card, Chip } from "@its/solaris-ui";
 
 // Banner is a full-width inline strip (width: "100%", bottom hairline), so it
 // needs a parent with a real width — it is not an overlay and never portals.
@@ -21,7 +21,7 @@ export const Types = () => (
     <Banner
       visible
       type="info"
-      message="A new Material You token set is available for this workspace."
+      message="A new theme is available for this workspace."
     />
     <Banner
       visible

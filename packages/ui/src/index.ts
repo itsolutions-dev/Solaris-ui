@@ -1,9 +1,9 @@
-// Public API for @its/glowup-ui. Nothing outside this file is public: a module
+// Public API for @its/solaris-ui. Nothing outside this file is public: a module
 // under src/ that is not re-exported here does not exist for consumers.
 
 // --- Theme system ---
 export * from "./providers/ThemeProvider";
-export * from "./providers/palettes";
+export * from "./providers/createTheme";
 export * from "./providers/AlertProvider";
 // ToastProvider is exported by name from the module itself.
 export * from "./providers/ToastProvider";

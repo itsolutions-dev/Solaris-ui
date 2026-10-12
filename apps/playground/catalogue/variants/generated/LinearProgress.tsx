@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/LinearProgress.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { LinearProgress, Paper, Typography, useTheme } from "@its/glowup-ui";
+import { LinearProgress, Paper, Typography, useTheme } from "@its/solaris-ui";
 
 const stack: ViewStyle = {
   flexDirection: "column",

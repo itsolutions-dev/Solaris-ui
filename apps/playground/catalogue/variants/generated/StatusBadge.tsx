@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/StatusBadge.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { StatusBadge, Typography, Divider } from "@its/glowup-ui";
+import { StatusBadge, Typography, Divider } from "@its/solaris-ui";
 
 const row: ViewStyle = {
   flexDirection: "row",

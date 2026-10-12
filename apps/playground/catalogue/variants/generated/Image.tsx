@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Image.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { HStack, Image, Typography, VStack } from "@its/glowup-ui";
+import { HStack, Image, Typography, VStack } from "@its/solaris-ui";
 
 // Drawn inline so the capture needs no network.
 const svg = (a: string, b: string) => ({

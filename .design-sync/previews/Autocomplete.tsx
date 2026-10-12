@@ -1,6 +1,6 @@
 import React from "react";
-import { Autocomplete, VStack } from "@its/glowup-ui";
-import type { AutocompleteOption } from "@its/glowup-ui";
+import { Autocomplete, VStack } from "@its/solaris-ui";
+import type { AutocompleteOption } from "@its/solaris-ui";
 
 const cities: AutocompleteOption[] = [
   {

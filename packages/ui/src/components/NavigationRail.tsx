@@ -90,7 +90,7 @@ const NavigationRail = ({
                     style={[
                       styles.indicator,
                       active && {
-                        backgroundColor: theme.colors.secondaryContainer,
+                        backgroundColor: theme.colors.primaryContainer,
                       },
                       !active &&
                         (hovered || pressed) && {
@@ -104,7 +104,7 @@ const NavigationRail = ({
                       size={24}
                       color={
                         active
-                          ? theme.colors.onSecondaryContainer
+                          ? theme.colors.onPrimaryContainer
                           : theme.colors.onSurfaceVariant
                       }
                     />

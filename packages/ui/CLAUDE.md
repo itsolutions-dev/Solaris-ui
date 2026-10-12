@@ -17,22 +17,47 @@
   comments pointing at them. Don't "restore" either half without removing `!**/*.map` from
   the package's `files` too, or the tarball will reference maps it does not ship.
 - The playground consumes `src`, never `lib`, so the published artefact is checked separately:
-  `npm run validate-package -w @its/glowup-ui` (a CI step) validates the tarball's manifest
+  `npm run validate-package -w @its/solaris-ui` (a CI step) validates the tarball's manifest
   and types statically, and `examples/consumer` exercises the published package at runtime
-  (its own CI workflow, `consumer-smoke.yml`, chains off Release, so it runs on every push to
-  master, plus weekly and on demand — never on a PR, which cannot change what is already
-  published). Run validate-package
+  (its own CI workflow, `consumer-smoke.yml`, is manual-only until the first publish; after it,
+  it chains off Release again, so it runs on every push to master, plus weekly and on demand —
+  never on a PR, which cannot change what is already published). Run validate-package
   after touching `package.json`, the export map or anything a `.d.ts` imports.
 
 ## Theme system
 
-All colors, typography, spacing and shape tokens live in `packages/ui/src/providers/theme.json`
-— the runtime source of truth. The public `Theme` type spells the tokens out explicitly
-(`ThemeColorTokens`, `ThemeSpacingTokens`, `ThemeShapeTokens`, `TypographyVariant`) instead of
-deriving them with `typeof themeConfig`: a public type derived from the JSON makes the emitted
-`.d.ts` import `theme.json`, which is not shipped with the declarations. A type-level guard
-(`_ThemeTokensInSync` in `ThemeProvider.tsx`) fails `npm run type-check` if the explicit types
-and `theme.json` drift apart — **when you add or remove a token, update both.**
+The theme is **MUI-shaped in, Material 3 out**:
+
+- **Input.** `createTheme(options)` (`providers/createTheme.ts`) takes MUI v6's `colorSchemes`
+  shape: the `main` colours of `primary` / `secondary` / `error` / `warning` / `info` /
+  `success`, plus `background`, `text` and `divider`. It deep-merges the input over the
+  organization's defaults in `providers/theme.json`.
+- **Output.** It derives the Material 3 roles every component paints with (`theme.colors`),
+  and MUI's read shape (`theme.palette`) for code ported from MUI apps.
+- **Derivation rules.**
+  - Each `main` is used as given, normalised to `#RRGGBB`.
+  - Its on-colour is black or white, whichever contrasts more, so AA holds for any input.
+  - Containers come from a tonal palette of its hue (`providers/tonal.ts`, internal).
+
+`theme.json` holds only inputs and scales: the two colour schemes, typography, spacing and
+shape. The public `Theme` type spells the tokens out explicitly (`ThemeColorTokens`,
+`Palette`, `ThemeSpacingTokens`, `ThemeShapeTokens`, `TypographyVariant`) instead of deriving
+them with `typeof themeConfig`. A public type derived from the JSON makes the emitted `.d.ts`
+import `theme.json`, which is not shipped with the declarations.
+
+Two checks keep the types honest:
+- A type-level guard (`_ThemeTokensInSync` in `ThemeProvider.tsx`) fails
+  `npm run type-check` if typography, spacing or shape drift from `theme.json`.
+- Colour roles are checked by `deriveScheme`'s return type. **When you add a role, add it to
+  `ThemeColorTokens` and to `deriveScheme`.**
+
+Selection and tonal states use the **primary** container roles: navigation indicators,
+selected chips, tonal buttons. `secondary` is the brand green, not Material 3's quiet
+companion colour.
+
+Fonts: `typography.fontFamily` defaults to Roboto on Android and web, and to the system font
+on iOS, where an unregistered family is an error. Apps that embed Roboto opt in with
+`createTheme({ typography: { fontFamily: Platform.OS === "ios" ? "Roboto" : undefined } })`.
 
 **Styling pattern used throughout:** theme-reactive styles via `useMemo`:
 
@@ -42,18 +67,14 @@ const styles = useMemo(() => makeStyles(theme), [theme]);
 const makeStyles = (theme: Theme) => StyleSheet.create({ ... });
 ```
 
-Colour sets live in `providers/palettes.ts`: `palettes` is the baseline plus the nineteen named
-Material hues, each built by `createPalette(seed)`; `useTheme().setPalette()` swaps them live.
-The tone math is in `providers/tonal.ts` and the fixed success roles (Button's `tone="success"`)
-in `providers/successRoles.ts` — both internal, not re-exported from the barrel.
-
-`useTheme()` exposes `{ theme, toggleTheme }`; `getStateColor()` and `getGlowStyles()` are
+`useTheme()` exposes `{ theme, toggleTheme }`. `getStateColor()` and `getGlowStyles()` are
 exported for building theme-reactive components. The theme follows the OS color scheme and
 supports a manual toggle.
 
 ## Providers
 
-- `ThemeProvider` — Material You theme derived from `theme.json` (see above).
+- `ThemeProvider` — renders the scheme of `theme` (from `createTheme()`; defaults to the
+  organization's theme) that the OS, or `toggleTheme()`, asks for.
 - `AlertProvider` — cross-platform alert: native `Alert.alert` on iOS/Android, custom Modal on
   web. Call the `Alert(title, message, buttons)` singleton; `AlertProvider` wires it up
   (`AlertProviderWrapper` is a deprecated pass-through).

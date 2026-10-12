@@ -9,7 +9,7 @@ import {
   CardTitle,
   Icon,
   TouchableRipple,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 
 /** Foundations: 10 catalogue entries. */

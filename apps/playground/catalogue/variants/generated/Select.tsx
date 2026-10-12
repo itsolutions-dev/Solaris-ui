@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Select.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Select } from "@its/glowup-ui";
+import { Select } from "@its/solaris-ui";
 
 const stack: ViewStyle = {
   flexDirection: "column",

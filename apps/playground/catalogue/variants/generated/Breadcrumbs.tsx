@@ -1,18 +1,18 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Breadcrumbs.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Breadcrumbs } from "@its/glowup-ui";
-import type { BreadcrumbItem } from "@its/glowup-ui";
+import { Breadcrumbs } from "@its/solaris-ui";
+import type { BreadcrumbItem } from "@its/solaris-ui";
 
 const wrap: ViewStyle = { width: 400, flexDirection: "row" };
 
 const trail: BreadcrumbItem[] = [
   { id: "home", label: "Home", icon: "home-outline", onPress: () => {} },
   { id: "projects", label: "Projects", onPress: () => {} },
-  { id: "glowup", label: "Glowup", onPress: () => {} },
+  { id: "solaris", label: "Solaris", onPress: () => {} },
   { id: "components", label: "Components", onPress: () => {} },
   { id: "breadcrumbs", label: "Breadcrumbs" },
 ];
@@ -56,7 +56,7 @@ export const CustomSeparator = () => (
     <Breadcrumbs
       separator="slash-forward"
       items={[
-        { id: "repo", label: "glowup", onPress: () => {} },
+        { id: "repo", label: "solaris", onPress: () => {} },
         { id: "pkg", label: "packages", onPress: () => {} },
         { id: "ui", label: "ui", onPress: () => {} },
         { id: "file", label: "Breadcrumbs.tsx" },

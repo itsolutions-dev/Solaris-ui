@@ -1,5 +1,11 @@
 import { View } from "react-native";
-import { BottomSheet, Button, Chip, Divider, Typography } from "@its/glowup-ui";
+import {
+  BottomSheet,
+  Button,
+  Chip,
+  Divider,
+  Typography,
+} from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo, useOverlayDemo } from "./shared";
 

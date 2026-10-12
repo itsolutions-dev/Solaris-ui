@@ -1,11 +1,11 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/NavigationBar.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { NavigationBar } from "@its/glowup-ui";
-import type { NavigationBarItem } from "@its/glowup-ui";
+import { NavigationBar } from "@its/solaris-ui";
+import type { NavigationBarItem } from "@its/solaris-ui";
 
 const bar: ViewStyle = { width: 400, flexDirection: "row" };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@its/glowup-ui";
+import { Button } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

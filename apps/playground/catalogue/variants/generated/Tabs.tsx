@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Tabs.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Tabs } from "@its/glowup-ui";
+import { Tabs } from "@its/solaris-ui";
 
 const wrap: ViewStyle = { width: 400, flexDirection: "row" };
 

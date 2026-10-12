@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Typography.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Typography } from "@its/glowup-ui";
+import { Typography } from "@its/solaris-ui";
 
 const stack: ViewStyle = {
   flexDirection: "column",
@@ -14,7 +14,7 @@ const stack: ViewStyle = {
 
 export const DisplayAndHeadline = () => (
   <View style={stack}>
-    <Typography variant="displaySmall">Material You</Typography>
+    <Typography variant="displaySmall">Solaris</Typography>
     <Typography variant="headlineMedium">
       Type that scales with intent
     </Typography>

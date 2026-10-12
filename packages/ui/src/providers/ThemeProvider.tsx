@@ -9,37 +9,47 @@ import { useColorScheme, Platform, TextStyle } from "react-native";
 
 import { mix } from "polished";
 import themeConfig from "./theme.json";
-import { palettes, type ThemePalette } from "./palettes";
+import { createTheme, type ThemeSchemes } from "./createTheme";
 
 /**
- * The design tokens exactly as `theme.json` declares them.
+ * The Material 3 colour roles every component paints with, derived by
+ * `createTheme` from the palette input in `theme.json` (and the app's own).
  *
- * Spelled out instead of derived with `typeof themeConfig` on purpose: a public
- * type derived from the JSON import makes the emitted `.d.ts` import
- * `./theme.json`, which is not shipped with the type declarations (bob's
- * typescript target emits `.d.ts` only) and would force every consumer to
- * enable `resolveJsonModule`. The `_ThemeTokensInSync` guard at the bottom of
- * this block fails `tsc` if these types and `theme.json` ever drift apart.
+ * The theme types are spelled out instead of derived with `typeof themeConfig`
+ * on purpose: a public type derived from the JSON import makes the emitted
+ * `.d.ts` import `./theme.json`, which is not shipped with the type
+ * declarations (bob's typescript target emits `.d.ts` only) and would force
+ * every consumer to enable `resolveJsonModule`. The `_ThemeTokensInSync` guard
+ * below fails `tsc` if typography, spacing or shape drift from `theme.json`;
+ * these roles are checked by `deriveScheme`'s return type.
  */
 export interface ThemeColorTokens {
   background: string;
   boxShadow: string;
   error: string;
   errorContainer: string;
+  info: string;
+  infoContainer: string;
   inverseOnSurface: string;
   inversePrimary: string;
   inverseSurface: string;
   onBackground: string;
   onError: string;
   onErrorContainer: string;
+  onInfo: string;
+  onInfoContainer: string;
   onPrimary: string;
   onPrimaryContainer: string;
   onSecondary: string;
   onSecondaryContainer: string;
+  onSuccess: string;
+  onSuccessContainer: string;
   onSurface: string;
   onSurfaceVariant: string;
   onTertiary: string;
   onTertiaryContainer: string;
+  onWarning: string;
+  onWarningContainer: string;
   outline: string;
   outlineVariant: string;
   primary: string;
@@ -48,6 +58,8 @@ export interface ThemeColorTokens {
   secondary: string;
   secondaryContainer: string;
   shadow: string;
+  success: string;
+  successContainer: string;
   surface: string;
   surfaceContainer: string;
   surfaceContainerHigh: string;
@@ -58,6 +70,8 @@ export interface ThemeColorTokens {
   surfaceVariant: string;
   tertiary: string;
   tertiaryContainer: string;
+  warning: string;
+  warningContainer: string;
 }
 
 /** Spacing scale, in density-independent pixels. */
@@ -75,6 +89,8 @@ export interface ThemeShapeTokens {
   medium: number;
   large: number;
   extraLarge: number;
+  /** Fully rounded: pills and circles. */
+  full: number;
 }
 
 /** Material 3 type scale roles carried by the theme. */
@@ -95,8 +111,34 @@ export type TypographyVariant =
   | "bodyMedium"
   | "bodySmall";
 
+/** One colour in MUI's shape, as `theme.palette.primary` and the rest carry it. */
+export interface PaletteColor {
+  main: string;
+  /** MUI's `lighten(main, 0.2)`. */
+  light: string;
+  /** MUI's `darken(main, 0.3)`. */
+  dark: string;
+  contrastText: string;
+}
+
+/** MUI's `theme.palette`, resolved for the current scheme. */
+export interface Palette {
+  mode: "light" | "dark";
+  primary: PaletteColor;
+  secondary: PaletteColor;
+  error: PaletteColor;
+  warning: PaletteColor;
+  info: PaletteColor;
+  success: PaletteColor;
+  background: { default: string; paper: string };
+  text: { primary: string; secondary: string; disabled: string };
+  divider: string;
+}
+
 export interface Theme {
   colors: ThemeColorTokens;
+  /** The same colours in MUI's shape: what code ported from an MUI app reads. */
+  palette: Palette;
   typography: { [key in TypographyVariant]: TextStyle };
   spacing: ThemeSpacingTokens;
   shape: ThemeShapeTokens;
@@ -104,9 +146,9 @@ export interface Theme {
 }
 
 // Type-level only: emits no JavaScript and, being unexported, no declaration
-// either. If a token is added to or removed from theme.json, one of these stops
-// being `true` and `npm run type-check` fails here instead of shipping a theme
-// whose public type lies about its contents.
+// either. If a typography, spacing or shape token is added to or removed from
+// theme.json, one of these stops being `true` and `npm run type-check` fails
+// here instead of shipping a theme whose public type lies about its contents.
 type Exact<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
 type AllTrue<T extends true[]> = T;
 // The alias IS the assertion: tsc checks it where it is declared, so nothing
@@ -114,8 +156,6 @@ type AllTrue<T extends true[]> = T;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type _ThemeTokensInSync = AllTrue<
   [
-    Exact<ThemeColorTokens, typeof themeConfig.colors.light>,
-    Exact<ThemeColorTokens, typeof themeConfig.colors.dark>,
     Exact<ThemeSpacingTokens, typeof themeConfig.spacing>,
     Exact<ThemeShapeTokens, typeof themeConfig.shape>,
     Exact<TypographyVariant, keyof typeof themeConfig.typography>,
@@ -125,40 +165,29 @@ type _ThemeTokensInSync = AllTrue<
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
-  /** The colour set the theme is currently resolved from. */
-  palette: ThemePalette;
-  /** Swap the colour set at runtime — every `useTheme()` re-renders. */
-  setPalette: (palette: ThemePalette) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({
-  theme: {
-    colors: themeConfig.colors.dark,
-    typography: themeConfig.typography as any,
+/** The organization's theme. Built once: every component memoises its styles on it. */
+const DEFAULT_THEME = createTheme();
 
-    spacing: themeConfig.spacing,
-    shape: themeConfig.shape,
-    isDark: true,
-  },
+const ThemeContext = createContext<ThemeContextType>({
+  theme: DEFAULT_THEME.dark,
   toggleTheme: () => {},
-  palette: palettes.baseline,
-  setPalette: () => {},
 });
 
 export const ThemeProvider = ({
   children,
-  initialPalette = palettes.baseline,
+  theme: schemes = DEFAULT_THEME,
 }: {
   children: React.ReactNode;
   /**
-   * The colour set to start on — one of `palettes`, or anything
-   * `createPalette` returns. Read once, on mount: call `setPalette` from
-   * `useTheme()` to change it afterwards.
+   * Both schemes, from `createTheme()`. Defaults to the organization's theme.
+   * Create it once, at module scope: a new object every render rebuilds
+   * every component's styles.
    */
-  initialPalette?: ThemePalette;
+  theme?: ThemeSchemes;
 }) => {
   const systemScheme = useColorScheme(); // Hook to listen to system changes
-  const [palette, setPalette] = useState<ThemePalette>(initialPalette);
   // null = follow the OS color scheme; "light"/"dark" = manual override
   const [override, setOverride] = useState<"light" | "dark" | null>(null);
   const mode = override ?? systemScheme ?? "light";
@@ -167,24 +196,11 @@ export const ThemeProvider = ({
     setOverride(mode === "light" ? "dark" : "light");
   }, [mode]);
 
-  // Stable across unrelated re-renders of whatever mounts the provider: some
-  // seventy components memoise their styles on `theme`, so a fresh object on
-  // every render would rebuild every StyleSheet in the tree each time.
-  const theme = useMemo<Theme>(
-    () => ({
-      colors: mode === "dark" ? palette.dark : palette.light,
-      typography: themeConfig.typography as Theme["typography"],
-      spacing: themeConfig.spacing,
-      shape: themeConfig.shape,
-      isDark: mode === "dark",
-    }),
-    [palette, mode],
-  );
+  // Each scheme is one stable object, so the seventy-odd components that
+  // memoise their StyleSheet on `theme` rebuild only when the scheme changes.
+  const theme = mode === "dark" ? schemes.dark : schemes.light;
 
-  const value = useMemo(
-    () => ({ theme, toggleTheme, palette, setPalette }),
-    [theme, toggleTheme, palette],
-  );
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -1,5 +1,5 @@
 import React from "react";
-import { EmptyState } from "@its/glowup-ui";
+import { EmptyState } from "@its/solaris-ui";
 
 const frame: React.CSSProperties = { display: "flex", width: 400 };
 

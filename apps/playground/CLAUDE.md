@@ -12,20 +12,20 @@ takes react-navigation's header contract and a consumer still needs to see it.
 
 - `docgen/props.generated.json` — every exported component's prop table, read from the
   library's TypeScript with ts-morph: name, type as written, optionality, JSDoc, and the
-  default taken from the destructuring pattern. `npm run docgen -w @its/glowup-playground`
+  default taken from the destructuring pattern. `npm run docgen -w @its/solaris-playground`
   regenerates it; CI regenerates and fails on a diff. **Never hand-edit it**, and never
   hand-write a prop table beside it.
 - `catalogue/variants/generated/` — the variant galleries, rewritten from
   `.design-sync/previews/*.tsx` (the authored demos) into React Native primitives by
   `catalogue/variants/generate.mjs`. The previews stay in the browser dialect because the
   design-sync converter cannot resolve `react-native`; **edit the preview, then run
-  `npm run variants -w @its/glowup-playground`**. Seven previews are excluded by name in the
+  `npm run variants -w @its/solaris-playground`**. Seven previews are excluded by name in the
   generator, each with its reason; hand-written galleries live in
   `catalogue/variants/manual/` and win over the generated entry for the same component.
   A catalogued component with no gallery at all fails the playground test.
 - `assets/*.png` and `public/og-image.png` — the icon set and the share card, drawn from
   `theme.json`'s primary colours by `scripts/generate-icons.mjs` (a hand-rolled PNG encoder;
-  no image dependency). `npm run icons -w @its/glowup-playground` regenerates them. Not checked
+  no image dependency). `npm run icons -w @its/solaris-playground` regenerates them. Not checked
   by CI — deflate output is not guaranteed byte-identical across zlib versions — so regenerate
   them by hand when the theme's primary colours change.
 
@@ -63,7 +63,7 @@ route — including every component page — is prerendered to its own file with
 and meta description, so a component URL is shareable and crawlable.
 
 Pages serves a project site from a subpath (`/<repo>/`), so the workflow sets
-`GLOWUP_BASE_URL` and `app.config.ts` feeds it to `experiments.baseUrl`. Locally the variable
+`SOLARIS_BASE_URL` and `app.config.ts` feeds it to `experiments.baseUrl`. Locally the variable
 is unset and the site serves from the root. The workflow also writes `.nojekyll` (Jekyll would
 drop `_expo/`, where the bundle lives) and copies `+not-found.html` to `404.html`.
 

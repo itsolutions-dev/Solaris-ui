@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Typography, Button, Divider } from "@its/glowup-ui";
+import { Modal, Typography, Button, Divider } from "@its/solaris-ui";
 
 // Modal renders through react-native-web's Modal, which is a real portal into
 // document.body with a position: fixed scrim — so it fills the capture
@@ -28,7 +28,7 @@ export const Dialog = () => (
       34 components · last synced 4 minutes ago
     </Typography>
     <Modal visible title="Publish 0.1.0" closeText="Close" onClose={() => {}}>
-      Publishing makes every component in this library available to the Glowup
+      Publishing makes every component in this library available to the Solaris
       playground and to any workspace that depends on it.
     </Modal>
   </div>
@@ -71,7 +71,7 @@ export const RichContent = () => (
 export const Untitled = () => (
   <div style={backdrop}>
     <Typography variant="headlineSmall">Release notes</Typography>
-    <Typography variant="bodyMedium">@its/glowup-ui 0.1.0</Typography>
+    <Typography variant="bodyMedium">@its/solaris-ui 0.1.0</Typography>
     <Modal visible closeText="Got it" onClose={() => {}}>
       Dark mode contrast was corrected across every tonal surface.
     </Modal>

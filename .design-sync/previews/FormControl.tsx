@@ -6,7 +6,7 @@ import {
   RadioGroup,
   Slider,
   VStack,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 export const AroundACheckbox = () => (
   <VStack spacing="m" width={380}>

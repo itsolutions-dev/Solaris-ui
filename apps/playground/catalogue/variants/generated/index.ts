@@ -1,5 +1,5 @@
 // GENERATED — do not edit.
-// Built from .design-sync/previews by `npm run variants -w @its/glowup-playground`.
+// Built from .design-sync/previews by `npm run variants -w @its/solaris-playground`.
 import type { Variant } from "../types";
 import { variants as Accordion } from "./Accordion";
 import { variants as AspectRatio } from "./AspectRatio";

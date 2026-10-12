@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/PinInput.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { PinInput, VStack } from "@its/glowup-ui";
+import { PinInput, VStack } from "@its/solaris-ui";
 
 export const SixDigits = () => (
   <VStack width={420}>

@@ -18,7 +18,7 @@ import {
   useTheme,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import { FLAT_ORDER } from "../catalogue/categories";
 import { useLayout } from "./breakpoints";
 import { CommandPalette } from "./CommandPalette";
@@ -29,7 +29,6 @@ import {
   type Shortcut,
 } from "./useKeyboardShortcuts";
 import { activeRouteFor, GITHUB_URL, NPM_URL, SITE_ROUTES } from "./siteNav";
-import { usePersistedPalette } from "./usePersistedPalette";
 import { LIBRARY_NAME, LIBRARY_VERSION } from "./propsData";
 
 const RAIL_WIDTH = 80;
@@ -128,10 +127,6 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   );
 
   useKeyboardShortcuts(shortcuts);
-  // Site-wide preferences live with the chrome that owns them: the shell is
-  // mounted for every route, so the colour set is restored wherever the reader
-  // lands, not only on /theming.
-  usePersistedPalette();
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
@@ -144,7 +139,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
           />
         )}
         <Link href="/" asChild>
-          <Pressable accessibilityRole="link" accessibilityLabel="Glowup home">
+          <Pressable accessibilityRole="link" accessibilityLabel="Solaris home">
             {/* The looks go on a View inside the Pressable, not on the
                 Pressable: `Link asChild` routes the child through a Radix Slot
                 that merges `style` by spreading it, which turns a function
@@ -165,14 +160,14 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
                   variant="titleMedium"
                   style={{ color: theme.colors.onSurface }}
                 >
-                  Glowup
+                  Solaris
                 </Typography>
                 {!layout.isCompact && (
                   <Typography
                     variant="labelSmall"
                     style={{ color: theme.colors.onSurfaceVariant }}
                   >
-                    Material You for React Native
+                    Material for React Native
                   </Typography>
                 )}
               </View>
@@ -341,7 +336,7 @@ const NavSurface = ({
                           backgroundColor: theme.colors.surfaceContainerHigh,
                         },
                         selected && {
-                          backgroundColor: theme.colors.secondaryContainer,
+                          backgroundColor: theme.colors.primaryContainer,
                         },
                         focused && { borderColor: theme.colors.primary },
                       ]}
@@ -351,7 +346,7 @@ const NavSurface = ({
                         size={22}
                         color={
                           selected
-                            ? theme.colors.onSecondaryContainer
+                            ? theme.colors.onPrimaryContainer
                             : theme.colors.onSurfaceVariant
                         }
                       />
@@ -359,7 +354,7 @@ const NavSurface = ({
                         variant="labelLarge"
                         style={{
                           color: selected
-                            ? theme.colors.onSecondaryContainer
+                            ? theme.colors.onPrimaryContainer
                             : theme.colors.onSurfaceVariant,
                           fontWeight: selected ? "700" : "500",
                         }}
@@ -378,7 +373,7 @@ const NavSurface = ({
                             backgroundColor: theme.colors.surfaceContainerHigh,
                           },
                           selected && {
-                            backgroundColor: theme.colors.secondaryContainer,
+                            backgroundColor: theme.colors.primaryContainer,
                           },
                         ]}
                       >
@@ -387,7 +382,7 @@ const NavSurface = ({
                           size={22}
                           color={
                             selected
-                              ? theme.colors.onSecondaryContainer
+                              ? theme.colors.onPrimaryContainer
                               : theme.colors.onSurfaceVariant
                           }
                         />

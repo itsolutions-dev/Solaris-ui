@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/ListItem.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Avatar, Icon, ListItem, Toggle, Typography } from "@its/glowup-ui";
+import { Avatar, Icon, ListItem, Toggle, Typography } from "@its/solaris-ui";
 
 const list: ViewStyle = {
   flexDirection: "column",

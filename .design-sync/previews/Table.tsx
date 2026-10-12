@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TableRow is content-height; body rows set their own height, as DataGrid does.
 const row = { minHeight: 48 };

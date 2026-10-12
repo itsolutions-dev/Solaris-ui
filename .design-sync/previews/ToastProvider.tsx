@@ -5,7 +5,7 @@ import {
   Typography,
   VStack,
   useToast,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 type Toast = ReturnType<typeof useToast>;
 
@@ -49,7 +49,7 @@ const stage = (run: (t: Toast) => void, caption: string) => (
 export const Success = () =>
   stage(
     (t) =>
-      t.success("Published @its/glowup-ui 0.2.0 to the registry.", {
+      t.success("Published @its/solaris-ui 0.2.0 to the registry.", {
         duration: 0,
       }),
     "toast.success(message)",

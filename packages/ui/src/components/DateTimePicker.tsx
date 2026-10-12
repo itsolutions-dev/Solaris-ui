@@ -30,7 +30,7 @@ const DateTimePicker = (props: DateTimePickerProps) => {
     <>
       <PickerField {...fieldProps} onPress={openPicker} />
 
-      {/* Glowup's `Modal` is a fixed-width card with its own title bar and a
+      {/* Solaris's `Modal` is a fixed-width card with its own title bar and a
           single close action; the M3 picker needs a custom headline row and a
           two-action footer, so the dialog shell is built on RN's Modal. */}
       <Modal

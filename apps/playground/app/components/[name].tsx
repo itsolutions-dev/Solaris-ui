@@ -10,7 +10,7 @@ import {
   useTheme,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import ComponentPreview from "../../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../../catalogue/registry";
@@ -106,7 +106,7 @@ export default function ComponentPage() {
       <ScrollView contentContainerStyle={styles.missing}>
         <PageHead
           title="Component not found"
-          description="This component is not in the Glowup catalogue."
+          description="This component is not in the Solaris catalogue."
         />
         <EmptyState
           icon="magnify-close"
@@ -132,7 +132,7 @@ export default function ComponentPage() {
   const snippet = buildSnippet(name, meta, props, requiredPropsOf(name));
   const description =
     doc?.description ??
-    `${name} — a Material You ${category?.toLowerCase() ?? "UI"} component for React Native and web.`;
+    `${name} — a Material ${category?.toLowerCase() ?? "UI"} component for React Native and web.`;
 
   return (
     <ScrollView

@@ -6,7 +6,7 @@ import {
   TableHeaderCell,
   TableRow,
   useTheme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TableRow is content-height: body rows set their own height, as DataGrid does.
 const fit: React.CSSProperties = {

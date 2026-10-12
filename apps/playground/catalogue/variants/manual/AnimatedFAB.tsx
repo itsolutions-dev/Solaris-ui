@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { AnimatedFAB, ListItem, Paper, Typography } from "@its/glowup-ui";
+import { AnimatedFAB, ListItem, Paper, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo } from "./shared";
 

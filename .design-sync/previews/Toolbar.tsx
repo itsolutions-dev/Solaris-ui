@@ -1,5 +1,5 @@
 import React from "react";
-import { FAB, IconButton, Toolbar } from "@its/glowup-ui";
+import { FAB, IconButton, Toolbar } from "@its/solaris-ui";
 
 const stage: React.CSSProperties = {
   width: 400,

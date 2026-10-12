@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Glowup consumer smoke",
-    "slug": "glowup-consumer-smoke",
+    "name": "Solaris consumer smoke",
+    "slug": "solaris-consumer-smoke",
     "version": "1.0.0",
     "userInterfaceStyle": "automatic",
     "web": {

@@ -75,8 +75,8 @@ const IconButton = ({
               borderColor: undefined,
             }
           : {
-              background: theme.colors.secondaryContainer,
-              foreground: theme.colors.onSecondaryContainer,
+              background: theme.colors.primaryContainer,
+              foreground: theme.colors.onPrimaryContainer,
               borderColor: undefined,
             };
       case "outlined":

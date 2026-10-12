@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-`@its/glowup-ui` is pre-1.0: only the latest published minor receives fixes. A fix
+`@its/solaris-ui` is pre-1.0: only the latest published minor receives fixes. A fix
 ships as a new version; older minors are not patched.
 
 | Version                   | Supported |
@@ -16,7 +16,7 @@ The documentation site (`apps/playground`) and the smoke-test app
 ## Reporting a vulnerability
 
 Please **do not open a public issue**. Report it privately through GitHub's
-[private vulnerability reporting](https://github.com/itsolutions-dev/Glowup/security/advisories/new)
+[private vulnerability reporting](https://github.com/itsolutions-dev/Solaris-ui/security/advisories/new)
 (repository → Security → Report a vulnerability).
 
 Include the affected version, the platform (iOS, Android or web), and a minimal

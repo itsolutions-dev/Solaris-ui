@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, IconButton, TopAppBar } from "@its/glowup-ui";
+import { Avatar, IconButton, TopAppBar } from "@its/solaris-ui";
 
 const bar: React.CSSProperties = { width: 400, display: "flex" };
 
@@ -33,7 +33,7 @@ export const CenterAligned = () => (
   <div style={bar}>
     <TopAppBar
       variant="center"
-      title="Glowup"
+      title="Solaris"
       leading={
         <IconButton icon="menu" accessibilityLabel="Menu" onPress={() => {}} />
       }

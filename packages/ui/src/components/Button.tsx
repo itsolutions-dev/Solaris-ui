@@ -17,7 +17,6 @@ import {
 } from "react-native";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import CircularProgress from "./Progress/CircularProgress";
-import { getSuccessRoles } from "../providers/successRoles";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 
 export type ButtonMode = "filled" | "tonal" | "outlined" | "text";
@@ -44,28 +43,13 @@ export const getButtonColors = (
   mode: ButtonMode,
   tone: ButtonTone,
 ): ButtonColors => {
-  const success = tone === "success" ? getSuccessRoles(theme.isDark) : null;
-  const isError = tone === "error";
-  const accent = success
-    ? success.success
-    : isError
-      ? theme.colors.error
-      : theme.colors.primary;
-  const onAccent = success
-    ? success.onSuccess
-    : isError
-      ? theme.colors.onError
-      : theme.colors.onPrimary;
-  const container = success
-    ? success.successContainer
-    : isError
-      ? theme.colors.errorContainer
-      : theme.colors.secondaryContainer;
-  const onContainer = success
-    ? success.onSuccessContainer
-    : isError
-      ? theme.colors.onErrorContainer
-      : theme.colors.onSecondaryContainer;
+  const c = theme.colors;
+  const [accent, onAccent, container, onContainer] =
+    tone === "success"
+      ? [c.success, c.onSuccess, c.successContainer, c.onSuccessContainer]
+      : tone === "error"
+        ? [c.error, c.onError, c.errorContainer, c.onErrorContainer]
+        : [c.primary, c.onPrimary, c.primaryContainer, c.onPrimaryContainer];
 
   const surface = theme.colors.surface;
   switch (mode) {
@@ -256,7 +240,7 @@ const makeStyles = (theme: Theme) =>
       marginLeft: theme.spacing.xs,
       marginRight: theme.spacing.xs,
       padding: theme.spacing.m,
-      borderRadius: theme.shape.medium,
+      borderRadius: theme.shape.full,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: theme.colors.primary,

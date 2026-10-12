@@ -48,7 +48,7 @@ const ToggleButton = ({
 
   const glyph = showSelectedCheck && active ? "check" : icon;
   const contentColor = active
-    ? theme.colors.onSecondaryContainer
+    ? theme.colors.onPrimaryContainer
     : theme.colors.onSurfaceVariant;
 
   return (
@@ -67,7 +67,7 @@ const ToggleButton = ({
         style,
         {
           backgroundColor: active
-            ? theme.colors.secondaryContainer
+            ? theme.colors.primaryContainer
             : hovered && !disabled
               ? theme.colors.surfaceContainerHigh
               : "transparent",
@@ -96,7 +96,7 @@ const ToggleButton = ({
             theme.typography.labelLarge,
             {
               color: active
-                ? theme.colors.onSecondaryContainer
+                ? theme.colors.onPrimaryContainer
                 : theme.colors.onSurface,
               marginLeft: glyph ? 8 : 0,
             },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Card, Typography, Avatar } from "@its/glowup-ui";
+import { Carousel, Card, Typography, Avatar } from "@its/solaris-ui";
 
 const frame: React.CSSProperties = {
   width: 380,

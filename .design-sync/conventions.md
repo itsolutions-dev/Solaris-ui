@@ -1,6 +1,6 @@
-## How to build with @its/glowup-ui
+## How to build with @its/solaris-ui
 
-Material Design 3 (Material You) for **Expo React Native**, rendered here through
+IT Solutions' Material-based components for **Expo React Native**, rendered here through
 react-native-web. It is a **prop-and-theme** system: there are **no CSS classes, no CSS
 custom properties, and no stylesheet to import**. Every colour, type size, space and
 radius comes from the theme object at runtime. Class names you invent will not resolve.
@@ -35,31 +35,33 @@ const styles = useMemo(() => makeStyles(theme), [theme]);
 
 The real token vocabulary, all under `theme`:
 
-| Group        | Names                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `colors`     | `primary`, `onPrimary`, `primaryContainer`, `onPrimaryContainer`, and the same four for `secondary` / `tertiary` / `error`; `background`, `onBackground`, `surface`, `onSurface`, `surfaceVariant`, `onSurfaceVariant`, `surfaceContainer`, `surfaceContainerLow`, `surfaceContainerHigh`, `surfaceContainerHighest`, `surfaceDim`, `outline`, `outlineVariant`, `shadow` |
-| `typography` | `displayLarge/Medium/Small`, `headlineLarge/Medium/Small`, `titleLarge/Medium/Small`, `bodyLarge/Medium/Small`, `labelLarge/Medium/Small`                                                                                                                                                                                                                                 |
-| `spacing`    | `xs` 4, `s` 8, `m` 16, `l` 24, `xl` 32                                                                                                                                                                                                                                                                                                                                    |
-| `shape`      | `small` 8, `medium` 12, `large` 16, `extraLarge` 28                                                                                                                                                                                                                                                                                                                       |
-|              | `isDark` — boolean; the palette follows the OS scheme, `toggleTheme()` overrides it                                                                                                                                                                                                                                                                                       |
+| Group        | Names |
+| ------------ | ----- |
+| `colors`     | The Material 3 roles: `primary`, `onPrimary`, `primaryContainer`, `onPrimaryContainer`, and the same four for `secondary` / `tertiary` / `error` / `warning` / `info` / `success`; `background`, `onBackground`, `surface`, `onSurface`, `surfaceVariant`, `onSurfaceVariant`, `surfaceContainer`, `surfaceContainerLow`, `surfaceContainerHigh`, `surfaceContainerHighest`, `surfaceDim`, `inverseSurface`, `inverseOnSurface`, `inversePrimary`, `outline`, `outlineVariant`, `shadow`, `scrim` |
+| `palette`    | The same colours in MUI's shape: `primary` … `success` as `{ main, light, dark, contrastText }`, `background.default` / `paper`, `text.primary` / `secondary` / `disabled`, `divider` |
+| `typography` | `displayLarge/Medium/Small`, `headlineLarge/Medium/Small`, `titleLarge/Medium/Small`, `bodyLarge/Medium/Small`, `labelLarge/Medium/Small` |
+| `spacing`    | `xs` 4, `s` 8, `m` 16, `l` 24, `xl` 32 |
+| `shape`      | `small` 8, `medium` 12, `large` 16, `extraLarge` 24, `full` 9999 — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded |
+|              | `isDark` — boolean; the scheme follows the OS, `toggleTheme()` overrides it |
 
 Helpers: `getStateColor(base, on, "hover" | "press" | "focus")` for M3 state layers, and
 `getGlowStyles(theme, isActive, error?)` for the library's focus/error border treatment.
 
-### Colour sets (palettes)
+### The theme
 
-The tokens above are the **baseline** set. `palettes` ships twenty: `baseline` plus the
-named Material hues `red`, `pink`, `purple`, `deepPurple`, `indigo`, `blue`, `lightBlue`,
-`cyan`, `teal`, `green`, `lightGreen`, `lime`, `yellow`, `amber`, `orange`, `deepOrange`,
-`brown`, `grey`, `blueGrey` — each the full M3 role set for light and dark. To render a
-design in another colour set, pick it on the provider or switch it live; never override
+With no props, `ThemeProvider` renders the organization's theme: primary `#1D5B9D`
+(dark `#5893D4`), secondary the brand green `#61B340`, page background `#F0F2F5`.
+Selection and tonal states (navigation indicators, selected chips, tonal buttons) use the
+**primary** container roles. To render a design in other colours, build a theme with
+`createTheme` in MUI's `colorSchemes` shape, passing only what differs; never override
 colours component by component:
 
 ```tsx
-<ThemeProvider initialPalette={palettes.teal}>{/* design */}</ThemeProvider>;
+const theme = createTheme({
+  colorSchemes: { light: { palette: { primary: { main: "#00639B" } } } },
+});
 
-const { palette, setPalette } = useTheme(); // setPalette(palettes.indigo)
-const brand = createPalette("#00639B", { id: "brand", name: "Brand" });
+<ThemeProvider theme={theme}>{/* design */}</ThemeProvider>;
 ```
 
 ### Progress inside a button

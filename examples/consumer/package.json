@@ -1,8 +1,8 @@
 {
-  "name": "glowup-consumer-smoke",
+  "name": "solaris-consumer-smoke",
   "version": "0.0.0",
   "private": true,
-  "description": "Deliberately OUTSIDE the npm workspaces: installs @its/glowup-ui from the registry so the published artefact is exercised, not the local source.",
+  "description": "Deliberately OUTSIDE the npm workspaces: installs @its/solaris-ui from the registry so the published artefact is exercised, not the local source.",
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
-    "@its/glowup-ui": "0.x",
+    "@its/solaris-ui": "0.x",
     "expo": "~57.0.25",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",

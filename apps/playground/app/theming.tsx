@@ -1,14 +1,30 @@
-import { useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useMemo, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import {
+  Avatar,
+  Badge,
+  Banner,
   Button,
+  Card,
+  CardContent,
+  CardTitle,
+  Checkbox,
+  Chip,
+  CircularProgress,
+  Input,
+  LinearProgress,
+  NavigationBar,
+  RadioButton,
+  Slider,
+  StatusBadge,
+  Tabs,
+  Toggle,
   Typography,
-  palettes,
   useTheme,
+  type NavigationBarItem,
   type Theme,
-  type ThemePalette,
   type TypographyVariant,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import { CodeBlock } from "../site/CodeBlock";
 import { Page, Section } from "../site/Page";
@@ -17,7 +33,7 @@ import { useLayout } from "../site/breakpoints";
 /**
  * The colour roles, grouped the way M3 groups them. Tokens the theme has but
  * this list does not are collected into "Other" rather than dropped, so adding
- * one to theme.json makes it appear here without an edit.
+ * a role to the theme makes it appear here without an edit.
  */
 const COLOR_GROUPS: { label: string; tokens: string[] }[] = [
   {
@@ -51,6 +67,18 @@ const COLOR_GROUPS: { label: string; tokens: string[] }[] = [
   {
     label: "Error",
     tokens: ["error", "onError", "errorContainer", "onErrorContainer"],
+  },
+  {
+    label: "Warning",
+    tokens: ["warning", "onWarning", "warningContainer", "onWarningContainer"],
+  },
+  {
+    label: "Info",
+    tokens: ["info", "onInfo", "infoContainer", "onInfoContainer"],
+  },
+  {
+    label: "Success",
+    tokens: ["success", "onSuccess", "successContainer", "onSuccessContainer"],
   },
   {
     label: "Surfaces",
@@ -95,7 +123,7 @@ const TYPE_SCALE: TypographyVariant[] = [
   "labelSmall",
 ];
 
-const USAGE = `import { useTheme } from "@its/glowup-ui";
+const USAGE = `import { useTheme } from "@its/solaris-ui";
 import { StyleSheet } from "react-native";
 
 const Card = () => {
@@ -114,59 +142,36 @@ const makeStyles = (theme: Theme) =>
     },
   });`;
 
-const PICK_PALETTE = `import { ThemeProvider, palettes } from "@its/glowup-ui";
+const READ_PALETTE = `import { useTheme } from "@its/solaris-ui";
 
-// The colour set the app starts on. Both schemes come with it: the provider
-// still follows the OS light/dark setting and \`toggleTheme()\`.
+// Code ported from an MUI app reads the palette in MUI's shape…
+const Caption = ({ children }: { children: string }) => {
+  const { theme } = useTheme();
+  return <Text style={{ color: theme.palette.text.secondary }}>{children}</Text>;
+};
+
+// …and the Material 3 roles the components paint with are beside it:
+// theme.colors.primaryContainer, theme.colors.surfaceContainerHigh, …`;
+
+const CREATE_THEME = `import { createTheme, ThemeProvider } from "@its/solaris-ui";
+
+// MUI's colorSchemes shape. Pass only what differs: everything else stays the
+// organization's theme. Create it once, at module scope — a new theme object
+// re-styles every component.
+const theme = createTheme({
+  colorSchemes: {
+    light: { palette: { primary: { main: "#00639B" } } },
+    dark: { palette: { primary: { main: "#95CCFF" } } },
+  },
+});
+
 export default function App() {
   return (
-    <ThemeProvider initialPalette={palettes.teal}>
+    <ThemeProvider theme={theme}>
       <Root />
     </ThemeProvider>
   );
 }`;
-
-const SWITCH_PALETTE = `import { palettes, useTheme } from "@its/glowup-ui";
-
-// Swapping the set at runtime re-renders every component that reads the theme
-// — this picker is exactly this call.
-const PaletteMenu = () => {
-  const { palette, setPalette } = useTheme();
-  return Object.values(palettes).map((p) => (
-    <Chip key={p.id} selected={p.id === palette.id} onPress={() => setPalette(p)}>
-      {p.name}
-    </Chip>
-  ));
-};`;
-
-const CUSTOM_PALETTE = `import { createPalette, ThemeProvider } from "@its/glowup-ui";
-
-// One brand colour in, both complete schemes out: primary, secondary and
-// tertiary tonal palettes plus the neutrals, mapped onto the M3 roles. Error
-// stays the fixed Material red, as the spec requires.
-const brand = createPalette("#00639B", { id: "brand", name: "Brand" });
-
-// Tune how saturated the derived palettes are, if the default reads too calm:
-const vivid = createPalette("#00639B", {
-  id: "brand-vivid",
-  name: "Brand (vivid)",
-  chroma: { primary: 64, tertiary: 32, tertiaryHueShift: 120 },
-});
-
-<ThemeProvider initialPalette={brand}>…</ThemeProvider>;`;
-
-const HAND_PALETTE = `import { palettes, type ThemePalette } from "@its/glowup-ui";
-
-// Nothing is derived here: a palette is just the token set for both schemes,
-// so a hand-authored one — from Material Theme Builder, say — drops straight
-// in. Spread a shipped palette to fill in the roles you do not override.
-const corporate: ThemePalette = {
-  id: "corporate",
-  name: "Corporate",
-  seed: "#00639B",
-  light: { ...palettes.baseline.light, primary: "#00639B", onPrimary: "#FFFFFF" },
-  dark: { ...palettes.baseline.dark, primary: "#95CCFF", onPrimary: "#003354" },
-};`;
 
 /**
  * `theme.colors` is spelled out token by token in the public `Theme` type — on
@@ -177,7 +182,7 @@ const colorToken = (theme: Theme, token: string): string | undefined =>
   (theme.colors as unknown as Record<string, string>)[token];
 
 export default function Theming() {
-  const { theme, toggleTheme, palette, setPalette } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const layout = useLayout();
   const styles = useMemo(() => makeStyles(theme), [theme]);
 
@@ -194,7 +199,7 @@ export default function Theming() {
     <Page
       eyebrow="Design tokens"
       title="Theming"
-      description="Every colour, type step, spacing unit and corner radius in the library comes from one token set, resolved for the light and dark schemes. These swatches are the live values of the theme this page is rendered with."
+      description="Every colour, type step, spacing unit and corner radius in the library comes from one theme, resolved for the light and dark schemes. The components and swatches on this page are rendered with it, live."
     >
       <View style={styles.toggleRow}>
         <Typography
@@ -215,19 +220,10 @@ export default function Theming() {
       </View>
 
       <Section
-        title="Colour sets"
-        description="Twenty Material 3 schemes: the baseline, and the nineteen named Material hues run through the same role mapping from their seed. Picking one re-themes the whole site — every page, every component demo — because the library resolves its tokens from the selected set."
+        title="Components in this theme"
+        description="Real components, not pictures of them. Switch the scheme and every one of them re-renders from the other set of roles."
       >
-        <View style={styles.paletteGrid}>
-          {Object.values(palettes).map((option) => (
-            <PaletteCard
-              key={option.id}
-              palette={option}
-              selected={option.id === palette.id}
-              onPress={() => setPalette(option)}
-            />
-          ))}
-        </View>
+        <Gallery />
       </Section>
 
       {groups.map((group) => (
@@ -257,7 +253,7 @@ export default function Theming() {
 
       <Section
         title="Type scale"
-        description="Fifteen steps, all on the system font family. `Typography` takes the step name as its variant."
+        description="Fifteen steps on the theme's font family: Roboto on Android and the web, the system font on iOS unless the app embeds Roboto. `Typography` takes the step name as its variant."
       >
         <View style={styles.typeList}>
           {TYPE_SCALE.map((variant) => {
@@ -315,7 +311,7 @@ export default function Theming() {
 
       <Section
         title="Shape"
-        description="Corner radii, by role rather than by number."
+        description="Corner radii, by role rather than by number: 12 for fields, 16 for cards, 24 for dialogs and sheets, fully rounded for buttons."
       >
         <View style={styles.tokenRow}>
           {Object.entries(theme.shape).map(([name, value]) => (
@@ -341,78 +337,153 @@ export default function Theming() {
       </Section>
 
       <Section
-        title="Reading tokens in your own code"
-        description="The pattern every component in the library follows."
+        title="Reading the theme in your own code"
+        description="The pattern every component in the library follows, and MUI's palette shape for code ported from a web app."
       >
         <CodeBlock code={USAGE} title="Card.tsx" />
+        <CodeBlock code={READ_PALETTE} title="Caption.tsx" />
       </Section>
 
       <Section
-        title="Using a colour set in your app"
-        description={`Everything the picker above does is public API. The set shown right now is \`palettes.${palette.id}\`, seeded from ${palette.seed}.`}
+        title="Your own theme"
+        description="createTheme takes MUI's colorSchemes shape. Text on each colour is black or white, whichever reads better, so a new brand colour cannot produce unreadable buttons."
       >
-        <CodeBlock code={PICK_PALETTE} title="App.tsx" />
-        <CodeBlock code={SWITCH_PALETTE} title="PaletteMenu.tsx" />
-      </Section>
-
-      <Section
-        title="Your own colours"
-        description="A seed colour is enough — the tonal palettes and the role mapping are Material 3's. A palette authored by hand is the same shape, so either route ends at the same `initialPalette` prop."
-      >
-        <CodeBlock code={CUSTOM_PALETTE} title="brand.ts" />
-        <CodeBlock code={HAND_PALETTE} title="corporate.ts" />
+        <CodeBlock code={CREATE_THEME} title="App.tsx" />
       </Section>
     </Page>
   );
 }
 
-const PaletteCard = ({
-  palette,
-  selected,
-  onPress,
-}: {
-  palette: ThemePalette;
-  selected: boolean;
-  onPress: () => void;
-}) => {
+const noop = () => {};
+
+const GALLERY_TABS = ["Overview", "Activity", "Settings"];
+
+const GALLERY_NAV: NavigationBarItem[] = [
+  { id: "home", label: "Home", icon: "home-outline" },
+  { id: "contacts", label: "Contacts", icon: "account-group-outline" },
+  {
+    id: "agenda",
+    label: "Agenda",
+    icon: "calendar-month-outline",
+    badgeCount: 3,
+  },
+];
+
+/** A static spread of the components a theme change is most visible on. */
+const Gallery = () => {
   const { theme } = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
-  const scheme = theme.isDark ? palette.dark : palette.light;
+  const [name, setName] = useState("Mario Rossi");
+  const [notify, setNotify] = useState(true);
+  const [remember, setRemember] = useState(true);
+  const [plan, setPlan] = useState<"monthly" | "annual">("annual");
+  const [volume, setVolume] = useState(40);
+  const [tab, setTab] = useState(0);
+  const [nav, setNav] = useState("home");
 
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="radio"
-      accessibilityState={{ selected }}
-      accessibilityLabel={`${palette.name} colour set`}
-      style={[styles.paletteCard, selected && styles.paletteCardSelected]}
-    >
-      <View style={styles.paletteStripe}>
-        {[
-          scheme.primary,
-          scheme.secondary,
-          scheme.tertiary,
-          scheme.surfaceContainerHighest,
-        ].map((color, index) => (
-          <View
-            key={index}
-            style={[styles.paletteSwatch, { backgroundColor: color }]}
-          />
-        ))}
+    <View style={styles.gallery}>
+      <View style={styles.galleryRow}>
+        <Button mode="filled" onPress={noop}>
+          Filled
+        </Button>
+        <Button mode="tonal" onPress={noop}>
+          Tonal
+        </Button>
+        <Button mode="outlined" onPress={noop}>
+          Outlined
+        </Button>
+        <Button mode="text" onPress={noop}>
+          Text
+        </Button>
       </View>
-      <Typography
-        variant="labelLarge"
-        style={{ color: theme.colors.onSurface }}
-      >
-        {palette.name}
-      </Typography>
-      <Typography
-        variant="labelSmall"
-        style={{ color: theme.colors.onSurfaceVariant }}
-      >
-        {selected ? "Selected" : palette.seed}
-      </Typography>
-    </Pressable>
+      <View style={styles.galleryRow}>
+        <Button tone="error" onPress={noop}>
+          Delete
+        </Button>
+        <Button tone="success" onPress={noop}>
+          Confirm
+        </Button>
+        <Button mode="tonal" tone="error" onPress={noop}>
+          Discard
+        </Button>
+        <Button disabled onPress={noop}>
+          Disabled
+        </Button>
+      </View>
+      <View style={styles.galleryRow}>
+        <Chip label="All" mode="outlined" onPress={noop} />
+        <Chip label="Selected" mode="tonal" selected onPress={noop} />
+        <StatusBadge label="Active" type="success" />
+        <StatusBadge label="Pending" type="warning" />
+        <StatusBadge label="Failed" type="error" />
+      </View>
+      <View style={styles.galleryRow}>
+        {/* Badge is absolutely positioned: it needs an anchor. */}
+        <View>
+          <Avatar name="Mario Rossi" />
+          <Badge count={5} style={{ top: -2, right: -2 }} />
+        </View>
+        <Avatar icon="account" variant="rounded" />
+        <Toggle value={notify} onValueChange={setNotify} />
+        <Checkbox
+          checked={remember}
+          onValueChange={setRemember}
+          label="Remember me"
+        />
+      </View>
+      <View style={styles.galleryRow}>
+        <RadioButton
+          label="Monthly"
+          selected={plan === "monthly"}
+          onPress={() => setPlan("monthly")}
+        />
+        <RadioButton
+          label="Annual"
+          selected={plan === "annual"}
+          onPress={() => setPlan("annual")}
+        />
+      </View>
+      <Input
+        label="Name"
+        value={name}
+        onChangeText={setName}
+        helperText="As it appears on the contract"
+      />
+      <Slider
+        label="Volume"
+        value={volume}
+        onValueChange={setVolume}
+        min={0}
+        max={100}
+      />
+      <View style={styles.progressRow}>
+        <View style={styles.grow}>
+          <LinearProgress progress={0.6} />
+        </View>
+        <CircularProgress progress={0.6} size={32} />
+      </View>
+      <Card variant="elevated">
+        <CardTitle title="Card" subtitle="An elevated surface" />
+        <CardContent>
+          <Typography
+            variant="bodyMedium"
+            style={{ color: theme.colors.onSurfaceVariant }}
+          >
+            Surfaces, outlines and text all come from the neutral roles of the
+            theme.
+          </Typography>
+        </CardContent>
+      </Card>
+      <Tabs tabs={GALLERY_TABS} activeTab={tab} onChange={setTab} />
+      <Banner
+        visible
+        type="info"
+        icon="information-outline"
+        message="Banners follow the theme too."
+      />
+      <NavigationBar items={GALLERY_NAV} activeId={nav} onItemPress={setNav} />
+    </View>
   );
 };
 
@@ -462,38 +533,20 @@ const makeStyles = (theme: Theme) =>
       gap: theme.spacing.m,
     },
     strong: { fontWeight: "700", color: theme.colors.onSurface },
-    swatchGrid: { flexDirection: "row", flexWrap: "wrap" },
-    paletteGrid: {
+    gallery: { gap: theme.spacing.m },
+    galleryRow: {
       flexDirection: "row",
       flexWrap: "wrap",
+      alignItems: "center",
+      gap: theme.spacing.s,
+    },
+    progressRow: {
+      flexDirection: "row",
+      alignItems: "center",
       gap: theme.spacing.m,
     },
-    paletteCard: {
-      minWidth: 152,
-      flexGrow: 1,
-      flexBasis: 152,
-      // A wrapped row must not stretch its one card across the grid.
-      maxWidth: 240,
-      gap: 2,
-      padding: theme.spacing.s,
-      borderRadius: theme.shape.large,
-      borderWidth: 1,
-      borderColor: theme.colors.outlineVariant,
-      backgroundColor: theme.colors.surfaceContainerLow,
-    },
-    paletteCardSelected: {
-      borderWidth: 2,
-      borderColor: theme.colors.primary,
-      backgroundColor: theme.colors.surfaceContainerHigh,
-    },
-    paletteStripe: {
-      flexDirection: "row",
-      height: 40,
-      borderRadius: theme.shape.medium,
-      overflow: "hidden",
-      marginBottom: theme.spacing.xs,
-    },
-    paletteSwatch: { flex: 1 },
+    grow: { flex: 1 },
+    swatchGrid: { flexDirection: "row", flexWrap: "wrap" },
     swatch: {
       gap: 2,
       paddingRight: theme.spacing.m,

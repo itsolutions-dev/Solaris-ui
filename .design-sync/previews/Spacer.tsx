@@ -6,7 +6,7 @@ import {
   Spacer,
   Typography,
   VStack,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 /** With no `size`, Spacer absorbs the leftover space along the parent's axis. */
 export const PushesApart = () => (

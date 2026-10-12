@@ -19,7 +19,7 @@
 //   - string-literal unions, kept as a value list so a control can be built
 //     from them without a second source of truth.
 //
-// Run from the playground workspace: `npm run docgen -w @its/glowup-playground`.
+// Run from the playground workspace: `npm run docgen -w @its/solaris-playground`.
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -391,7 +391,7 @@ const payload = {
   // from importing a path inside packages/ui, which ESLint forbids.
   libraryName,
   libraryVersion,
-  // Regenerate with `npm run docgen -w @its/glowup-playground`.
+  // Regenerate with `npm run docgen -w @its/solaris-playground`.
   generatedFrom: relative(REPO_ROOT, BARREL).replace(/\\/g, "/"),
   componentCount: Object.keys(components).length,
   components,

@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/HelperText.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { HelperText, Input, Typography, Checkbox } from "@its/glowup-ui";
+import { HelperText, Input, Typography, Checkbox } from "@its/solaris-ui";
 
 const field: ViewStyle = {
   width: 340,

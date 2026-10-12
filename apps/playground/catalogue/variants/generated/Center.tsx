@@ -1,6 +1,6 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Center.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
 import {
@@ -8,7 +8,7 @@ import {
   CircularProgress,
   EmptyState,
   Typography,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 export const Basic = () => (
   <Center bg="surfaceContainerLow" radius="medium" height={160} width={360}>

@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Carousel.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Carousel, Card, Typography, Avatar } from "@its/glowup-ui";
+import { Carousel, Card, Typography, Avatar } from "@its/solaris-ui";
 
 const frame: ViewStyle = {
   width: 380,

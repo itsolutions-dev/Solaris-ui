@@ -1,5 +1,5 @@
 import React from "react";
-import { ChipGroup, Typography } from "@its/glowup-ui";
+import { ChipGroup, Typography } from "@its/solaris-ui";
 
 const field: React.CSSProperties = {
   width: 400,

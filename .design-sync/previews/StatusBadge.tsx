@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBadge, Typography, Divider } from "@its/glowup-ui";
+import { StatusBadge, Typography, Divider } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

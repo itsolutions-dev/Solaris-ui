@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const KEY_PREFIX = "glowup.site.";
+const KEY_PREFIX = "solaris.site.";
 
 /**
  * `useState` that survives a reload, for the reader's preferences — the

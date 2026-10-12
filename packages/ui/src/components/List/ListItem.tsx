@@ -90,7 +90,7 @@ const makeStyles = (theme: Theme) =>
       padding: theme.spacing.xs,
     },
     itemContainer: {
-      backgroundColor: theme.colors.secondaryContainer,
+      backgroundColor: theme.colors.primaryContainer,
       shadowColor: theme.colors.shadow,
       borderRadius: theme.shape.medium,
     },
@@ -118,13 +118,13 @@ const makeStyles = (theme: Theme) =>
       ...theme.typography.titleMedium,
       padding: theme.spacing.m,
       textAlign: "center",
-      color: theme.colors.secondary,
+      color: theme.colors.primary,
     },
     // In row mode the padding lives on the row and the text aligns left.
     itemTextRow: {
       padding: 0,
       textAlign: "left",
-      color: theme.colors.onSecondaryContainer,
+      color: theme.colors.onPrimaryContainer,
     },
     secondaryText: {
       ...theme.typography.bodyMedium,

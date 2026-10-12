@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Pagination.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Pagination } from "@its/glowup-ui";
+import { Pagination } from "@its/solaris-ui";
 
 const wrap: ViewStyle = { width: 400, flexDirection: "row" };
 

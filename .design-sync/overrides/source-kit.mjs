@@ -1,4 +1,4 @@
-// forked from design-sync lib/source-kit.mjs — Glowup's src subdirs (List/, Modal/,
+// forked from design-sync lib/source-kit.mjs — Solaris's src subdirs (List/, Modal/,
 // Progress/, Tab/, ToggleButton/) are file organisation, not DS groups.
 // Non-storybook `package` adapter. Bundles dist/ when present (the authoritative
 // component list comes from shipped .d.ts; with no dist it synthesizes an
@@ -36,7 +36,7 @@ const GENERIC_DIR = new Set([
   "ui",
   "packages",
   "react",
-  // Glowup: structural src dirs that are NOT design-system groups. Without
+  // Solaris: structural src dirs that are NOT design-system groups. Without
   // these, ConfirmDialog lands in `modal/` while Modal itself lands in
   // feedback-overlays; the real grouping comes from the components.md
   // `category` frontmatter, which only applies to an otherwise-generic group.

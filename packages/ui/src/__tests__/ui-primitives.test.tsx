@@ -1,15 +1,18 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View, type ViewStyle } from "react-native";
 import { fireEvent, render } from "@testing-library/react-native";
 import {
+  Button,
   Card,
   ConfirmDialog,
+  createTheme,
   HelperText,
   Icon,
   ListItem,
   ListSection,
   Modal,
   Portal,
+  Snackbar,
   ThemeProvider,
   ToggleButtonGroup,
   TouchableRipple,
@@ -346,5 +349,65 @@ describe("ConfirmDialog", () => {
 
     await fireEvent.press(getByText("Cancel"));
     expect(onCancel).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("organization shapes", () => {
+  it("draws Button as a pill and Card at the large radius", async () => {
+    const shape = createTheme().light.shape;
+    const { getByTestId, getByText } = await wrap(
+      <>
+        <Button testID="pill" onPress={() => {}}>
+          Go
+        </Button>
+        <Card>
+          <Text>Body</Text>
+        </Card>
+      </>,
+    );
+    const radiusOf = (node: { props: { style?: unknown } }) =>
+      StyleSheet.flatten(node.props.style as ViewStyle)?.borderRadius;
+    expect(radiusOf(getByTestId("pill"))).toBe(shape.full);
+    // The Card's surface is the nearest ancestor that carries a radius.
+    let node = getByText("Body").parent;
+    while (node && radiusOf(node) === undefined) node = node.parent;
+    expect(node && radiusOf(node)).toBe(shape.large);
+  });
+});
+
+describe("Snackbar", () => {
+  it("paints a success message with the success roles, not a brand colour", async () => {
+    const colors = createTheme().light.colors;
+    const { getByText } = await wrap(
+      <Snackbar visible message="Saved" type="success" onDismiss={() => {}} />,
+    );
+    const fill = (node: { props: { style?: unknown } }) =>
+      StyleSheet.flatten(node.props.style as ViewStyle)?.backgroundColor;
+    // The message's surface is the nearest ancestor with a fill.
+    let node = getByText("Saved").parent;
+    while (node && fill(node) === undefined) node = node.parent;
+    expect(node && fill(node)).toBe(colors.successContainer);
+  });
+});
+
+describe("ThemeProvider", () => {
+  it("renders the theme it is given instead of the organization's", async () => {
+    const custom = createTheme({
+      colorSchemes: {
+        light: { palette: { primary: { main: "#B00020" } } },
+        dark: { palette: { primary: { main: "#B00020" } } },
+      },
+    });
+    const { getByTestId } = await render(
+      <ThemeProvider theme={custom}>
+        <Button testID="branded" onPress={() => {}}>
+          Go
+        </Button>
+      </ThemeProvider>,
+    );
+    const fill = StyleSheet.flatten(
+      getByTestId("branded").props.style as ViewStyle,
+    )?.backgroundColor;
+    expect(fill).toBe("#B00020");
   });
 });

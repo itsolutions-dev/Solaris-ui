@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonGroup, Typography } from "@its/glowup-ui";
+import { ButtonGroup, Typography } from "@its/solaris-ui";
 
 const field: React.CSSProperties = {
   display: "flex",

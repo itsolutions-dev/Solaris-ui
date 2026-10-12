@@ -1,5 +1,5 @@
 import React from "react";
-import { FAB, IconButton, NavigationRail } from "@its/glowup-ui";
+import { FAB, IconButton, NavigationRail } from "@its/solaris-ui";
 
 const frame: React.CSSProperties = { height: 400, display: "flex" };
 

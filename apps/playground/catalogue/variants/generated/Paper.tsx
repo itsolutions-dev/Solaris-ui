@@ -1,6 +1,6 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Paper.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
@@ -10,7 +10,7 @@ import {
   Divider,
   StatusBadge,
   Button,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 const grid: ViewStyle = {
   flexDirection: "row",

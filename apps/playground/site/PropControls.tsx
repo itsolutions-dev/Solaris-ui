@@ -8,7 +8,7 @@ import {
   Typography,
   useTheme,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata, PropDefinition } from "../catalogue/types";
 
 interface PropControlsProps {

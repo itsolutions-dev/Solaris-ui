@@ -19,7 +19,7 @@
 // rendering wrongly. Anything the rewrite cannot handle is excluded here by name
 // and belongs in ./manual instead.
 //
-// Run with `npm run variants -w @its/glowup-playground`.
+// Run with `npm run variants -w @its/solaris-playground`.
 import {
   mkdirSync,
   readFileSync,
@@ -303,7 +303,7 @@ for (const file of readdirSync(PREVIEWS).sort()) {
 
   const header = `// GENERATED — do not edit.
 // Source: .design-sync/previews/${file}
-// Regenerate with \`npm run variants -w @its/glowup-playground\`.
+// Regenerate with \`npm run variants -w @its/solaris-playground\`.
 `;
 
   const footer = `
@@ -330,7 +330,7 @@ ${variants
 }
 
 const barrel = `// GENERATED — do not edit.
-// Built from .design-sync/previews by \`npm run variants -w @its/glowup-playground\`.
+// Built from .design-sync/previews by \`npm run variants -w @its/solaris-playground\`.
 import type { Variant } from "../types";
 ${modules
   .map((m) => `import { variants as ${m.component} } from "./${m.component}";`)

@@ -1,17 +1,17 @@
 import type { ExpoConfig } from "expo/config";
 
 // Replaces the former app.json so the web build can be parameterised. The site
-// is served from a GitHub Pages project page (https://<org>.github.io/Glowup/),
+// is served from a GitHub Pages project page (https://<org>.github.io/Solaris-ui/),
 // which means every asset URL needs the repository name as a prefix — but only
 // in that build. Locally, and on any host serving from the domain root, the
 // prefix must be empty or Metro serves the bundle from a path that does not
-// exist. The deploy workflow sets GLOWUP_BASE_URL; nothing else does.
-const baseUrl = process.env.GLOWUP_BASE_URL ?? "";
+// exist. The deploy workflow sets SOLARIS_BASE_URL; nothing else does.
+const baseUrl = process.env.SOLARIS_BASE_URL ?? "";
 
 const config: ExpoConfig = {
-  name: "Glowup",
-  slug: "glowup-playground",
-  scheme: "glowup",
+  name: "Solaris",
+  slug: "solaris-playground",
+  scheme: "solaris",
   version: "1.0.0",
   orientation: "default",
   icon: "./assets/icon.png",

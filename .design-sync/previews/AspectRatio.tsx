@@ -1,5 +1,5 @@
 import React from "react";
-import { AspectRatio, HStack, Typography } from "@its/glowup-ui";
+import { AspectRatio, HStack, Typography } from "@its/solaris-ui";
 
 const band = (ratio: number, label: string) => (
   <AspectRatio

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Modal, Typography, useTheme, type Theme } from "@its/glowup-ui";
+import { Modal, Typography, useTheme, type Theme } from "@its/solaris-ui";
 import type { Shortcut } from "./useKeyboardShortcuts";
 import { COMMAND_KEY_LABEL } from "./useKeyboardShortcuts";
 

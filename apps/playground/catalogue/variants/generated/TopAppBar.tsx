@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/TopAppBar.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Avatar, IconButton, TopAppBar } from "@its/glowup-ui";
+import { Avatar, IconButton, TopAppBar } from "@its/solaris-ui";
 
 const bar: ViewStyle = { width: 400, flexDirection: "row" };
 
@@ -38,7 +38,7 @@ export const CenterAligned = () => (
   <View style={bar}>
     <TopAppBar
       variant="center"
-      title="Glowup"
+      title="Solaris"
       leading={
         <IconButton icon="menu" accessibilityLabel="Menu" onPress={() => {}} />
       }

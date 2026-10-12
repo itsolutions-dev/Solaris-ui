@@ -21,7 +21,7 @@ import {
   ClockDial,
   DatePicker,
   TimePicker,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 
 /**

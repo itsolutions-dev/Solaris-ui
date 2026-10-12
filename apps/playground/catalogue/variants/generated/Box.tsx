@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Box.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { Box, Typography } from "@its/glowup-ui";
+import { Box, Typography } from "@its/solaris-ui";
 
 export const Padding = () => (
   <Box bg="surfaceContainerLow" p="m" radius="medium" gap="s" width={360}>

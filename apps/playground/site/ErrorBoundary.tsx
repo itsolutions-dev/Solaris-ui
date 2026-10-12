@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, Typography, useTheme, type Theme } from "@its/glowup-ui";
+import { Button, Typography, useTheme, type Theme } from "@its/solaris-ui";
 
 interface Props {
   /** Shown in the fallback so the reader knows which demo failed. */

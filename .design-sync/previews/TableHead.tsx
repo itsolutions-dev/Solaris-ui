@@ -5,7 +5,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TableHead is the header band of a Table; it is shown inside one.
 const fit: React.CSSProperties = {

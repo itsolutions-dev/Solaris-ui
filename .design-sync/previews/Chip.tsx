@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip, Typography } from "@its/glowup-ui";
+import { Chip, Typography } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",
@@ -19,7 +19,7 @@ export const Modes = () => (
   <div style={row}>
     <Chip label="React Native" mode="filled" onPress={() => {}} />
     <Chip label="Expo" mode="tonal" onPress={() => {}} />
-    <Chip label="Material You" mode="outlined" onPress={() => {}} />
+    <Chip label="Material" mode="outlined" onPress={() => {}} />
   </div>
 );
 

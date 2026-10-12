@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Stack.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { Chip, Stack, Typography } from "@its/glowup-ui";
+import { Chip, Stack, Typography } from "@its/solaris-ui";
 
 const items = ["Buttons", "Inputs", "Feedback"];
 

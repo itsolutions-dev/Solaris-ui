@@ -1,4 +1,4 @@
-import type { MaterialCommunityIconsGlyphs } from "@its/glowup-ui";
+import type { MaterialCommunityIconsGlyphs } from "@its/solaris-ui";
 
 export interface SiteRoute {
   /** expo-router path; also what `usePathname` is matched against. */
@@ -19,7 +19,7 @@ export const SITE_ROUTES: SiteRoute[] = [
     href: "/",
     label: "Overview",
     icon: "home-outline",
-    summary: "What Glowup is and what it ships.",
+    summary: "What Solaris is and what it ships.",
   },
   {
     href: "/getting-started",
@@ -37,7 +37,8 @@ export const SITE_ROUTES: SiteRoute[] = [
     href: "/theming",
     label: "Theming",
     icon: "palette-outline",
-    summary: "The Material You token set the whole library reads from.",
+    summary:
+      "The organization's theme, the token set the whole library reads from.",
   },
   {
     href: "/templates",
@@ -55,7 +56,7 @@ export const activeRouteFor = (pathname: string): string => {
   return match?.href ?? "/";
 };
 
-export const GITHUB_URL = "https://github.com/itsolutions-dev/Glowup";
+export const GITHUB_URL = "https://github.com/itsolutions-dev/Solaris-ui";
 
 /**
  * Where the site is served from. Only Open Graph needs it: a share card image
@@ -64,7 +65,7 @@ export const GITHUB_URL = "https://github.com/itsolutions-dev/Glowup";
  */
 export const SITE_URL =
   process.env.EXPO_PUBLIC_SITE_URL ??
-  "https://itsolutions-dev.github.io/Glowup";
+  "https://itsolutions-dev.github.io/Solaris-ui";
 
 export const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
-export const NPM_URL = "https://www.npmjs.com/package/@its/glowup-ui";
+export const NPM_URL = "https://www.npmjs.com/package/@its/solaris-ui";

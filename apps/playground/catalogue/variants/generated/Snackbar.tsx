@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Snackbar.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Snackbar, Typography, Card } from "@its/glowup-ui";
+import { Snackbar, Typography, Card } from "@its/solaris-ui";
 
 // Snackbar is NOT a portal — it is an absolutely-positioned sibling
 // (bottom: 24, left/right: 16). A plain <View> is position: static, so it needs
@@ -51,7 +51,7 @@ export const Types = () => (
         visible
         duration={0}
         type="success"
-        message="Published @its/glowup-ui 0.1.0 to the registry."
+        message="Published @its/solaris-ui 0.1.0 to the registry."
         onDismiss={() => {}}
       />
     </View>

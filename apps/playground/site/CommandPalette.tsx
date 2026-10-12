@@ -16,7 +16,7 @@ import {
   type MaterialCommunityIconsGlyphs,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import { CATEGORY_OF, FLAT_ORDER } from "../catalogue/categories";
 import { SITE_ROUTES } from "./siteNav";
 import { useLayout } from "./breakpoints";
@@ -171,7 +171,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
                   style={({ hovered }: PressableState) => [
                     styles.row,
                     (active || hovered) && {
-                      backgroundColor: theme.colors.secondaryContainer,
+                      backgroundColor: theme.colors.primaryContainer,
                     },
                   ]}
                 >
@@ -180,7 +180,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
                     size={18}
                     color={
                       active
-                        ? theme.colors.onSecondaryContainer
+                        ? theme.colors.onPrimaryContainer
                         : theme.colors.onSurfaceVariant
                     }
                   />
@@ -188,7 +188,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
                     variant="bodyMedium"
                     style={{
                       color: active
-                        ? theme.colors.onSecondaryContainer
+                        ? theme.colors.onPrimaryContainer
                         : theme.colors.onSurface,
                       flex: 1,
                     }}

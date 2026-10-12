@@ -1,5 +1,5 @@
 import React from "react";
-import { Stepper } from "@its/glowup-ui";
+import { Stepper } from "@its/solaris-ui";
 
 const wrap: React.CSSProperties = { width: 400, display: "flex" };
 

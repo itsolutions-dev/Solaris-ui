@@ -1,23 +1,23 @@
 {
-  "name": "glowup-monorepo",
+  "name": "solaris-monorepo",
   "version": "1.0.0",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "homepage": "https://itsolutions-dev.github.io/Glowup/",
+  "homepage": "https://itsolutions-dev.github.io/Solaris-ui/",
   "scripts": {
-    "start": "npm start -w @its/glowup-playground",
-    "playground": "npm start -w @its/glowup-playground",
-    "android": "npm run android -w @its/glowup-playground",
-    "ios": "npm run ios -w @its/glowup-playground",
-    "web": "npm run web -w @its/glowup-playground",
+    "start": "npm start -w @its/solaris-playground",
+    "playground": "npm start -w @its/solaris-playground",
+    "android": "npm run android -w @its/solaris-playground",
+    "ios": "npm run ios -w @its/solaris-playground",
+    "web": "npm run web -w @its/solaris-playground",
     "lint": "eslint .",
     "type-check": "npm run type-check --workspaces --if-present && tsc --noEmit -p .design-sync/tsconfig.json",
     "test": "npm run test --workspaces --if-present",
-    "build": "npm run build --workspace @its/glowup-ui",
-    "version-packages": "changeset version && npm run docgen -w @its/glowup-playground",
+    "build": "npm run build --workspace @its/solaris-ui",
+    "version-packages": "changeset version && npm run docgen -w @its/solaris-playground",
     "release": "changeset publish"
   },
   "devDependencies": {

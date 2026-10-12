@@ -1,6 +1,6 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Table.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TableRow is content-height; body rows set their own height, as DataGrid does.
 const row = { minHeight: 48 };

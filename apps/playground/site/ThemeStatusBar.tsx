@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useTheme } from "@its/glowup-ui";
+import { useTheme } from "@its/solaris-ui";
 
 /**
  * The status bar and the browser chrome, following the site's scheme.

@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioGroup } from "@its/glowup-ui";
+import { RadioGroup } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",

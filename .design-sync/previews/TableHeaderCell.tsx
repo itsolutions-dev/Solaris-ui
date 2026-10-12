@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableHead, TableHeaderCell, TableRow } from "@its/glowup-ui";
+import { Table, TableHead, TableHeaderCell, TableRow } from "@its/solaris-ui";
 
 // TableHeaderCell is a column header of a Table; it is shown inside one.
 const fit: React.CSSProperties = {

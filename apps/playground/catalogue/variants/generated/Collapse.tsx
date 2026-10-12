@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Collapse.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { Box, Button, Collapse, Typography, VStack } from "@its/glowup-ui";
+import { Box, Button, Collapse, Typography, VStack } from "@its/solaris-ui";
 
 const body = (
   <Typography variant="bodyMedium">

@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Head from "expo-router/head";
-import { Typography, useTheme, type Theme } from "@its/glowup-ui";
+import { Typography, useTheme, type Theme } from "@its/solaris-ui";
 import { useLayout } from "./breakpoints";
 import { OG_IMAGE_URL } from "./siteNav";
 
-const SITE_NAME = "Glowup";
+const SITE_NAME = "Solaris";
 
 interface PageProps {
   title: string;
@@ -103,8 +103,8 @@ export const PageHead = ({
   title: string;
   description: string;
 }) => {
-  // The home page is titled "Glowup"; suffixing the site name there would
-  // render "Glowup · Glowup" in the tab and in every share card.
+  // The home page is titled "Solaris"; suffixing the site name there would
+  // render "Solaris · Solaris" in the tab and in every share card.
   const documentTitle = title === SITE_NAME ? title : `${title} · ${SITE_NAME}`;
 
   return (

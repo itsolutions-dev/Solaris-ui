@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
-import { Icon, Paper, Typography } from "@its/glowup-ui";
+import { Icon, Paper, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo } from "./shared";
 

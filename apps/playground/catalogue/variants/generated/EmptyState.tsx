@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/EmptyState.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { EmptyState } from "@its/glowup-ui";
+import { EmptyState } from "@its/solaris-ui";
 
 const frame: ViewStyle = { flexDirection: "row", width: 400 };
 

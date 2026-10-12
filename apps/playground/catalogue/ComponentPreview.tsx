@@ -16,8 +16,8 @@ import {
   Portal,
   Center,
   EMPTY_RANGE,
-} from "@its/glowup-ui";
-import type { DateRange } from "@its/glowup-ui";
+} from "@its/solaris-ui";
+import type { DateRange } from "@its/solaris-ui";
 import type { ComponentMetadata } from "./types";
 
 interface ComponentPreviewProps {
@@ -215,7 +215,7 @@ const ComponentPreview = ({
     props.items = [
       { id: "1", label: "Home", icon: "home-outline", onPress: () => {} },
       { id: "2", label: "Projects", onPress: () => {} },
-      { id: "3", label: "Glowup", onPress: () => {} },
+      { id: "3", label: "Solaris", onPress: () => {} },
       { id: "4", label: "Components", onPress: () => {} },
       { id: "5", label: "Breadcrumbs" },
     ];
@@ -470,7 +470,7 @@ const ComponentPreview = ({
             style={{
               padding: 16,
               borderRadius: 16,
-              backgroundColor: theme.colors.secondaryContainer,
+              backgroundColor: theme.colors.primaryContainer,
             }}
           >
             <Typography variant="bodyMedium">
@@ -489,7 +489,7 @@ const ComponentPreview = ({
     imageProps.source = {
       uri: broken
         ? "https://example.invalid/missing.png"
-        : "https://picsum.photos/seed/glowup/640/420",
+        : "https://picsum.photos/seed/solaris/640/420",
     };
     return (
       <View style={{ width: "100%", maxWidth: 420 }}>
@@ -857,7 +857,7 @@ const ComponentPreview = ({
       <Card variant="elevated" style={{ width: "100%", maxWidth: 420 }}>
         <Component
           {...props}
-          source={{ uri: "https://picsum.photos/seed/glowup/800/450" }}
+          source={{ uri: "https://picsum.photos/seed/solaris/800/450" }}
         />
         <CardTitle title="Line 4" subtitle="Scheduled maintenance" />
       </Card>

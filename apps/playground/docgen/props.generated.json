@@ -1,6 +1,6 @@
 {
-  "libraryName": "@its/glowup-ui",
-  "libraryVersion": "0.9.0",
+  "libraryName": "@its/solaris-ui",
+  "libraryVersion": "0.0.0",
   "generatedFrom": "packages/ui/src/index.ts",
   "componentCount": 102,
   "components": {
@@ -6532,11 +6532,11 @@
           "deprecated": false
         },
         {
-          "name": "initialPalette",
-          "type": "ThemePalette",
+          "name": "theme",
+          "type": "ThemeSchemes",
           "required": false,
-          "default": "palettes.baseline",
-          "description": "The colour set to start on — one of `palettes`, or anything\n`createPalette` returns. Read once, on mount: call `setPalette` from\n`useTheme()` to change it afterwards.",
+          "default": "DEFAULT_THEME",
+          "description": "Both schemes, from `createTheme()`. Defaults to the organization's theme.\nCreate it once, at module scope: a new object every render rebuilds\nevery component's styles.",
           "deprecated": false
         }
       ]

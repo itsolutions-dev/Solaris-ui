@@ -1,7 +1,7 @@
 name: Consumer smoke
 
 # Validates the PUBLISHED package, not the working tree: examples/consumer is
-# outside the npm workspaces and installs @its/glowup-ui from the registry. It
+# outside the npm workspaces and installs @its/solaris-ui from the registry. It
 # therefore does not run on pull requests — a PR cannot change what is already
 # published — and instead chains off Release.
 #
@@ -14,14 +14,13 @@ name: Consumer smoke
 #
 # The gap that leaves: if a Release run fails, the smoke test is skipped for that
 # commit. Re-run it by hand with workflow_dispatch.
+#
+# Manual only until @its/solaris-ui is first published (sub-project 2 of the
+# program, docs/superpowers/specs/2026-10-12-solaris-program-design.md). Until
+# then the package does not exist on the registry and every run would fail.
+# Restore the weekly `schedule` and the `workflow_run` on Release with it.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * 1"
-  workflow_run:
-    workflows: [Release]
-    types: [completed]
-    branches: [master]
 
 concurrency:
   group: consumer-smoke
@@ -64,11 +63,11 @@ jobs:
           version=$(node -p "require('../../packages/ui/package.json').version")
           echo "version=$version" >> "$GITHUB_OUTPUT"
           for i in $(seq 1 20); do
-            if npm view "@its/glowup-ui@$version" version; then exit 0; fi
+            if npm view "@its/solaris-ui@$version" version; then exit 0; fi
             echo "not resolvable yet; retrying in 15s"
             sleep 15
           done
-          echo "::error::@its/glowup-ui@$version never became resolvable"
+          echo "::error::@its/solaris-ui@$version never became resolvable"
           exit 1
 
       # No lockfile here on purpose (see examples/consumer/README.md): the point
@@ -77,15 +76,15 @@ jobs:
       - name: Install from the registry
         env:
           VERSION: ${{ steps.version.outputs.version }}
-        run: npm install --no-audit --no-fund --no-save "@its/glowup-ui@$VERSION"
+        run: npm install --no-audit --no-fund --no-save "@its/solaris-ui@$VERSION"
 
       - name: Refuse a workspace symlink
         run: |
-          if [ -L node_modules/@its/glowup-ui ]; then
-            echo "::error::node_modules/@its/glowup-ui is a symlink to the local package. This app must consume the published one — do not add examples/ to the npm workspaces."
+          if [ -L node_modules/@its/solaris-ui ]; then
+            echo "::error::node_modules/@its/solaris-ui is a symlink to the local package. This app must consume the published one — do not add examples/ to the npm workspaces."
             exit 1
           fi
-          node -p "'consuming @its/glowup-ui@' + require('@its/glowup-ui/package.json').version"
+          node -p "'consuming @its/solaris-ui@' + require('@its/solaris-ui/package.json').version"
 
       - name: Type-check against the published types
         run: npx tsc --noEmit

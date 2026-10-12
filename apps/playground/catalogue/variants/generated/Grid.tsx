@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Grid.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { Box, Grid, Stat, Typography } from "@its/glowup-ui";
+import { Box, Grid, Stat, Typography } from "@its/solaris-ui";
 
 const tile = (n: number) => (
   <Box key={n} bg="secondaryContainer" p="m" radius="medium">

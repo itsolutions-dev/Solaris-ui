@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { router } from "expo-router";
-import { EmptyState } from "@its/glowup-ui";
+import { EmptyState } from "@its/solaris-ui";
 import { PageHead } from "../site/Page";
 
 /**
@@ -13,7 +13,7 @@ export default function NotFound() {
     <ScrollView contentContainerStyle={styles.page}>
       <PageHead
         title="Page not found"
-        description="This page does not exist on the Glowup documentation site."
+        description="This page does not exist on the Solaris documentation site."
       />
       <EmptyState
         icon="compass-off-outline"

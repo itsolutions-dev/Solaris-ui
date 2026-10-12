@@ -1,9 +1,9 @@
-import { Banner } from "@its/glowup-ui";
+import { Banner } from "@its/solaris-ui";
 
 import { CodeBlock } from "../site/CodeBlock";
 import { Page, Section } from "../site/Page";
 
-const INSTALL = `npm install @its/glowup-ui`;
+const INSTALL = `npm install @its/solaris-ui`;
 
 const PEERS = `npx expo install \\
   react-native-safe-area-context \\
@@ -14,7 +14,7 @@ const PROVIDERS = `import {
   ThemeProvider,
   AlertProvider,
   ToastProvider,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
   );
 }`;
 
-const FIRST_SCREEN = `import { Button, Typography, VStack } from "@its/glowup-ui";
+const FIRST_SCREEN = `import { Button, Typography, VStack } from "@its/solaris-ui";
 
 export const Screens = () => (
   <VStack p="m" spacing="s">
@@ -42,10 +42,32 @@ export const Screens = () => (
   </VStack>
 );`;
 
-const THEME_HOOK = `import { useTheme } from "@its/glowup-ui";
+const THEME_HOOK = `import { useTheme } from "@its/solaris-ui";
 
 const { theme, toggleTheme } = useTheme();
-// theme.colors.primary, theme.spacing.m, theme.shape.large, theme.isDark`;
+// theme.palette.primary.main, theme.colors.primary, theme.spacing.m, theme.shape.large, theme.isDark`;
+
+const FONTS = `// app.config.ts — embed Roboto in the native build.
+// Config plugins need a development build; Expo Go cannot embed fonts.
+plugins: [
+  [
+    "expo-font",
+    {
+      fonts: [
+        "./assets/fonts/Roboto-Regular.ttf",
+        "./assets/fonts/Roboto-Medium.ttf",
+        "./assets/fonts/Roboto-Bold.ttf",
+      ],
+    },
+  ],
+],
+
+// App.tsx — then tell the theme the family is there. Only iOS needs telling:
+// Android has Roboto built in, and the web keeps its stack (undefined = default).
+const theme = createTheme({
+  typography: { fontFamily: Platform.OS === "ios" ? "Roboto" : undefined },
+});
+<ThemeProvider theme={theme}>…</ThemeProvider>;`;
 
 export default function GettingStarted() {
   return (
@@ -58,7 +80,7 @@ export default function GettingStarted() {
           visible
           type="info"
           icon="information-outline"
-          message="Glowup is pre-1.0. The API can still change between minor versions — pin the version you build against."
+          message="Solaris is pre-1.0. The API can still change between minor versions — pin the version you build against."
         />
       }
     >
@@ -92,6 +114,13 @@ export default function GettingStarted() {
         description="Everything the library paints comes from here, and so should everything you build beside it."
       >
         <CodeBlock code={THEME_HOOK} title="anywhere.tsx" />
+      </Section>
+
+      <Section
+        title="6. Fonts"
+        description="The theme uses Roboto on Android, where it is the system font, and on the web, where your HTML loads it (this site's app/+html.tsx does). iOS has no Roboto and React Native has no font fallback, so on iOS the theme uses the system font until the app embeds Roboto and says so."
+      >
+        <CodeBlock code={FONTS} title="app.config.ts / App.tsx" />
       </Section>
     </Page>
   );

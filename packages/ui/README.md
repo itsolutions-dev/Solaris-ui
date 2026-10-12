@@ -1,17 +1,16 @@
-# @its/glowup-ui
+# @its/solaris-ui
 
-A **Material You (Material Design 3)** component library for **React Native + Web** (Expo).
-~60 theme-reactive components — layout primitives, buttons, inputs, navigation, dialogs, data
-grids, progress indicators and a locale-aware date/time picker family — built on a single
-design-token system with light/dark support.
+IT Solutions' component library for **React Native + Web** (Expo): Material-based,
+theme-reactive components — layout primitives, buttons, inputs, navigation, dialogs, data
+grids, progress indicators and a locale-aware date/time picker family — styled by the
+organization's theme, with light/dark support.
 
-> Status: pre-`1.0.0`. The API may still change between minor versions; see
-> [`CHANGELOG.md`](CHANGELOG.md).
+> Status: pre-`1.0.0` and not yet published. The API changes before the first release.
 
 ## Installation
 
 ```bash
-npm install @its/glowup-ui
+npm install @its/solaris-ui
 ```
 
 Then install the peer dependencies your app doesn't already have:
@@ -39,7 +38,7 @@ import {
   Button,
   Typography,
   VStack,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 export default function App() {
   return (
@@ -102,13 +101,22 @@ device locale (or a `locale` override). Chrome strings default to English — pa
 
 ### Theme
 
-All colors, typography, spacing and shape tokens come from the built-in Material You theme.
-Access it with the `useTheme()` hook:
+Every colour, type step, spacing unit and radius comes from the theme. With no props,
+`ThemeProvider` renders the organization's theme. To change it, pass only what differs,
+in MUI's `colorSchemes` shape:
 
 ```tsx
-import { useTheme } from "@its/glowup-ui";
+import { createTheme, ThemeProvider, useTheme } from "@its/solaris-ui";
 
-const { theme, toggleTheme } = useTheme();
+const theme = createTheme({
+  colorSchemes: { light: { palette: { primary: { main: "#00639B" } } } },
+});
+
+<ThemeProvider theme={theme}>…</ThemeProvider>;
+
+const { theme: current, toggleTheme } = useTheme();
+current.palette.text.secondary; // MUI's shape
+current.colors.primaryContainer; // the Material 3 roles components paint with
 ```
 
 Helpers `getStateColor()` and `getGlowStyles()` are also exported for building custom
@@ -116,13 +124,13 @@ theme-reactive components.
 
 ## Library layout
 
-`src` is the library source — the code published as `@its/glowup-ui`.
+`src` is the library source — the code published as `@its/solaris-ui`.
 Its public surface is the barrel `src/index.ts`. Layout:
 
 ```
 src/
-├── index.ts          # public API barrel — everything importable from "@its/glowup-ui"
-├── components/        # the Material You components
+├── index.ts          # public API barrel — everything importable from "@its/solaris-ui"
+├── components/        # the components
 │   ├── CardParts/     # CardTitle, CardContent, CardCover, CardActions
 │   ├── List/          # ListItem, ListSection, ListSubheader
 │   ├── Modal/         # Modal, ConfirmDialog
@@ -133,8 +141,9 @@ src/
 │   ├── types.ts       # shared component types (e.g. PressableState)
 │   └── *.tsx          # Button, Card, Input, Chip, Select, DataGrid, Snackbar, ...
 └── providers/         # theme + alert infrastructure
-    ├── ThemeProvider.tsx   # Material You theme, useTheme(), getStateColor(), getGlowStyles()
-    ├── theme.json          # all color / typography / spacing / shape tokens (source of truth)
+    ├── ThemeProvider.tsx   # Theme types, ThemeProvider, useTheme(), getStateColor(), getGlowStyles()
+    ├── createTheme.ts      # createTheme(): MUI colorSchemes in, Material 3 roles + MUI palette out
+    ├── theme.json          # the default theme: colour inputs, typography, spacing, shape
     ├── AlertProvider.tsx   # cross-platform Alert() (native Alert.alert / web Modal)
     └── ToastProvider.tsx   # imperative queued toasts via useToast()
 ```
@@ -146,7 +155,7 @@ accessibility role/state and reacts to the light/dark theme automatically.
 > Icons: any prop typed _icon_ below takes a **MaterialCommunityIcons** name — a kebab-case
 > string like `"plus"` or `"bell-outline"` (outline variants append `-outline`).
 > The authoritative spec (with full defaults for every prop) is
-> [`components.md`](https://github.com/itsolutions-dev/Glowup/blob/master/packages/ui/src/components/components.md)
+> [`components.md`](https://github.com/itsolutions-dev/Solaris-ui/blob/master/packages/ui/src/components/components.md)
 > in the repository; the documentation site's per-component pages carry the prop tables
 > generated from the source.
 
@@ -156,9 +165,10 @@ accessibility role/state and reacts to the light/dark theme automatically.
 
 Exported from the library alongside the components:
 
-- **`ThemeProvider`** — wraps the app; derives a Material You theme from `theme.json`, syncs
-  with the OS color scheme, and supports manual toggle.
-- **`useTheme()`** → `{ theme, toggleTheme, palette, setPalette }`; the scheme is `theme.isDark`.
+- **`ThemeProvider`** — wraps the app; renders `createTheme()`'s result (or the
+  organization's theme), follows the OS color scheme, and supports a manual toggle.
+- **`createTheme(options)`** — MUI's `colorSchemes` in, both schemes out; see [Theme](#theme).
+- **`useTheme()`** → `{ theme, toggleTheme }`; the scheme is `theme.isDark`.
 - **`getStateColor(bg, on, state)`** — composites a hover/press state-layer color over a base.
 - **`getGlowStyles(theme, active, variant?)`** — the M3 "glow" focus/hover ring (`variant="error"` for error state).
 - **`AlertProvider`** + **`Alert(title, message, buttons)`** — cross-platform alert: native
@@ -166,10 +176,15 @@ Exported from the library alongside the components:
 - **`ToastProvider`** + **`useToast()`** — imperative, queued toasts (see
   [`ToastProvider` / `useToast()`](#toastprovider--usetoast) below).
 
-Theme tokens: colors (primary/secondary/tertiary/error + container & surface tones, the inverse
-pair `inverseSurface` / `inverseOnSurface` / `inversePrimary`, plus `surfaceTint` and `scrim`, all
-with light/dark values), a full M3 type scale (`displayLarge` → `labelSmall`), spacing
-(`xs:4 s:8 m:16 l:24 xl:32`) and shape radii (`small:8 medium:12 large:16 extraLarge:28`).
+Theme tokens:
+- **`theme.colors`** — the Material 3 roles: primary, secondary, tertiary, error, warning,
+  info and success, each with its on-colour and container pair; the surface tones; the
+  inverse pair; outline and scrim.
+- **`theme.palette`** — the same colours in MUI's shape (`main` / `light` / `dark` /
+  `contrastText`, `background`, `text`, `divider`).
+- **Type scale** — the full Material 3 scale (`displayLarge` → `labelSmall`).
+- **Spacing** — `xs:4 s:8 m:16 l:24 xl:32`.
+- **Shape radii** — `small:8 medium:12 large:16 extraLarge:24 full:9999`.
 
 ### Foundations
 
@@ -702,7 +717,7 @@ React Native — no SVG, no native modules — so they render identically on web
 month scrolling and the keyboard navigation above; `ClockPicker` is the M3 hour/minute readout
 with its AM/PM switch, over `ClockDial` (the analog face, drag to set) or two text fields.
 Full prop tables in
-[`components.md`](https://github.com/itsolutions-dev/Glowup/blob/master/packages/ui/src/components/components.md).
+[`components.md`](https://github.com/itsolutions-dev/Solaris-ui/blob/master/packages/ui/src/components/components.md).
 
 #### `Autocomplete`
 

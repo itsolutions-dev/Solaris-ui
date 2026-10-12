@@ -1,9 +1,9 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/AspectRatio.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { AspectRatio, HStack, Typography } from "@its/glowup-ui";
+import { AspectRatio, HStack, Typography } from "@its/solaris-ui";
 
 const band = (ratio: number, label: string) => (
   <AspectRatio

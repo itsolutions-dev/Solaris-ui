@@ -11,7 +11,7 @@ import {
   StatusBadge,
   Chip,
   Button,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",
@@ -181,9 +181,9 @@ export const ComposedFromParts = () => (
     <Card variant="elevated">
       <CardCover source={cover} alt="Release banner" />
       <CardTitle
-        title="Material You 0.2.0"
+        title="Solaris 0.1.0"
         subtitle="Released 9 September"
-        left={<Avatar name="Glowup UI" size={40} />}
+        left={<Avatar name="Solaris UI" size={40} />}
         right={<StatusBadge type="success" label="Stable" />}
       />
       <CardContent>

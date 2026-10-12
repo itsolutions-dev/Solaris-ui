@@ -13,7 +13,7 @@ import {
   ListSection,
   ListSubheader,
   Table,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 import { TableDemo } from "../demos";
 

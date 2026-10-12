@@ -1,6 +1,6 @@
 import React from "react";
-import { ProgressButton } from "@its/glowup-ui";
-import type { ProgressButtonStatus } from "@its/glowup-ui";
+import { ProgressButton } from "@its/solaris-ui";
+import type { ProgressButtonStatus } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

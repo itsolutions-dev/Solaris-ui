@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Stat, Typography } from "@its/glowup-ui";
+import { Paper, Stat, Typography } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

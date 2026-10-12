@@ -4,7 +4,7 @@ import {
   DrawerItem,
   DrawerSection,
   NavigationDrawer,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 const frame: React.CSSProperties = { height: 440, width: 340, display: "flex" };
 

@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/SideSheet.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Button, Checkbox, SideSheet, Typography } from "@its/glowup-ui";
+import { Button, Checkbox, SideSheet, Typography } from "@its/solaris-ui";
 
 // The standard (modal={false}) sheet renders inline beside content; the modal
 // sheet portals over the page and cannot be shown inside a card.

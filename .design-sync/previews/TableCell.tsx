@@ -8,7 +8,7 @@ import {
   TableRow,
   Typography,
   useTheme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TableCell is a body cell of a Table; it is shown inside one.
 const fit: React.CSSProperties = {

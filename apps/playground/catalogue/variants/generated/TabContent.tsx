@@ -1,6 +1,6 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/TabContent.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
@@ -11,7 +11,7 @@ import {
   Tabs,
   TabContent,
   Typography,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // TabContent renders only the child at `activeTab`, so each cell is a real
 // Tabs + TabContent pair sharing one index. The children array must line up

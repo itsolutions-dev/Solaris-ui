@@ -14,7 +14,7 @@ import {
   Collapse,
   Portal,
   SideSheet,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 import { SideSheetDemo } from "../demos";
 

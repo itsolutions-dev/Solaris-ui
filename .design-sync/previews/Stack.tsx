@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip, Stack, Typography } from "@its/glowup-ui";
+import { Chip, Stack, Typography } from "@its/solaris-ui";
 
 const items = ["Buttons", "Inputs", "Feedback"];
 

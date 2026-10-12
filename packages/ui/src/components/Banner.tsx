@@ -117,8 +117,8 @@ const makeStyles = (theme: Theme, type: BannerType) => {
     textColor = theme.colors.onTertiaryContainer;
     iconColor = theme.colors.onTertiaryContainer;
   } else if (type === "info") {
-    backgroundColor = theme.colors.secondaryContainer;
-    textColor = theme.colors.onSecondaryContainer;
+    backgroundColor = theme.colors.primaryContainer;
+    textColor = theme.colors.onPrimaryContainer;
     iconColor = theme.colors.primary;
   }
 

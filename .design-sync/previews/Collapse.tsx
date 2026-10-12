@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Collapse, Typography, VStack } from "@its/glowup-ui";
+import { Box, Button, Collapse, Typography, VStack } from "@its/solaris-ui";
 
 const body = (
   <Typography variant="bodyMedium">

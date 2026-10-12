@@ -1,5 +1,5 @@
 import React from "react";
-import { Skeleton, Paper, Typography, Divider } from "@its/glowup-ui";
+import { Skeleton, Paper, Typography, Divider } from "@its/solaris-ui";
 
 const col: React.CSSProperties = { display: "flex", flexDirection: "column" };
 

@@ -24,7 +24,7 @@ import {
   Typography,
   useTheme,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import { CodeBlock } from "../site/CodeBlock";
 import { DemoErrorBoundary } from "../site/ErrorBoundary";
@@ -41,7 +41,7 @@ import { useLayout } from "../site/breakpoints";
  * no domain model, so these are shapes to copy, not an app to run.
  */
 const NAVIGATION = `import { createDrawerNavigator } from "@react-navigation/drawer";
-import { AppBar, useTheme } from "@its/glowup-ui";
+import { AppBar, useTheme } from "@its/solaris-ui";
 
 const Drawer = createDrawerNavigator();
 
@@ -73,7 +73,7 @@ export default function Templates() {
     <Page
       eyebrow="Composition"
       title="Templates"
-      description="Three screens built only from Glowup components and theme tokens — the level at which spacing, hierarchy and surface choices actually get decided."
+      description="Three screens built only from Solaris components and theme tokens — the level at which spacing, hierarchy and surface choices actually get decided."
     >
       <Section
         title="Sign in"
@@ -149,7 +149,7 @@ const SignInTemplate = () => {
       <CardTitle
         title="Welcome back"
         subtitle="Sign in to continue"
-        left={<Avatar name="Glowup" size={40} />}
+        left={<Avatar name="Solaris" size={40} />}
       />
       <CardContent>
         <View style={styles.formGap}>

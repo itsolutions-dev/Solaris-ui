@@ -7,7 +7,7 @@ import {
   Typography,
   useTheme,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { ComponentDoc, PropDoc } from "./propsData";
 import { useLayout } from "./breakpoints";
 

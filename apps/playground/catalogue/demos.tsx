@@ -24,7 +24,7 @@ import {
   TopAppBar,
   Typography,
   useTheme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { DemoProps } from "./types";
 
 const noop = () => {};

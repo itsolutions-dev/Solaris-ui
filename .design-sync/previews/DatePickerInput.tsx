@@ -1,5 +1,5 @@
 import React from "react";
-import { DatePickerInput } from "@its/glowup-ui";
+import { DatePickerInput } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",

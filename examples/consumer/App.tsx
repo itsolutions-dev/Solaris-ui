@@ -1,5 +1,5 @@
 /**
- * A consumer of `@its/glowup-ui` as an outside app sees it: installed from the
+ * A consumer of `@its/solaris-ui` as an outside app sees it: installed from the
  * npm registry, reached only through the package name, typed only by the
  * published `.d.ts`.
  *
@@ -31,12 +31,12 @@ import {
   Typography,
   useTheme,
   useToast,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type {
   MaterialCommunityIconsGlyphs,
   Theme,
   ThemeColorTokens,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // Type-only assertions on the published surface: if the shipped .d.ts stops
 // resolving (or changes shape), `tsc --noEmit` fails here before anything renders.
@@ -55,7 +55,7 @@ const Showcase = () => {
   return (
     <ScrollView contentContainerStyle={styles.page}>
       <Typography variant="headlineSmall" style={{ color: colors.onSurface }}>
-        Glowup consumer smoke
+        Solaris consumer smoke
       </Typography>
       <Typography
         variant="bodyMedium"

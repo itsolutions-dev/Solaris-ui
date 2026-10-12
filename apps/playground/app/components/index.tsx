@@ -9,7 +9,7 @@ import {
   useTheme,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import ComponentPreview from "../../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../../catalogue/registry";
@@ -95,7 +95,7 @@ export default function ComponentsIndex() {
     <Page
       eyebrow="Reference"
       title="Components"
-      description={`${TOTAL_COUNT} Material You components. Every card is the real component at its default props — open one for the live demo, the variants and the generated API reference.`}
+      description={`${TOTAL_COUNT} components. Every card is the real component at its default props — open one for the live demo, the variants and the generated API reference.`}
     >
       <View style={styles.toolbar}>
         <View style={styles.searchRow}>
@@ -227,12 +227,12 @@ const CategoryChip = ({
         styles.chip,
         {
           backgroundColor: active
-            ? theme.colors.secondaryContainer
+            ? theme.colors.primaryContainer
             : hovered || focused
               ? theme.colors.surfaceContainerHigh
               : "transparent",
           borderColor: active
-            ? theme.colors.secondaryContainer
+            ? theme.colors.primaryContainer
             : theme.colors.outlineVariant,
         },
       ]}
@@ -243,7 +243,7 @@ const CategoryChip = ({
           size={14}
           color={
             active
-              ? theme.colors.onSecondaryContainer
+              ? theme.colors.onPrimaryContainer
               : theme.colors.onSurfaceVariant
           }
         />
@@ -252,7 +252,7 @@ const CategoryChip = ({
         variant="labelLarge"
         style={{
           color: active
-            ? theme.colors.onSecondaryContainer
+            ? theme.colors.onPrimaryContainer
             : theme.colors.onSurfaceVariant,
         }}
       >
@@ -262,7 +262,7 @@ const CategoryChip = ({
         variant="labelSmall"
         style={{
           color: active
-            ? theme.colors.onSecondaryContainer
+            ? theme.colors.onPrimaryContainer
             : theme.colors.onSurfaceVariant,
         }}
       >

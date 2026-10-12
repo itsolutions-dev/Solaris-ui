@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Button, ConfirmDialog, Typography } from "@its/glowup-ui";
+import { Button, ConfirmDialog, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo, useOverlayDemo } from "./shared";
 

@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Divider.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Divider, Paper, Typography, Button } from "@its/glowup-ui";
+import { Divider, Paper, Typography, Button } from "@its/solaris-ui";
 
 const panel: ViewStyle = { width: 380, flexDirection: "row" };
 

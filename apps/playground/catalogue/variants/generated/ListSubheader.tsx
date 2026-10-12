@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/ListSubheader.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View } from "react-native";
 import type { Variant } from "../types";
-import { ListSubheader, ListItem, Divider, Paper } from "@its/glowup-ui";
+import { ListSubheader, ListItem, Divider, Paper } from "@its/solaris-ui";
 
 export const GroupLabel = () => (
   <View style={{ width: 380, flexDirection: "row" }}>

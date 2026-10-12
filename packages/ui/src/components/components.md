@@ -1,6 +1,6 @@
-# Glowup Component Library — Specification
+# Solaris Component Library — Specification
 
-A **Material You (Material Design 3)** component library. Reference spec for rebuilding this
+IT Solutions' Material-based component library. Reference spec for rebuilding this
 UI kit on a chosen frontend framework. Current implementation: **Expo React Native**
 (iOS / Android / Web) using `expo-vector-icons/MaterialCommunityIcons`.
 
@@ -14,36 +14,43 @@ framework-agnostic.
 
 ### 1.1 Principles
 
-- Material Design 3 (Material You) — dynamic color, tonal surfaces, state layers, "glow" focus.
+- Material Design 3 visuals — tonal surfaces, state layers, "glow" focus — driven by an MUI-shaped theme.
 - Theme-reactive: every component reads a `theme` object; light + dark variants.
 - Cross-platform: one API renders on native and web. Hover states are web-only; press/ripple on native.
 - Accessibility built in: roles, states (`selected`, `checked`, `expanded`, `disabled`), ARIA attrs on web.
 
 ### 1.2 Color tokens (per mode: light / dark)
 
-Full M3 role set. Each `xxx` pairs with `onXxx` for content color.
+The theme is MUI-shaped in, Material 3 out. `createTheme(options)` takes MUI v6's
+`colorSchemes` shape and derives the full M3 role set (`theme.colors`, each `xxx` paired with
+`onXxx`) plus MUI's read shape (`theme.palette`). The organization's inputs:
 
-| Token                                            | Light                                         | Dark                                          |
-| ------------------------------------------------ | --------------------------------------------- | --------------------------------------------- |
-| primary / onPrimary                              | `#6750A4` / `#FFFFFF`                         | `#D0BCFF` / `#381E72`                         |
-| primaryContainer / onPrimaryContainer            | `#EADDFF` / `#21005D`                         | `#4F378B` / `#EADDFF`                         |
-| secondary / onSecondary                          | `#625B71` / `#FFFFFF`                         | `#CCC2DC` / `#332D41`                         |
-| secondaryContainer / onSecondaryContainer        | `#E8DEF8` / `#1D192B`                         | `#4A4458` / `#E8DEF8`                         |
-| tertiary / onTertiary                            | `#7D5260` / `#FFFFFF`                         | `#EFB8C8` / `#492532`                         |
-| tertiaryContainer / onTertiaryContainer          | `#FFD8E4` / `#31111D`                         | `#633B48` / `#FFD8E4`                         |
-| error / onError                                  | `#B3261E` / `#FFFFFF`                         | `#F2B8B5` / `#601410`                         |
-| errorContainer / onErrorContainer                | `#F9DEDC` / `#410E0B`                         | `#8C1D18` / `#F9DEDC`                         |
-| background / onBackground                        | `#FEF7FF` / `#1D1B20`                         | `#141218` / `#E6E1E5`                         |
-| surface / onSurface                              | `#FEF7FF` / `#1D1B20`                         | `#141218` / `#E6E1E5`                         |
-| surfaceVariant / onSurfaceVariant                | `#E7E0EC` / `#49454F`                         | `#49454F` / `#CAC4D0`                         |
-| outline / outlineVariant                         | `#79747E` / `#CAC4D0`                         | `#938F99` / `#444746`                         |
-| surfaceContainerLow / Container / High / Highest | `#F7F2FA` / `#F3EDF7` / `#ECE6F0` / `#EDE7F0` | `#1D1B20` / `#211F26` / `#2B2930` / `#36343B` |
-| surfaceDim                                       | `#DED8E1`                                     | `#0F0D13`                                     |
-| shadow                                           | `#000000`                                     | `#000000`                                     |
+| Input                       | Light                    | Dark                           |
+| --------------------------- | ------------------------ | ------------------------------ |
+| primary                     | `#1D5B9D`                | `#5893D4`                      |
+| secondary                   | `#61B340`                | `#61B340`                      |
+| error / warning             | `#D32F2F` / `#ED6C02`    | `#F44336` / `#FFA726`          |
+| info / success              | `#0288D1` / `#2E7D32`    | `#29B6F6` / `#66BB6A`          |
+| background.default / paper  | `#F0F2F5` / `#FFFFFF`    | `#111111` / `#171717`          |
+| text.secondary              | `#64748B`                | derived                        |
+| divider                     | `rgba(0, 0, 0, 0.12)`    | `rgba(255, 255, 255, 0.12)`    |
+
+Derivation, for each of primary, secondary, error, warning, info, success:
+
+- `xxx` = the input `main`, normalised to `#RRGGBB`.
+- `onXxx` = `contrastText` if given, else black or white, whichever contrasts more (≥ 4.58:1).
+- `xxxContainer` / `onXxxContainer` = tones 90 / 10 (light) or 30 / 90 (dark) of a tonal palette
+  of `main`'s hue at chroma 48.
+- `background` / `surface` = `background.default` / `paper`; `onSurface` = `text.primary` or
+  a neutral tone; `onSurfaceVariant` = `text.secondary`; `outlineVariant` = `divider`.
+- Tertiary, the surface containers, inverse roles and `outline` come from the primary hue.
+
+Selection and tonal states (navigation indicators, selected chips, tonal buttons) use the
+**primary** container roles: `secondary` is the brand green.
 
 ### 1.3 Typography scale (M3)
 
-`fontFamily: System` for all. `variant` prop selects one.
+`fontFamily`: Roboto on Android and web, the system font on iOS unless the app embeds Roboto and passes `createTheme({ typography: { fontFamily: Platform.OS === "ios" ? "Roboto" : undefined } })`. `variant` prop selects one.
 
 | Variant        | Size | Line | Weight | Tracking |
 | -------------- | ---- | ---- | ------ | -------- |
@@ -66,33 +73,25 @@ Full M3 role set. Each `xxx` pairs with `onXxx` for content color.
 ### 1.4 Spacing & Shape
 
 - **Spacing**: `xs:4  s:8  m:16  l:24  xl:32`
-- **Shape (corner radius)**: `small:8  medium:12  large:16  extraLarge:28`
+- **Shape (corner radius)**: `small:8  medium:12  large:16  extraLarge:24  full:9999` — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded
 
 ### 1.5 Theme utilities
 
-- `useTheme()` → `{ theme, toggleTheme, palette, setPalette }`; the scheme is `theme.isDark`. Syncs with OS scheme + manual toggle.
+- `useTheme()` → `{ theme, toggleTheme }`; the scheme is `theme.isDark`. Syncs with OS scheme + manual toggle.
 - `getStateColor(bg, on, state)` → composites a hover/press state-layer color over a base.
 - `getGlowStyles(theme, active, variant?)` → the M3 "glow" focus/hover ring (variant `"error"` for error state).
 
-### 1.6 Palettes
+### 1.6 Custom themes
 
-The token set above is the **baseline** palette. `ThemeProvider` renders one `ThemePalette`
-(`{ id, name, seed, light, dark }`) at a time and can switch it at runtime.
+`ThemeProvider` renders the organization's theme unless given one. `createTheme(options)`
+deep-merges only what the app passes over it, and returns both schemes:
 
-- `palettes` — the shipped sets: `baseline` (the hand-authored M3 scheme above) plus the
-  nineteen named Material hues, keyed on their 500 swatch: `red`, `pink`, `purple`,
-  `deepPurple`, `indigo`, `blue`, `lightBlue`, `cyan`, `teal`, `green`, `lightGreen`, `lime`,
-  `yellow`, `amber`, `orange`, `deepOrange`, `brown`, `grey`, `blueGrey`. Material 3 publishes
-  no named list of its own — a scheme is generated from any source colour — so these are
-  run through the M3 role mapping (TonalSpot) like any custom seed. `grey` uses the
-  Monochrome variant and `brown` / `blueGrey` a muted one, since TonalSpot's fixed chroma
-  would turn a near-neutral seed into full colour. `cobalt`, `forest` and `rose` remain as
-  deprecated, non-enumerable aliases of `blue`, `green` and `pink`.
-- `createPalette(seed, { id?, name?, chroma? })` — the same derivation for a brand colour.
-  Error stays the fixed Material red whatever the seed.
-- `<ThemeProvider initialPalette={palettes.teal}>` picks one on mount;
-  `useTheme().setPalette(palette)` switches it live, `useTheme().palette` reads it.
-  `Object.values(palettes)` lists each set once — build a picker from it.
+```tsx
+const theme = createTheme({
+  colorSchemes: { light: { palette: { primary: { main: "#00639B" } } } },
+});
+<ThemeProvider theme={theme}>…</ThemeProvider>
+```
 
 ### 1.7 Shared type
 

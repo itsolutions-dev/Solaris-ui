@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton, Paper, Typography } from "@its/glowup-ui";
+import { IconButton, Paper, Typography } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

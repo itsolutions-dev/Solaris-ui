@@ -1,5 +1,5 @@
 import React from "react";
-import { TimePicker } from "@its/glowup-ui";
+import { TimePicker } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",

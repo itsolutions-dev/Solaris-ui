@@ -1,5 +1,5 @@
 import React from "react";
-import { DataGrid } from "@its/glowup-ui";
+import { DataGrid } from "@its/solaris-ui";
 
 const columns = [
   { id: "invoice", label: "Invoice", width: 120 },

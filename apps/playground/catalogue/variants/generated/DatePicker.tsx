@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/DatePicker.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { DatePicker } from "@its/glowup-ui";
+import { DatePicker } from "@its/solaris-ui";
 
 // `DateTimePicker` carries its own marginBottom, so the column takes no gap.
 const stack: ViewStyle = {

@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Button, Divider, Modal, Typography } from "@its/glowup-ui";
+import { Button, Divider, Modal, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo, useOverlayDemo } from "./shared";
 
@@ -25,8 +25,8 @@ const Dialog = () => {
         closeText="Close"
         onClose={hide}
       >
-        Publishing makes every component in this library available to the Glowup
-        playground and to any workspace that depends on it.
+        Publishing makes every component in this library available to the
+        Solaris playground and to any workspace that depends on it.
       </Modal>
     </View>
   );
@@ -80,7 +80,7 @@ const Untitled = () => {
   return (
     <View style={demo.panel}>
       <Typography variant="headlineSmall">Release notes</Typography>
-      <Typography variant="bodyMedium">@its/glowup-ui 0.1.0</Typography>
+      <Typography variant="bodyMedium">@its/solaris-ui 0.1.0</Typography>
       <Button mode="outlined" iconName="text-box-outline" onPress={show}>
         What changed
       </Button>

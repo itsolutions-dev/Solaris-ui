@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import * as Clipboard from "expo-clipboard";
-import { IconButton, Typography, useTheme, type Theme } from "@its/glowup-ui";
+import { IconButton, Typography, useTheme, type Theme } from "@its/solaris-ui";
 
 interface CodeBlockProps {
   code: string;

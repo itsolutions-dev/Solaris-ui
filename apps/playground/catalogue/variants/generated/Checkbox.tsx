@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Checkbox.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Checkbox } from "@its/glowup-ui";
+import { Checkbox } from "@its/solaris-ui";
 
 const stack: ViewStyle = {
   flexDirection: "column",

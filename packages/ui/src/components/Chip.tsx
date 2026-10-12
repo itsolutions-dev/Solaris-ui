@@ -50,20 +50,20 @@ const Chip = ({
       case "filled":
         backgroundColor = selected
           ? theme.colors.tertiaryContainer
-          : theme.colors.secondaryContainer;
+          : theme.colors.primaryContainer;
         onColor = selected
           ? theme.colors.onTertiaryContainer
-          : theme.colors.onSecondaryContainer;
+          : theme.colors.onPrimaryContainer;
         androidRippleColor = theme.colors.onPrimary; // A common ripple for filled
         break;
       case "tonal":
-        backgroundColor = theme.colors.secondaryContainer;
-        onColor = theme.colors.onSecondaryContainer;
-        androidRippleColor = theme.colors.onSecondaryContainer; // Or theme.colors.secondary
+        backgroundColor = theme.colors.primaryContainer;
+        onColor = theme.colors.onPrimaryContainer;
+        androidRippleColor = theme.colors.onPrimaryContainer;
         break;
       case "outlined":
         backgroundColor = "transparent";
-        onColor = theme.colors.secondary;
+        onColor = theme.colors.primary;
         borderColor = theme.colors.outlineVariant;
         androidRippleColor = theme.colors.primary; // Or theme.colors.onSurface
         break;

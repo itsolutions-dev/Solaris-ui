@@ -8,7 +8,7 @@ import {
   useTheme,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import { CATEGORIES, TOTAL_COUNT } from "../catalogue/categories";
 
 const WIDTH = 248;
@@ -135,14 +135,14 @@ const CatalogueLink = ({
                 backgroundColor: theme.colors.surfaceContainerHigh,
               },
               focused && { borderColor: theme.colors.primary },
-              selected && { backgroundColor: theme.colors.secondaryContainer },
+              selected && { backgroundColor: theme.colors.primaryContainer },
             ]}
           >
             <Typography
               variant="bodyMedium"
               style={{
                 color: selected
-                  ? theme.colors.onSecondaryContainer
+                  ? theme.colors.onPrimaryContainer
                   : theme.colors.onSurfaceVariant,
                 fontWeight: selected ? "700" : "400",
               }}

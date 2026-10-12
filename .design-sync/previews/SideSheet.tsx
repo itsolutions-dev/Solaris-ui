@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Checkbox, SideSheet, Typography } from "@its/glowup-ui";
+import { Button, Checkbox, SideSheet, Typography } from "@its/solaris-ui";
 
 // The standard (modal={false}) sheet renders inline beside content; the modal
 // sheet portals over the page and cannot be shown inside a card.

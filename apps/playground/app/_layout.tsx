@@ -11,7 +11,7 @@ import {
   ThemeProvider,
   ToastProvider,
   useTheme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import { SiteShell } from "../site/SiteShell";
 import { ThemeStatusBar } from "../site/ThemeStatusBar";

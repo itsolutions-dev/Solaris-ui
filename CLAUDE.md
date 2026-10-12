@@ -6,16 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 An **npm-workspaces monorepo** with exactly two workspaces:
 
-| Workspace         | Package                  | Role                                                                |
-| ----------------- | ------------------------ | ------------------------------------------------------------------- |
-| `packages/ui`     | `@its/glowup-ui`         | The product: a publishable Material You (MD3) component library.    |
-| `apps/playground` | `@its/glowup-playground` | Private Expo presentation app that demos and exercises the library. |
+| Workspace         | Package                   | Role                                                                     |
+| ----------------- | ------------------------- | ------------------------------------------------------------------------ |
+| `packages/ui`     | `@its/solaris-ui`         | The product: IT Solutions' publishable Material-based component library. |
+| `apps/playground` | `@its/solaris-playground` | Private Expo presentation app that demos and exercises the library.      |
 
 Plus one directory that is **not** a workspace: `examples/consumer`, an Expo app that installs
-`@its/glowup-ui` **from the npm registry** and is the runtime check on the published artefact
+`@its/solaris-ui` **from the npm registry** and is the runtime check on the published artefact
 (the playground, being a workspace, always runs the local source). Never add it to the
 `workspaces` array — npm would link the local package and the check would silently test
-nothing; its CI job fails if `node_modules/@its/glowup-ui` is a symlink. See
+nothing; its CI job fails if `node_modules/@its/solaris-ui` is a symlink. See
 `examples/consumer/README.md`.
 
 The library targets iOS, Android and Web through Expo + `react-native-web`. The playground is
@@ -35,17 +35,17 @@ npm run web            # playground on Web
 npm run lint           # ESLint across the repo (gates CI)
 npm run type-check     # tsc --noEmit in every workspace + the design-sync tsconfig
 npm test               # tests in every workspace
-npm run build          # build @its/glowup-ui with react-native-builder-bob
+npm run build          # build @its/solaris-ui with react-native-builder-bob
 
-npm test -w @its/glowup-ui                    # only the library's component tests
-npm run validate-package -w @its/glowup-ui    # publint + are-the-types-wrong on the built package
+npm test -w @its/solaris-ui                    # only the library's component tests
+npm run validate-package -w @its/solaris-ui    # publint + are-the-types-wrong on the built package
 npm run release                           # changeset publish (CI does this)
 
 # The documentation site (apps/playground)
-npm run docgen -w @its/glowup-playground      # regenerate the prop tables from the library source
-npm run variants -w @its/glowup-playground    # regenerate the variant galleries from .design-sync/previews
-npm run icons -w @its/glowup-playground       # redraw the icon set from theme.json
-npm run export:web -w @its/glowup-playground  # static export to apps/playground/dist
+npm run docgen -w @its/solaris-playground      # regenerate the prop tables from the library source
+npm run variants -w @its/solaris-playground    # regenerate the variant galleries from .design-sync/previews
+npm run icons -w @its/solaris-playground       # redraw the icon set from theme.json
+npm run export:web -w @its/solaris-playground  # static export to apps/playground/dist
 ```
 
 Both generators write committed files and CI fails on a diff, so run them after touching a
@@ -71,12 +71,12 @@ component's props or a preview.
 
 This is the rule that keeps the split real:
 
-- The app imports the library **only by package name**: `import { Button } from "@its/glowup-ui"`.
-  Deep imports (`@its/glowup-ui/src/...`) and paths into `packages/ui` are an **ESLint error**.
+- The app imports the library **only by package name**: `import { Button } from "@its/solaris-ui"`.
+  Deep imports (`@its/solaris-ui/src/...`) and paths into `packages/ui` are an **ESLint error**.
 - The library must never import the app — also an ESLint error.
 - Inside a workspace, use **relative** imports. There is no root-relative `baseUrl` mapping
   any more; `import Button from "components/Button"` no longer resolves anywhere.
-- `apps/playground/tsconfig.json` maps `@its/glowup-ui` to `packages/ui/src/index.ts` so an edit
+- `apps/playground/tsconfig.json` maps `@its/solaris-ui` to `packages/ui/src/index.ts` so an edit
   in the library is picked up live by Metro and `tsc`. That is the only mapping.
 
 Rules that apply only inside one workspace live in `packages/ui/CLAUDE.md` and
@@ -96,7 +96,7 @@ Rules that apply only inside one workspace live in `packages/ui/CLAUDE.md` and
 
 ## Releasing
 
-Changesets. Only `@its/glowup-ui` is published; `@its/glowup-playground` is private and ignored. A
+Changesets. Only `@its/solaris-ui` is published; `@its/solaris-playground` is private and ignored. A
 user-visible change to the library needs a changeset (`npx changeset`). On push to `master`,
 `release.yml` opens a "Version Packages" PR; merging it publishes to npm.
 

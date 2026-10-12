@@ -1,6 +1,6 @@
 import React from "react";
-import { SpeedDial, Paper, Typography, Divider } from "@its/glowup-ui";
-import type { SpeedDialAction } from "@its/glowup-ui";
+import { SpeedDial, Paper, Typography, Divider } from "@its/solaris-ui";
+import type { SpeedDialAction } from "@its/solaris-ui";
 
 // SpeedDial's root is an absolutely-positioned overlay that fills its nearest
 // positioned ancestor, so it needs a sized surface to float over.

@@ -10,7 +10,7 @@ import {
   Chip,
   IconButton,
   Typography,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo, gradientCover } from "./shared";
 

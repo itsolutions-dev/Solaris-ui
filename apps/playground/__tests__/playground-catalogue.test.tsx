@@ -1,7 +1,7 @@
 import React, { type ComponentType, type ReactNode } from "react";
 import { render } from "@testing-library/react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AlertProvider, ThemeProvider, ToastProvider } from "@its/glowup-ui";
+import { AlertProvider, ThemeProvider, ToastProvider } from "@its/solaris-ui";
 
 import ComponentPreview from "../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../catalogue/registry";

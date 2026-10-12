@@ -1,10 +1,10 @@
-# Glowup consumer smoke test
+# Solaris consumer smoke test
 
-A minimal Expo app that consumes **`@its/glowup-ui` installed from the npm registry**.
+A minimal Expo app that consumes **`@its/solaris-ui` installed from the npm registry**.
 
 ## Why this exists
 
-`apps/playground` is an npm workspace, so its `@its/glowup-ui` is a symlink to
+`apps/playground` is an npm workspace, so its `@its/solaris-ui` is a symlink to
 `packages/ui`: it always runs the local **source**. That is the right trade-off for
 development — edit a component, see it immediately — but it means nothing in this repo
 exercises the artefact that npm actually ships. `npm run validate-package` checks the
@@ -31,7 +31,7 @@ install, and that it validates the **last published version**, not your working 
 
 ```bash
 cd examples/consumer
-npm install          # pulls @its/glowup-ui from the registry
+npm install          # pulls @its/solaris-ui from the registry
 npm run smoke        # tsc --noEmit + expo export -p web
 npm run web          # or open it in a browser
 ```
@@ -40,7 +40,7 @@ npm run web          # or open it in a browser
 
 CI does not trust a range: it reads the version `packages/ui/package.json` declares at
 the commit being tested and installs exactly that (`npm install --no-save
-@its/glowup-ui@<version>`), waiting for it to appear on the registry first. On `master`
+@its/solaris-ui@<version>`), waiting for it to appear on the registry first. On `master`
 that is the version Release just published, so a publish that failed shows up here as a
 failure instead of a green run against an older release.
 

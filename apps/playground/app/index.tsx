@@ -9,7 +9,7 @@ import {
   useTheme,
   type PressableState,
   type Theme,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 import { TOTAL_COUNT } from "../catalogue/categories";
 import { VARIANT_COUNT } from "../catalogue/variants";
@@ -19,7 +19,7 @@ import { useLayout } from "../site/breakpoints";
 import { TOTAL_PROP_COUNT } from "../site/propsData";
 import { GITHUB_URL, NPM_URL, SITE_ROUTES } from "../site/siteNav";
 
-const INSTALL = `npm install @its/glowup-ui`;
+const INSTALL = `npm install @its/solaris-ui`;
 
 export default function Home() {
   const { theme } = useTheme();
@@ -28,9 +28,9 @@ export default function Home() {
 
   return (
     <Page
-      eyebrow="Material You · React Native · Web"
-      title="Glowup"
-      description="A Material Design 3 component library for Expo apps that ship to iOS, Android and the browser from one codebase — and the live reference for every component in it."
+      eyebrow="Material · React Native · Web"
+      title="Solaris"
+      description="IT Solutions' component library for Expo apps that ship to iOS, Android and the browser from one codebase — and the live reference for every component in it."
     >
       <View style={styles.actions}>
         <Link href="/components" asChild>

@@ -55,7 +55,7 @@ const NavigationBar = ({
                   style={[
                     styles.iconPill,
                     active && {
-                      backgroundColor: theme.colors.secondaryContainer,
+                      backgroundColor: theme.colors.primaryContainer,
                     },
                     !active &&
                       (hovered || pressed) && {
@@ -68,7 +68,7 @@ const NavigationBar = ({
                     size={24}
                     color={
                       active
-                        ? theme.colors.onSecondaryContainer
+                        ? theme.colors.onPrimaryContainer
                         : theme.colors.onSurfaceVariant
                     }
                   />

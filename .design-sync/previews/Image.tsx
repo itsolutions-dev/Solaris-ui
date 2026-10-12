@@ -1,5 +1,5 @@
 import React from "react";
-import { HStack, Image, Typography, VStack } from "@its/glowup-ui";
+import { HStack, Image, Typography, VStack } from "@its/solaris-ui";
 
 // Drawn inline so the capture needs no network.
 const svg = (a: string, b: string) => ({

@@ -6,7 +6,7 @@
 // and zlib ships with Node. Adding sharp or canvas to a documentation site to
 // draw five flat shapes is not a trade worth making.
 //
-// Run with `npm run icons -w @its/glowup-playground`. The output is committed —
+// Run with `npm run icons -w @its/solaris-playground`. The output is committed —
 // regenerate it when theme.json's primary colours change, which is the only
 // thing that alters it.
 // Imported explicitly rather than taken from the global: these scripts are
@@ -33,7 +33,10 @@ const theme = JSON.parse(
   ),
 );
 
-const light = theme.colors.light;
+// theme.json stores the theme's inputs, not the derived roles (those are
+// computed in TypeScript). The icon needs four colours: the brand primary,
+// white on it (6.9:1 on #1D5B9D), a light tint of it, and the page background.
+const palette = theme.colorSchemes.light.palette;
 
 const rgba = (hex, alpha = 255) => {
   const value = hex.replace("#", "");
@@ -169,10 +172,14 @@ const blank = (width, height) => Buffer.alloc(width * height * 4, 0);
 
 // --- The icons --------------------------------------------------------------
 
-const PRIMARY = rgba(light.primary);
-const ON_PRIMARY = rgba(light.onPrimary);
-const PRIMARY_CONTAINER = rgba(light.primaryContainer);
-const SURFACE = rgba(light.surfaceContainerLow);
+const PRIMARY = rgba(palette.primary.main);
+const ON_PRIMARY = rgba("#FFFFFF");
+// 85% of the way to white: close to the derived primaryContainer, which is
+// all an icon needs.
+const PRIMARY_CONTAINER = PRIMARY.map((v, i) =>
+  i < 3 ? Math.round(v + (255 - v) * 0.85) : v,
+);
+const SURFACE = rgba(palette.background.default);
 
 /** Full-bleed square: what iOS and the web favicon mask themselves. */
 const badge = (size, { background = PRIMARY, mark = ON_PRIMARY, radius }) => {

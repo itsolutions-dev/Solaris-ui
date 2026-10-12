@@ -4,7 +4,7 @@ import {
   CircularProgress,
   EmptyState,
   Typography,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 export const Basic = () => (
   <Center bg="surfaceContainerLow" radius="medium" height={160} width={360}>

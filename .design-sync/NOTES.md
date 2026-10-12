@@ -1,11 +1,11 @@
-# design-sync notes — @its/glowup-ui
+# design-sync notes — @its/solaris-ui
 
 Repo-specific gotchas for future `/design-sync` runs. Read this before anything else.
 
 ## Shape and pipeline
 
 - Shape is `package` (no Storybook anywhere in the repo).
-- Monorepo. The DS is `packages/ui` (`@its/glowup-ui`); `apps/playground` is the demo app.
+- Monorepo. The DS is `packages/ui` (`@its/solaris-ui`); `apps/playground` is the demo app.
 - `--node-modules` must be the **repo root** `node_modules`. `packages/ui/node_modules`
   exists but is empty (npm workspaces hoists everything).
 - Build order for a re-sync:
@@ -19,7 +19,7 @@ Repo-specific gotchas for future `/design-sync` runs. Read this before anything 
 
 ## React Native → web is the whole problem
 
-Claude Design renders in a browser; `@its/glowup-ui` is Expo React Native. The converter's
+Claude Design renders in a browser; `@its/solaris-ui` is Expo React Native. The converter's
 esbuild has no `react-native` alias, no `.web.js` extension priority, no JSX-in-`.js`
 loader and no asset loaders — all four are required here. Rather than fork
 `lib/bundle.mjs` (the app contract surface), the RN→web work happens in a **pre-bundle**:
@@ -141,7 +141,7 @@ product never displays. Proven with an A/B on `Tabs` at `activeTab={2}`: frozen 
 indicator stays under tab 0; advanced → it lands on tab 2. It also hits Carousel,
 Snackbar entrance, LinearProgress, CircularProgress and Skeleton shimmer.
 
-The patch (two edits, both comment-marked `GLOWUP PATCH`):
+The patch (two edits, both comment-marked `SOLARIS PATCH`):
 
 1. replace `setFixedTime` with `page.clock.install({ time: ... })` — `setFixedTime` alone
    cannot be advanced — keeping `setFixedTime` as the fallback for older playwright;
@@ -361,9 +361,9 @@ clock advance and the resting state becomes a coin flip.
 
 ## Upload status (imported 2026-09-09)
 
-Uploaded. Project: **Glowup Design System**, `projectId`
-`c02682fc-2db9-465f-b4c0-1d7581b437ec` (pinned in `config.json`) —
-https://claude.ai/design/p/c02682fc-2db9-465f-b4c0-1d7581b437ec
+Not uploaded. The pinned id belonged to the project this repository was forked from, so
+`config.json` carries no `projectId`: the next `/design-sync` creates a new project for
+Solaris. Pin its id in `config.json` afterwards.
 
 The 2026-09-08 run built and graded everything but could not upload: `/design-login`
 grants the design-system authorization only from an **interactive** `claude` terminal and
@@ -588,18 +588,16 @@ fallback icon is a perfectly healthy render, so it takes an eyeball on the sheet
 - `make-web-barrel.mjs` mirrors `packages/ui/src/index.ts` by text transform. A component
   added to that barrel flows through automatically; one that needs a `.web` pin or a new
   native-only dependency does not, and will surface as a prebuild resolve error.
-- Font fidelity: the DS sets `fontFamily: System` throughout (M3 type scale, no brand
-  face), so previews render in the browser's system stack — matching the app on web.
-  Nothing to source, no `[FONT_MISSING]`.
+- Font fidelity: on web the theme asks for `Roboto, system-ui, sans-serif` (the docs site
+  loads Roboto in `app/+html.tsx`). Previews fall back to the system stack unless the next
+  sync sources Roboto — expect a `[FONT_MISSING]` for it, and supply Roboto 400/500/700.
 
-## Palettes and ProgressButton (added 2026-09-23, not yet synced)
+## ThemeProvider and ProgressButton (not yet synced)
 
-- `ThemeProvider.Palettes` is the design system's palette switcher: a swatch per entry of
-  `palettes` (twenty) calling `setPalette`. It nests its own `ThemeProvider` on purpose, so
-  a pick re-themes that card only — the shared `cfg.provider` chain has no way to take an
-  `initialPalette`, and switching it would repaint every other card's capture. It uses raw
-  `<button>`s, which is fine: ThemeProvider is in the variants generator's
-  `NOT_CATALOGUED` list, so the preview is never rewritten to React Native.
+- `ThemeProvider.Schemes` (it replaced `ThemeProvider.Palettes` when the palettes were
+  removed) switches light and dark with `toggleTheme()`. It nests its own `ThemeProvider` on
+  purpose, so the switch re-themes that card only. ThemeProvider is in the variants
+  generator's `NOT_CATALOGUED` list, so the preview is never rewritten to React Native.
 - `ProgressButton.TryIt` runs a timer only after a press; its capture is the idle state.
   Every other story is a static status, so the review sheet shows all four.
 - `ProgressButton` draws inside `Button` through `underlay` and animates with the native

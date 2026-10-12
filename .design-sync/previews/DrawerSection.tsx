@@ -1,5 +1,5 @@
 import React from "react";
-import { DrawerItem, DrawerSection, NavigationDrawer } from "@its/glowup-ui";
+import { DrawerItem, DrawerSection, NavigationDrawer } from "@its/solaris-ui";
 
 // DrawerSection groups the rows of a NavigationDrawer; it is shown inside one.
 const frame: React.CSSProperties = { height: 420, width: 340, display: "flex" };

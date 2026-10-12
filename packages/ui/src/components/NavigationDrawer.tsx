@@ -47,7 +47,7 @@ export const DrawerItem = ({
   const { theme } = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
   const content = selected
-    ? theme.colors.onSecondaryContainer
+    ? theme.colors.onPrimaryContainer
     : theme.colors.onSurfaceVariant;
   const glyph = icon && activeGlyph(icon, selected);
 
@@ -62,7 +62,7 @@ export const DrawerItem = ({
       testID={testID}
       style={({ hovered, pressed, focused }: PressableState) => [
         styles.item,
-        selected && { backgroundColor: theme.colors.secondaryContainer },
+        selected && { backgroundColor: theme.colors.primaryContainer },
         !selected &&
           (hovered || pressed) && {
             backgroundColor: theme.colors.surfaceContainerHigh,

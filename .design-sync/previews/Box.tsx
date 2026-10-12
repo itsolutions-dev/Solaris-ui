@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@its/glowup-ui";
+import { Box, Typography } from "@its/solaris-ui";
 
 export const Padding = () => (
   <Box bg="surfaceContainerLow" p="m" radius="medium" gap="s" width={360}>

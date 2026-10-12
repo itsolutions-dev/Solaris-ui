@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Avatar, Button, Menu } from "@its/glowup-ui";
+import { Avatar, Button, Menu } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo, useOverlayDemo } from "./shared";
 

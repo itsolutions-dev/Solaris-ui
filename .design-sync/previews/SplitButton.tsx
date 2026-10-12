@@ -1,5 +1,5 @@
 import React from "react";
-import { SplitButton } from "@its/glowup-ui";
+import { SplitButton } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",

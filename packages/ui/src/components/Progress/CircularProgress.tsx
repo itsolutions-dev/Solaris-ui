@@ -66,7 +66,7 @@ const CircularProgress = ({
     <Determinate
       {...ring}
       progress={clamped}
-      track={theme.colors.secondaryContainer}
+      track={theme.colors.primaryContainer}
     />
   );
 };

@@ -166,9 +166,9 @@ const makeStyles = (theme: Theme, type: "default" | "success" | "error") => {
     textColor = theme.colors.onErrorContainer;
     iconColor = theme.colors.error;
   } else if (isSuccess) {
-    backgroundColor = theme.colors.secondaryContainer;
-    textColor = theme.colors.onSecondaryContainer;
-    iconColor = theme.colors.primary; // Or theme.colors.success if it existed
+    backgroundColor = theme.colors.successContainer;
+    textColor = theme.colors.onSuccessContainer;
+    iconColor = theme.colors.success;
   }
 
   const styles = StyleSheet.create({

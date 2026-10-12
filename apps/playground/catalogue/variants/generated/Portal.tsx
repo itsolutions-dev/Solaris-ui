@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/Portal.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { Portal, Typography, Paper, Tooltip, Button } from "@its/glowup-ui";
+import { Portal, Typography, Paper, Tooltip, Button } from "@its/solaris-ui";
 
 const stage: ViewStyle = {
   width: 420,

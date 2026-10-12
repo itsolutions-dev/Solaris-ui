@@ -97,9 +97,9 @@ const EXTRA_DOCS = {
   ThemeProvider: [
     "Providers",
     [
-      "Root of the Material You theme. Derives the active palette from",
-      "`providers/theme.json`, follows the OS colour scheme by default, and exposes",
-      "`{ theme, toggleTheme }` through `useTheme()`. **Every Glowup component reads",
+      "Root of the theme. Renders `createTheme()`'s result — the organization's theme from",
+      "`providers/theme.json` unless given `theme` — follows the OS colour scheme, and exposes",
+      "`{ theme, toggleTheme }` through `useTheme()`. **Every Solaris component reads",
       "the theme from this context — nothing is styled without it.**",
       "",
       "```tsx",
@@ -146,7 +146,7 @@ for (const [name, [g, body]] of Object.entries(EXTRA_DOCS)) {
 
 writeFileSync(
   join(GUIDES, "design-system.md"),
-  `# Glowup design system\n\n${systemBuf.join("\n").trim()}\n`,
+  `# Solaris design system\n\n${systemBuf.join("\n").trim()}\n`,
 );
 console.log(
   `wrote ${written} component docs to ${DOCS} + ${GUIDES}/design-system.md`,

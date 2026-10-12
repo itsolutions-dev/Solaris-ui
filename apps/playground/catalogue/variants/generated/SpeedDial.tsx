@@ -1,11 +1,11 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/SpeedDial.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { SpeedDial, Paper, Typography, Divider } from "@its/glowup-ui";
-import type { SpeedDialAction } from "@its/glowup-ui";
+import { SpeedDial, Paper, Typography, Divider } from "@its/solaris-ui";
+import type { SpeedDialAction } from "@its/solaris-ui";
 
 // SpeedDial's root is an absolutely-positioned overlay that fills its nearest
 // positioned ancestor, so it needs a sized surface to float over.

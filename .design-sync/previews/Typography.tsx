@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@its/glowup-ui";
+import { Typography } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",
@@ -10,7 +10,7 @@ const stack: React.CSSProperties = {
 
 export const DisplayAndHeadline = () => (
   <div style={stack}>
-    <Typography variant="displaySmall">Material You</Typography>
+    <Typography variant="displaySmall">Solaris</Typography>
     <Typography variant="headlineMedium">
       Type that scales with intent
     </Typography>

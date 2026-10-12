@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination } from "@its/glowup-ui";
+import { Pagination } from "@its/solaris-ui";
 
 const wrap: React.CSSProperties = { width: 400, display: "flex" };
 

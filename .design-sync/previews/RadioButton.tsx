@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioButton } from "@its/glowup-ui";
+import { RadioButton } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",

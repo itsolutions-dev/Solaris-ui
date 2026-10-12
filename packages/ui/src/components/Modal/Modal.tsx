@@ -163,7 +163,7 @@ function Modal({
         >
           {!!icon && (
             <View style={styles.iconRow}>
-              <Icon source={icon} size={24} color={theme.colors.secondary} />
+              <Icon source={icon} size={24} color={theme.colors.primary} />
             </View>
           )}
 

@@ -90,7 +90,7 @@ const Tabs = ({ tabs, activeTab, onChange }: TabProps) => {
                   <View
                     style={[
                       styles.activePill,
-                      { backgroundColor: theme.colors.secondaryContainer },
+                      { backgroundColor: theme.colors.primaryContainer },
                     ]}
                   />
                 )}
@@ -99,7 +99,7 @@ const Tabs = ({ tabs, activeTab, onChange }: TabProps) => {
                   size={24}
                   color={
                     isActive
-                      ? theme.colors.onSecondaryContainer
+                      ? theme.colors.onPrimaryContainer
                       : theme.colors.onSurfaceVariant
                   }
                 />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Stat, Typography } from "@its/glowup-ui";
+import { Box, Grid, Stat, Typography } from "@its/solaris-ui";
 
 const tile = (n: number) => (
   <Box key={n} bg="secondaryContainer" p="m" radius="medium">

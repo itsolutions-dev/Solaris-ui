@@ -1,6 +1,6 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/FormControl.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
 import {
@@ -10,7 +10,7 @@ import {
   RadioGroup,
   Slider,
   VStack,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 export const AroundACheckbox = () => (
   <VStack spacing="m" width={380}>

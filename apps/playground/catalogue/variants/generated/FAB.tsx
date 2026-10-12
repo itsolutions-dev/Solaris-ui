@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/FAB.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { FAB, Paper, Typography, Divider } from "@its/glowup-ui";
+import { FAB, Paper, Typography, Divider } from "@its/solaris-ui";
 
 // FAB is always `position: absolute` inside its nearest positioned ancestor.
 // A Paper acts as the "screen" surface it floats over.

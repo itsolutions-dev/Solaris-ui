@@ -7,7 +7,7 @@ import {
   Paper,
   Divider,
   Button,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 // AlertProvider renders nothing on its own — it hosts the cross-platform alert
 // dialog (native Alert.alert on iOS/Android, this themed Modal on web). What

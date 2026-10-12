@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider } from "@its/glowup-ui";
+import { Slider } from "@its/solaris-ui";
 
 const stack: React.CSSProperties = {
   display: "flex",

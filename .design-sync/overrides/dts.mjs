@@ -35,7 +35,7 @@ export function findTypesRoot(pkgDir, pkgJson) {
 // *Placements / *Context are utility singletons; use* are hooks - none
 // renderable. (dts.nonComponents also catches React.Context by symbol kind;
 // the suffix check is belt-and-suspenders for DSes where that misses.)
-// Glowup: FAB is a real Material component whose name is all-caps, so the
+// Solaris: FAB is a real Material component whose name is all-caps, so the
 // ALL-CAPS-means-constant rule would drop it. Allowlisted here.
 const ALLCAPS_COMPONENTS = new Set(["FAB"]);
 export const isComponentName = (n) =>

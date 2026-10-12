@@ -5,7 +5,7 @@ import {
   Divider,
   StatusBadge,
   Button,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 const grid: React.CSSProperties = {
   display: "flex",

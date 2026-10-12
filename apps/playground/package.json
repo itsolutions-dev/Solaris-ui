@@ -1,5 +1,5 @@
 {
-  "name": "@its/glowup-playground",
+  "name": "@its/solaris-playground",
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
-    "@its/glowup-ui": "*",
+    "@its/solaris-ui": "*",
     "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "~57.0.25",
     "expo-clipboard": "~57.0.2",

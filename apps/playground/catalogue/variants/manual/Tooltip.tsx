@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Button, IconButton, Tooltip, Typography } from "@its/glowup-ui";
+import { Button, IconButton, Tooltip, Typography } from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo } from "./shared";
 

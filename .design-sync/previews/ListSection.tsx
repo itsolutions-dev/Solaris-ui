@@ -5,7 +5,7 @@ import {
   Toggle,
   Typography,
   Paper,
-} from "@its/glowup-ui";
+} from "@its/solaris-ui";
 
 const panel: React.CSSProperties = { width: 380, display: "flex" };
 

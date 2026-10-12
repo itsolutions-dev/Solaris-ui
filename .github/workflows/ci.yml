@@ -47,7 +47,7 @@ jobs:
       # map against the packed files; attw resolves the shipped .d.ts the way a
       # consumer's tsc would (it is what caught the theme.json type import).
       - name: Validate published package
-        run: npm run validate-package -w @its/glowup-ui
+        run: npm run validate-package -w @its/solaris-ui
 
       - name: Lint
         run: npm run lint
@@ -58,7 +58,7 @@ jobs:
       # and nothing else in CI would notice.
       - name: Check the generated prop tables are current
         run: |
-          npm run docgen -w @its/glowup-playground
+          npm run docgen -w @its/solaris-playground
           git diff --exit-code -- apps/playground/docgen/props.generated.json
 
       # The variant galleries are rewritten from .design-sync/previews and
@@ -66,7 +66,7 @@ jobs:
       # site showing the previous demo.
       - name: Check the generated variant galleries are current
         run: |
-          npm run variants -w @its/glowup-playground
+          npm run variants -w @its/solaris-playground
           git diff --exit-code -- apps/playground/catalogue/variants/generated
 
       # The playground is published as a static site, so a change that only
@@ -74,4 +74,4 @@ jobs:
       # prerendering, a route that throws) has to fail here rather than in the
       # deploy workflow after merge.
       - name: Build the documentation site
-        run: npm run export:web -w @its/glowup-playground
+        run: npm run export:web -w @its/solaris-playground

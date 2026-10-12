@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Paper } from "@its/glowup-ui";
+import { Calendar, Paper } from "@its/solaris-ui";
 
 const noop = () => {};
 

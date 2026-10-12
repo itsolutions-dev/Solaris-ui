@@ -1,10 +1,10 @@
 // GENERATED — do not edit.
 // Source: .design-sync/previews/ToggleButton.tsx
-// Regenerate with `npm run variants -w @its/glowup-playground`.
+// Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import { ToggleButton, Typography } from "@its/glowup-ui";
+import { ToggleButton, Typography } from "@its/solaris-ui";
 
 // ToggleButton is the segment leaf: isFirst/isLast round the outer ends, so it is
 // only ever true-to-life inside a row of siblings.

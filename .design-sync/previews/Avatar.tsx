@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Typography } from "@its/glowup-ui";
+import { Avatar, Typography } from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",
