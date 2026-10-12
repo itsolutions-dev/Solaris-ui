@@ -269,7 +269,7 @@ export const ToolbarDemo = ({ props }: DemoProps) => {
       </Toolbar>
       {vibrant && (
         <Typography
-          variant="bodySmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant, marginTop: 8 }}
         >
           Vibrant sits on primaryContainer.
@@ -297,7 +297,7 @@ export const SideSheetDemo = ({ props }: DemoProps) => {
         </>
       }
     >
-      <Typography variant="bodyMedium">
+      <Typography variant="body2">
         Filters, details or a secondary form, beside the main content.
       </Typography>
     </SideSheet>

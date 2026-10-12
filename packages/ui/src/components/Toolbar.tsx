@@ -114,14 +114,14 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      paddingHorizontal: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
     },
     floating: {
       borderRadius: HEIGHT / 2,
       backgroundColor: theme.colors.surfaceContainer,
-      padding: theme.spacing.s,
-      gap: theme.spacing.xs,
+      padding: theme.spacing(1),
+      gap: theme.spacing(0.5),
       alignItems: "center",
     },
-    floatingRow: { alignItems: "center", gap: theme.spacing.s },
+    floatingRow: { alignItems: "center", gap: theme.spacing(1) },
   });

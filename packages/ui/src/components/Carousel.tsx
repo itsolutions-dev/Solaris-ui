@@ -194,7 +194,7 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-      marginTop: theme.spacing.s,
+      marginTop: theme.spacing(1),
       gap: 6,
     },
     dotPressable: {
@@ -220,10 +220,10 @@ const makeStyles = (theme: Theme) =>
       }),
     },
     arrowLeft: {
-      left: theme.spacing.s,
+      left: theme.spacing(1),
     },
     arrowRight: {
-      right: theme.spacing.s,
+      right: theme.spacing(1),
     },
     dot: {
       width: 8,

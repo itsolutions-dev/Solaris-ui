@@ -68,13 +68,13 @@ export const HostedDialog = () => (
       <div style={stack}>
         <Paper outline style={{ padding: 16 }}>
           <div style={lines}>
-            <Typography variant="titleSmall">Invoice INV-2026-0184</Typography>
-            <Typography variant="bodySmall">
+            <Typography variant="subtitle2">Invoice INV-2026-0184</Typography>
+            <Typography variant="caption">
               Northwind Ltd · €4,280 · draft
             </Typography>
           </div>
         </Paper>
-        <Typography variant="bodySmall">
+        <Typography variant="caption">
           The dialog above is the provider&apos;s own web Modal — scrim, title
           rule and one Button per entry in the buttons array.
         </Typography>
@@ -93,8 +93,8 @@ export const DefaultOkButton = () => (
       <div style={stack}>
         <Paper outline style={{ padding: 16 }}>
           <div style={lines}>
-            <Typography variant="titleSmall">Reports</Typography>
-            <Typography variant="bodySmall">
+            <Typography variant="subtitle2">Reports</Typography>
+            <Typography variant="caption">
               Called with no buttons array, the provider supplies a single OK.
             </Typography>
           </div>
@@ -107,18 +107,18 @@ export const DefaultOkButton = () => (
 export const TheApi = () => (
   <div style={stack}>
     <div style={lines}>
-      <Typography variant="titleMedium">Raising an alert</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle1">Raising an alert</Typography>
+      <Typography variant="caption">
         Consumers never touch the provider — they call the Alert() singleton
         from anywhere below it.
       </Typography>
     </div>
     <Paper outline style={{ padding: 12 }}>
       <div style={lines}>
-        <Typography variant="labelSmall">
+        <Typography variant="caption">
           Alert(title, message?, buttons?)
         </Typography>
-        <Typography variant="labelSmall">
+        <Typography variant="caption">
           buttons: {"{ text, onPress? }[]"} — defaults to a single OK
         </Typography>
       </div>
@@ -136,7 +136,7 @@ export const TheApi = () => (
     >
       Delete workspace
     </Button>
-    <Typography variant="bodySmall">
+    <Typography variant="caption">
       On iOS and Android the same call renders the OS dialog instead of this
       Modal — one API, two presentations.
     </Typography>

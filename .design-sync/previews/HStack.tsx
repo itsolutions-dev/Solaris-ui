@@ -3,7 +3,7 @@ import { Avatar, Button, Chip, HStack, Typography } from "@its/solaris-ui";
 
 export const Spacing = () => (
   <HStack spacing="m" align="center" width={480} wrap>
-    <Typography variant="labelSmall">spacing=&quot;m&quot;</Typography>
+    <Typography variant="caption">spacing=&quot;m&quot;</Typography>
     <Chip label="Paid" mode="tonal" onPress={() => {}} />
     <Chip label="Overdue" mode="outlined" onPress={() => {}} />
     <Chip label="Draft" mode="outlined" onPress={() => {}} />
@@ -24,7 +24,7 @@ export const Alignment = () => (
       >
         <Avatar name="Ada Lovelace" size={28} />
         <Avatar name="Grace Hopper" size={44} />
-        <Typography variant="labelSmall">{align}</Typography>
+        <Typography variant="caption">{align}</Typography>
       </HStack>
     ))}
   </HStack>
@@ -39,7 +39,7 @@ export const ToolbarRow = () => (
     radius="medium"
     width={480}
   >
-    <Typography variant="titleMedium">Invoices</Typography>
+    <Typography variant="subtitle1">Invoices</Typography>
     <HStack spacing="s">
       <Button mode="text" onPress={() => {}}>
         Export

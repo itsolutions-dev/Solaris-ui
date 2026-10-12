@@ -14,7 +14,7 @@ const field: ViewStyle = {
 
 export const ViewMode = () => (
   <View style={field}>
-    <Typography variant="labelLarge">Layout</Typography>
+    <Typography variant="subtitle2">Layout</Typography>
     <ToggleButtonGroup
       value="list"
       onValueChange={() => {}}
@@ -29,7 +29,7 @@ export const ViewMode = () => (
 
 export const LabelsOnly = () => (
   <View style={field}>
-    <Typography variant="labelLarge">Report period</Typography>
+    <Typography variant="subtitle2">Report period</Typography>
     <ToggleButtonGroup
       value="week"
       onValueChange={() => {}}
@@ -45,7 +45,7 @@ export const LabelsOnly = () => (
 
 export const IconsOnly = () => (
   <View style={field}>
-    <Typography variant="labelLarge">Alignment</Typography>
+    <Typography variant="subtitle2">Alignment</Typography>
     <ToggleButtonGroup
       value="center"
       onValueChange={() => {}}
@@ -61,7 +61,7 @@ export const IconsOnly = () => (
 
 export const MultiSelect = () => (
   <View style={field}>
-    <Typography variant="labelLarge">Text style</Typography>
+    <Typography variant="subtitle2">Text style</Typography>
     <ToggleButtonGroup
       multiSelect
       value={["bold", "underline"]}

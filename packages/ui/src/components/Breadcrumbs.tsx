@@ -73,7 +73,7 @@ const Breadcrumbs = ({
                   )}
                   <Text
                     style={[
-                      theme.typography.bodyMedium,
+                      theme.typography.body2,
                       {
                         color: isLast
                           ? theme.colors.onSurface

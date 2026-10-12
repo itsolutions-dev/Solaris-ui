@@ -24,20 +24,20 @@ const stat: React.CSSProperties = {
 export const ListSeparators = () => (
   <div style={panel}>
     <Paper elevation={1} outline style={{ flex: 1 }}>
-      <Typography variant="titleSmall">Notifications</Typography>
+      <Typography variant="subtitle2">Notifications</Typography>
       <div style={rowBetween}>
-        <Typography variant="bodyMedium">Email digest</Typography>
-        <Typography variant="bodySmall">Weekly</Typography>
+        <Typography variant="body2">Email digest</Typography>
+        <Typography variant="caption">Weekly</Typography>
       </div>
       <Divider contentSpacing={0} />
       <div style={rowBetween}>
-        <Typography variant="bodyMedium">Mentions</Typography>
-        <Typography variant="bodySmall">Instant</Typography>
+        <Typography variant="body2">Mentions</Typography>
+        <Typography variant="caption">Instant</Typography>
       </div>
       <Divider contentSpacing={0} />
       <div style={rowBetween}>
-        <Typography variant="bodyMedium">Product updates</Typography>
-        <Typography variant="bodySmall">Off</Typography>
+        <Typography variant="body2">Product updates</Typography>
+        <Typography variant="caption">Off</Typography>
       </div>
     </Paper>
   </div>
@@ -64,13 +64,13 @@ export const Thickness = () => (
   <div
     style={{ width: 380, display: "flex", flexDirection: "column", gap: 14 }}
   >
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       thickness 1 — default hairline rule
     </Typography>
     <Divider contentSpacing={0} />
-    <Typography variant="labelMedium">thickness 2</Typography>
+    <Typography variant="caption">thickness 2</Typography>
     <Divider contentSpacing={0} thickness={2} />
-    <Typography variant="labelMedium">thickness 4 — section break</Typography>
+    <Typography variant="caption">thickness 4 — section break</Typography>
     <Divider contentSpacing={0} thickness={4} />
   </div>
 );
@@ -80,18 +80,18 @@ export const Vertical = () => (
     <Paper elevation={2} style={{ flex: 1 }}>
       <div style={{ display: "flex", alignItems: "stretch", height: 56 }}>
         <div style={stat}>
-          <Typography variant="titleMedium">128</Typography>
-          <Typography variant="bodySmall">Components</Typography>
+          <Typography variant="subtitle1">128</Typography>
+          <Typography variant="caption">Components</Typography>
         </div>
         <Divider orientation="vertical" />
         <div style={stat}>
-          <Typography variant="titleMedium">42</Typography>
-          <Typography variant="bodySmall">Tokens</Typography>
+          <Typography variant="subtitle1">42</Typography>
+          <Typography variant="caption">Tokens</Typography>
         </div>
         <Divider orientation="vertical" />
         <div style={stat}>
-          <Typography variant="titleMedium">7</Typography>
-          <Typography variant="bodySmall">Groups</Typography>
+          <Typography variant="subtitle1">7</Typography>
+          <Typography variant="caption">Groups</Typography>
         </div>
       </div>
     </Paper>

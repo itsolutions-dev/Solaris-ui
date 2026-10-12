@@ -151,7 +151,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
         </View>
 
         {results.length === 0 ? (
-          <Typography variant="bodyMedium" style={styles.empty}>
+          <Typography variant="body2" style={styles.empty}>
             Nothing matches “{query}”.
           </Typography>
         ) : (
@@ -185,7 +185,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
                     }
                   />
                   <Typography
-                    variant="bodyMedium"
+                    variant="body2"
                     style={{
                       color: active
                         ? theme.colors.onPrimaryContainer
@@ -196,7 +196,7 @@ export const CommandPalette = ({ onDismiss }: { onDismiss: () => void }) => {
                     {entry.label}
                   </Typography>
                   <Typography
-                    variant="labelSmall"
+                    variant="caption"
                     style={{ color: theme.colors.onSurfaceVariant }}
                   >
                     {entry.hint}
@@ -225,7 +225,7 @@ const Hint = ({ keys, label }: { keys: string; label: string }) => {
     <View style={styles.hint}>
       <Text style={styles.key}>{keys}</Text>
       <Typography
-        variant="labelSmall"
+        variant="caption"
         style={{ color: theme.colors.onSurfaceVariant }}
       >
         {label}
@@ -264,29 +264,33 @@ const makeStyles = (theme: Theme) =>
     },
     panelWide: { maxWidth: 560, marginTop: 96 },
     panelCompact: { maxWidth: 560, marginTop: 24 },
-    field: { padding: theme.spacing.m, paddingBottom: theme.spacing.s },
+    field: { padding: theme.spacing(2), paddingBottom: theme.spacing(1) },
     list: { maxHeight: 360 },
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(2),
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
     },
     empty: {
       color: theme.colors.onSurfaceVariant,
-      paddingHorizontal: theme.spacing.m,
-      paddingBottom: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
     },
     footer: {
       flexDirection: "row",
-      gap: theme.spacing.m,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(2),
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
       borderTopWidth: 1,
       borderTopColor: theme.colors.outlineVariant,
     },
-    hint: { flexDirection: "row", alignItems: "center", gap: theme.spacing.xs },
+    hint: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: theme.spacing(0.5),
+    },
     key: {
       fontSize: 11,
       color: theme.colors.onSurfaceVariant,

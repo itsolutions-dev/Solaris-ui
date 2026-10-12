@@ -115,7 +115,7 @@ const Select = ({
       return (
         <Text
           style={[
-            theme.typography.bodyLarge,
+            theme.typography.body1,
             {
               color:
                 selectedValues.length > 0
@@ -140,7 +140,7 @@ const Select = ({
           />
         )}
         <Text
-          style={[theme.typography.bodyLarge, { color: placeholderColor }]}
+          style={[theme.typography.body1, { color: placeholderColor }]}
           numberOfLines={1}
         >
           {selectedOption ? selectedOption.label : placeholder}
@@ -214,7 +214,7 @@ const Select = ({
       {!!label && variant === "outlined" && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             { color: theme.colors.primary, marginBottom: 4, marginLeft: 4 },
           ]}
         >
@@ -281,7 +281,7 @@ const Select = ({
                       {variant === "filled" && !!label && !!option.value && (
                         <Text
                           style={[
-                            theme.typography.labelSmall,
+                            theme.typography.caption,
                             { color: labelColor },
                           ]}
                         >
@@ -304,7 +304,7 @@ const Select = ({
                         )}
                         <Text
                           style={[
-                            theme.typography.bodyLarge,
+                            theme.typography.body1,
                             {
                               color:
                                 value === option.value
@@ -334,7 +334,7 @@ const Select = ({
       {!!error && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             { color: theme.colors.error, marginTop: 4, marginLeft: 16 },
           ]}
         >

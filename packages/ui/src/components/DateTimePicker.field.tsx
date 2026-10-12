@@ -129,7 +129,7 @@ const PickerField = forwardRef<View, PickerFieldProps>(
             placeholder={inputPlaceholder ?? placeholder}
             placeholderTextColor={theme.colors.onSurfaceVariant}
             style={[
-              theme.typography.bodyLarge,
+              theme.typography.body1,
               styles.input,
               { color: theme.colors.onSurface },
             ]}
@@ -138,7 +138,7 @@ const PickerField = forwardRef<View, PickerFieldProps>(
           <Text
             numberOfLines={1}
             style={[
-              theme.typography.bodyLarge,
+              theme.typography.body1,
               {
                 color: hasValue
                   ? theme.colors.onSurface
@@ -182,7 +182,7 @@ const PickerField = forwardRef<View, PickerFieldProps>(
         {!!label && (
           <Text
             style={[
-              theme.typography.bodySmall,
+              theme.typography.caption,
               styles.label,
               {
                 color: highlighted
@@ -245,22 +245,22 @@ export default PickerField;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    wrapper: { marginBottom: theme.spacing.m, width: "100%" },
-    label: { marginBottom: theme.spacing.xs, marginLeft: theme.spacing.xs },
+    wrapper: { marginBottom: theme.spacing(2), width: "100%" },
+    label: { marginBottom: theme.spacing(0.5), marginLeft: theme.spacing(0.5) },
     container: {
       minHeight: 52,
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
       borderRadius: theme.shape.medium,
-      paddingHorizontal: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
       backgroundColor: theme.colors.surface,
     },
     trigger: {
       flex: 1,
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
       alignSelf: "stretch",
     },
     content: { flex: 1, justifyContent: "center" },

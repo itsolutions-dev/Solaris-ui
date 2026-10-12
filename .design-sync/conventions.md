@@ -39,9 +39,9 @@ The real token vocabulary, all under `theme`:
 | ------------ | ----- |
 | `colors`     | The Material 3 roles: `primary`, `onPrimary`, `primaryContainer`, `onPrimaryContainer`, and the same four for `secondary` / `tertiary` / `error` / `warning` / `info` / `success`; `background`, `onBackground`, `surface`, `onSurface`, `surfaceVariant`, `onSurfaceVariant`, `surfaceContainer`, `surfaceContainerLow`, `surfaceContainerHigh`, `surfaceContainerHighest`, `surfaceDim`, `inverseSurface`, `inverseOnSurface`, `inversePrimary`, `outline`, `outlineVariant`, `shadow`, `scrim` |
 | `palette`    | The same colours in MUI's shape: `primary` … `success` as `{ main, light, dark, contrastText }`, `background.default` / `paper`, `text.primary` / `secondary` / `disabled`, `divider` |
-| `typography` | `displayLarge/Medium/Small`, `headlineLarge/Medium/Small`, `titleLarge/Medium/Small`, `bodyLarge/Medium/Small`, `labelLarge/Medium/Small` |
-| `spacing`    | `xs` 4, `s` 8, `m` 16, `l` 24, `xl` 32 |
-| `shape`      | `small` 8, `medium` 12, `large` 16, `extraLarge` 24, `full` 9999 — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded |
+| `typography` | MUI's steps at MUI's own sizes: `h1`–`h6`, `subtitle1`, `subtitle2`, `body1`, `body2`, `button` (uppercase), `caption`, `overline` (uppercase) |
+| `spacing`    | a function, as in MUI: `theme.spacing(n)` = 8 × n (`spacing(2)` = 16) |
+| `shape`      | `borderRadius` 4 (MUI's base), `small` 8, `medium` 12, `large` 16, `extraLarge` 24, `full` 9999 — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded |
 |              | `isDark` — boolean; the scheme follows the OS, `toggleTheme()` overrides it |
 
 Helpers: `getStateColor(base, on, "hover" | "press" | "focus")` for M3 state layers, and
@@ -79,10 +79,10 @@ type picks up the scale. **Icons** are MaterialCommunityIcons kebab-case name st
 `wrap`), `HStack` / `VStack` (`spacing`, `align`, `justify`), `Box` (`p` / `px` / `py`,
 `bg`, `radius`, `gap`, `justify`, `align`), `Grid` (`columns`, `spacing`), `Center`,
 `Spacer` (`size`, or flexible to push siblings apart) and `AspectRatio` (`ratio`) all take
-the same `xs`/`s`/`m`/`l`/`xl` spacing and `bg` colour-role names as the theme. There is
+the spacing names `xs`/`s`/`m`/`l`/`xl` (4/8/16/24/32) and `bg` colour-role names. There is
 no `View` and no `Text` export: reach for these first, and drop to a plain `<div>` with
 inline styles only for glue they cannot express (react-native-web renders real DOM, so
-divs compose fine) — taking values from `theme.spacing` when you do.
+divs compose fine) — taking values from `theme.spacing(n)` when you do.
 
 ### Where the truth lives
 
@@ -100,17 +100,17 @@ const { theme } = useTheme();
   style={{
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing.m,
-    padding: theme.spacing.l,
+    gap: theme.spacing(2),
+    padding: theme.spacing(3),
   }}
 >
-  <Typography variant="headlineSmall">Invoices</Typography>
+  <Typography variant="h5">Invoices</Typography>
   <SearchBar
     value={query}
     onChangeText={setQuery}
     placeholder="Search invoices"
   />
-  <div style={{ display: "flex", gap: theme.spacing.s, flexWrap: "wrap" }}>
+  <div style={{ display: "flex", gap: theme.spacing(1), flexWrap: "wrap" }}>
     <Chip label="Paid" mode="tonal" selected onPress={() => {}} />
     <Chip label="Overdue" mode="outlined" onPress={() => {}} />
   </div>

@@ -37,8 +37,8 @@ export const AccountCard = () => (
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Avatar name="Marta Rossi" size={36} status="online" />
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Typography variant="titleSmall">Marta Rossi</Typography>
-            <Typography variant="bodySmall">marta@itsol.it</Typography>
+            <Typography variant="subtitle2">Marta Rossi</Typography>
+            <Typography variant="caption">marta@itsol.it</Typography>
           </div>
         </div>
         <Divider contentSpacing={0} />
@@ -105,8 +105,8 @@ export const HelpBubble = () => (
       }
     >
       <div style={pad}>
-        <Typography variant="titleSmall">Token sets</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="subtitle2">Token sets</Typography>
+        <Typography variant="caption">
           Swapping the set restyles every component at once.
         </Typography>
       </div>

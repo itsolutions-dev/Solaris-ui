@@ -33,7 +33,7 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingTop: theme.spacing.m,
+      gap: theme.spacing(1),
+      paddingTop: theme.spacing(2),
     },
   });

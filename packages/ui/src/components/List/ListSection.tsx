@@ -32,7 +32,7 @@ const ListSection = ({
     <View style={[styles.section, style]}>
       {!!title && <ListSubheader>{title}</ListSubheader>}
       {children}
-      {divider && <Divider contentSpacing={theme.spacing.s} />}
+      {divider && <Divider contentSpacing={theme.spacing(1)} />}
     </View>
   );
 };
@@ -42,6 +42,6 @@ export default ListSection;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     section: {
-      marginBottom: theme.spacing.s,
+      marginBottom: theme.spacing(1),
     },
   });

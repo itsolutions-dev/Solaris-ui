@@ -20,7 +20,7 @@ import { createTheme, type ThemeSchemes } from "./createTheme";
  * `.d.ts` import `./theme.json`, which is not shipped with the type
  * declarations (bob's typescript target emits `.d.ts` only) and would force
  * every consumer to enable `resolveJsonModule`. The `_ThemeTokensInSync` guard
- * below fails `tsc` if typography, spacing or shape drift from `theme.json`;
+ * below fails `tsc` if typography or shape drift from `theme.json`;
  * these roles are checked by `deriveScheme`'s return type.
  */
 export interface ThemeColorTokens {
@@ -74,17 +74,10 @@ export interface ThemeColorTokens {
   warningContainer: string;
 }
 
-/** Spacing scale, in density-independent pixels. */
-export interface ThemeSpacingTokens {
-  xs: number;
-  s: number;
-  m: number;
-  l: number;
-  xl: number;
-}
-
 /** Corner radii, in density-independent pixels. */
 export interface ThemeShapeTokens {
+  /** MUI's base radius: layout props multiply their `borderRadius` by it. */
+  borderRadius: number;
   small: number;
   medium: number;
   large: number;
@@ -93,23 +86,21 @@ export interface ThemeShapeTokens {
   full: number;
 }
 
-/** Material 3 type scale roles carried by the theme. */
+/** MUI's type scale, at MUI's own sizes. */
 export type TypographyVariant =
-  | "displayLarge"
-  | "displayMedium"
-  | "displaySmall"
-  | "headlineLarge"
-  | "headlineMedium"
-  | "headlineSmall"
-  | "titleLarge"
-  | "titleMedium"
-  | "titleSmall"
-  | "labelLarge"
-  | "labelMedium"
-  | "labelSmall"
-  | "bodyLarge"
-  | "bodyMedium"
-  | "bodySmall";
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "subtitle1"
+  | "subtitle2"
+  | "body1"
+  | "body2"
+  | "button"
+  | "caption"
+  | "overline";
 
 /** One colour in MUI's shape, as `theme.palette.primary` and the rest carry it. */
 export interface PaletteColor {
@@ -140,13 +131,14 @@ export interface Theme {
   /** The same colours in MUI's shape: what code ported from an MUI app reads. */
   palette: Palette;
   typography: { [key in TypographyVariant]: TextStyle };
-  spacing: ThemeSpacingTokens;
+  /** MUI's spacing function: `spacing(2)` = 16. Fractions and negatives allowed. */
+  spacing: (n: number) => number;
   shape: ThemeShapeTokens;
   isDark: boolean;
 }
 
 // Type-level only: emits no JavaScript and, being unexported, no declaration
-// either. If a typography, spacing or shape token is added to or removed from
+// either. If a typography or shape token is added to or removed from
 // theme.json, one of these stops being `true` and `npm run type-check` fails
 // here instead of shipping a theme whose public type lies about its contents.
 type Exact<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
@@ -156,7 +148,6 @@ type AllTrue<T extends true[]> = T;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type _ThemeTokensInSync = AllTrue<
   [
-    Exact<ThemeSpacingTokens, typeof themeConfig.spacing>,
     Exact<ThemeShapeTokens, typeof themeConfig.shape>,
     Exact<TypographyVariant, keyof typeof themeConfig.typography>,
   ]

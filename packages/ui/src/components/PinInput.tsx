@@ -124,7 +124,7 @@ const PinInput = ({
       {!!label && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             styles.label,
             {
               color: error ? theme.colors.error : theme.colors.onSurfaceVariant,
@@ -163,7 +163,7 @@ const PinInput = ({
               accessibilityState={{ disabled: !!disabled }}
               style={[
                 styles.cell,
-                theme.typography.titleLarge,
+                theme.typography.h6,
                 {
                   width: cellSize,
                   height: cellSize,
@@ -195,9 +195,9 @@ export default PinInput;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    wrapper: { marginBottom: theme.spacing.m },
-    label: { marginBottom: theme.spacing.xs, marginLeft: theme.spacing.xs },
-    row: { flexDirection: "row", gap: theme.spacing.s },
+    wrapper: { marginBottom: theme.spacing(2) },
+    label: { marginBottom: theme.spacing(0.5), marginLeft: theme.spacing(0.5) },
+    row: { flexDirection: "row", gap: theme.spacing(1) },
     cell: {
       textAlign: "center",
       borderRadius: theme.shape.medium,
@@ -207,6 +207,6 @@ const makeStyles = (theme: Theme) =>
     },
     disabled: { opacity: 0.38 },
     supportingText: {
-      marginLeft: theme.spacing.xs,
+      marginLeft: theme.spacing(0.5),
     },
   });

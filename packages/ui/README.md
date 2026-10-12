@@ -46,7 +46,7 @@ export default function App() {
       <AlertProvider>
         <ToastProvider>
           <VStack p="m" spacing="s">
-            <Typography variant="headlineMedium">Hello</Typography>
+            <Typography variant="h5">Hello</Typography>
             <Button onPress={() => {}}>Tap me</Button>
           </VStack>
         </ToastProvider>
@@ -143,7 +143,7 @@ src/
 └── providers/         # theme + alert infrastructure
     ├── ThemeProvider.tsx   # Theme types, ThemeProvider, useTheme(), getStateColor(), getGlowStyles()
     ├── createTheme.ts      # createTheme(): MUI colorSchemes in, Material 3 roles + MUI palette out
-    ├── theme.json          # the default theme: colour inputs, typography, spacing, shape
+    ├── theme.json          # the default theme: colour inputs, typography, shape
     ├── AlertProvider.tsx   # cross-platform Alert() (native Alert.alert / web Modal)
     └── ToastProvider.tsx   # imperative queued toasts via useToast()
 ```
@@ -182,20 +182,22 @@ Theme tokens:
   inverse pair; outline and scrim.
 - **`theme.palette`** — the same colours in MUI's shape (`main` / `light` / `dark` /
   `contrastText`, `background`, `text`, `divider`).
-- **Type scale** — the full Material 3 scale (`displayLarge` → `labelSmall`).
-- **Spacing** — `xs:4 s:8 m:16 l:24 xl:32`.
-- **Shape radii** — `small:8 medium:12 large:16 extraLarge:24 full:9999`.
+- **Type scale** — MUI's thirteen steps at MUI's own sizes (`h1` 96 … `caption` 12; `button` and `overline` uppercase).
+- **Spacing** — `theme.spacing(n)` = 8 × n, as in MUI (`spacing(2)` = 16).
+- **Shape radii** — `borderRadius:4` (MUI's base) and `small:8 medium:12 large:16 extraLarge:24 full:9999`.
 
 ### Foundations
 
 #### `Typography`
 
-Renders themed text at an M3 type scale.
+Renders themed text in one of MUI's type-scale steps.
 
 | Prop     | Type                                         | Default        | Req |
 | -------- | -------------------------------------------- | -------------- | --- |
 | children | ReactNode                                    | —              | ✓   |
-| variant  | type-scale key (`displayLarge`…`labelSmall`) | `displayLarge` |     |
+| variant  | `h1`…`h6`, `subtitle1/2`, `body1/2`, `button`, `caption`, `overline` | `body1` |     |
+| color    | palette name, palette path (`"text.secondary"`), M3 role or raw colour | `"text.primary"` | |
+| align, noWrap, gutterBottom | MUI's text options | | |
 | style    | TextStyle                                    |                |     |
 
 #### `Divider`
@@ -240,7 +242,7 @@ Compound parts, also exported standalone as `CardTitle` / `CardContent` / `CardC
   <Card.Cover source={photo} alt="Impianto 4" />
   <Card.Title title="Impianto 4" subtitle="Manutenzione programmata" />
   <Card.Content>
-    <Typography variant="bodyMedium">Prossimo intervento: 12 marzo</Typography>
+    <Typography variant="body2">Prossimo intervento: 12 marzo</Typography>
   </Card.Content>
   <Card.Actions>
     <Button mode="text" onPress={postpone}>Rinvia</Button>
@@ -258,18 +260,23 @@ Compound parts, also exported standalone as `CardTitle` / `CardContent` / `CardC
 
 #### `Icon`
 
-Source-agnostic icon primitive. Use it when the icon may not be a MaterialCommunityIcons glyph —
-a bundled bitmap, an SVG, a custom glyph set.
+Icon primitive, MUI style: a MaterialCommunityIcons glyph goes in as the children
+(`<Icon>plus</Icon>`), the way MUI's `Icon` takes its ligature. `source` covers the rest — a
+bundled bitmap, an SVG render function, a ready-made element.
 
 | Prop       | Type                                                                                  | Default     |
 | ---------- | ------------------------------------------------------------------------------------- | ----------- |
-| source     | `IconSource` (required)                                                               | —           |
-| size       | number                                                                                | `24`        |
-| color      | string (tints a glyph; leave unset for a full-colour bitmap)                          | `onSurface` |
+| children   | string: a MaterialCommunityIcons glyph name                                           | —           |
+| source     | image source, `({ size, color }) => ReactNode` render function, or element            | —           |
+| fontSize   | `"small"` (20) | `"medium"` (24) | `"large"` (35) | number                          | `"medium"`  |
+| color      | palette name or path, M3 role, raw colour (leave unset for a full-colour bitmap)      | `onSurface` |
 | flipForRTL | boolean (mirrors directional glyphs under RTL)                                        | `false`     |
 
-`IconSource` is a MaterialCommunityIcons name, an `ImageSourcePropType`, a
-`({ size, color }) => ReactNode` render function, or a ready-made element.
+```tsx
+<Icon>camera</Icon>
+<Icon fontSize="large" color="primary">camera</Icon>
+<Icon source={require("./logo.png")} />
+```
 
 #### `TouchableRipple`
 
@@ -317,8 +324,8 @@ focus from the field being typed into.
 ### Layout
 
 Token-driven layout primitives, so screens stop hardcoding spacing. `SpacingValue` is a
-`theme.spacing` key (`"xs" | "s" | "m" | "l" | "xl"`) or a raw number; `RadiusValue` is a
-`theme.shape` key or a raw number; `ColorValue` is an M3 color role name or any raw color.
+spacing name (`"xs" | "s" | "m" | "l" | "xl"`, 4/8/16/24/32 dp) or a raw number of dp; `RadiusValue` is a
+`theme.shape` key or a raw number; `ColorValue` is a palette name or path (`"text.secondary"`), an M3 role or any raw colour.
 
 #### `Box`
 
@@ -409,7 +416,7 @@ Inline navigational text.
 | children         | string (label, required)                                              | —                          |
 | href             | string — opened with `Linking.openURL`; ignored when `onPress` is set |                            |
 | onPress          | () => void                                                            |                            |
-| variant          | typography key                                                        | `bodyMedium`               |
+| variant          | typography key                                                        | `body2`                    |
 | underline        | `"always" \| "hover" \| "none"`                                       | `hover`                    |
 | showExternalIcon | boolean                                                               | `true` for a remote `href` |
 | externalIcon     | icon                                                                  | `open-in-new`              |

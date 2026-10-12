@@ -39,8 +39,8 @@ const stage = (run: (t: Toast) => void, caption: string) => (
   >
     <ToastProvider>
       <Raise run={run}>
-        <Typography variant="titleMedium">Component library</Typography>
-        <Typography variant="bodySmall">{caption}</Typography>
+        <Typography variant="subtitle1">Component library</Typography>
+        <Typography variant="caption">{caption}</Typography>
       </Raise>
     </ToastProvider>
   </VStack>
@@ -77,21 +77,21 @@ export const Failure = () =>
 
 export const TheApi = () => (
   <VStack spacing="s" p="m" bg="surfaceContainerLow" radius="large" width={420}>
-    <Typography variant="titleMedium">Raising a toast</Typography>
-    <Typography variant="bodyMedium">
+    <Typography variant="subtitle1">Raising a toast</Typography>
+    <Typography variant="body2">
       Mount ToastProvider once near the root, then call useToast() from anywhere
       below it. There is no visible state to thread through a screen.
     </Typography>
     <VStack spacing="xs" p="s" bg="surface" radius="medium">
-      <Typography variant="bodySmall">const toast = useToast();</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">const toast = useToast();</Typography>
+      <Typography variant="caption">
         toast.show({"{ message, type?, duration?, icon?, action?, id? }"})
       </Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         toast.success(msg) · toast.error(msg) · toast.hide(key?)
       </Typography>
     </VStack>
-    <Typography variant="bodySmall">
+    <Typography variant="caption">
       Toasts play back FIFO, one at a time; a repeated event reuses its id
       instead of stacking up.
     </Typography>

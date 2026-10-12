@@ -59,8 +59,8 @@ export const InvoiceList = () => (
           }}
         >
           <View style={{ flexDirection: "column" }}>
-            <Typography variant="titleSmall">{invoice.id}</Typography>
-            <Typography variant="bodySmall">{invoice.amount}</Typography>
+            <Typography variant="subtitle2">{invoice.id}</Typography>
+            <Typography variant="caption">{invoice.amount}</Typography>
           </View>
           <StatusBadge label={invoice.label} type={invoice.type as any} />
         </View>

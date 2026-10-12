@@ -44,20 +44,20 @@ export const Page = ({
     <View style={styles.header}>
       {eyebrow ? (
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={[styles.eyebrow, { color: theme.colors.primary }]}
         >
           {eyebrow}
         </Typography>
       ) : null}
       <Typography
-        variant={layout.isCompact ? "headlineSmall" : "headlineMedium"}
+        variant={layout.isCompact ? "h5" : "h4"}
         style={{ color: theme.colors.onSurface }}
       >
         {title}
       </Typography>
       <Typography
-        variant="bodyLarge"
+        variant="body1"
         style={{ color: theme.colors.onSurfaceVariant }}
       >
         {description}
@@ -135,15 +135,12 @@ export const Section = ({
 
   return (
     <View style={styles.section}>
-      <Typography
-        variant="titleLarge"
-        style={{ color: theme.colors.onSurface }}
-      >
+      <Typography variant="h6" style={{ color: theme.colors.onSurface }}>
         {title}
       </Typography>
       {description ? (
         <Typography
-          variant="bodyMedium"
+          variant="body2"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {description}
@@ -160,19 +157,19 @@ const makeStyles = (theme: Theme) =>
       flexGrow: 1,
       // The one place the side gutter is defined. `paddingBlock` keeps it from
       // being reset by a shorthand elsewhere.
-      paddingHorizontal: theme.spacing.l,
-      paddingTop: theme.spacing.l,
-      paddingBottom: theme.spacing.xl * 2,
+      paddingHorizontal: theme.spacing(3),
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(4) * 2,
       alignItems: "center",
     },
-    column: { width: "100%", gap: theme.spacing.xl },
-    header: { gap: theme.spacing.xs, maxWidth: 720 },
+    column: { width: "100%", gap: theme.spacing(4) },
+    header: { gap: theme.spacing(0.5), maxWidth: 720 },
     eyebrow: {
       textTransform: "uppercase",
       letterSpacing: 1.6,
       fontWeight: "700",
     },
-    section: { gap: theme.spacing.m },
+    section: { gap: theme.spacing(2) },
   });
 
 export default Page;

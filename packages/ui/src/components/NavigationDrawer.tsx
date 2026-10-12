@@ -71,16 +71,20 @@ export const DrawerItem = ({
         disabled && styles.disabled,
       ]}
     >
-      {glyph && <Icon source={glyph} size={24} color={content} />}
+      {glyph && (
+        <Icon fontSize={24} color={content}>
+          {glyph}
+        </Icon>
+      )}
       <Typography
-        variant="labelLarge"
+        variant="subtitle2"
         numberOfLines={1}
         style={[styles.itemLabel, { color: content }]}
       >
         {label}
       </Typography>
       {badge != null && badge !== "" && (
-        <Typography variant="labelLarge" style={{ color: content }}>
+        <Typography variant="subtitle2" style={{ color: content }}>
           {String(badge)}
         </Typography>
       )}
@@ -109,7 +113,7 @@ export const DrawerSection = ({
       {showDivider && <Divider style={styles.divider} />}
       {!!title && (
         <Typography
-          variant="titleSmall"
+          variant="subtitle2"
           accessibilityRole="header"
           style={styles.sectionTitle}
         >
@@ -167,7 +171,7 @@ const NavigationDrawer = ({
       <ScrollView contentContainerStyle={styles.scroll}>
         {!!title && (
           <Typography
-            variant="titleSmall"
+            variant="subtitle2"
             accessibilityRole="header"
             style={styles.headline}
           >
@@ -219,26 +223,26 @@ const makeStyles = (theme: Theme) =>
     },
     headline: {
       color: theme.colors.onSurfaceVariant,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(2),
     },
-    section: { paddingBottom: theme.spacing.s },
+    section: { paddingBottom: theme.spacing(1) },
     sectionTitle: {
       color: theme.colors.onSurfaceVariant,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(2),
     },
     divider: {
-      marginHorizontal: theme.spacing.m,
-      marginBottom: theme.spacing.s,
+      marginHorizontal: theme.spacing(2),
+      marginBottom: theme.spacing(1),
     },
     item: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s + theme.spacing.xs,
+      gap: theme.spacing(1) + theme.spacing(0.5),
       minHeight: ITEM_HEIGHT,
-      paddingStart: theme.spacing.m,
-      paddingEnd: theme.spacing.l,
+      paddingStart: theme.spacing(2),
+      paddingEnd: theme.spacing(3),
       borderRadius: ITEM_HEIGHT / 2,
       ...Platform.select({ web: { cursor: "pointer" } }),
     },
@@ -247,6 +251,6 @@ const makeStyles = (theme: Theme) =>
     disabled: { opacity: 0.38 },
     footer: {
       paddingHorizontal: ITEM_INSET,
-      paddingVertical: theme.spacing.s,
+      paddingVertical: theme.spacing(1),
     },
   });

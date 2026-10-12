@@ -60,7 +60,7 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     base: {
       borderRadius: theme.shape.large,
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
       overflow: "hidden",
       ...Platform.select({
         web: { transition: "all 200ms ease-in-out" },
@@ -119,7 +119,7 @@ const makeStyles = (theme: Theme) =>
  *   <Card.Cover source={photo} alt="Line 4" />
  *   <Card.Title title="Line 4" subtitle="Scheduled maintenance" />
  *   <Card.Content>
- *     <Typography variant="bodyMedium">Next service: 12 March</Typography>
+ *     <Typography variant="body2">Next service: 12 March</Typography>
  *   </Card.Content>
  *   <Card.Actions>
  *     <Button mode="text" onPress={postpone}>Postpone</Button>

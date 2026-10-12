@@ -39,15 +39,15 @@ The theme is **MUI-shaped in, Material 3 out**:
   - Its on-colour is black or white, whichever contrasts more, so AA holds for any input.
   - Containers come from a tonal palette of its hue (`providers/tonal.ts`, internal).
 
-`theme.json` holds only inputs and scales: the two colour schemes, typography, spacing and
-shape. The public `Theme` type spells the tokens out explicitly (`ThemeColorTokens`,
-`Palette`, `ThemeSpacingTokens`, `ThemeShapeTokens`, `TypographyVariant`) instead of deriving
+`theme.json` holds only inputs and scales: the two colour schemes, typography and shape.
+Spacing is a function (`theme.spacing(n)` = 8 × n, as in MUI), not a token set. The public `Theme` type spells the tokens out explicitly (`ThemeColorTokens`,
+`Palette`, `ThemeShapeTokens`, `TypographyVariant`) instead of deriving
 them with `typeof themeConfig`. A public type derived from the JSON makes the emitted `.d.ts`
 import `theme.json`, which is not shipped with the declarations.
 
 Two checks keep the types honest:
 - A type-level guard (`_ThemeTokensInSync` in `ThemeProvider.tsx`) fails
-  `npm run type-check` if typography, spacing or shape drift from `theme.json`.
+  `npm run type-check` if typography or shape drift from `theme.json` (spacing is a function, `theme.spacing(n)` = 8 × n, and has no tokens).
 - Colour roles are checked by `deriveScheme`'s return type. **When you add a role, add it to
   `ThemeColorTokens` and to `deriveScheme`.**
 

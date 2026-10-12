@@ -29,8 +29,8 @@ export const Glyphs = () => (
       ] as const
     ).map((name) => (
       <div key={name} style={cell}>
-        <Icon source={name} size={28} />
-        <Typography variant="labelSmall" style={{ textAlign: "center" }}>
+        <Icon fontSize={28}>{name}</Icon>
+        <Typography variant="caption" style={{ textAlign: "center" }}>
           {name}
         </Typography>
       </div>
@@ -42,8 +42,8 @@ export const Sizes = () => (
   <div style={row}>
     {[16, 20, 24, 32, 48].map((size) => (
       <div key={size} style={cell}>
-        <Icon source="wrench-outline" size={size} />
-        <Typography variant="labelSmall">{`${size}px`}</Typography>
+        <Icon fontSize={size}>wrench-outline</Icon>
+        <Typography variant="caption">{`${size}px`}</Typography>
       </div>
     ))}
   </div>
@@ -54,13 +54,13 @@ export const CustomSources = () => (
   <div
     style={{ display: "flex", flexDirection: "column", gap: 12, width: 380 }}
   >
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       A render function receives the resolved size and colour
     </Typography>
     <Paper elevation={1} outline>
       <div style={row}>
         <Icon
-          size={32}
+          fontSize={32}
           source={({ size, color }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
               <path d="M12 2 3 20h18L12 2Zm0 5 5.5 11h-11L12 7Z" />
@@ -68,14 +68,14 @@ export const CustomSources = () => (
           )}
         />
         <Icon
-          size={32}
+          fontSize={32}
           source={({ size, color }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
               <circle cx="12" cy="12" r="9" />
             </svg>
           )}
         />
-        <Typography variant="bodySmall">inline SVG, themed colour</Typography>
+        <Typography variant="caption">inline SVG, themed colour</Typography>
       </div>
     </Paper>
   </div>

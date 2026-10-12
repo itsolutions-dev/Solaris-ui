@@ -97,7 +97,7 @@ const ButtonGroup = ({
       accessibilityLabel={accessibilityLabel}
       style={[
         styles.row,
-        { gap: connected ? CONNECTED_GAP : theme.spacing.s },
+        { gap: connected ? CONNECTED_GAP : theme.spacing(1) },
         style,
       ]}
       testID={testID}
@@ -127,8 +127,8 @@ const ButtonGroup = ({
                 height,
                 paddingHorizontal:
                   size === "xs"
-                    ? theme.spacing.m - theme.spacing.xs
-                    : theme.spacing.m,
+                    ? theme.spacing(2) - theme.spacing(0.5)
+                    : theme.spacing(2),
                 borderWidth: mode === "outlined" && !selected ? 1 : 0,
                 borderColor: colors.border ?? "transparent",
               },
@@ -137,11 +137,13 @@ const ButtonGroup = ({
             ]}
           >
             {option.icon && (
-              <Icon source={option.icon} size={20} color={colors.on} />
+              <Icon fontSize={20} color={colors.on}>
+                {option.icon}
+              </Icon>
             )}
             {!!option.label && (
               <Typography
-                variant="labelLarge"
+                variant="button"
                 numberOfLines={1}
                 style={{ color: colors.on }}
               >
@@ -164,7 +166,7 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
       minWidth: 48,
       overflow: "hidden",
     },

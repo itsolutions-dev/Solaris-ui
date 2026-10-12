@@ -64,7 +64,7 @@ const Stat = ({
         )}
         <Text
           style={[
-            theme.typography.labelMedium,
+            theme.typography.caption,
             { color: theme.colors.onSurfaceVariant },
           ]}
         >
@@ -73,12 +73,7 @@ const Stat = ({
       </View>
 
       <View style={styles.valueRow}>
-        <Text
-          style={[
-            theme.typography.headlineMedium,
-            { color: theme.colors.onSurface },
-          ]}
-        >
+        <Text style={[theme.typography.h5, { color: theme.colors.onSurface }]}>
           {value}
         </Text>
         {!!delta && (
@@ -86,7 +81,7 @@ const Stat = ({
             {!!trend && (
               <Icons name={TREND_ICONS[trend]} size={16} color={trendColor} />
             )}
-            <Text style={[theme.typography.labelLarge, { color: trendColor }]}>
+            <Text style={[theme.typography.subtitle2, { color: trendColor }]}>
               {delta}
             </Text>
           </View>
@@ -96,7 +91,7 @@ const Stat = ({
       {!!helpText && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             { color: theme.colors.onSurfaceVariant },
           ]}
         >
@@ -111,16 +106,16 @@ export default Stat;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    container: { gap: theme.spacing.xs },
+    container: { gap: theme.spacing(0.5) },
     labelRow: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
     },
     valueRow: {
       flexDirection: "row",
       alignItems: "flex-end",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     deltaRow: {
       flexDirection: "row",

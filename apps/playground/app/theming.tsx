@@ -105,22 +105,23 @@ const COLOR_GROUPS: { label: string; tokens: string[] }[] = [
   },
 ];
 
+/** The spacing steps the library's own components use. */
+const SPACING_STEPS = [0.5, 1, 2, 3, 4];
+
 const TYPE_SCALE: TypographyVariant[] = [
-  "displayLarge",
-  "displayMedium",
-  "displaySmall",
-  "headlineLarge",
-  "headlineMedium",
-  "headlineSmall",
-  "titleLarge",
-  "titleMedium",
-  "titleSmall",
-  "bodyLarge",
-  "bodyMedium",
-  "bodySmall",
-  "labelLarge",
-  "labelMedium",
-  "labelSmall",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "subtitle1",
+  "subtitle2",
+  "body1",
+  "body2",
+  "button",
+  "caption",
+  "overline",
 ];
 
 const USAGE = `import { useTheme } from "@its/solaris-ui";
@@ -136,7 +137,7 @@ const Card = () => {
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     card: {
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
       borderRadius: theme.shape.large,
       backgroundColor: theme.colors.surfaceContainerLow,
     },
@@ -203,7 +204,7 @@ export default function Theming() {
     >
       <View style={styles.toggleRow}>
         <Typography
-          variant="bodyMedium"
+          variant="body2"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           Showing the{" "}
@@ -253,7 +254,7 @@ export default function Theming() {
 
       <Section
         title="Type scale"
-        description="Fifteen steps on the theme's font family: Roboto on Android and the web, the system font on iOS unless the app embeds Roboto. `Typography` takes the step name as its variant."
+        description="MUI's thirteen steps at MUI's own sizes, on the theme's font family: Roboto on Android and the web, the system font on iOS unless the app embeds Roboto. Typography takes the step name as its variant."
       >
         <View style={styles.typeList}>
           {TYPE_SCALE.map((variant) => {
@@ -267,7 +268,7 @@ export default function Theming() {
                   {variant}
                 </Typography>
                 <Typography
-                  variant="labelSmall"
+                  variant="caption"
                   style={{ color: theme.colors.onSurfaceVariant }}
                 >
                   {spec.fontSize} / {spec.lineHeight} ·{" "}
@@ -281,31 +282,31 @@ export default function Theming() {
 
       <Section
         title="Spacing"
-        description="Five steps. Layout primitives take the token name, StyleSheets take the value."
+        description="theme.spacing(n) is 8 × n, as in MUI. These are the steps the library itself uses; fractions and negatives work too."
       >
         <View style={styles.tokenRow}>
-          {Object.entries(theme.spacing).map(([name, value]) => (
-            <View key={name} style={styles.tokenChip}>
-              <View
-                style={[
-                  styles.spacingBar,
-                  { width: value as number, height: value as number },
-                ]}
-              />
-              <Typography
-                variant="labelMedium"
-                style={{ color: theme.colors.onSurface }}
-              >
-                {name}
-              </Typography>
-              <Typography
-                variant="labelSmall"
-                style={{ color: theme.colors.onSurfaceVariant }}
-              >
-                {String(value)}dp
-              </Typography>
-            </View>
-          ))}
+          {SPACING_STEPS.map((step) => {
+            const value = theme.spacing(step);
+            return (
+              <View key={step} style={styles.tokenChip}>
+                <View
+                  style={[styles.spacingBar, { width: value, height: value }]}
+                />
+                <Typography
+                  variant="caption"
+                  style={{ color: theme.colors.onSurface }}
+                >
+                  spacing({step})
+                </Typography>
+                <Typography
+                  variant="caption"
+                  style={{ color: theme.colors.onSurfaceVariant }}
+                >
+                  {value}dp
+                </Typography>
+              </View>
+            );
+          })}
         </View>
       </Section>
 
@@ -320,13 +321,13 @@ export default function Theming() {
                 style={[styles.shapeSample, { borderRadius: value as number }]}
               />
               <Typography
-                variant="labelMedium"
+                variant="caption"
                 style={{ color: theme.colors.onSurface }}
               >
                 {name}
               </Typography>
               <Typography
-                variant="labelSmall"
+                variant="caption"
                 style={{ color: theme.colors.onSurfaceVariant }}
               >
                 {String(value)}dp
@@ -467,7 +468,7 @@ const Gallery = () => {
         <CardTitle title="Card" subtitle="An elevated surface" />
         <CardContent>
           <Typography
-            variant="bodyMedium"
+            variant="body2"
             style={{ color: theme.colors.onSurfaceVariant }}
           >
             Surfaces, outlines and text all come from the neutral roles of the
@@ -507,14 +508,11 @@ const Swatch = ({
       ]}
     >
       <View style={[styles.swatchChip, { backgroundColor: value }]} />
-      <Typography
-        variant="labelMedium"
-        style={{ color: theme.colors.onSurface }}
-      >
+      <Typography variant="caption" style={{ color: theme.colors.onSurface }}>
         {token}
       </Typography>
       <Typography
-        variant="labelSmall"
+        variant="caption"
         style={{ color: theme.colors.onSurfaceVariant }}
       >
         {value}
@@ -530,48 +528,48 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
     },
     strong: { fontWeight: "700", color: theme.colors.onSurface },
-    gallery: { gap: theme.spacing.m },
+    gallery: { gap: theme.spacing(2) },
     galleryRow: {
       flexDirection: "row",
       flexWrap: "wrap",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     progressRow: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
     },
     grow: { flex: 1 },
     swatchGrid: { flexDirection: "row", flexWrap: "wrap" },
     swatch: {
       gap: 2,
-      paddingRight: theme.spacing.m,
-      paddingBottom: theme.spacing.m,
+      paddingRight: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
     },
     swatchChip: {
       height: 56,
       borderRadius: theme.shape.medium,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
-      marginBottom: theme.spacing.xs,
+      marginBottom: theme.spacing(0.5),
     },
-    typeList: { gap: theme.spacing.m },
+    typeList: { gap: theme.spacing(2) },
     typeRow: { gap: 2 },
     tokenRow: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
       alignItems: "flex-end",
     },
     tokenChip: { alignItems: "center", gap: 2, minWidth: 72 },
     spacingBar: {
       backgroundColor: theme.colors.primary,
       borderRadius: 2,
-      marginBottom: theme.spacing.xs,
+      marginBottom: theme.spacing(0.5),
     },
     shapeSample: {
       width: 56,
@@ -579,6 +577,6 @@ const makeStyles = (theme: Theme) =>
       backgroundColor: theme.colors.primaryContainer,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
-      marginBottom: theme.spacing.xs,
+      marginBottom: theme.spacing(0.5),
     },
   });

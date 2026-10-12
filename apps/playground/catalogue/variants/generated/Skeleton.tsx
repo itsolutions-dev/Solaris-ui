@@ -11,7 +11,7 @@ const col: ViewStyle = { flexDirection: "column" };
 export const Variants = () => (
   <View style={{ ...col, gap: 20, width: 340 }}>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         circle — avatar placeholder
       </Typography>
       <View style={{ flexDirection: "row", gap: 12 }}>
@@ -21,7 +21,7 @@ export const Variants = () => (
       </View>
     </View>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         text — copy placeholder
       </Typography>
       <View style={{ ...col, gap: 8 }}>
@@ -31,7 +31,7 @@ export const Variants = () => (
       </View>
     </View>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         rect — media placeholder
       </Typography>
       <Skeleton variant="rect" width={320} height={96} />
@@ -100,19 +100,19 @@ export const ListPlaceholder = () => (
 export const Shapes = () => (
   <View style={{ ...col, gap: 20, width: 340 }}>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 0 — table cell
       </Typography>
       <Skeleton variant="rect" width={320} height={40} borderRadius={0} />
     </View>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 8 — default
       </Typography>
       <Skeleton variant="rect" width={320} height={40} />
     </View>
     <View style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 20 — pill, standing in for a chip row
       </Typography>
       <View style={{ flexDirection: "row", gap: 8 }}>

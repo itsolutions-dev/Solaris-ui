@@ -22,7 +22,7 @@ const inner: ViewStyle = {
 
 export const StateLayer = () => (
   <View style={panel}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       Hover and press — 8% / 12% of the “on” role over the surface
     </Typography>
     <TouchableRipple
@@ -31,8 +31,8 @@ export const StateLayer = () => (
       borderRadius={12}
     >
       <View style={inner}>
-        <Typography variant="bodyLarge">Tappable surface</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="body1">Tappable surface</Typography>
+        <Typography variant="caption">
           The layer is derived from the theme, never a hardcoded overlay
         </Typography>
       </View>
@@ -42,7 +42,7 @@ export const StateLayer = () => (
 
 export const Borderless = () => (
   <View style={panel}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       borderless — tints the child without painting a container
     </Typography>
     <TouchableRipple
@@ -52,7 +52,7 @@ export const Borderless = () => (
       borderRadius={12}
     >
       <View style={inner}>
-        <Typography variant="bodyLarge">No container background</Typography>
+        <Typography variant="body1">No container background</Typography>
       </View>
     </TouchableRipple>
   </View>
@@ -65,7 +65,7 @@ export const AsListRows = () => (
         {index > 0 && <Divider contentSpacing={0} />}
         <TouchableRipple onPress={() => {}} accessibilityLabel={label}>
           <View style={{ padding: 14 }}>
-            <Typography variant="bodyLarge">{label}</Typography>
+            <Typography variant="body1">{label}</Typography>
           </View>
         </TouchableRipple>
       </React.Fragment>
@@ -82,7 +82,7 @@ export const Disabled = () => (
       disabled
     >
       <View style={inner}>
-        <Typography variant="bodyLarge">Disabled — no state layer</Typography>
+        <Typography variant="body1">Disabled — no state layer</Typography>
       </View>
     </TouchableRipple>
   </View>

@@ -18,14 +18,14 @@ const FilterSheet = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Components</Typography>
-      <Typography variant="bodyMedium">34 results</Typography>
+      <Typography variant="h5">Components</Typography>
+      <Typography variant="body2">34 results</Typography>
       <Button mode="tonal" iconName="filter-variant" onPress={show}>
         Filter components
       </Button>
       <BottomSheet visible={open} title="Filter components" onDismiss={hide}>
         <View style={demo.stack}>
-          <Typography variant="labelLarge">Group</Typography>
+          <Typography variant="subtitle2">Group</Typography>
           <View style={demo.row}>
             <Chip
               label="Buttons & actions"
@@ -54,7 +54,7 @@ const FilterSheet = () => {
             />
           </View>
           <Divider contentSpacing={0} />
-          <Typography variant="labelLarge">Status</Typography>
+          <Typography variant="subtitle2">Status</Typography>
           <View style={demo.row}>
             <Chip
               label="Stable"
@@ -84,8 +84,8 @@ const ActionSheet = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Chip</Typography>
-      <Typography variant="bodyMedium">Buttons & actions</Typography>
+      <Typography variant="h5">Chip</Typography>
+      <Typography variant="body2">Buttons & actions</Typography>
       <Button mode="outlined" iconName="dots-horizontal" onPress={show}>
         More actions
       </Button>
@@ -167,7 +167,7 @@ const ReleaseNotes = () => {
         onDismiss={hide}
       >
         <View style={demo.stack}>
-          <Typography variant="bodyMedium">
+          <Typography variant="body2">
             Dark mode contrast was corrected across every tonal surface, Chip
             gained a compact size, and DataGrid now keeps its header pinned
             while the body scrolls.

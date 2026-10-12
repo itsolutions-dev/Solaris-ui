@@ -29,18 +29,14 @@ const row: React.CSSProperties = {
 export const OnASurface = () => (
   <div style={screen}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">Invoices</Typography>
-      <Typography variant="bodySmall">14 open · 3 overdue</Typography>
+      <Typography variant="subtitle1">Invoices</Typography>
+      <Typography variant="caption">14 open · 3 overdue</Typography>
       <div style={{ height: 12 }} />
       <Divider contentSpacing={0} />
       <div style={{ height: 12 }} />
-      <Typography variant="bodyMedium">
-        INV-2043 · Acme Inc. · €1,280.00
-      </Typography>
+      <Typography variant="body2">INV-2043 · Acme Inc. · €1,280.00</Typography>
       <div style={{ height: 8 }} />
-      <Typography variant="bodyMedium">
-        INV-2042 · Vento Lab · €640.00
-      </Typography>
+      <Typography variant="body2">INV-2042 · Vento Lab · €640.00</Typography>
       <FAB icon="plus" onPress={() => {}} />
     </Paper>
   </div>
@@ -80,11 +76,9 @@ export const Positions = () => (
       outline
       style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
     >
-      <Typography variant="labelMedium">
-        All four corners are anchored
-      </Typography>
+      <Typography variant="caption">All four corners are anchored</Typography>
       <div style={{ height: 4 }} />
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         top-left · top-right · bottom-left · bottom-right
       </Typography>
       <FAB

@@ -180,7 +180,7 @@ const DataGrid = ({
                 <View style={styles.emptyContainer}>
                   <Text
                     style={[
-                      theme.typography.bodyMedium,
+                      theme.typography.body2,
                       { color: theme.colors.onSurfaceVariant },
                     ]}
                   >

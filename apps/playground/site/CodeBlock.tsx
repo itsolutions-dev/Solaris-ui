@@ -43,7 +43,7 @@ export const CodeBlock = ({
     <View style={styles.wrap}>
       <View style={styles.header}>
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {title ?? language.toUpperCase()}
@@ -80,9 +80,9 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      paddingLeft: theme.spacing.m,
-      paddingRight: theme.spacing.xs,
-      paddingVertical: theme.spacing.xs,
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(0.5),
+      paddingVertical: theme.spacing(0.5),
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
     },
@@ -91,7 +91,7 @@ const makeStyles = (theme: Theme) =>
       fontSize: 13,
       lineHeight: 20,
       color: theme.colors.onSurface,
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
     },
   });
 

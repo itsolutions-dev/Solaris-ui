@@ -23,8 +23,8 @@ const lines: React.CSSProperties = {
 
 export const Dialog = () => (
   <div style={backdrop}>
-    <Typography variant="headlineSmall">Component library</Typography>
-    <Typography variant="bodyMedium">
+    <Typography variant="h5">Component library</Typography>
+    <Typography variant="body2">
       34 components · last synced 4 minutes ago
     </Typography>
     <Modal visible title="Publish 0.1.0" closeText="Close" onClose={() => {}}>
@@ -36,18 +36,18 @@ export const Dialog = () => (
 
 export const RichContent = () => (
   <div style={backdrop}>
-    <Typography variant="headlineSmall">Team</Typography>
-    <Typography variant="bodyMedium">3 members · 2 pending invites</Typography>
+    <Typography variant="h5">Team</Typography>
+    <Typography variant="body2">3 members · 2 pending invites</Typography>
     <Modal visible title="Invite your team">
       <div style={lines}>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           Everyone you invite gets read access to the shared component library.
           You can raise their role later from Settings.
         </Typography>
         <div style={{ height: 12 }} />
-        <Typography variant="labelLarge">Invitees</Typography>
-        <Typography variant="bodySmall">marta@itsol.it · Viewer</Typography>
-        <Typography variant="bodySmall">luca@itsol.it · Viewer</Typography>
+        <Typography variant="subtitle2">Invitees</Typography>
+        <Typography variant="caption">marta@itsol.it · Viewer</Typography>
+        <Typography variant="caption">luca@itsol.it · Viewer</Typography>
         <div style={{ height: 12 }} />
         <Divider contentSpacing={0} />
         <div style={{ height: 12 }} />
@@ -70,8 +70,8 @@ export const RichContent = () => (
 
 export const Untitled = () => (
   <div style={backdrop}>
-    <Typography variant="headlineSmall">Release notes</Typography>
-    <Typography variant="bodyMedium">@its/solaris-ui 0.1.0</Typography>
+    <Typography variant="h5">Release notes</Typography>
+    <Typography variant="body2">@its/solaris-ui 0.1.0</Typography>
     <Modal visible closeText="Got it" onClose={() => {}}>
       Dark mode contrast was corrected across every tonal surface.
     </Modal>

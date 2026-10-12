@@ -12,7 +12,7 @@ import {
 
 export const Basic = () => (
   <Center bg="surfaceContainerLow" radius="medium" height={160} width={360}>
-    <Typography variant="titleMedium">Centred on both axes</Typography>
+    <Typography variant="subtitle1">Centred on both axes</Typography>
   </Center>
 );
 
@@ -25,7 +25,7 @@ export const LoadingPane = () => (
     gap="s"
   >
     <CircularProgress size={48} />
-    <Typography variant="bodyMedium">Syncing your workspace</Typography>
+    <Typography variant="body2">Syncing your workspace</Typography>
   </Center>
 );
 

@@ -49,13 +49,13 @@ export const PropControls = ({
     <View style={styles.wrap}>
       <View style={styles.header}>
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={[styles.eyebrow, { color: theme.colors.onSurfaceVariant }]}
         >
           Properties
         </Typography>
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {keys.length} {keys.length === 1 ? "control" : "controls"}
@@ -64,7 +64,7 @@ export const PropControls = ({
 
       {keys.length === 0 ? (
         <Typography
-          variant="bodySmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           This component takes no props worth a control — see the API reference
@@ -141,7 +141,7 @@ const PropControl = ({
       return (
         <View style={styles.row}>
           <Typography
-            variant="bodyMedium"
+            variant="body2"
             style={{ color: theme.colors.onSurface, flexShrink: 1 }}
           >
             {definition.label}
@@ -169,14 +169,11 @@ const PropControl = ({
       // which reads as a missing control rather than an inapplicable one.
       return (
         <View style={styles.row}>
-          <Typography
-            variant="bodyMedium"
-            style={{ color: theme.colors.onSurface }}
-          >
+          <Typography variant="body2" style={{ color: theme.colors.onSurface }}>
             {definition.label}
           </Typography>
           <Typography
-            variant="labelSmall"
+            variant="caption"
             style={{ color: theme.colors.onSurfaceVariant }}
           >
             set in the demo
@@ -186,7 +183,7 @@ const PropControl = ({
 
     default:
       return (
-        <Typography variant="labelSmall" style={{ color: theme.colors.error }}>
+        <Typography variant="caption" style={{ color: theme.colors.error }}>
           {name}: no control for type “{definition.type}”
         </Typography>
       );
@@ -195,12 +192,12 @@ const PropControl = ({
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    wrap: { gap: theme.spacing.m, width: "100%" },
+    wrap: { gap: theme.spacing(2), width: "100%" },
     header: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      paddingBottom: theme.spacing.s,
+      paddingBottom: theme.spacing(1),
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
     },
@@ -213,7 +210,7 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
       minHeight: 40,
     },
   });

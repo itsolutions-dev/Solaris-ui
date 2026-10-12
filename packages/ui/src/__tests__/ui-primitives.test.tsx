@@ -23,15 +23,59 @@ const wrap = (ui: React.ReactElement) =>
   render(<ThemeProvider>{ui}</ThemeProvider>);
 
 describe("Icon", () => {
-  it("renders a MaterialCommunityIcons glyph name", async () => {
-    const { toJSON } = await wrap(<Icon source="camera" size={20} />);
+  const glyphOf = (node: { props: { children?: unknown } }) =>
+    String(node.props.children);
+
+  it("renders the glyph named by its children", async () => {
+    const { getByTestId } = await wrap(
+      <>
+        <Icon testID="plus">plus</Icon>
+        <Icon testID="minus">minus</Icon>
+      </>,
+    );
+    expect(glyphOf(getByTestId("plus"))).not.toBe("");
+    expect(glyphOf(getByTestId("plus"))).not.toBe(
+      glyphOf(getByTestId("minus")),
+    );
+  });
+
+  it("sizes by MUI's fontSize names and colours by palette name", async () => {
+    const palette = createTheme().light.palette;
+    const { getByTestId } = await wrap(
+      <>
+        <Icon testID="small" fontSize="small" color="primary">
+          plus
+        </Icon>
+        <Icon testID="large" fontSize="large">
+          plus
+        </Icon>
+        <Icon testID="raw" fontSize={18}>
+          plus
+        </Icon>
+      </>,
+    );
+    const style = (id: string) =>
+      StyleSheet.flatten(
+        getByTestId(id).props.style as ViewStyle & {
+          fontSize?: number;
+          color?: string;
+        },
+      );
+    expect(style("small").fontSize).toBe(20);
+    expect(style("small").color).toBe(palette.primary.main);
+    expect(style("large").fontSize).toBe(35);
+    expect(style("raw").fontSize).toBe(18);
+  });
+
+  it("renders an unknown glyph name without throwing", async () => {
+    const { toJSON } = await wrap(<Icon>not-a-glyph</Icon>);
     expect(toJSON()).toBeTruthy();
   });
 
   it("renders a render-function source with the resolved size and colour", async () => {
     const spy = jest.fn(() => <View testID="custom-glyph" />);
     const { getByTestId } = await wrap(
-      <Icon source={spy} size={32} color="#123456" />,
+      <Icon source={spy} fontSize={32} color="#123456" />,
     );
 
     expect(getByTestId("custom-glyph")).toBeTruthy();

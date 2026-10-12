@@ -156,7 +156,7 @@ const AnimatedFAB = ({
         onLayout={onLabelLayout}
         accessibilityElementsHidden
         importantForAccessibility="no-hide-descendants"
-        style={[theme.typography.labelLarge, styles.probe]}
+        style={[theme.typography.button, styles.probe]}
       >
         {label}
       </Text>
@@ -191,7 +191,7 @@ const AnimatedFAB = ({
           <Animated.Text
             numberOfLines={1}
             style={[
-              theme.typography.labelLarge,
+              theme.typography.button,
               styles.label,
               { color: theme.colors.onPrimaryContainer, opacity: labelOpacity },
             ]}
@@ -211,7 +211,7 @@ const AnimatedFAB = ({
           <Animated.Text
             numberOfLines={1}
             style={[
-              theme.typography.labelLarge,
+              theme.typography.button,
               styles.label,
               { color: theme.colors.onPrimaryContainer, opacity: labelOpacity },
             ]}

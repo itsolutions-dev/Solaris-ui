@@ -35,7 +35,7 @@ export const Modes = () => (
           accessibilityLabel="Edit"
           onPress={() => {}}
         />
-        <Typography variant="labelSmall">{mode}</Typography>
+        <Typography variant="caption">{mode}</Typography>
       </View>
     ))}
   </View>
@@ -52,7 +52,7 @@ export const Sizes = () => (
           accessibilityLabel="Search"
           onPress={() => {}}
         />
-        <Typography variant="labelSmall">{size}</Typography>
+        <Typography variant="caption">{size}</Typography>
       </View>
     ))}
   </View>
@@ -67,7 +67,7 @@ export const States = () => (
         accessibilityLabel="Save"
         onPress={() => {}}
       />
-      <Typography variant="labelSmall">default</Typography>
+      <Typography variant="caption">default</Typography>
     </View>
     <View style={caption}>
       <IconButton
@@ -77,7 +77,7 @@ export const States = () => (
         accessibilityLabel="Saved"
         onPress={() => {}}
       />
-      <Typography variant="labelSmall">selected</Typography>
+      <Typography variant="caption">selected</Typography>
     </View>
     <View style={caption}>
       <IconButton
@@ -87,7 +87,7 @@ export const States = () => (
         accessibilityLabel="Refreshing"
         onPress={() => {}}
       />
-      <Typography variant="labelSmall">loading</Typography>
+      <Typography variant="caption">loading</Typography>
     </View>
     <View style={caption}>
       <IconButton
@@ -96,7 +96,7 @@ export const States = () => (
         disabled
         accessibilityLabel="Delete"
       />
-      <Typography variant="labelSmall">disabled</Typography>
+      <Typography variant="caption">disabled</Typography>
     </View>
   </View>
 );
@@ -104,8 +104,8 @@ export const States = () => (
 export const InAToolbar = () => (
   <View style={column}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">Component audit.xlsx</Typography>
-      <Typography variant="bodySmall">Shared drive · 2.4 MB</Typography>
+      <Typography variant="subtitle1">Component audit.xlsx</Typography>
+      <Typography variant="caption">Shared drive · 2.4 MB</Typography>
       <View style={{ height: 12 }} />
       <View style={row}>
         <IconButton

@@ -60,7 +60,7 @@ const Divider = ({
       {typeof label === "string" ? (
         <Text
           style={[
-            theme.typography.labelMedium,
+            theme.typography.caption,
             styles.labelSpacing,
             { color: theme.colors.onSurfaceVariant },
           ]}

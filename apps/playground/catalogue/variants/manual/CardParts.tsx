@@ -58,7 +58,7 @@ const ContentBody = () => (
     <Card variant="outlined">
       <CardTitle title="Invite your team" subtitle="Workspace · Acme Inc." />
       <CardContent>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           Everyone you invite gets read access to the shared component library.
           You can raise their role later from Settings.
         </Typography>
@@ -123,7 +123,7 @@ const Composed = () => (
         left={<Avatar name="Ada Lovelace" size={36} />}
       />
       <CardContent>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           All four parts in one composition: cover, header, body, action row.
         </Typography>
       </CardContent>

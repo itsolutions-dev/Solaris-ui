@@ -48,32 +48,30 @@ Derivation, for each of primary, secondary, error, warning, info, success:
 Selection and tonal states (navigation indicators, selected chips, tonal buttons) use the
 **primary** container roles: `secondary` is the brand green.
 
-### 1.3 Typography scale (M3)
+### 1.3 Typography scale (MUI)
 
 `fontFamily`: Roboto on Android and web, the system font on iOS unless the app embeds Roboto and passes `createTheme({ typography: { fontFamily: Platform.OS === "ios" ? "Roboto" : undefined } })`. `variant` prop selects one.
 
-| Variant        | Size | Line | Weight | Tracking |
-| -------------- | ---- | ---- | ------ | -------- |
-| displayLarge   | 57   | 64   | 400    | -0.25    |
-| displayMedium  | 45   | 52   | 400    | 0        |
-| displaySmall   | 36   | 44   | 400    | 0        |
-| headlineLarge  | 32   | 40   | 400    | 0        |
-| headlineMedium | 28   | 36   | 400    | 0        |
-| headlineSmall  | 24   | 32   | 400    | 0        |
-| titleLarge     | 22   | 28   | 400    | 0        |
-| titleMedium    | 16   | 24   | 500    | 0.15     |
-| titleSmall     | 14   | 20   | 500    | 0.1      |
-| bodyLarge      | 16   | 24   | 400    | 0.5      |
-| bodyMedium     | 14   | 20   | 400    | 0.25     |
-| bodySmall      | 12   | 16   | 400    | 0.4      |
-| labelLarge     | 14   | 20   | 500    | 0.1      |
-| labelMedium    | 12   | 16   | 500    | 0.5      |
-| labelSmall     | 11   | 16   | 500    | 0.5      |
+| Variant   | Size | Line | Weight | Tracking | Case      |
+| --------- | ---- | ---- | ------ | -------- | --------- |
+| h1        | 96   | 112  | 300    | -1.5     |           |
+| h2        | 60   | 72   | 300    | -0.5     |           |
+| h3        | 48   | 56   | 400    | 0        |           |
+| h4        | 34   | 42   | 400    | 0.25     |           |
+| h5        | 24   | 32   | 400    | 0        |           |
+| h6        | 20   | 32   | 500    | 0.15     |           |
+| subtitle1 | 16   | 28   | 400    | 0.15     |           |
+| subtitle2 | 14   | 22   | 500    | 0.1      |           |
+| body1     | 16   | 24   | 400    | 0.15     |           |
+| body2     | 14   | 20   | 400    | 0.15     |           |
+| button    | 14   | 25   | 500    | 0.4      | uppercase |
+| caption   | 12   | 20   | 400    | 0.4      |           |
+| overline  | 12   | 32   | 400    | 1        | uppercase |
 
 ### 1.4 Spacing & Shape
 
-- **Spacing**: `xs:4  s:8  m:16  l:24  xl:32`
-- **Shape (corner radius)**: `small:8  medium:12  large:16  extraLarge:24  full:9999` — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded
+- **Spacing**: `theme.spacing(n)` = 8 × n, as in MUI: `spacing(0.5)` 4, `spacing(1)` 8, `spacing(2)` 16, `spacing(3)` 24, `spacing(4)` 32. Fractions and negatives work.
+- **Shape (corner radius)**: `borderRadius:4  small:8  medium:12  large:16  extraLarge:24  full:9999` — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded
 
 ### 1.5 Theme utilities
 
@@ -104,12 +102,16 @@ Outline variants append `-outline`. Any prop typed "icon" below takes one of the
 
 ### Typography
 
-Renders themed text at an M3 scale.
+Renders themed text in one of MUI's type-scale steps.
 
 | Prop     | Type                     | Default        | Req | Description  |
 | -------- | ------------------------ | -------------- | --- | ------------ |
 | children | ReactNode                | —              | ✓   | Text content |
-| variant  | typography key (see 1.3) | `displayLarge` |     | Type scale   |
+| variant  | typography key (see 1.3) | `body1`        |     | Type scale   |
+| color    | palette name, palette path (`"text.secondary"`), M3 role or raw colour | `"text.primary"` | | Text colour |
+| align    | `"left" \| "center" \| "right" \| "justify"` | | | Text alignment |
+| noWrap   | boolean                  | `false`        |     | One line, ellipsis |
+| gutterBottom | boolean              | `false`        |     | 0.35em bottom margin |
 | style    | TextStyle                |                |     | Override     |
 | …rest    | TextProps                |                |     | Forwarded to `Text` (`numberOfLines`, `selectable`, `testID`…) |
 
@@ -154,19 +156,21 @@ Pressable content surface.
 
 ### Icon
 
-Source-agnostic icon primitive. Use it wherever the icon may not be a
-MaterialCommunityIcons glyph — a bundled bitmap, an SVG, a custom glyph set.
+Icon primitive, MUI style: a MaterialCommunityIcons glyph goes in as the children
+(`<Icon>plus</Icon>`), the way MUI's `Icon` takes its ligature. `source` covers the rest —
+a bundled bitmap, an SVG render function, a ready-made element.
 
 | Prop       | Type                            | Default     | Description                            |
 | ---------- | ------------------------------- | ----------- | -------------------------------------- |
-| source     | `IconSource` (required)         | —           | Glyph name, image source, render fn, or element |
-| size       | number                          | `24`        |                                        |
-| color      | string                          | `onSurface` | Tints a glyph; omit for a colour bitmap |
+| children   | string                          | —           | MaterialCommunityIcons glyph name      |
+| source     | image source, render fn, element | —          | When the icon is not a glyph           |
+| fontSize   | `"small" \| "medium" \| "large"` \| number | `"medium"` | 20 / 24 / 35                     |
+| color      | palette name or path, M3 role, raw colour | `onSurface` | Tints a glyph; omit for a colour bitmap |
 | flipForRTL | boolean                         | `false`     | Mirrors directional glyphs under RTL   |
 | style      | ImageStyle                      |             |                                        |
 
-`IconSource` is a MaterialCommunityIcons name, an `ImageSourcePropType`, a
-`({ size, color }) => ReactNode` render function, or a ready-made element.
+`source` is an `ImageSourcePropType`, a `({ size, color }) => ReactNode` render function,
+or a ready-made element.
 
 ### TouchableRipple
 
@@ -207,7 +211,7 @@ whole section.)
   <Card.Cover source={photo} alt="Line 4" />
   <Card.Title title="Line 4" subtitle="Scheduled maintenance" />
   <Card.Content>
-    <Typography variant="bodyMedium">Next service: 12 March</Typography>
+    <Typography variant="body2">Next service: 12 March</Typography>
   </Card.Content>
   <Card.Actions>
     <Button mode="text" onPress={postpone}>Postpone</Button>
@@ -317,7 +321,7 @@ Inline navigational text.
 | href             | string                          |                          |     | Opened with `Linking.openURL`; ignored when `onPress` is set |
 | allowedSchemes   | string[]                        | `http, https, mailto, tel` |   | An `href` with any other scheme does nothing                 |
 | onPress          | () => void                      |                          |     |                                                              |
-| variant          | typography key                  | `bodyMedium`             |     |                                                              |
+| variant          | typography key                  | `body2`                  |     |                                                              |
 | underline        | `"always" \| "hover" \| "none"` | `hover`                  |     |                                                              |
 | showExternalIcon | boolean                         | `true` for remote `href` |     |                                                              |
 | externalIcon     | icon                            | `open-in-new`            |     |                                                              |
@@ -1220,9 +1224,9 @@ Horizontal progress steps.
 
 ## 8. Layout Primitives
 
-Token-driven layout, so screens stop hardcoding spacing. `SpacingValue` is a `theme.spacing` key
-(`"xs" | "s" | "m" | "l" | "xl"`) or a raw number; `RadiusValue` is a `theme.shape` key or a raw
-number; `ColorValue` is an M3 color role name or any raw color string.
+Token-driven layout, so screens stop hardcoding spacing. `SpacingValue` is a spacing name
+(`"xs" | "s" | "m" | "l" | "xl"`, 4/8/16/24/32 dp) or a raw number of dp; `RadiusValue` is a `theme.shape` key or a raw
+number; `ColorValue` is a palette name or path (`"text.secondary"`), an M3 role or any raw colour string.
 
 ### Box
 

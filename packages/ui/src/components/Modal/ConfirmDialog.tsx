@@ -73,9 +73,9 @@ const makeStyles = (theme: Theme) =>
       width: "100%",
     },
     message: {
-      ...theme.typography.bodyLarge,
+      ...theme.typography.body1,
       color: theme.colors.onSurfaceVariant,
       textAlign: "center",
-      paddingHorizontal: theme.spacing.s,
+      paddingHorizontal: theme.spacing(1),
     },
   });

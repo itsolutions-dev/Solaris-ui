@@ -93,7 +93,7 @@ const ToggleButton = ({
         <Text
           numberOfLines={1}
           style={[
-            theme.typography.labelLarge,
+            theme.typography.button,
             {
               color: active
                 ? theme.colors.onPrimaryContainer

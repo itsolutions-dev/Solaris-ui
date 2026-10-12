@@ -56,13 +56,13 @@ const ErrorCard = ({
   return (
     <View style={styles.card} accessibilityRole="alert">
       <Typography
-        variant="titleSmall"
+        variant="subtitle2"
         style={{ color: theme.colors.onErrorContainer }}
       >
         {label} could not render
       </Typography>
       <Typography
-        variant="bodySmall"
+        variant="caption"
         style={{ color: theme.colors.onErrorContainer }}
       >
         {error.message}
@@ -78,8 +78,8 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     card: {
       width: "100%",
-      gap: theme.spacing.s,
-      padding: theme.spacing.l,
+      gap: theme.spacing(1),
+      padding: theme.spacing(3),
       borderRadius: theme.shape.large,
       backgroundColor: theme.colors.errorContainer,
       alignItems: "flex-start",

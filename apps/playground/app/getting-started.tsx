@@ -35,7 +35,7 @@ const FIRST_SCREEN = `import { Button, Typography, VStack } from "@its/solaris-u
 
 export const Screens = () => (
   <VStack p="m" spacing="s">
-    <Typography variant="headlineMedium">Hello</Typography>
+    <Typography variant="h5">Hello</Typography>
     <Button iconName="check" onPress={() => {}}>
       Tap me
     </Button>
@@ -45,7 +45,7 @@ export const Screens = () => (
 const THEME_HOOK = `import { useTheme } from "@its/solaris-ui";
 
 const { theme, toggleTheme } = useTheme();
-// theme.palette.primary.main, theme.colors.primary, theme.spacing.m, theme.shape.large, theme.isDark`;
+// theme.palette.primary.main, theme.colors.primary, theme.spacing(2), theme.shape.large, theme.isDark`;
 
 const FONTS = `// app.config.ts — embed Roboto in the native build.
 // Config plugins need a development build; Expo Go cannot embed fonts.

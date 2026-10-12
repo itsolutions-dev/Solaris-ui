@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useTheme } from "../providers/ThemeProvider";
+import { resolveColor } from "./Layout/tokens";
 import { MaterialCommunityIconsGlyphs } from "./types";
 
 /** Props handed to a render-function icon source. */
@@ -30,9 +31,19 @@ export type IconSource =
   | ((props: IconRenderProps) => React.ReactNode)
   | React.ReactElement;
 
+const FONT_SIZES = { small: 20, medium: 24, large: 35 } as const;
+
 export interface IconProps {
-  source: IconSource;
-  size?: number;
+  /** A MaterialCommunityIcons glyph name, as MUI's Icon takes its ligature: `<Icon>plus</Icon>`. */
+  children?: string;
+  /** A bitmap, a render function or a ready-made element, when the icon is not a glyph. */
+  source?:
+    | ImageSourcePropType
+    | ((props: IconRenderProps) => React.ReactNode)
+    | React.ReactElement;
+  /** MUI's sizes: small 20, medium 24, large 35 — or any number. */
+  fontSize?: keyof typeof FONT_SIZES | number;
+  /** A palette name, a palette path, a Material 3 role or any raw colour. */
   color?: string;
   /** Mirror the glyph when the layout direction is RTL (arrows, chevrons). */
   flipForRTL?: boolean;
@@ -51,26 +62,44 @@ const isImageSource = (source: unknown): source is ImageSourcePropType =>
  * Renders an icon from any supported source.
  *
  * ```tsx
- * <Icon source="camera" size={24} />
- * <Icon source={require("./logo.png")} size={24} />
+ * <Icon>camera</Icon>
+ * <Icon fontSize="large" color="primary">camera</Icon>
+ * <Icon source={require("./logo.png")} />
  * <Icon source={({ size, color }) => <MySvg width={size} fill={color} />} />
  * ```
  */
 const Icon = ({
+  children,
   source,
-  size = 24,
+  fontSize = "medium",
   color,
   flipForRTL = false,
   style,
   testID,
 }: IconProps) => {
   const { theme } = useTheme();
-  const tint = color ?? theme.colors.onSurface;
+  const size = typeof fontSize === "number" ? fontSize : FONT_SIZES[fontSize];
+  const tint = resolveColor(theme, color) ?? theme.colors.onSurface;
 
   const transform = useMemo(
     () => (flipForRTL && I18nManager.isRTL ? [{ scaleX: -1 }] : undefined),
     [flipForRTL],
   );
+
+  if (children !== undefined) {
+    return (
+      <Icons
+        testID={testID}
+        name={children as MaterialCommunityIconsGlyphs}
+        size={size}
+        color={tint}
+        style={[
+          transform ? { transform } : null,
+          style as StyleProp<ImageStyle>,
+        ]}
+      />
+    );
+  }
 
   if (typeof source === "function") {
     return <>{source({ size, color: tint })}</>;
@@ -89,20 +118,13 @@ const Icon = ({
         style={[{ width: size, height: size, transform }, style]}
         // A tint only makes sense on a monochrome glyph; callers pass a
         // full-colour bitmap by leaving `color` unset.
-        tintColor={color}
+        tintColor={color ? tint : undefined}
       />
     );
   }
 
-  return (
-    <Icons
-      testID={testID}
-      name={source}
-      size={size}
-      color={tint}
-      style={[transform ? { transform } : null, style as StyleProp<ImageStyle>]}
-    />
-  );
+  // A glyph arrives only as `children`; nothing else is left to draw.
+  return null;
 };
 
 export default Icon;

@@ -9,10 +9,10 @@ import Typography from "./Typography";
 // below it for a bigger title.
 const ROW_HEIGHT = 64;
 const TITLE_VARIANT = {
-  small: "titleLarge",
-  center: "titleLarge",
-  medium: "headlineSmall",
-  large: "headlineMedium",
+  small: "h6",
+  center: "h6",
+  medium: "h5",
+  large: "h4",
 } as const;
 const TITLE_LINE = { medium: 112 - ROW_HEIGHT, large: 152 - ROW_HEIGHT };
 
@@ -79,7 +79,7 @@ const TopAppBar = ({
       {heading}
       {!!subtitle && (
         <Typography
-          variant="bodyMedium"
+          variant="body2"
           numberOfLines={1}
           style={{ color: theme.colors.onSurfaceVariant }}
         >
@@ -111,7 +111,7 @@ const TopAppBar = ({
             style={[
               styles.inlineTitle,
               variant === "center" && styles.centerTitle,
-              leading == null && { paddingStart: theme.spacing.m },
+              leading == null && { paddingStart: theme.spacing(2) },
             ]}
             pointerEvents={variant === "center" ? "none" : "auto"}
           >
@@ -141,13 +141,13 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
     },
     side: { flexDirection: "row", alignItems: "center" },
     actions: { marginStart: "auto" },
     inlineTitle: {
       flex: 1,
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
     },
     // Centred on the whole bar, not on the space the actions leave.
     centerTitle: {
@@ -159,11 +159,11 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       // Clear of one icon button on each side.
-      paddingHorizontal: theme.spacing.xl + theme.spacing.l,
+      paddingHorizontal: theme.spacing(4) + theme.spacing(3),
     },
     block: {
       justifyContent: "flex-end",
-      paddingHorizontal: theme.spacing.m,
-      paddingBottom: theme.spacing.l,
+      paddingHorizontal: theme.spacing(2),
+      paddingBottom: theme.spacing(3),
     },
   });

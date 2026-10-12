@@ -129,7 +129,7 @@ const Slider = ({
           {label ? (
             <Text
               style={[
-                theme.typography.bodySmall,
+                theme.typography.caption,
                 { color: theme.colors.primary },
               ]}
             >
@@ -141,7 +141,7 @@ const Slider = ({
           {showValueLabel && (
             <Text
               style={[
-                theme.typography.bodySmall,
+                theme.typography.caption,
                 { color: theme.colors.onSurfaceVariant },
               ]}
             >
@@ -194,7 +194,7 @@ const Slider = ({
             <View style={styles.valueBubble}>
               <Text
                 style={[
-                  theme.typography.labelSmall,
+                  theme.typography.caption,
                   { color: theme.colors.surface },
                 ]}
               >

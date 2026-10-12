@@ -81,7 +81,7 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "rgba(0,0,0,0.45)",
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
     },
     dialog: {
       width: DIALOG_WIDTH,

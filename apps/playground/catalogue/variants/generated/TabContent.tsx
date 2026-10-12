@@ -47,8 +47,8 @@ const between: ViewStyle = {
 
 const Overview = () => (
   <View style={stack}>
-    <Typography variant="titleMedium">Acoustic Pro X2</Typography>
-    <Typography variant="bodyMedium">
+    <Typography variant="subtitle1">Acoustic Pro X2</Typography>
+    <Typography variant="body2">
       Studio-grade over-ear headphones with adaptive noise cancelling and a
       32-hour battery.
     </Typography>
@@ -62,18 +62,18 @@ const Overview = () => (
 const Specs = () => (
   <View style={stack}>
     <View style={between}>
-      <Typography variant="bodyMedium">Driver</Typography>
-      <Typography variant="labelLarge">40 mm dynamic</Typography>
+      <Typography variant="body2">Driver</Typography>
+      <Typography variant="subtitle2">40 mm dynamic</Typography>
     </View>
     <Divider contentSpacing={0} />
     <View style={between}>
-      <Typography variant="bodyMedium">Battery</Typography>
-      <Typography variant="labelLarge">32 h</Typography>
+      <Typography variant="body2">Battery</Typography>
+      <Typography variant="subtitle2">32 h</Typography>
     </View>
     <Divider contentSpacing={0} />
     <View style={between}>
-      <Typography variant="bodyMedium">Weight</Typography>
-      <Typography variant="labelLarge">248 g</Typography>
+      <Typography variant="body2">Weight</Typography>
+      <Typography variant="subtitle2">248 g</Typography>
     </View>
   </View>
 );
@@ -81,14 +81,14 @@ const Specs = () => (
 const Reviews = () => (
   <View style={stack}>
     <View style={row}>
-      <Typography variant="titleMedium">4.6 out of 5</Typography>
+      <Typography variant="subtitle1">4.6 out of 5</Typography>
       <StatusBadge label="Verified" type="success" />
     </View>
-    <Typography variant="bodyMedium">
+    <Typography variant="body2">
       “Best pair I have owned — the noise cancelling actually holds up on a
       plane.”
     </Typography>
-    <Typography variant="labelMedium">Giulia D. · 2 weeks ago</Typography>
+    <Typography variant="caption">Giulia D. · 2 weeks ago</Typography>
   </View>
 );
 

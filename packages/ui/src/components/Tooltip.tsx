@@ -243,13 +243,11 @@ const Tooltip = ({
       ]}
     >
       {!!title && (
-        <Text style={[theme.typography.titleSmall, styles.richText]}>
+        <Text style={[theme.typography.subtitle2, styles.richText]}>
           {title}
         </Text>
       )}
-      <Text style={[theme.typography.bodyMedium, styles.richText]}>
-        {content}
-      </Text>
+      <Text style={[theme.typography.body2, styles.richText]}>{content}</Text>
       {action && (
         <View style={styles.richActions}>
           <Button
@@ -272,7 +270,7 @@ const Tooltip = ({
       style={[styles.tooltip, tipStyle, { opacity: tipSize.width > 0 ? 1 : 0 }]}
     >
       <Text
-        style={[theme.typography.bodySmall, styles.tooltipText]}
+        style={[theme.typography.caption, styles.tooltipText]}
         numberOfLines={2}
       >
         {content}
@@ -351,15 +349,15 @@ const makeStyles = (theme: Theme) =>
     rich: {
       backgroundColor: theme.colors.surfaceContainer,
       borderRadius: theme.shape.medium,
-      paddingHorizontal: theme.spacing.m,
-      paddingTop: theme.spacing.s + theme.spacing.xs,
-      paddingBottom: theme.spacing.s,
+      paddingHorizontal: theme.spacing(2),
+      paddingTop: theme.spacing(1) + theme.spacing(0.5),
+      paddingBottom: theme.spacing(1),
       maxWidth: 312,
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
     },
     richText: { color: theme.colors.onSurfaceVariant },
     richActions: {
       flexDirection: "row",
-      marginStart: -theme.spacing.s - theme.spacing.xs,
+      marginStart: -theme.spacing(1) - theme.spacing(0.5),
     },
   });

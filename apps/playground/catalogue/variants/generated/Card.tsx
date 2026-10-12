@@ -36,26 +36,26 @@ const lines: ViewStyle = {
 export const Variants = () => (
   <View style={stack}>
     <Card variant="filled">
-      <Typography variant="titleSmall">Filled</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle2">Filled</Typography>
+      <Typography variant="caption">
         Default surface container — the everyday card.
       </Typography>
     </Card>
     <Card variant="outlined">
-      <Typography variant="titleSmall">Outlined</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle2">Outlined</Typography>
+      <Typography variant="caption">
         A hairline outline instead of a tonal fill.
       </Typography>
     </Card>
     <Card variant="elevated">
-      <Typography variant="titleSmall">Elevated</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle2">Elevated</Typography>
+      <Typography variant="caption">
         Raised off the background with a shadow.
       </Typography>
     </Card>
     <Card variant="glow">
-      <Typography variant="titleSmall">Glow</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle2">Glow</Typography>
+      <Typography variant="caption">
         Accent halo for the primary call to action.
       </Typography>
     </Card>
@@ -68,8 +68,8 @@ export const ProfileCard = () => (
       <View style={{ flexDirection: "row", gap: 12, alignItems: "center" }}>
         <Avatar name="Marta Rossi" size={48} status="online" />
         <View style={{ flexDirection: "column", gap: 2 }}>
-          <Typography variant="titleMedium">Marta Rossi</Typography>
-          <Typography variant="bodySmall">Lead product designer</Typography>
+          <Typography variant="subtitle1">Marta Rossi</Typography>
+          <Typography variant="caption">Lead product designer</Typography>
         </View>
       </View>
       {spacer(12)}
@@ -108,8 +108,8 @@ export const Pressable = () => (
         }}
       >
         <View style={lines}>
-          <Typography variant="titleSmall">Billing</Typography>
-          <Typography variant="bodySmall">
+          <Typography variant="subtitle2">Billing</Typography>
+          <Typography variant="caption">
             Visa ending 4021 · renews 12 Oct
           </Typography>
         </View>
@@ -129,8 +129,8 @@ export const Pressable = () => (
         }}
       >
         <View style={lines}>
-          <Typography variant="titleSmall">Payment method</Typography>
-          <Typography variant="bodySmall">Last charge was declined</Typography>
+          <Typography variant="subtitle2">Payment method</Typography>
+          <Typography variant="caption">Last charge was declined</Typography>
         </View>
         <StatusBadge label="Action needed" type="error" />
       </View>
@@ -143,7 +143,7 @@ export const WithActions = () => (
     <Card variant="outlined">
       <CardTitle title="Invite your team" subtitle="Workspace · Acme Inc." />
       <CardContent>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           Everyone you invite gets read access to the shared component library.
           You can raise their role later from Settings.
         </Typography>
@@ -190,7 +190,7 @@ export const ComposedFromParts = () => (
         right={<StatusBadge type="success" label="Stable" />}
       />
       <CardContent>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           Layout primitives, a Material 3 date/time picker and 32 new
           components. Dark-mode contrast was corrected across every tonal
           surface.

@@ -46,7 +46,7 @@ const OnIconButtons = () => (
         onPress={() => {}}
       />
     </Tooltip>
-    <Typography variant="bodySmall">
+    <Typography variant="caption">
       The label an icon-only control cannot show on its own.
     </Typography>
   </View>

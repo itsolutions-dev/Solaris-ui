@@ -22,8 +22,8 @@ const Glyphs = () => (
   <View style={demo.row}>
     {GLYPHS.map((name) => (
       <View key={name} style={demo.cell}>
-        <Icon source={name} size={28} />
-        <Typography variant="labelSmall">{name}</Typography>
+        <Icon fontSize={28}>{name}</Icon>
+        <Typography variant="caption">{name}</Typography>
       </View>
     ))}
   </View>
@@ -33,8 +33,8 @@ const Sizes = () => (
   <View style={demo.row}>
     {SIZES.map((size) => (
       <View key={size} style={demo.cell}>
-        <Icon source="wrench-outline" size={size} />
-        <Typography variant="labelSmall">{`${size}px`}</Typography>
+        <Icon fontSize={size}>wrench-outline</Icon>
+        <Typography variant="caption">{`${size}px`}</Typography>
       </View>
     ))}
   </View>
@@ -42,13 +42,13 @@ const Sizes = () => (
 
 const CustomSources = () => (
   <View style={demo.panel}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       A render function receives the resolved size and colour
     </Typography>
     <Paper elevation={1} outline>
       <View style={demo.row}>
         <Icon
-          size={32}
+          fontSize={32}
           source={({ size, color }) => (
             <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
               <Path d="M12 2 3 20h18L12 2Zm0 5 5.5 11h-11L12 7Z" />
@@ -56,14 +56,14 @@ const CustomSources = () => (
           )}
         />
         <Icon
-          size={32}
+          fontSize={32}
           source={({ size, color }) => (
             <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
               <Circle cx="12" cy="12" r="9" />
             </Svg>
           )}
         />
-        <Typography variant="bodySmall">SVG source, themed colour</Typography>
+        <Typography variant="caption">SVG source, themed colour</Typography>
       </View>
     </Paper>
   </View>

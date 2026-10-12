@@ -115,7 +115,7 @@ function Modal({
               />
             )}
             <Title
-              variant="titleLarge"
+              variant="h6"
               numberOfLines={1}
               accessibilityRole="header"
               style={styles.fullScreenTitle}
@@ -163,13 +163,23 @@ function Modal({
         >
           {!!icon && (
             <View style={styles.iconRow}>
-              <Icon source={icon} size={24} color={theme.colors.primary} />
+              {typeof icon === "string" ? (
+                <Icon fontSize={24} color={theme.colors.primary}>
+                  {icon}
+                </Icon>
+              ) : (
+                <Icon
+                  source={icon}
+                  fontSize={24}
+                  color={theme.colors.primary}
+                />
+              )}
             </View>
           )}
 
           {!!title && (
             <View style={styles.modalTitleContainer}>
-              <Title variant="headlineMedium" style={styles.modalTitleText}>
+              <Title variant="h5" style={styles.modalTitleText}>
                 {title}
               </Title>
             </View>
@@ -203,21 +213,21 @@ const makeStyles = (theme: Theme) =>
     fullScreenHeader: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
       minHeight: 56,
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
     },
-    fullScreenTitle: { flex: 1, paddingHorizontal: theme.spacing.s },
+    fullScreenTitle: { flex: 1, paddingHorizontal: theme.spacing(1) },
     fullScreenScroll: { flex: 1 },
     fullScreenBody: {
-      paddingHorizontal: theme.spacing.l,
-      paddingBottom: theme.spacing.l,
+      paddingHorizontal: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
     },
     overlay: {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
     },
     scrim: {
       // The M3 `scrim` role at 32%, not a hardcoded rgba black.
@@ -230,7 +240,7 @@ const makeStyles = (theme: Theme) =>
       maxHeight: "90%",
       backgroundColor: theme.colors.surfaceContainer,
       borderRadius: theme.shape.extraLarge,
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
       alignItems: "center",
       shadowColor: theme.colors.shadow,
       shadowOffset: { width: 0, height: 2 },
@@ -239,17 +249,17 @@ const makeStyles = (theme: Theme) =>
       elevation: 5,
     },
     iconRow: {
-      marginBottom: theme.spacing.s,
+      marginBottom: theme.spacing(1),
     },
     modalTitleContainer: {
-      marginBottom: theme.spacing.s,
+      marginBottom: theme.spacing(1),
       borderBottomWidth: 1,
       borderColor: theme.colors.outlineVariant,
-      paddingBottom: theme.spacing.s,
+      paddingBottom: theme.spacing(1),
       width: "100%",
     },
     modalTitleText: {
-      ...theme.typography.headlineMedium,
+      ...theme.typography.h5,
       color: theme.colors.onSurface,
       textAlign: "center",
     },
@@ -257,13 +267,13 @@ const makeStyles = (theme: Theme) =>
       // No `flex: 1` here: inside an `alignItems: "center"` column it forced
       // the body to fill the dialog and pushed the actions off short content.
       width: "100%",
-      marginBottom: theme.spacing.m,
+      marginBottom: theme.spacing(2),
     },
     scrollBody: {
-      paddingBottom: theme.spacing.xs,
+      paddingBottom: theme.spacing(0.5),
     },
     bodyText: {
-      ...theme.typography.bodyLarge,
+      ...theme.typography.body1,
       color: theme.colors.onSurface,
       textAlign: "center",
     },
@@ -271,7 +281,7 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "flex-end",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
       width: "100%",
     },
   });

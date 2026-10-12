@@ -84,7 +84,7 @@ const FAB = ({
       {isExtended && label && (
         <Text
           style={[
-            theme.typography.labelLarge,
+            theme.typography.button,
             { color: theme.colors.onPrimaryContainer, marginLeft: 12 },
           ]}
         >

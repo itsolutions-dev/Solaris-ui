@@ -197,10 +197,10 @@ export default Chip;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
-      marginTop: theme.spacing.xs,
-      marginBottom: theme.spacing.xs,
-      marginLeft: theme.spacing.xs,
-      marginRight: theme.spacing.xs,
+      marginTop: theme.spacing(0.5),
+      marginBottom: theme.spacing(0.5),
+      marginLeft: theme.spacing(0.5),
+      marginRight: theme.spacing(0.5),
       flexDirection: "row",
       height: 32,
       borderRadius: theme.shape.medium,
@@ -214,29 +214,29 @@ const makeStyles = (theme: Theme) =>
     },
     containerSmall: {
       height: 24,
-      paddingHorizontal: theme.spacing.s,
+      paddingHorizontal: theme.spacing(1),
     },
     content: {
       flexDirection: "row",
       alignItems: "center",
     },
     label: {
-      ...theme.typography.labelLarge,
+      ...theme.typography.subtitle2,
       color: theme.colors.primary,
     },
     labelSmall: {
-      ...theme.typography.labelMedium,
+      ...theme.typography.caption,
     },
     icon: {
-      marginRight: theme.spacing.s,
+      marginRight: theme.spacing(1),
       color: theme.colors.primary,
     },
     checkIcon: {
-      marginLeft: theme.spacing.xs,
+      marginLeft: theme.spacing(0.5),
       color: theme.colors.primary,
     },
     closeIcon: {
-      marginLeft: theme.spacing.xs,
+      marginLeft: theme.spacing(0.5),
       color: theme.colors.primary,
     },
     disabledText: {

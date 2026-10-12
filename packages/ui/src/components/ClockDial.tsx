@@ -268,8 +268,8 @@ const ClockDial = ({
               key={`${number.radius}-${number.value}`}
               style={[
                 number.radius === OUTER_RADIUS
-                  ? theme.typography.bodyLarge
-                  : theme.typography.bodyMedium,
+                  ? theme.typography.body1
+                  : theme.typography.body2,
                 styles.number,
                 {
                   left: point.x - KNOB / 2,

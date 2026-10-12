@@ -48,7 +48,7 @@ export const ResizeModes = () => (
           radius="small"
           resizeMode={mode}
         />
-        <Typography variant="labelSmall">{mode}</Typography>
+        <Typography variant="caption">{mode}</Typography>
       </VStack>
     ))}
   </HStack>
@@ -66,6 +66,6 @@ export const Fallback = () => (
       fallbackIcon="image"
       showLoader={false}
     />
-    <Typography variant="labelSmall">broken source → fallbackIcon</Typography>
+    <Typography variant="caption">broken source → fallbackIcon</Typography>
   </VStack>
 );

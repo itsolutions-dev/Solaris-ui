@@ -23,7 +23,7 @@ const Suggestions = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="labelMedium">
+      <Typography variant="caption">
         Focus the field to open the list — free text is allowed, this is not a
         Select.
       </Typography>

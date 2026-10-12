@@ -12,10 +12,8 @@ const Destructive = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Chip</Typography>
-      <Typography variant="bodyMedium">
-        Buttons & actions · 4 variants
-      </Typography>
+      <Typography variant="h5">Chip</Typography>
+      <Typography variant="body2">Buttons & actions · 4 variants</Typography>
       <Button
         mode="outlined"
         tone="error"

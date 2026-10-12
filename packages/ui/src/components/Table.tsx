@@ -197,7 +197,7 @@ export const TableCell = ({
         <Text
           style={[
             { color: theme.colors.onSurface },
-            theme.typography.bodyMedium,
+            theme.typography.body2,
             textStyle,
           ]}
           numberOfLines={1}

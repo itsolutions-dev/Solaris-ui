@@ -7,7 +7,7 @@ import { Box, Grid, Stat, Typography } from "@its/solaris-ui";
 
 const tile = (n: number) => (
   <Box key={n} bg="secondaryContainer" p="m" radius="medium">
-    <Typography variant="labelLarge">{n}</Typography>
+    <Typography variant="subtitle2">{n}</Typography>
   </Box>
 );
 

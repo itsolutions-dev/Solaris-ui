@@ -12,56 +12,69 @@ const stack: ViewStyle = {
   maxWidth: 560,
 };
 
-export const DisplayAndHeadline = () => (
+// MUI's thirteen steps at MUI's own sizes: h1 96 light down to caption 12.
+export const Headings = () => (
   <View style={stack}>
-    <Typography variant="displaySmall">Solaris</Typography>
-    <Typography variant="headlineMedium">
-      Type that scales with intent
-    </Typography>
-    <Typography variant="headlineSmall">Six roles, three sizes each</Typography>
+    <Typography variant="h1">h1</Typography>
+    <Typography variant="h2">h2</Typography>
+    <Typography variant="h3">h3 Solaris</Typography>
+    <Typography variant="h4">h4 Billing preferences</Typography>
+    <Typography variant="h5">h5 Payment method</Typography>
+    <Typography variant="h6">h6 Invoices</Typography>
   </View>
 );
 
-export const TitlesAndBody = () => (
+export const BodyAndLabels = () => (
   <View style={stack}>
-    <Typography variant="titleLarge">Billing preferences</Typography>
-    <Typography variant="titleMedium">Payment method</Typography>
-    <Typography variant="bodyLarge">
-      Invoices are issued on the first working day of each month and charged to
-      the card on file.
+    <Typography variant="subtitle1">subtitle1 — Card ending 4242</Typography>
+    <Typography variant="subtitle2">subtitle2 — Default method</Typography>
+    <Typography variant="body1">
+      body1 — Invoices are issued on the first working day of each month and
+      charged to the card on file.
     </Typography>
-    <Typography variant="bodyMedium">
-      Changing the card mid-cycle applies from the next invoice; the current one
-      is already committed.
+    <Typography variant="body2">
+      body2 — Changing the card mid-cycle applies from the next invoice.
     </Typography>
-    <Typography variant="bodySmall">
-      VAT is calculated from the billing address, not the shipping address.
-    </Typography>
+    <Typography variant="button">button</Typography>
+    <Typography variant="caption">caption — Updated 3 minutes ago</Typography>
+    <Typography variant="overline">overline</Typography>
   </View>
 );
 
-export const Labels = () => (
+// Colour takes a palette name, a palette path or a raw colour; align, noWrap
+// and gutterBottom are MUI's text options.
+export const ColourAndLayout = () => (
   <View style={stack}>
-    <Typography variant="labelLarge">Continue to payment</Typography>
-    <Typography variant="labelMedium">Updated 3 minutes ago</Typography>
-    <Typography variant="labelSmall">Required field</Typography>
+    <Typography color="primary">{`color="primary"`}</Typography>
+    <Typography color="text.secondary">{`color="text.secondary"`}</Typography>
+    <Typography color="error.main">{`color="error.main"`}</Typography>
+    <Typography align="center">{`align="center"`}</Typography>
+    <Typography noWrap style={{ maxWidth: 260 }}>
+      noWrap — a long line that does not fit is cut with an ellipsis
+    </Typography>
+    <Typography variant="h6" gutterBottom>
+      gutterBottom
+    </Typography>
+    <Typography variant="body2">
+      The next paragraph starts after the gutter.
+    </Typography>
   </View>
 );
 
 export const variants: Variant[] = [
   {
-    name: "DisplayAndHeadline",
-    title: "Display and headline",
-    render: DisplayAndHeadline,
+    name: "Headings",
+    title: "Headings",
+    render: Headings,
   },
   {
-    name: "TitlesAndBody",
-    title: "Titles and body",
-    render: TitlesAndBody,
+    name: "BodyAndLabels",
+    title: "Body and labels",
+    render: BodyAndLabels,
   },
   {
-    name: "Labels",
-    title: "Labels",
-    render: Labels,
+    name: "ColourAndLayout",
+    title: "Colour and layout",
+    render: ColourAndLayout,
   },
 ];

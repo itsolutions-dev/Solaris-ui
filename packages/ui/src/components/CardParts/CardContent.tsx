@@ -20,7 +20,7 @@ export default CardContent;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     content: {
-      gap: theme.spacing.s,
-      paddingTop: theme.spacing.s,
+      gap: theme.spacing(1),
+      paddingTop: theme.spacing(1),
     },
   });

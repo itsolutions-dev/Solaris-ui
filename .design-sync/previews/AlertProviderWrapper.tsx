@@ -52,13 +52,13 @@ export const BindsTheSingleton = () => (
       <div style={stack}>
         <Paper outline style={{ padding: 16 }}>
           <div style={lines}>
-            <Typography variant="titleSmall">Component library</Typography>
-            <Typography variant="bodySmall">
+            <Typography variant="subtitle2">Component library</Typography>
+            <Typography variant="caption">
               A plain screen that imports nothing but Alert.
             </Typography>
           </div>
         </Paper>
-        <Typography variant="bodySmall">
+        <Typography variant="caption">
           Alert() was called from a child that has no provider reference of its
           own. The wrapper is what made that resolve.
         </Typography>
@@ -70,29 +70,29 @@ export const BindsTheSingleton = () => (
 export const WrapOrder = () => (
   <div style={stack}>
     <div style={lines}>
-      <Typography variant="titleMedium">Where it goes</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle1">Where it goes</Typography>
+      <Typography variant="caption">
         Directly inside AlertProvider, above the app. It renders a fragment, so
         it adds no layout of its own.
       </Typography>
     </div>
     <Paper outline style={{ padding: 12 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Typography variant="labelSmall">&lt;ThemeProvider&gt;</Typography>
-        <Typography variant="labelSmall">{"  <AlertProvider>"}</Typography>
-        <Typography variant="labelSmall">
+        <Typography variant="caption">&lt;ThemeProvider&gt;</Typography>
+        <Typography variant="caption">{"  <AlertProvider>"}</Typography>
+        <Typography variant="caption">
           {"    <AlertProviderWrapper>"}
         </Typography>
-        <Typography variant="labelSmall">{"      <App />"}</Typography>
-        <Typography variant="labelSmall">
+        <Typography variant="caption">{"      <App />"}</Typography>
+        <Typography variant="caption">
           {"    </AlertProviderWrapper>"}
         </Typography>
-        <Typography variant="labelSmall">{"  </AlertProvider>"}</Typography>
-        <Typography variant="labelSmall">&lt;/ThemeProvider&gt;</Typography>
+        <Typography variant="caption">{"  </AlertProvider>"}</Typography>
+        <Typography variant="caption">&lt;/ThemeProvider&gt;</Typography>
       </div>
     </Paper>
     <Divider contentSpacing={0} />
-    <Typography variant="bodySmall">
+    <Typography variant="caption">
       Omit it and every Alert() call is a no-op that warns &ldquo;AlertProvider
       is not initialized.&rdquo; — the provider still renders, nothing ever asks
       it to show anything.

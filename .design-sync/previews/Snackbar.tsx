@@ -17,10 +17,8 @@ const frame = (height: number): React.CSSProperties => ({
 export const WithAction = () => (
   <div style={frame(180)}>
     <Card variant="outlined">
-      <Typography variant="titleSmall">Chip</Typography>
-      <Typography variant="bodySmall">
-        Moved to Buttons &amp; actions.
-      </Typography>
+      <Typography variant="subtitle2">Chip</Typography>
+      <Typography variant="caption">Moved to Buttons &amp; actions.</Typography>
     </Card>
     <Snackbar
       visible

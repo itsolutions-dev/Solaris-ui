@@ -59,105 +59,89 @@
         }
     },
     "typography": {
-        "displayLarge": {
-            "fontSize": 57,
-            "lineHeight": 64,
-            "letterSpacing": -0.25,
-            "fontWeight": "400"
+        "h1": {
+            "fontSize": 96,
+            "lineHeight": 112,
+            "letterSpacing": -1.5,
+            "fontWeight": "300"
         },
-        "displayMedium": {
-            "fontSize": 45,
-            "lineHeight": 52,
+        "h2": {
+            "fontSize": 60,
+            "lineHeight": 72,
+            "letterSpacing": -0.5,
+            "fontWeight": "300"
+        },
+        "h3": {
+            "fontSize": 48,
+            "lineHeight": 56,
             "letterSpacing": 0,
             "fontWeight": "400"
         },
-        "displaySmall": {
-            "fontSize": 36,
-            "lineHeight": 44,
-            "letterSpacing": 0,
+        "h4": {
+            "fontSize": 34,
+            "lineHeight": 42,
+            "letterSpacing": 0.25,
             "fontWeight": "400"
         },
-        "headlineLarge": {
-            "fontSize": 32,
-            "lineHeight": 40,
-            "letterSpacing": 0,
-            "fontWeight": "400"
-        },
-        "headlineMedium": {
-            "fontSize": 28,
-            "lineHeight": 36,
-            "letterSpacing": 0,
-            "fontWeight": "400"
-        },
-        "headlineSmall": {
+        "h5": {
             "fontSize": 24,
             "lineHeight": 32,
             "letterSpacing": 0,
             "fontWeight": "400"
         },
-        "titleLarge": {
-            "fontSize": 22,
-            "lineHeight": 28,
-            "letterSpacing": 0,
-            "fontWeight": "400"
-        },
-        "titleMedium": {
-            "fontSize": 16,
-            "lineHeight": 24,
+        "h6": {
+            "fontSize": 20,
+            "lineHeight": 32,
             "letterSpacing": 0.15,
             "fontWeight": "500"
         },
-        "titleSmall": {
+        "subtitle1": {
+            "fontSize": 16,
+            "lineHeight": 28,
+            "letterSpacing": 0.15,
+            "fontWeight": "400"
+        },
+        "subtitle2": {
             "fontSize": 14,
-            "lineHeight": 20,
+            "lineHeight": 22,
             "letterSpacing": 0.1,
             "fontWeight": "500"
         },
-        "labelLarge": {
-            "fontSize": 14,
-            "lineHeight": 20,
-            "letterSpacing": 0.1,
-            "fontWeight": "500"
-        },
-        "labelMedium": {
-            "fontSize": 12,
-            "lineHeight": 16,
-            "letterSpacing": 0.5,
-            "fontWeight": "500"
-        },
-        "labelSmall": {
-            "fontSize": 11,
-            "lineHeight": 16,
-            "letterSpacing": 0.5,
-            "fontWeight": "500"
-        },
-        "bodyLarge": {
+        "body1": {
             "fontSize": 16,
             "lineHeight": 24,
-            "letterSpacing": 0.5,
+            "letterSpacing": 0.15,
             "fontWeight": "400"
         },
-        "bodyMedium": {
+        "body2": {
             "fontSize": 14,
             "lineHeight": 20,
-            "letterSpacing": 0.25,
+            "letterSpacing": 0.15,
             "fontWeight": "400"
         },
-        "bodySmall": {
+        "button": {
+            "fontSize": 14,
+            "lineHeight": 25,
+            "letterSpacing": 0.4,
+            "fontWeight": "500",
+            "textTransform": "uppercase"
+        },
+        "caption": {
             "fontSize": 12,
-            "lineHeight": 16,
+            "lineHeight": 20,
             "letterSpacing": 0.4,
             "fontWeight": "400"
+        },
+        "overline": {
+            "fontSize": 12,
+            "lineHeight": 32,
+            "letterSpacing": 1,
+            "fontWeight": "400",
+            "textTransform": "uppercase"
         }
     },
-    "spacing": {
-        "xs": 4,
-        "s": 8,
-        "m": 16,
-        "l": 24,
-        "xl": 32
-    },
     "shape": {
+        "borderRadius": 4,
         "small": 8,
         "medium": 12,
         "large": 16,

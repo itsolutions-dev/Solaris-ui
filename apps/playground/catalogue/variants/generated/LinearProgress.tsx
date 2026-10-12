@@ -32,8 +32,8 @@ export const Determinate = () => (
     ].map((file) => (
       <View key={file.label} style={field}>
         <View style={labelRow}>
-          <Typography variant="bodyMedium">{file.label}</Typography>
-          <Typography variant="labelSmall">
+          <Typography variant="body2">{file.label}</Typography>
+          <Typography variant="caption">
             {Math.round(file.value * 100)}%
           </Typography>
         </View>
@@ -47,15 +47,15 @@ export const Indeterminate = () => (
   <View style={stack}>
     <View style={field}>
       <View style={labelRow}>
-        <Typography variant="bodyMedium">Indexing your library</Typography>
-        <Typography variant="labelSmall">no ETA</Typography>
+        <Typography variant="body2">Indexing your library</Typography>
+        <Typography variant="caption">no ETA</Typography>
       </View>
       <LinearProgress indeterminate />
     </View>
     <View style={field}>
       <View style={labelRow}>
-        <Typography variant="bodyMedium">Slower sweep</Typography>
-        <Typography variant="labelSmall">3 s cycle</Typography>
+        <Typography variant="body2">Slower sweep</Typography>
+        <Typography variant="caption">3 s cycle</Typography>
       </View>
       <LinearProgress indeterminate height={8} indeterminateDuration={3000} />
     </View>
@@ -71,7 +71,7 @@ export const Heights = () => (
       { h: 14, note: "14 — quota meter" },
     ].map((item) => (
       <View key={item.h} style={field}>
-        <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+        <Typography variant="caption" style={{ marginBottom: 8 }}>
           {item.note}
         </Typography>
         <LinearProgress progress={0.55} height={item.h} />
@@ -85,13 +85,13 @@ export const Colors = () => {
   return (
     <View style={stack}>
       <View style={field}>
-        <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+        <Typography variant="caption" style={{ marginBottom: 8 }}>
           primary — default
         </Typography>
         <LinearProgress progress={0.65} height={8} />
       </View>
       <View style={field}>
-        <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+        <Typography variant="caption" style={{ marginBottom: 8 }}>
           tertiary on a tertiaryContainer track
         </Typography>
         <LinearProgress
@@ -102,7 +102,7 @@ export const Colors = () => {
         />
       </View>
       <View style={field}>
-        <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+        <Typography variant="caption" style={{ marginBottom: 8 }}>
           error — storage almost full
         </Typography>
         <LinearProgress
@@ -123,10 +123,8 @@ export const UploadCard = () => (
       style={{ width: "100%", paddingVertical: 20, paddingHorizontal: 20 }}
     >
       <View style={{ flexDirection: "column", gap: 4 }}>
-        <Typography variant="titleMedium">Uploading assets</Typography>
-        <Typography variant="bodySmall">
-          4.2 MB of 9.3 MB — 12 s left
-        </Typography>
+        <Typography variant="subtitle1">Uploading assets</Typography>
+        <Typography variant="caption">4.2 MB of 9.3 MB — 12 s left</Typography>
       </View>
       <View style={{ marginTop: 16, flexDirection: "column" }}>
         <LinearProgress progress={0.45} height={8} />

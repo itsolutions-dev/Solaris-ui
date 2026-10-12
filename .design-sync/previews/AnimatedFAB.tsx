@@ -10,7 +10,7 @@ const stage: React.CSSProperties = {
 
 export const ExtendedAndCollapsed = () => (
   <div style={stage}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       extended toggles between the pill and the icon
     </Typography>
     <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
@@ -38,7 +38,7 @@ export const AnimateFrom = () => (
         key={from}
         style={{ display: "flex", flexDirection: "column", gap: 6 }}
       >
-        <Typography variant="labelSmall">{`animateFrom="${from}"`}</Typography>
+        <Typography variant="caption">{`animateFrom="${from}"`}</Typography>
         <div style={{ display: "flex" }}>
           <AnimatedFAB
             icon="pencil-outline"
@@ -59,7 +59,7 @@ export const ShrinkOnScroll = () => {
 
   return (
     <div style={{ ...stage, height: 300 }}>
-      <Typography variant="labelMedium">Scroll the list</Typography>
+      <Typography variant="caption">Scroll the list</Typography>
       <div style={{ position: "relative", flex: 1, display: "flex" }}>
         <Paper elevation={1} outline style={{ flex: 1 }}>
           <div

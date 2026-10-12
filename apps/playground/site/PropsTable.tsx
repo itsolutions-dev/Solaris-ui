@@ -50,13 +50,13 @@ export const PropsTable = ({ doc }: PropsTableProps) => {
     <View style={styles.wrap}>
       <View style={styles.heading}>
         <Typography
-          variant="titleMedium"
+          variant="subtitle1"
           style={{ color: theme.colors.onSurface }}
         >
           Props
         </Typography>
         <Typography
-          variant="labelMedium"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {doc.props.length} on {doc.propsTypeName ?? `${doc.name}Props`}
@@ -65,7 +65,7 @@ export const PropsTable = ({ doc }: PropsTableProps) => {
 
       {doc.extends.length > 0 && (
         <Typography
-          variant="bodySmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           Also accepts everything from{" "}
@@ -84,7 +84,7 @@ export const PropsTable = ({ doc }: PropsTableProps) => {
 
       {rows.length === 0 ? (
         <Typography
-          variant="bodySmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           No prop matches “{filter}”.
@@ -92,28 +92,19 @@ export const PropsTable = ({ doc }: PropsTableProps) => {
       ) : hasSidebar ? (
         <View style={styles.table}>
           <View style={[styles.row, styles.headerRow]}>
-            <Typography
-              variant="labelSmall"
-              style={[styles.cellName, styles.th]}
-            >
+            <Typography variant="caption" style={[styles.cellName, styles.th]}>
               NAME
             </Typography>
-            <Typography
-              variant="labelSmall"
-              style={[styles.cellType, styles.th]}
-            >
+            <Typography variant="caption" style={[styles.cellType, styles.th]}>
               TYPE
             </Typography>
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={[styles.cellDefault, styles.th]}
             >
               DEFAULT
             </Typography>
-            <Typography
-              variant="labelSmall"
-              style={[styles.cellDesc, styles.th]}
-            >
+            <Typography variant="caption" style={[styles.cellDesc, styles.th]}>
               DESCRIPTION
             </Typography>
           </View>
@@ -135,7 +126,7 @@ export const PropsTable = ({ doc }: PropsTableProps) => {
                   {prop.default ?? "—"}
                 </Text>
                 <Typography
-                  variant="bodySmall"
+                  variant="caption"
                   style={[
                     styles.cellDesc,
                     { color: theme.colors.onSurfaceVariant },
@@ -175,7 +166,7 @@ const PropCard = ({ prop }: { prop: PropDoc }) => {
       )}
       {prop.description ? (
         <Typography
-          variant="bodySmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {prop.description}
@@ -187,13 +178,13 @@ const PropCard = ({ prop }: { prop: PropDoc }) => {
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    wrap: { width: "100%", gap: theme.spacing.m },
+    wrap: { width: "100%", gap: theme.spacing(2) },
     heading: {
       flexDirection: "row",
       alignItems: "baseline",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     table: {
       borderWidth: 1,
@@ -204,9 +195,9 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "flex-start",
-      gap: theme.spacing.m,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(2),
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
     },
     headerRow: { backgroundColor: theme.colors.surfaceContainerHigh },
     th: {
@@ -255,10 +246,10 @@ const makeStyles = (theme: Theme) =>
       textTransform: "uppercase",
       color: theme.colors.onSurfaceVariant,
     },
-    stack: { gap: theme.spacing.s },
+    stack: { gap: theme.spacing(1) },
     card: {
-      gap: theme.spacing.xs,
-      padding: theme.spacing.m,
+      gap: theme.spacing(0.5),
+      padding: theme.spacing(2),
       borderRadius: theme.shape.medium,
       backgroundColor: theme.colors.surfaceContainerLow,
       borderWidth: 1,
@@ -267,7 +258,7 @@ const makeStyles = (theme: Theme) =>
     cardHead: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
       flexWrap: "wrap",
     },
   });

@@ -17,7 +17,7 @@ const STATUSES = [
 
 export const SingleSelect = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Status</Typography>
+    <Typography variant="subtitle2">Status</Typography>
     <ChipGroup
       mode="filled"
       options={STATUSES}
@@ -30,7 +30,7 @@ export const SingleSelect = () => (
 
 export const MultiSelect = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Status</Typography>
+    <Typography variant="subtitle2">Status</Typography>
     <ChipGroup
       multiSelect
       options={STATUSES}
@@ -43,7 +43,7 @@ export const MultiSelect = () => (
 
 export const WithIcons = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Amenities</Typography>
+    <Typography variant="subtitle2">Amenities</Typography>
     <ChipGroup
       multiSelect
       mode="outlined"
@@ -62,7 +62,7 @@ export const WithIcons = () => (
 
 export const Scrolling = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Category</Typography>
+    <Typography variant="subtitle2">Category</Typography>
     <ChipGroup
       wrap={false}
       mode="tonal"

@@ -13,14 +13,10 @@ export const Grouped = () => (
   <div style={panel}>
     <Paper elevation={1} outline style={{ flex: 1 }}>
       <ListSection title="Notifications">
-        <ListItem
-          trailing={<Typography variant="bodySmall">Weekly</Typography>}
-        >
+        <ListItem trailing={<Typography variant="caption">Weekly</Typography>}>
           Email digest
         </ListItem>
-        <ListItem
-          trailing={<Typography variant="bodySmall">Instant</Typography>}
-        >
+        <ListItem trailing={<Typography variant="caption">Instant</Typography>}>
           Mentions
         </ListItem>
       </ListSection>

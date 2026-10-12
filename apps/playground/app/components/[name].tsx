@@ -144,20 +144,20 @@ export default function ComponentPage() {
       <View style={[styles.column, { maxWidth: layout.contentMaxWidth }]}>
         <View style={styles.header}>
           <Typography
-            variant="labelSmall"
+            variant="caption"
             style={[styles.eyebrow, { color: theme.colors.primary }]}
           >
             {(category ?? "").toUpperCase()} ·{" "}
             {String(index + 1).padStart(2, "0")} / {TOTAL_COUNT}
           </Typography>
           <Typography
-            variant={layout.isCompact ? "headlineSmall" : "headlineMedium"}
+            variant={layout.isCompact ? "h5" : "h4"}
             style={{ color: theme.colors.onSurface }}
           >
             {name}
           </Typography>
           <Typography
-            variant="bodyLarge"
+            variant="body1"
             style={{ color: theme.colors.onSurfaceVariant }}
           >
             {description}
@@ -180,7 +180,7 @@ export default function ComponentPage() {
                 color={theme.colors.primary}
               />
               <Typography
-                variant="labelMedium"
+                variant="caption"
                 style={{ color: theme.colors.primary }}
               >
                 {doc.source}
@@ -192,7 +192,7 @@ export default function ComponentPage() {
         <View style={styles.stageBlock}>
           <View style={styles.stageToolbar}>
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={[styles.eyebrow, { color: theme.colors.onSurfaceVariant }]}
             >
               Live demo
@@ -257,7 +257,7 @@ export default function ComponentPage() {
           </View>
           <View style={styles.codeColumn}>
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={[styles.eyebrow, { color: theme.colors.onSurfaceVariant }]}
             >
               Usage
@@ -274,14 +274,14 @@ export default function ComponentPage() {
             {variants.map((variant) => (
               <View key={variant.name} style={styles.variant}>
                 <Typography
-                  variant="titleSmall"
+                  variant="subtitle2"
                   style={{ color: theme.colors.onSurface }}
                 >
                   {variant.title}
                 </Typography>
                 {variant.description ? (
                   <Typography
-                    variant="bodySmall"
+                    variant="caption"
                     style={{ color: theme.colors.onSurfaceVariant }}
                   >
                     {variant.description}
@@ -358,13 +358,13 @@ const PagerLink = ({
             )}
             <View style={isNext ? styles.pagerTextRight : undefined}>
               <Typography
-                variant="labelSmall"
+                variant="caption"
                 style={{ color: theme.colors.onSurfaceVariant }}
               >
                 {isNext ? "Next" : "Previous"}
               </Typography>
               <Typography
-                variant="bodyMedium"
+                variant="body2"
                 style={{ color: theme.colors.onSurface }}
               >
                 {name}
@@ -389,17 +389,17 @@ const makeStyles = (theme: Theme) =>
     page: {
       flexGrow: 1,
       alignItems: "center",
-      paddingHorizontal: theme.spacing.l,
-      paddingTop: theme.spacing.l,
-      paddingBottom: theme.spacing.xl * 2,
+      paddingHorizontal: theme.spacing(3),
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(4) * 2,
     },
     missing: {
       flexGrow: 1,
       justifyContent: "center",
-      padding: theme.spacing.l,
+      padding: theme.spacing(3),
     },
-    column: { width: "100%", gap: theme.spacing.xl },
-    header: { gap: theme.spacing.xs },
+    column: { width: "100%", gap: theme.spacing(4) },
+    header: { gap: theme.spacing(0.5) },
     eyebrow: {
       textTransform: "uppercase",
       letterSpacing: 1.6,
@@ -408,22 +408,22 @@ const makeStyles = (theme: Theme) =>
     sourceLink: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
-      marginTop: theme.spacing.xs,
+      gap: theme.spacing(0.5),
+      marginTop: theme.spacing(0.5),
     },
-    stageBlock: { gap: theme.spacing.s },
+    stageBlock: { gap: theme.spacing(1) },
     stageToolbar: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     stage: {
       minHeight: 260,
       alignItems: "center",
       justifyContent: "center",
-      padding: theme.spacing.l,
+      padding: theme.spacing(3),
       borderRadius: theme.shape.large,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
@@ -434,13 +434,13 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    controlsAndCode: { gap: theme.spacing.l },
+    controlsAndCode: { gap: theme.spacing(3) },
     controlsAndCodeWide: { flexDirection: "row", alignItems: "flex-start" },
     controlsColumn: { flex: 1, minWidth: 0 },
-    codeColumn: { flex: 1, minWidth: 0, gap: theme.spacing.s },
-    variant: { gap: theme.spacing.xs },
+    codeColumn: { flex: 1, minWidth: 0, gap: theme.spacing(1) },
+    variant: { gap: theme.spacing(0.5) },
     variantStage: {
-      padding: theme.spacing.l,
+      padding: theme.spacing(3),
       borderRadius: theme.shape.medium,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
@@ -449,16 +449,16 @@ const makeStyles = (theme: Theme) =>
     pager: {
       flexDirection: "row",
       justifyContent: "space-between",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
       flexWrap: "wrap",
     },
     pagerSpacer: { flex: 1 },
     pagerItem: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingVertical: theme.spacing.s,
-      paddingHorizontal: theme.spacing.m,
+      gap: theme.spacing(1),
+      paddingVertical: theme.spacing(1),
+      paddingHorizontal: theme.spacing(2),
       borderRadius: theme.shape.medium,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,

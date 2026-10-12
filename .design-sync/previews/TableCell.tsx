@@ -61,7 +61,7 @@ export const CustomContent = () => {
             <TableCell width={240}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <Avatar name={name as string} size={28} />
-                <Typography variant="bodyMedium">{name as string}</Typography>
+                <Typography variant="body2">{name as string}</Typography>
               </div>
             </TableCell>
             <TableCell

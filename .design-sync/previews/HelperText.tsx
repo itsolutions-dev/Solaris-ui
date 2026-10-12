@@ -25,7 +25,7 @@ export const Types = () => (
 // gutter, colour role and alert glyph stay identical across a form.
 export const UnderAControl = () => (
   <div style={{ ...field, gap: 8 }}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       Controls without their own error prop borrow it
     </Typography>
     <Checkbox
@@ -59,7 +59,7 @@ export const AlongsideInput = () => (
 
 export const Hidden = () => (
   <div style={{ ...field, gap: 8 }}>
-    <Typography variant="labelMedium">
+    <Typography variant="caption">
       visible=false fades out but keeps its space, so the field never jumps
     </Typography>
     <HelperText visible={false}>Hidden text</HelperText>

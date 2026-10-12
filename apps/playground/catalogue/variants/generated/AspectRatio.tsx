@@ -13,7 +13,7 @@ const band = (ratio: number, label: string) => (
     width={180}
     p="s"
   >
-    <Typography variant="labelMedium">{label}</Typography>
+    <Typography variant="caption">{label}</Typography>
   </AspectRatio>
 );
 
@@ -33,8 +33,8 @@ export const AsAMediaSlot = () => (
     width={360}
     p="m"
   >
-    <Typography variant="titleMedium">Release banner</Typography>
-    <Typography variant="bodySmall">
+    <Typography variant="subtitle1">Release banner</Typography>
+    <Typography variant="caption">
       The box keeps its 16:9 shape whatever the width is.
     </Typography>
   </AspectRatio>

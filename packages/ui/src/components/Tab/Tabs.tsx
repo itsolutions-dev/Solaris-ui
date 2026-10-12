@@ -108,9 +108,7 @@ const Tabs = ({ tabs, activeTab, onChange }: TabProps) => {
             <Text
               style={[
                 styles.label,
-                hasIcons
-                  ? theme.typography.labelMedium
-                  : theme.typography.labelLarge,
+                hasIcons ? theme.typography.caption : theme.typography.button,
                 {
                   color: isActive
                     ? theme.colors.primary

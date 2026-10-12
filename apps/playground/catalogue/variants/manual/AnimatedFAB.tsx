@@ -30,7 +30,7 @@ const Collapsed = () => (
       extended={false}
       onPress={() => {}}
     />
-    <Typography variant="bodySmall">
+    <Typography variant="caption">
       Collapsed to the icon; the label animates back in when `extended` flips.
     </Typography>
   </View>
@@ -41,7 +41,7 @@ const ShrinkOnScroll = () => {
 
   return (
     <View style={[demo.panel, styles.scrollDemo]}>
-      <Typography variant="labelMedium">Scroll the list</Typography>
+      <Typography variant="caption">Scroll the list</Typography>
       <Paper elevation={1} outline style={styles.paper}>
         <ScrollView
           style={styles.list}

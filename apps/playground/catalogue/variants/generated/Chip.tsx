@@ -29,7 +29,7 @@ export const Modes = () => (
 
 export const FilterRow = () => (
   <View style={stack}>
-    <Typography variant="labelLarge">Filter invoices</Typography>
+    <Typography variant="subtitle2">Filter invoices</Typography>
     <View style={row}>
       <Chip
         label="Paid"
@@ -57,7 +57,7 @@ export const FilterRow = () => (
 
 export const Removable = () => (
   <View style={stack}>
-    <Typography variant="labelLarge">Recipients</Typography>
+    <Typography variant="subtitle2">Recipients</Typography>
     <View style={row}>
       <Chip
         label="marta.rossi@example.com"

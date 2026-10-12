@@ -69,10 +69,10 @@ const SideSheet = ({
           />
         )}
         <Typography
-          variant="titleLarge"
+          variant="h6"
           accessibilityRole="header"
           numberOfLines={1}
-          style={[styles.title, !onBack && { paddingStart: theme.spacing.s }]}
+          style={[styles.title, !onBack && { paddingStart: theme.spacing(1) }]}
         >
           {title ?? ""}
         </Typography>
@@ -150,18 +150,18 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       minHeight: 72,
-      paddingHorizontal: theme.spacing.s,
-      paddingTop: theme.spacing.s,
+      paddingHorizontal: theme.spacing(1),
+      paddingTop: theme.spacing(1),
     },
     title: { flex: 1 },
     content: {
-      paddingHorizontal: theme.spacing.l,
-      paddingBottom: theme.spacing.l,
+      paddingHorizontal: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
     },
     actions: {
       flexDirection: "row",
-      gap: theme.spacing.s,
-      paddingHorizontal: theme.spacing.l,
-      paddingVertical: theme.spacing.m,
+      gap: theme.spacing(1),
+      paddingHorizontal: theme.spacing(3),
+      paddingVertical: theme.spacing(2),
     },
   });

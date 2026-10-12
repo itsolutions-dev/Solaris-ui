@@ -62,7 +62,7 @@ const Stepper = ({ steps, activeStep, onStepPress, style }: StepperProps) => {
             ) : (
               <Text
                 style={[
-                  theme.typography.labelLarge,
+                  theme.typography.subtitle2,
                   {
                     color: isActive
                       ? theme.colors.primary
@@ -88,7 +88,7 @@ const Stepper = ({ steps, activeStep, onStepPress, style }: StepperProps) => {
           </Pressable>
           <Text
             style={[
-              theme.typography.labelSmall,
+              theme.typography.caption,
               styles.stepLabel,
               { color: textColor, fontWeight: isActive ? "700" : "400" },
             ]}

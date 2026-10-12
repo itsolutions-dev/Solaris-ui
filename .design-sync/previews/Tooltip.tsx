@@ -39,7 +39,7 @@ export const Positions = () => (
           <Button mode="tonal" iconName="content-copy" onPress={() => {}} />
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">top</Typography>
+      <Typography variant="caption">top</Typography>
     </div>
     <div style={cell}>
       <Hovered>
@@ -47,7 +47,7 @@ export const Positions = () => (
           <Button mode="tonal" iconName="share-variant" onPress={() => {}} />
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">bottom</Typography>
+      <Typography variant="caption">bottom</Typography>
     </div>
     <div style={cell}>
       <Hovered>
@@ -55,7 +55,7 @@ export const Positions = () => (
           <Button mode="tonal" iconName="pencil-outline" onPress={() => {}} />
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">left</Typography>
+      <Typography variant="caption">left</Typography>
     </div>
     <div style={cell}>
       <Hovered>
@@ -63,7 +63,7 @@ export const Positions = () => (
           <Button mode="tonal" iconName="delete-outline" onPress={() => {}} />
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">right</Typography>
+      <Typography variant="caption">right</Typography>
     </div>
   </div>
 );
@@ -123,7 +123,7 @@ export const DisabledHint = () => (
           </Button>
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">enabled</Typography>
+      <Typography variant="caption">enabled</Typography>
     </div>
     <div
       style={{
@@ -140,7 +140,7 @@ export const DisabledHint = () => (
           </Button>
         </Tooltip>
       </Hovered>
-      <Typography variant="labelSmall">disabled</Typography>
+      <Typography variant="caption">disabled</Typography>
     </div>
   </div>
 );

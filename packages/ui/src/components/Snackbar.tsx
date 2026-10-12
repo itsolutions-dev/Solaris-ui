@@ -129,7 +129,7 @@ const Snackbar = ({
             />
           )}
           <Text
-            style={[theme.typography.bodyMedium, styles.messageText]}
+            style={[theme.typography.body2, styles.messageText]}
             numberOfLines={2}
           >
             {message}

@@ -46,10 +46,10 @@ const Swatch = ({ role, bg, fg }: { role: string; bg: string; fg: string }) => (
       border: "1px solid rgba(0,0,0,0.06)",
     }}
   >
-    <Typography variant="labelMedium" style={{ color: fg }}>
+    <Typography variant="caption" style={{ color: fg }}>
       {role}
     </Typography>
-    <Typography variant="labelSmall" style={{ color: fg }}>
+    <Typography variant="caption" style={{ color: fg }}>
       {bg.toUpperCase()}
     </Typography>
   </div>
@@ -67,8 +67,8 @@ export const Palette = () => {
   return (
     <div style={stack(12)}>
       <div style={lines}>
-        <Typography variant="titleMedium">Accent roles</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="subtitle1">Accent roles</Typography>
+        <Typography variant="caption">
           Every Solaris component reads these from useTheme() — nothing is
           styled without the provider.
         </Typography>
@@ -105,8 +105,8 @@ export const Surfaces = () => {
   return (
     <div style={stack(12)}>
       <div style={lines}>
-        <Typography variant="titleMedium">Surface and outline roles</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="subtitle1">Surface and outline roles</Typography>
+        <Typography variant="caption">
           The tonal elevation ramp cards, sheets and app bars are painted with.
         </Typography>
       </div>
@@ -134,7 +134,7 @@ export const Surfaces = () => {
         />
         <Swatch role="outlineVariant" bg={c.outlineVariant} fg={c.onSurface} />
       </div>
-      <Typography variant="labelSmall" style={{ color: c.onSurfaceVariant }}>
+      <Typography variant="caption" style={{ color: c.onSurfaceVariant }}>
         theme.isDark is {String(theme.isDark)} — the provider follows the OS
         scheme until toggleTheme() overrides it.
       </Typography>
@@ -143,13 +143,19 @@ export const Surfaces = () => {
 };
 
 const TYPE_ROLES = [
-  "headlineSmall",
-  "titleLarge",
-  "titleMedium",
-  "bodyLarge",
-  "bodyMedium",
-  "labelLarge",
-  "labelSmall",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "subtitle1",
+  "subtitle2",
+  "body1",
+  "body2",
+  "button",
+  "caption",
+  "overline",
 ] as const;
 
 export const TypeScale = () => {
@@ -157,10 +163,11 @@ export const TypeScale = () => {
   return (
     <div style={stack(10)}>
       <div style={lines}>
-        <Typography variant="titleMedium">Type scale</Typography>
-        <Typography variant="bodySmall">
-          Fifteen roles on theme.typography; Typography takes the role name as
-          its variant.
+        <Typography variant="subtitle1">Type scale</Typography>
+        <Typography variant="caption">
+          {
+            "MUI's thirteen steps on theme.typography, at MUI's own sizes; Typography takes the step name as its variant."
+          }
         </Typography>
       </div>
       <Divider contentSpacing={0} />
@@ -168,7 +175,7 @@ export const TypeScale = () => {
         <div key={role} style={lines}>
           <Typography variant={role}>Renew subscription</Typography>
           <Typography
-            variant="labelSmall"
+            variant="caption"
             style={{ color: theme.colors.onSurfaceVariant }}
           >
             {role} · {theme.typography[role].fontSize}/
@@ -182,33 +189,33 @@ export const TypeScale = () => {
 
 export const SpacingAndShape = () => {
   const { theme } = useTheme();
-  const { colors, spacing, shape } = theme;
+  const { colors, shape } = theme;
   return (
     <div style={stack(16)}>
       <div style={lines}>
-        <Typography variant="titleMedium">Spacing</Typography>
-        <Typography variant="bodySmall">
-          theme.spacing — the five gaps every layout in the library is built
-          from.
+        <Typography variant="subtitle1">Spacing</Typography>
+        <Typography variant="caption">
+          theme.spacing(n) is 8 × n, as in MUI — the steps below are the ones
+          the library itself uses.
         </Typography>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        {(["xs", "s", "m", "l", "xl"] as const).map((key) => (
+        {[0.5, 1, 2, 3, 4].map((step) => (
           <div
-            key={key}
+            key={step}
             style={{ display: "flex", alignItems: "center", gap: 8 }}
           >
-            <div style={{ width: 96 }}>
+            <div style={{ width: 120 }}>
               <Typography
-                variant="labelMedium"
+                variant="caption"
                 style={{ color: colors.onSurfaceVariant }}
               >
-                {key} · {spacing[key]}px
+                spacing({step}) · {theme.spacing(step)}px
               </Typography>
             </div>
             <div
               style={{
-                width: spacing[key] * 6,
+                width: theme.spacing(step) * 6,
                 height: 12,
                 borderRadius: 6,
                 background: colors.primary,
@@ -219,8 +226,8 @@ export const SpacingAndShape = () => {
       </div>
       <Divider contentSpacing={0} />
       <div style={lines}>
-        <Typography variant="titleMedium">Shape</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="subtitle1">Shape</Typography>
+        <Typography variant="caption">
           theme.shape — corner radii, from chips through to bottom sheets.
         </Typography>
       </div>
@@ -240,7 +247,7 @@ export const SpacingAndShape = () => {
               }}
             />
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={{ color: colors.onSurfaceVariant }}
             >
               {key} · {shape[key]}
@@ -255,8 +262,8 @@ export const SpacingAndShape = () => {
 export const WrapsTheApp = () => (
   <div style={stack(12)}>
     <div style={lines}>
-      <Typography variant="titleMedium">The wrap</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle1">The wrap</Typography>
+      <Typography variant="caption">
         ThemeProvider sits at the root, above AlertProvider. Anything below it
         is themed; anything above it renders with browser defaults.
       </Typography>
@@ -264,8 +271,8 @@ export const WrapsTheApp = () => (
     <ThemeProvider>
       <Paper outline style={{ padding: 16 }}>
         <div style={lines}>
-          <Typography variant="titleSmall">Workspace billing</Typography>
-          <Typography variant="bodySmall">
+          <Typography variant="subtitle2">Workspace billing</Typography>
+          <Typography variant="caption">
             Every child below picked its colours up from this context — no props
             passed.
           </Typography>
@@ -299,8 +306,8 @@ const SchemeSwitch = () => {
   return (
     <div style={stack(12)}>
       <div style={lines}>
-        <Typography variant="titleMedium">Light and dark</Typography>
-        <Typography variant="bodySmall">
+        <Typography variant="subtitle1">Light and dark</Typography>
+        <Typography variant="caption">
           Showing the {theme.isDark ? "dark" : "light"} scheme.
         </Typography>
       </div>

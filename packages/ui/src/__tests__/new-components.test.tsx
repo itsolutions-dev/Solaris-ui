@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { fireEvent, render } from "@testing-library/react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
@@ -184,6 +184,18 @@ describe("TopAppBar and AppBar", () => {
       expect(getByRole("header", { name: "Orders" })).toBeTruthy();
     },
   );
+
+  it("gives the large variant a bigger title than the medium one", async () => {
+    const size = async (variant: "medium" | "large") => {
+      const { getByRole } = await wrap(
+        <TopAppBar title={variant} variant={variant} />,
+      );
+      return StyleSheet.flatten(
+        getByRole("header", { name: variant }).props.style,
+      ).fontSize as number;
+    };
+    expect(await size("large")).toBeGreaterThan(await size("medium"));
+  });
 
   it("AppBar reads the title from options and shows back", async () => {
     const goBack = jest.fn();
@@ -471,7 +483,7 @@ describe("Table primitives", () => {
 describe("Typography", () => {
   it("forwards Text props", async () => {
     const { getByTestId } = await wrap(
-      <Typography variant="bodyMedium" numberOfLines={2} testID="t">
+      <Typography variant="body2" numberOfLines={2} testID="t">
         Long text
       </Typography>,
     );

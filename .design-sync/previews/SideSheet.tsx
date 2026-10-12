@@ -24,8 +24,8 @@ const filterActions = (
 export const Filters = () => (
   <div style={frame}>
     <div style={content}>
-      <Typography variant="titleMedium">Orders</Typography>
-      <Typography variant="bodyMedium">128 results</Typography>
+      <Typography variant="subtitle1">Orders</Typography>
+      <Typography variant="body2">128 results</Typography>
     </div>
     <SideSheet
       modal={false}
@@ -51,12 +51,12 @@ export const StartSide = () => (
       onDismiss={() => {}}
       onBack={() => {}}
     >
-      <Typography variant="bodyMedium">
+      <Typography variant="body2">
         Invoice #10428 was issued on 3 June and is due in 14 days.
       </Typography>
     </SideSheet>
     <div style={content}>
-      <Typography variant="titleMedium">Invoice #10428</Typography>
+      <Typography variant="subtitle1">Invoice #10428</Typography>
     </div>
   </div>
 );

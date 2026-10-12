@@ -159,7 +159,7 @@ const ComponentPreview = ({
           Open Bottom Sheet
         </Button>
         <Component {...props}>
-          <Typography variant="bodyMedium">
+          <Typography variant="body2">
             Bottom sheet content goes here. Drag the handle down or tap the
             scrim to dismiss.
           </Typography>
@@ -260,7 +260,7 @@ const ComponentPreview = ({
                   backgroundColor: (theme.colors as any)[colorKey],
                 }}
               >
-                <Typography variant="titleMedium">{`Slide ${i + 1}`}</Typography>
+                <Typography variant="subtitle1">{`Slide ${i + 1}`}</Typography>
               </View>
             ),
           )}
@@ -473,7 +473,7 @@ const ComponentPreview = ({
               backgroundColor: theme.colors.primaryContainer,
             }}
           >
-            <Typography variant="bodyMedium">
+            <Typography variant="body2">
               The height is measured from the content, so this animates
               correctly however much text it holds — no fixed height needed.
             </Typography>
@@ -525,7 +525,7 @@ const ComponentPreview = ({
               }}
             >
               <Typography
-                variant="labelMedium"
+                variant="caption"
                 style={{
                   color: (theme.colors as any)[
                     `on${colorKey[0].toUpperCase()}${colorKey.slice(1)}`
@@ -550,7 +550,7 @@ const ComponentPreview = ({
     return (
       <View style={{ gap: 12, alignItems: "center" }}>
         <Typography
-          variant="bodyMedium"
+          variant="body2"
           style={{
             color: theme.colors.onSurfaceVariant,
             textAlign: "center",
@@ -744,7 +744,7 @@ const ComponentPreview = ({
     return (
       <Component {...props}>
         <View style={{ padding: 16, maxWidth: 240 }}>
-          <Typography variant="bodyMedium">
+          <Typography variant="body2">
             Popover content anchored to the button above.
           </Typography>
         </View>
@@ -775,13 +775,13 @@ const ComponentPreview = ({
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Typography variant="bodyMedium">Before</Typography>
+            <Typography variant="body2">Before</Typography>
           </View>
           <Component {...dividerProps} />
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Typography variant="bodyMedium">After</Typography>
+            <Typography variant="body2">After</Typography>
           </View>
         </View>
       );
@@ -799,7 +799,6 @@ const ComponentPreview = ({
   }
 
   if (selectedComponentName === "Icon") {
-    props.size = Number(props.size) || 24;
     return <Component {...props} />;
   }
 
@@ -812,9 +811,7 @@ const ComponentPreview = ({
         accessibilityLabel="Tappable surface"
       >
         <View style={{ padding: 16 }}>
-          <Typography variant="bodyMedium">
-            Hover or press this surface
-          </Typography>
+          <Typography variant="body2">Hover or press this surface</Typography>
         </View>
       </Component>
     );
@@ -845,7 +842,7 @@ const ComponentPreview = ({
       <Card variant="elevated" style={{ width: "100%", maxWidth: 420 }}>
         <CardTitle title="Line 4" subtitle="Scheduled maintenance" />
         <Component {...rest}>
-          <Typography variant="bodyMedium">{children}</Typography>
+          <Typography variant="body2">{children}</Typography>
         </Component>
       </Card>
     );
@@ -904,7 +901,7 @@ const ComponentPreview = ({
       <View style={{ width: "100%", maxWidth: 420 }}>
         <Component {...props} radius="medium" bg="surfaceContainerHigh">
           <Center style={{ flex: 1 }}>
-            <Typography variant="labelLarge">
+            <Typography variant="subtitle2">
               {`ratio ${props.ratio.toFixed(2)}`}
             </Typography>
           </Center>
@@ -917,7 +914,7 @@ const ComponentPreview = ({
     return (
       <View style={{ width: "100%", maxWidth: 420, height: 140 }}>
         <Component {...props} style={{ flex: 1 }} bg="surfaceContainerHigh">
-          <Typography variant="labelLarge">Centred on both axes</Typography>
+          <Typography variant="subtitle2">Centred on both axes</Typography>
         </Component>
       </View>
     );
@@ -947,9 +944,9 @@ const ComponentPreview = ({
     return (
       <View style={{ width: "100%", maxWidth: 420 }}>
         <Component {...props}>
-          <Typography variant="bodyMedium">Tab 0 content</Typography>
-          <Typography variant="bodyMedium">Tab 1 content</Typography>
-          <Typography variant="bodyMedium">Tab 2 content</Typography>
+          <Typography variant="body2">Tab 0 content</Typography>
+          <Typography variant="body2">Tab 1 content</Typography>
+          <Typography variant="body2">Tab 2 content</Typography>
         </Component>
       </View>
     );
@@ -960,12 +957,12 @@ const ComponentPreview = ({
       <View style={{ width: "100%", maxWidth: 420 }}>
         <Component {...props}>
           <ListItem
-            trailing={<Typography variant="bodySmall">Weekly</Typography>}
+            trailing={<Typography variant="caption">Weekly</Typography>}
           >
             Email digest
           </ListItem>
           <ListItem
-            trailing={<Typography variant="bodySmall">Instant</Typography>}
+            trailing={<Typography variant="caption">Instant</Typography>}
           >
             Mentions
           </ListItem>
@@ -979,7 +976,7 @@ const ComponentPreview = ({
     return (
       <Portal.Host>
         <View style={{ width: "100%", maxWidth: 420, gap: 12 }}>
-          <Typography variant="bodySmall">
+          <Typography variant="caption">
             The panel below is 64px tall with overflow: hidden. The portalled
             content is drawn at the host, so the clip does not reach it.
           </Typography>
@@ -992,7 +989,7 @@ const ComponentPreview = ({
               padding: 12,
             }}
           >
-            <Typography variant="labelLarge">Clipping parent</Typography>
+            <Typography variant="subtitle2">Clipping parent</Typography>
             <Portal>
               <View
                 pointerEvents="none"
@@ -1006,7 +1003,7 @@ const ComponentPreview = ({
                 }}
               >
                 <Typography
-                  variant="labelLarge"
+                  variant="subtitle2"
                   style={{ color: theme.colors.inverseOnSurface }}
                 >
                   Drawn at the host
@@ -1042,7 +1039,7 @@ const ComponentPreview = ({
     return (
       <Component {...otherProps}>
         {typeof children === "string" ? (
-          <Typography variant="bodyMedium">{children}</Typography>
+          <Typography variant="body2">{children}</Typography>
         ) : (
           children
         )}

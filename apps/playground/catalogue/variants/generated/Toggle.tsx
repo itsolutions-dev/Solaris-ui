@@ -24,15 +24,15 @@ const noop = () => {};
 export const SettingsList = () => (
   <View style={stack}>
     <View style={row}>
-      <Typography variant="bodyLarge">Email notifications</Typography>
+      <Typography variant="body1">Email notifications</Typography>
       <Toggle value width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyLarge">Push notifications</Typography>
+      <Typography variant="body1">Push notifications</Typography>
       <Toggle value={false} width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyLarge">Weekly summary</Typography>
+      <Typography variant="body1">Weekly summary</Typography>
       <Toggle value width={48} height={28} onValueChange={noop} />
     </View>
   </View>
@@ -41,21 +41,19 @@ export const SettingsList = () => (
 export const OnOffDisabled = () => (
   <View style={stack}>
     <View style={row}>
-      <Typography variant="bodyLarge">Dark theme</Typography>
+      <Typography variant="body1">Dark theme</Typography>
       <Toggle value width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyLarge">Reduced motion</Typography>
+      <Typography variant="body1">Reduced motion</Typography>
       <Toggle value={false} width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyLarge">Audit logging (enforced)</Typography>
+      <Typography variant="body1">Audit logging (enforced)</Typography>
       <Toggle value disabled width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyLarge">
-        Beta features (Enterprise only)
-      </Typography>
+      <Typography variant="body1">Beta features (Enterprise only)</Typography>
       <Toggle
         value={false}
         disabled
@@ -70,15 +68,15 @@ export const OnOffDisabled = () => (
 export const Sizes = () => (
   <View style={stack}>
     <View style={row}>
-      <Typography variant="bodyMedium">Compact — 32 × 18 (default)</Typography>
+      <Typography variant="body2">Compact — 32 × 18 (default)</Typography>
       <Toggle value onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyMedium">Standard — 48 × 28</Typography>
+      <Typography variant="body2">Standard — 48 × 28</Typography>
       <Toggle value width={48} height={28} onValueChange={noop} />
     </View>
     <View style={row}>
-      <Typography variant="bodyMedium">Large — 64 × 36</Typography>
+      <Typography variant="body2">Large — 64 × 36</Typography>
       <Toggle value width={64} height={36} onValueChange={noop} />
     </View>
   </View>

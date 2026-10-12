@@ -18,7 +18,7 @@ const stack: React.CSSProperties = {
 
 export const Segments = () => (
   <div style={stack}>
-    <Typography variant="labelLarge">View</Typography>
+    <Typography variant="subtitle2">View</Typography>
     <div style={segments}>
       <ToggleButton
         label="List"
@@ -46,7 +46,7 @@ export const Segments = () => (
 
 export const IconOnly = () => (
   <div style={stack}>
-    <Typography variant="labelLarge">Text alignment</Typography>
+    <Typography variant="subtitle2">Text alignment</Typography>
     <div style={segments}>
       <ToggleButton
         icon="format-align-left"

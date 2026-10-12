@@ -95,7 +95,7 @@ const SpeedDial = ({
                 >
                   <Text
                     style={[
-                      theme.typography.labelLarge,
+                      theme.typography.subtitle2,
                       { color: theme.colors.onSurface },
                     ]}
                     accessibilityLabel={action.label}

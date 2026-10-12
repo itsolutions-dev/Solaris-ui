@@ -51,7 +51,7 @@ export const CatalogueSidebar = () => {
           placeholder="Filter components…"
         />
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {needle
@@ -67,7 +67,7 @@ export const CatalogueSidebar = () => {
       >
         {groups.length === 0 ? (
           <Typography
-            variant="bodySmall"
+            variant="caption"
             style={{ color: theme.colors.onSurfaceVariant, padding: 16 }}
           >
             No component matches “{query}”.
@@ -82,7 +82,7 @@ export const CatalogueSidebar = () => {
                   color={theme.colors.primary}
                 />
                 <Typography
-                  variant="labelSmall"
+                  variant="caption"
                   style={[
                     styles.groupLabel,
                     { color: theme.colors.onSurfaceVariant },
@@ -91,7 +91,7 @@ export const CatalogueSidebar = () => {
                   {category.label.toUpperCase()}
                 </Typography>
                 <Typography
-                  variant="labelSmall"
+                  variant="caption"
                   style={{ color: theme.colors.onSurfaceVariant }}
                 >
                   {category.items.length}
@@ -139,7 +139,7 @@ const CatalogueLink = ({
             ]}
           >
             <Typography
-              variant="bodyMedium"
+              variant="body2"
               style={{
                 color: selected
                   ? theme.colors.onPrimaryContainer
@@ -167,20 +167,20 @@ const makeStyles = (theme: Theme) =>
     // The filter stays put while the list scrolls under it, which is the whole
     // reason the sidebar lives in the layout rather than in the page.
     search: {
-      padding: theme.spacing.s,
-      gap: theme.spacing.xs,
+      padding: theme.spacing(1),
+      gap: theme.spacing(0.5),
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
     },
     scroll: { flex: 1 },
-    scrollContent: { paddingBottom: theme.spacing.xl },
-    group: { marginTop: theme.spacing.m, paddingHorizontal: theme.spacing.s },
+    scrollContent: { paddingBottom: theme.spacing(4) },
+    group: { marginTop: theme.spacing(2), paddingHorizontal: theme.spacing(1) },
     groupHeader: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
-      paddingHorizontal: theme.spacing.s,
-      marginBottom: theme.spacing.xs,
+      gap: theme.spacing(0.5),
+      paddingHorizontal: theme.spacing(1),
+      marginBottom: theme.spacing(0.5),
     },
     groupLabel: { flex: 1, letterSpacing: 1.4, fontWeight: "700" },
     // Pills, like the destinations in the site drawer: the two menus sit side
@@ -191,8 +191,8 @@ const makeStyles = (theme: Theme) =>
       borderRadius: 999,
       borderWidth: 1,
       borderColor: "transparent",
-      paddingVertical: theme.spacing.s,
-      paddingHorizontal: theme.spacing.m,
+      paddingVertical: theme.spacing(1),
+      paddingHorizontal: theme.spacing(2),
       marginBottom: 2,
     },
   });

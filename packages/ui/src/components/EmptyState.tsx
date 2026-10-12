@@ -34,12 +34,12 @@ const EmptyState = ({
         <Icons name={icon} size={40} color={theme.colors.onSurfaceVariant} />
       </View>
 
-      <Typography variant="titleMedium" style={styles.title}>
+      <Typography variant="subtitle1" style={styles.title}>
         {title}
       </Typography>
 
       {!!description && (
-        <Typography variant="bodyMedium" style={styles.description}>
+        <Typography variant="body2" style={styles.description}>
           {description}
         </Typography>
       )}
@@ -65,8 +65,8 @@ const makeStyles = (theme: Theme) =>
     container: {
       alignItems: "center",
       justifyContent: "center",
-      paddingVertical: theme.spacing.xl,
-      paddingHorizontal: theme.spacing.l,
+      paddingVertical: theme.spacing(4),
+      paddingHorizontal: theme.spacing(3),
       width: "100%",
     },
     iconCircle: {
@@ -76,20 +76,20 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: theme.colors.surfaceContainerHigh,
-      marginBottom: theme.spacing.m,
+      marginBottom: theme.spacing(2),
     },
     title: {
       color: theme.colors.onSurface,
       textAlign: "center",
-      marginBottom: theme.spacing.xs,
+      marginBottom: theme.spacing(0.5),
     },
     description: {
       color: theme.colors.onSurfaceVariant,
       textAlign: "center",
       maxWidth: 360,
-      marginBottom: theme.spacing.m,
+      marginBottom: theme.spacing(2),
     },
     actionButton: {
-      marginTop: theme.spacing.xs,
+      marginTop: theme.spacing(0.5),
     },
   });

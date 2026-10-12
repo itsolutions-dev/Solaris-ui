@@ -16,9 +16,7 @@ export const Direction = () => (
       bg="surfaceContainerLow"
       radius="medium"
     >
-      <Typography variant="labelSmall">
-        direction=&quot;vertical&quot;
-      </Typography>
+      <Typography variant="caption">direction=&quot;vertical&quot;</Typography>
       {items.map((i) => (
         <Chip key={i} label={i} mode="tonal" onPress={() => {}} />
       ))}
@@ -30,7 +28,7 @@ export const Direction = () => (
       bg="surfaceContainerLow"
       radius="medium"
     >
-      <Typography variant="labelSmall">horizontal</Typography>
+      <Typography variant="caption">horizontal</Typography>
       {items.map((i) => (
         <Chip key={i} label={i} mode="tonal" onPress={() => {}} />
       ))}

@@ -168,7 +168,7 @@ const BottomSheet = ({
           )}
 
           {!!title && (
-            <Typography variant="titleLarge" style={styles.title}>
+            <Typography variant="h6" style={styles.title}>
               {title}
             </Typography>
           )}
@@ -200,7 +200,7 @@ const makeStyles = (theme: Theme) =>
       backgroundColor: theme.colors.surfaceContainerLow,
       borderTopLeftRadius: theme.shape.extraLarge,
       borderTopRightRadius: theme.shape.extraLarge,
-      paddingBottom: theme.spacing.l,
+      paddingBottom: theme.spacing(3),
       width: "100%",
       alignSelf: "center",
       maxWidth: 640,
@@ -235,10 +235,10 @@ const makeStyles = (theme: Theme) =>
     },
     title: {
       textAlign: "center",
-      marginBottom: theme.spacing.s,
+      marginBottom: theme.spacing(1),
       color: theme.colors.onSurface,
     },
     content: {
-      paddingHorizontal: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
     },
   });

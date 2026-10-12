@@ -29,7 +29,7 @@ export const RichContent = () => (
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="bodyMedium">api-gateway</Typography>
+          <Typography variant="body2">api-gateway</Typography>
           <StatusBadge label="Live" type="success" />
         </div>
         <Divider contentSpacing={0} />
@@ -40,7 +40,7 @@ export const RichContent = () => (
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="bodyMedium">billing-worker</Typography>
+          <Typography variant="body2">billing-worker</Typography>
           <StatusBadge label="Rolling out" type="warning" />
         </div>
         <Divider contentSpacing={0} />
@@ -51,7 +51,7 @@ export const RichContent = () => (
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="bodyMedium">report-exporter</Typography>
+          <Typography variant="body2">report-exporter</Typography>
           <StatusBadge label="Failed" type="error" />
         </div>
       </div>

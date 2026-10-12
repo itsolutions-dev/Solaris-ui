@@ -101,7 +101,7 @@ const Menu = ({
                     )}
                     <Text
                       style={[
-                        theme.typography.bodyLarge,
+                        theme.typography.body1,
                         styles.label,
                         { color: contentColor },
                       ]}
@@ -112,7 +112,7 @@ const Menu = ({
                     {item.trailing && (
                       <Text
                         style={[
-                          theme.typography.labelSmall,
+                          theme.typography.caption,
                           { color: theme.colors.onSurfaceVariant },
                         ]}
                       >

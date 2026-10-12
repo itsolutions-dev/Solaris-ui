@@ -38,7 +38,7 @@ const RadioButton = ({
     return (
       <Text
         style={[
-          theme.typography.bodyLarge,
+          theme.typography.body1,
           { color: theme.colors.onSurface },
           labelPosition === "left" ? { marginRight: 12 } : { marginLeft: 12 },
         ]}
@@ -136,7 +136,7 @@ export const RadioGroup = ({
       {!!label && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             { color: theme.colors.primary, marginBottom: 4, marginLeft: 4 },
           ]}
         >
@@ -162,7 +162,7 @@ export const RadioGroup = ({
       {!!error && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             { color: theme.colors.error, marginTop: 4, marginLeft: 16 },
           ]}
         >

@@ -84,7 +84,7 @@ const Accordion = ({
           {typeof children === "string" ? (
             <Text
               style={[
-                theme.typography.bodyMedium, // Apply a default body text style from theme
+                theme.typography.body2, // Apply a default body text style from theme
                 { color: theme.colors.onSurfaceVariant },
               ]}
             >
@@ -117,7 +117,7 @@ const makeStyles = (theme: Theme) =>
       minHeight: 56,
     },
     title: {
-      ...theme.typography.titleMedium,
+      ...theme.typography.subtitle1,
     },
     content: {
       paddingHorizontal: 16,

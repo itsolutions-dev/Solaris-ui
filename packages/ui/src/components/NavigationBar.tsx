@@ -81,7 +81,7 @@ const NavigationBar = ({
                 {showLabel && (
                   <Text
                     style={[
-                      theme.typography.labelMedium,
+                      theme.typography.caption,
                       {
                         color: active
                           ? theme.colors.onSurface

@@ -89,7 +89,7 @@ const HelperText = ({
         <Icons name="alert-circle-outline" size={14} color={color} />
       )}
       <View style={styles.textWrapper}>
-        <Animated.Text style={[theme.typography.bodySmall, { color }, style]}>
+        <Animated.Text style={[theme.typography.caption, { color }, style]}>
           {children}
         </Animated.Text>
       </View>
@@ -104,11 +104,11 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
-      marginTop: theme.spacing.xs,
+      gap: theme.spacing(0.5),
+      marginTop: theme.spacing(0.5),
     },
     padded: {
-      marginLeft: theme.spacing.m,
+      marginLeft: theme.spacing(2),
     },
     textWrapper: {
       flex: 1,

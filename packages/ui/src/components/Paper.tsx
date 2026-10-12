@@ -55,7 +55,7 @@ const makeStyles = (theme: Theme) =>
     paper: {
       borderRadius: theme.shape.large,
       backgroundColor: theme.colors.surface,
-      padding: theme.spacing.m,
+      padding: theme.spacing(2),
     },
     outlined: {
       borderWidth: 1,

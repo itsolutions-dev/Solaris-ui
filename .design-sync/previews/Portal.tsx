@@ -30,7 +30,7 @@ const Hovered = ({ children }: { children: React.ReactNode }) => {
 export const EscapesAClippingParent = () => (
   <Portal.Host>
     <div style={{ ...stage, height: 220 }}>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         The panel below is 64px tall with overflow: hidden. The portalled badge
         is drawn at the host, so the clip does not reach it.
       </Typography>
@@ -43,7 +43,7 @@ export const EscapesAClippingParent = () => (
         }}
       >
         <Paper elevation={2} style={{ flex: 1 }}>
-          <Typography variant="labelLarge">Clipping parent</Typography>
+          <Typography variant="subtitle2">Clipping parent</Typography>
         </Paper>
         <Portal>
           <div
@@ -56,7 +56,7 @@ export const EscapesAClippingParent = () => (
             }}
           >
             <Paper elevation={3}>
-              <Typography variant="labelLarge">Drawn at the host</Typography>
+              <Typography variant="subtitle2">Drawn at the host</Typography>
             </Paper>
           </div>
         </Portal>
@@ -68,7 +68,7 @@ export const EscapesAClippingParent = () => (
 export const BacksTheTooltip = () => (
   <Portal.Host>
     <div style={{ ...stage, height: 200 }}>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         With a host mounted, Tooltip renders through it — so a tip on an anchor
         inside a scrolling or clipping container is no longer cut off.
       </Typography>

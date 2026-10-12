@@ -17,8 +17,8 @@ export const Underline = () => (
 
 export const InProse = () => (
   <VStack spacing="xs" width={420}>
-    <Typography variant="bodyMedium">
-      Every colour and type role in this library follows the Material 3 spec.
+    <Typography variant="body2">
+      {"Colours follow the Material 3 roles; type follows MUI's scale."}
     </Typography>
     <Link href="https://m3.material.io/styles/color/roles">
       Read the colour-role reference
@@ -28,11 +28,11 @@ export const InProse = () => (
 
 export const Variants = () => (
   <VStack spacing="s" width={420}>
-    <Link onPress={() => {}} variant="titleMedium">
-      titleMedium, in-app press handler
+    <Link onPress={() => {}} variant="subtitle1">
+      subtitle1, in-app press handler
     </Link>
-    <Link onPress={() => {}} variant="bodySmall">
-      bodySmall
+    <Link onPress={() => {}} variant="caption">
+      caption
     </Link>
     <Link href="https://m3.material.io" disabled>
       Disabled

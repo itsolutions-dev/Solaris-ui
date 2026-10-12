@@ -15,7 +15,7 @@ const row: React.CSSProperties = {
 
 const cell = (caption: string, children: React.ReactNode) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-    <Typography variant="labelMedium">{caption}</Typography>
+    <Typography variant="caption">{caption}</Typography>
     <Paper elevation={0} outline style={{ padding: 16 }}>
       {children}
     </Paper>

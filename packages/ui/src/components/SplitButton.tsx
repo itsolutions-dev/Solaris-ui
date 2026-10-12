@@ -88,11 +88,12 @@ const SplitButton = ({
       ]}
     >
       <Icon
-        source="chevron-down"
-        size={20}
+        fontSize={20}
         color={colors.on}
         style={open ? styles.flipped : undefined}
-      />
+      >
+        chevron-down
+      </Icon>
     </TouchableRipple>
   );
 
@@ -119,9 +120,13 @@ const SplitButton = ({
           },
         ]}
       >
-        {iconName && <Icon source={iconName} size={20} color={colors.on} />}
+        {iconName && (
+          <Icon fontSize={20} color={colors.on}>
+            {iconName}
+          </Icon>
+        )}
         <Typography
-          variant="labelLarge"
+          variant="button"
           numberOfLines={1}
           style={{ color: colors.on }}
         >
@@ -151,9 +156,9 @@ const makeStyles = (theme: Theme) =>
       overflow: "hidden",
     },
     leading: {
-      gap: theme.spacing.s,
-      paddingStart: theme.spacing.m,
-      paddingEnd: theme.spacing.s + theme.spacing.xs,
+      gap: theme.spacing(1),
+      paddingStart: theme.spacing(2),
+      paddingEnd: theme.spacing(1) + theme.spacing(0.5),
     },
     trailing: { width: TRAILING_WIDTH },
     flipped: { transform: [{ rotate: "180deg" }] },

@@ -26,11 +26,11 @@ const column: React.CSSProperties = {
 
 export const FilterSheet = () => (
   <div style={behind}>
-    <Typography variant="headlineSmall">Components</Typography>
-    <Typography variant="bodyMedium">34 results</Typography>
+    <Typography variant="h5">Components</Typography>
+    <Typography variant="body2">34 results</Typography>
     <BottomSheet visible title="Filter components" onDismiss={() => {}}>
       <div style={column}>
-        <Typography variant="labelLarge">Group</Typography>
+        <Typography variant="subtitle2">Group</Typography>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <Chip
             label="Buttons & actions"
@@ -61,7 +61,7 @@ export const FilterSheet = () => (
         <div style={{ height: 4 }} />
         <Divider contentSpacing={0} />
         <div style={{ height: 4 }} />
-        <Typography variant="labelLarge">Status</Typography>
+        <Typography variant="subtitle2">Status</Typography>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <Chip
             label="Stable"
@@ -88,8 +88,8 @@ export const FilterSheet = () => (
 
 export const ActionSheet = () => (
   <div style={behind}>
-    <Typography variant="headlineSmall">Chip</Typography>
-    <Typography variant="bodyMedium">Buttons &amp; actions</Typography>
+    <Typography variant="h5">Chip</Typography>
+    <Typography variant="body2">Buttons &amp; actions</Typography>
     <BottomSheet visible title="Chip" onDismiss={() => {}}>
       <div style={column}>
         <Button
@@ -165,7 +165,7 @@ export const ReleaseNotes = () => (
       onDismiss={() => {}}
     >
       <div style={column}>
-        <Typography variant="bodyMedium">
+        <Typography variant="body2">
           Dark mode contrast was corrected across every tonal surface, Chip
           gained a compact size, and DataGrid now keeps its header pinned while
           the body scrolls.

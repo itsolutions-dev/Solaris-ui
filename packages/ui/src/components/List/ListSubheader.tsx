@@ -27,10 +27,10 @@ export default ListSubheader;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     subheader: {
-      ...theme.typography.titleSmall,
+      ...theme.typography.subtitle2,
       color: theme.colors.primary,
-      paddingHorizontal: theme.spacing.m,
-      paddingTop: theme.spacing.m,
-      paddingBottom: theme.spacing.s,
+      paddingHorizontal: theme.spacing(2),
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(1),
     },
   });

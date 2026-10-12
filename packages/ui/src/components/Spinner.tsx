@@ -66,7 +66,7 @@ const Spinner = ({
       {!!label && (
         <Text
           style={[
-            theme.typography.labelMedium,
+            theme.typography.caption,
             styles.staticLabel,
             {
               color: isFocused
@@ -123,7 +123,7 @@ const Spinner = ({
             }}
             onSubmitEditing={commitText}
             style={[
-              theme.typography.bodyLarge,
+              theme.typography.body1,
               styles.input,
               { color: theme.colors.onSurface },
             ]}

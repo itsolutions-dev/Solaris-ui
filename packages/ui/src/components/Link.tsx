@@ -27,7 +27,7 @@ export interface LinkProps {
    */
   allowedSchemes?: string[];
   onPress?: () => void;
-  /** M3 typography variant for the label. Defaults to `"bodyMedium"`. */
+  /** MUI typography variant for the label. Defaults to `"body2"`. */
   variant?: keyof Theme["typography"];
   /** Underline behaviour. Defaults to `"hover"`. */
   underline?: "always" | "hover" | "none";
@@ -74,7 +74,7 @@ const Link = ({
   href,
   allowedSchemes = DEFAULT_SCHEMES,
   onPress,
-  variant = "bodyMedium",
+  variant = "body2",
   underline = "hover",
   showExternalIcon,
   externalIcon = "open-in-new",

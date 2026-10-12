@@ -7,13 +7,17 @@ const list: React.CSSProperties = {
   width: 340,
 };
 
-const chevron = <Icon source="chevron-right" size={20} color="#79747E" />;
+const chevron = (
+  <Icon fontSize={20} color="#79747E">
+    chevron-right
+  </Icon>
+);
 
 export const SettingsList = () => (
   <div style={list}>
     <ListItem
       onPress={() => {}}
-      leading={<Icon source="account-multiple-outline" size={24} />}
+      leading={<Icon fontSize={24}>account-multiple-outline</Icon>}
       secondary="3 members, 1 pending invite"
       trailing={chevron}
     >
@@ -21,14 +25,14 @@ export const SettingsList = () => (
     </ListItem>
     <ListItem
       onPress={() => {}}
-      leading={<Icon source="lock-outline" size={24} />}
+      leading={<Icon fontSize={24}>lock-outline</Icon>}
       secondary="Passkeys and two-factor"
       trailing={chevron}
     >
       Privacy and security
     </ListItem>
     <ListItem
-      leading={<Icon source="email-outline" size={24} />}
+      leading={<Icon fontSize={24}>email-outline</Icon>}
       secondary="Weekly digest"
       trailing={<Toggle value onValueChange={() => {}} />}
     >
@@ -39,7 +43,7 @@ export const SettingsList = () => (
 
 export const Slots = () => (
   <div style={list}>
-    <ListItem leading={<Icon source="folder-multiple-outline" size={24} />}>
+    <ListItem leading={<Icon fontSize={24}>folder-multiple-outline</Icon>}>
       leading only
     </ListItem>
     <ListItem trailing={chevron}>trailing only</ListItem>
@@ -47,7 +51,7 @@ export const Slots = () => (
       secondary only
     </ListItem>
     <ListItem
-      leading={<Icon source="chart-box" size={24} />}
+      leading={<Icon fontSize={24}>chart-box</Icon>}
       secondary="all three slots filled"
       trailing={chevron}
     >
@@ -68,7 +72,7 @@ export const WithAvatars = () => (
         onPress={() => {}}
         leading={<Avatar name={m.name} size={40} />}
         secondary={m.role}
-        trailing={<Typography variant="labelLarge">Owner</Typography>}
+        trailing={<Typography variant="subtitle2">Owner</Typography>}
       >
         {m.name}
       </ListItem>
@@ -86,7 +90,11 @@ export const CustomSurface = () => (
       <ListItem
         key={hub.label}
         onPress={() => {}}
-        leading={<Icon source="domain" size={24} color="#1D1B20" />}
+        leading={
+          <Icon fontSize={24} color="#1D1B20">
+            domain
+          </Icon>
+        }
         secondary={hub.parcels}
         itemContainerStyle={{ backgroundColor: hub.tint }}
         itemTextStyle={{ color: "#1D1B20" }}

@@ -21,7 +21,7 @@ export const PushesApart = () => (
     radius="medium"
     width={420}
   >
-    <Typography variant="titleMedium">Invoices</Typography>
+    <Typography variant="subtitle1">Invoices</Typography>
     <Spacer />
     <Button mode="tonal" onPress={() => {}}>
       Export
@@ -31,11 +31,11 @@ export const PushesApart = () => (
 
 export const FixedSize = () => (
   <VStack p="m" bg="surfaceContainerLow" radius="medium" width={420}>
-    <Typography variant="bodyMedium">size=&quot;xs&quot; below</Typography>
+    <Typography variant="body2">size=&quot;xs&quot; below</Typography>
     <Spacer size="xs" />
     <Box bg="primaryContainer" p="xs" radius="small" />
     <Spacer size="l" />
-    <Typography variant="bodyMedium">size=&quot;l&quot; above</Typography>
+    <Typography variant="body2">size=&quot;l&quot; above</Typography>
   </VStack>
 );
 
@@ -47,9 +47,9 @@ export const HorizontalAxis = () => (
     radius="medium"
     width={420}
   >
-    <Typography variant="bodyMedium">Left</Typography>
+    <Typography variant="body2">Left</Typography>
     <Spacer size="xl" axis="horizontal" />
-    <Typography variant="bodyMedium">32px later</Typography>
+    <Typography variant="body2">32px later</Typography>
   </HStack>
 );
 

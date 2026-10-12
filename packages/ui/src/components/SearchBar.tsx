@@ -69,7 +69,7 @@ const SearchBar = ({
         accessibilityLabel={placeholder}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        style={[theme.typography.bodyLarge, styles.input]}
+        style={[theme.typography.body1, styles.input]}
       />
 
       {value.length > 0 && (

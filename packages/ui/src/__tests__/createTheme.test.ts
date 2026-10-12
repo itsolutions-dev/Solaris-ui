@@ -130,8 +130,8 @@ describe("createTheme", () => {
     expect(families.size).toBe(1);
     // The documented iOS-only opt-in passes undefined elsewhere: the default stays.
     const unset = createTheme({ typography: { fontFamily: undefined } });
-    expect(unset.light.typography.bodyLarge.fontFamily).toBe(
-      theme.light.typography.bodyLarge.fontFamily,
+    expect(unset.light.typography.body1.fontFamily).toBe(
+      theme.light.typography.body1.fontFamily,
     );
   });
 
@@ -189,6 +189,55 @@ describe("createTheme", () => {
     });
     expect(ok.light.colors.outlineVariant).toBe("rgba(0, 0, 0, 0.2)");
     expect(ok.light.colors.onSurfaceVariant).toBe("slategray");
+  });
+
+  it("carries MUI's own type scale", () => {
+    const t = theme.light.typography;
+    expect(Object.keys(t).sort()).toEqual([
+      "body1",
+      "body2",
+      "button",
+      "caption",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "overline",
+      "subtitle1",
+      "subtitle2",
+    ]);
+    expect(t.h1).toMatchObject({
+      fontSize: 96,
+      fontWeight: "300",
+      lineHeight: 112,
+      letterSpacing: -1.5,
+    });
+    expect(t.body1).toMatchObject({
+      fontSize: 16,
+      fontWeight: "400",
+      lineHeight: 24,
+    });
+    expect(t.button).toMatchObject({
+      fontSize: 14,
+      fontWeight: "500",
+      textTransform: "uppercase",
+    });
+    expect(t.overline.textTransform).toBe("uppercase");
+  });
+
+  it("spaces by MUI's 8-point function, fractions and negatives included", () => {
+    const { spacing } = theme.light;
+    expect(spacing(2)).toBe(16);
+    expect(spacing(0.5)).toBe(4);
+    expect(spacing(1.5)).toBe(12);
+    expect(spacing(-1)).toBe(-8);
+  });
+
+  it("carries MUI's base corner radius beside the named ones", () => {
+    expect(theme.light.shape.borderRadius).toBe(4);
+    expect(theme.light.shape.large).toBe(16);
   });
 
   it("rounds dialogs and sheets at 24 and buttons fully", () => {

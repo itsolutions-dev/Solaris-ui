@@ -16,7 +16,7 @@ const VIEWS = [
 
 export const Standard = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Calendar view</Typography>
+    <Typography variant="subtitle2">Calendar view</Typography>
     <ButtonGroup
       options={VIEWS}
       value="week"
@@ -28,7 +28,7 @@ export const Standard = () => (
 
 export const Connected = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Calendar view</Typography>
+    <Typography variant="subtitle2">Calendar view</Typography>
     <ButtonGroup
       type="connected"
       options={VIEWS}
@@ -41,7 +41,7 @@ export const Connected = () => (
 
 export const MultiSelect = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Notify me by</Typography>
+    <Typography variant="subtitle2">Notify me by</Typography>
     <ButtonGroup
       multiSelect
       type="connected"
@@ -59,7 +59,7 @@ export const MultiSelect = () => (
 
 export const Outlined = () => (
   <div style={field}>
-    <Typography variant="labelLarge">Calendar view</Typography>
+    <Typography variant="subtitle2">Calendar view</Typography>
     <ButtonGroup
       mode="outlined"
       type="connected"

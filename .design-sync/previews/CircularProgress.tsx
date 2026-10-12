@@ -20,19 +20,19 @@ export const Sizes = () => (
   <div style={row}>
     <div style={cell}>
       <CircularProgress size={20} strokeWidth={2} />
-      <Typography variant="labelSmall">20 — inline</Typography>
+      <Typography variant="caption">20 — inline</Typography>
     </div>
     <div style={cell}>
       <CircularProgress size={32} strokeWidth={3} />
-      <Typography variant="labelSmall">32 — list row</Typography>
+      <Typography variant="caption">32 — list row</Typography>
     </div>
     <div style={cell}>
       <CircularProgress size={48} />
-      <Typography variant="labelSmall">48 — default</Typography>
+      <Typography variant="caption">48 — default</Typography>
     </div>
     <div style={cell}>
       <CircularProgress size={72} strokeWidth={6} />
-      <Typography variant="labelSmall">72 — full page</Typography>
+      <Typography variant="caption">72 — full page</Typography>
     </div>
   </div>
 );
@@ -41,15 +41,15 @@ export const StrokeWeights = () => (
   <div style={row}>
     <div style={cell}>
       <CircularProgress size={48} strokeWidth={2} />
-      <Typography variant="labelSmall">strokeWidth 2</Typography>
+      <Typography variant="caption">strokeWidth 2</Typography>
     </div>
     <div style={cell}>
       <CircularProgress size={48} strokeWidth={4} />
-      <Typography variant="labelSmall">strokeWidth 4</Typography>
+      <Typography variant="caption">strokeWidth 4</Typography>
     </div>
     <div style={cell}>
       <CircularProgress size={48} strokeWidth={8} />
-      <Typography variant="labelSmall">strokeWidth 8</Typography>
+      <Typography variant="caption">strokeWidth 8</Typography>
     </div>
   </div>
 );
@@ -60,19 +60,19 @@ export const Colors = () => {
     <div style={row}>
       <div style={cell}>
         <CircularProgress size={44} />
-        <Typography variant="labelSmall">primary</Typography>
+        <Typography variant="caption">primary</Typography>
       </div>
       <div style={cell}>
         <CircularProgress size={44} color={theme.colors.secondary} />
-        <Typography variant="labelSmall">secondary</Typography>
+        <Typography variant="caption">secondary</Typography>
       </div>
       <div style={cell}>
         <CircularProgress size={44} color={theme.colors.tertiary} />
-        <Typography variant="labelSmall">tertiary</Typography>
+        <Typography variant="caption">tertiary</Typography>
       </div>
       <div style={cell}>
         <CircularProgress size={44} color={theme.colors.error} />
-        <Typography variant="labelSmall">error</Typography>
+        <Typography variant="caption">error</Typography>
       </div>
     </div>
   );
@@ -99,10 +99,10 @@ export const LoadingPane = () => (
           marginTop: 20,
         }}
       >
-        <Typography variant="titleMedium" style={{ textAlign: "center" }}>
+        <Typography variant="subtitle1" style={{ textAlign: "center" }}>
           Syncing your workspace
         </Typography>
-        <Typography variant="bodySmall" style={{ textAlign: "center" }}>
+        <Typography variant="caption" style={{ textAlign: "center" }}>
           Fetching 42 projects and 1,204 components
         </Typography>
       </div>
@@ -123,7 +123,7 @@ export const InlineWithLabel = () => (
       }}
     >
       <CircularProgress size={20} strokeWidth={2} />
-      <Typography variant="bodyMedium">Checking availability…</Typography>
+      <Typography variant="body2">Checking availability…</Typography>
     </div>
     <div
       style={{
@@ -134,7 +134,7 @@ export const InlineWithLabel = () => (
       }}
     >
       <CircularProgress size={20} strokeWidth={2} />
-      <Typography variant="bodyMedium">Verifying payment method…</Typography>
+      <Typography variant="body2">Verifying payment method…</Typography>
     </div>
   </div>
 );

@@ -26,8 +26,8 @@ export const Elevations = () => (
     {[0, 1, 2, 3, 4, 5].map((e) => (
       <View key={e} style={tile}>
         <Paper elevation={e} style={{ flex: 1 }}>
-          <Typography variant="labelLarge">Level {e}</Typography>
-          <Typography variant="bodySmall">surface</Typography>
+          <Typography variant="subtitle2">Level {e}</Typography>
+          <Typography variant="caption">surface</Typography>
         </Paper>
       </View>
     ))}
@@ -37,14 +37,14 @@ export const Elevations = () => (
 export const Outlined = () => (
   <View style={{ width: 380, flexDirection: "row" }}>
     <Paper elevation={0} outline style={{ flex: 1 }}>
-      <Typography variant="titleSmall">API key</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle2">API key</Typography>
+      <Typography variant="caption">
         Rotates automatically every 90 days.
       </Typography>
       <View style={{ height: 12 }} />
       <Divider contentSpacing={0} />
       <View style={{ height: 12 }} />
-      <Typography variant="bodyMedium">gl_live_8f2a·····c41d</Typography>
+      <Typography variant="body2">gl_live_8f2a·····c41d</Typography>
     </Paper>
   </View>
 );
@@ -52,8 +52,8 @@ export const Outlined = () => (
 export const Glow = () => (
   <View style={{ width: 380, flexDirection: "row" }}>
     <Paper elevation={3} glow style={{ flex: 1 }}>
-      <Typography variant="titleMedium">Pro plan</Typography>
-      <Typography variant="bodySmall">
+      <Typography variant="subtitle1">Pro plan</Typography>
+      <Typography variant="caption">
         Unlimited seats and priority support.
       </Typography>
       <View style={{ height: 16 }} />
@@ -79,17 +79,15 @@ export const AsPanel = () => (
           alignItems: "center",
         }}
       >
-        <Typography variant="titleMedium">Build #418</Typography>
+        <Typography variant="subtitle1">Build #418</Typography>
         <StatusBadge label="Passed" type="success" />
       </View>
       <View style={{ height: 12 }} />
       <Divider contentSpacing={0} />
       <View style={{ height: 12 }} />
-      <Typography variant="bodyMedium">master · 75b8c46</Typography>
+      <Typography variant="body2">master · 75b8c46</Typography>
       <View style={{ height: 4 }} />
-      <Typography variant="bodySmall">
-        Finished in 2m 14s · 312 tests
-      </Typography>
+      <Typography variant="caption">Finished in 2m 14s · 312 tests</Typography>
     </Paper>
   </View>
 );

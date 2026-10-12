@@ -370,10 +370,10 @@ const PickerSurface = ({
     <View style={[styles.surface, style]} testID={testID}>
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Typography variant="labelMedium" style={styles.supporting}>
+          <Typography variant="caption" style={styles.supporting}>
             {supportingText}
           </Typography>
-          <Typography variant="headlineSmall" style={styles.headline}>
+          <Typography variant="h5" style={styles.headline}>
             {headline}
           </Typography>
         </View>
@@ -418,32 +418,32 @@ export default PickerSurface;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    surface: { paddingTop: theme.spacing.m },
+    surface: { paddingTop: theme.spacing(2) },
     header: {
       flexDirection: "row",
       alignItems: "flex-end",
-      gap: theme.spacing.s,
-      paddingHorizontal: theme.spacing.m,
-      paddingBottom: theme.spacing.m,
+      gap: theme.spacing(1),
+      paddingHorizontal: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
     },
-    headerText: { flex: 1, gap: theme.spacing.xs },
+    headerText: { flex: 1, gap: theme.spacing(0.5) },
     supporting: { color: theme.colors.onSurfaceVariant },
     headline: { color: theme.colors.onSurface },
     body: {
-      paddingHorizontal: theme.spacing.s,
-      paddingVertical: theme.spacing.m,
+      paddingHorizontal: theme.spacing(1),
+      paddingVertical: theme.spacing(2),
       alignItems: "center",
     },
     textEntry: {
       width: "100%",
-      paddingHorizontal: theme.spacing.s,
+      paddingHorizontal: theme.spacing(1),
     },
     footer: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingHorizontal: theme.spacing.m,
-      paddingBottom: theme.spacing.m,
+      gap: theme.spacing(1),
+      paddingHorizontal: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
     },
     footerSpacer: { flex: 1 },
   });

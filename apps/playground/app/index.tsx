@@ -126,13 +126,13 @@ export default function Home() {
                         color={theme.colors.primary}
                       />
                       <Typography
-                        variant="titleSmall"
+                        variant="subtitle2"
                         style={{ color: theme.colors.onSurface }}
                       >
                         {route.label}
                       </Typography>
                       <Typography
-                        variant="bodySmall"
+                        variant="caption"
                         style={{ color: theme.colors.onSurfaceVariant }}
                       >
                         {route.summary}
@@ -191,7 +191,7 @@ const Bullet = ({
     <View style={styles.bullet}>
       <Icons name={icon as never} size={18} color={theme.colors.primary} />
       <Typography
-        variant="bodyMedium"
+        variant="body2"
         style={{ color: theme.colors.onSurfaceVariant, flex: 1 }}
       >
         {children}
@@ -205,12 +205,12 @@ const makeStyles = (theme: Theme) =>
     actions: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
-    stats: { flexDirection: "row", flexWrap: "wrap", gap: theme.spacing.m },
+    stats: { flexDirection: "row", flexWrap: "wrap", gap: theme.spacing(2) },
     statsStacked: { flexDirection: "column" },
     statItem: { flexGrow: 1, flexBasis: 180 },
-    cards: { flexDirection: "row", flexWrap: "wrap", gap: theme.spacing.m },
+    cards: { flexDirection: "row", flexWrap: "wrap", gap: theme.spacing(2) },
     cardSlot: { flexGrow: 1, flexBasis: "100%" },
     cardSlotWide: { flexBasis: 240, maxWidth: 320 },
     // Purely visual. The sizing lives on the slot: a Pressable under a
@@ -218,17 +218,17 @@ const makeStyles = (theme: Theme) =>
     // would read as height once it is a column child rather than a row item.
     card: {
       flex: 1,
-      gap: theme.spacing.xs,
-      padding: theme.spacing.l,
+      gap: theme.spacing(0.5),
+      padding: theme.spacing(3),
       borderRadius: theme.shape.large,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
       backgroundColor: theme.colors.surfaceContainerLow,
     },
-    bullets: { gap: theme.spacing.m },
+    bullets: { gap: theme.spacing(2) },
     bullet: {
       flexDirection: "row",
       alignItems: "flex-start",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
   });

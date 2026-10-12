@@ -32,15 +32,15 @@ export const Variants = () => (
   <View style={row}>
     <View style={stack}>
       <Avatar name="Ada Lovelace" size={56} variant="circular" />
-      <Typography variant="labelSmall">circular</Typography>
+      <Typography variant="caption">circular</Typography>
     </View>
     <View style={stack}>
       <Avatar name="Grace Hopper" size={56} variant="rounded" />
-      <Typography variant="labelSmall">rounded</Typography>
+      <Typography variant="caption">rounded</Typography>
     </View>
     <View style={stack}>
       <Avatar name="Alan Turing" size={56} variant="square" />
-      <Typography variant="labelSmall">square</Typography>
+      <Typography variant="caption">square</Typography>
     </View>
   </View>
 );
@@ -49,19 +49,19 @@ export const Statuses = () => (
   <View style={row}>
     <View style={stack}>
       <Avatar name="Ada Lovelace" size={56} status="online" />
-      <Typography variant="labelSmall">online</Typography>
+      <Typography variant="caption">online</Typography>
     </View>
     <View style={stack}>
       <Avatar name="Grace Hopper" size={56} status="busy" />
-      <Typography variant="labelSmall">busy</Typography>
+      <Typography variant="caption">busy</Typography>
     </View>
     <View style={stack}>
       <Avatar name="Alan Turing" size={56} status="away" />
-      <Typography variant="labelSmall">away</Typography>
+      <Typography variant="caption">away</Typography>
     </View>
     <View style={stack}>
       <Avatar name="Katherine Johnson" size={56} status="offline" />
-      <Typography variant="labelSmall">offline</Typography>
+      <Typography variant="caption">offline</Typography>
     </View>
   </View>
 );
@@ -70,15 +70,15 @@ export const Fallbacks = () => (
   <View style={row}>
     <View style={stack}>
       <Avatar name="Marie Curie" size={56} />
-      <Typography variant="labelSmall">initials</Typography>
+      <Typography variant="caption">initials</Typography>
     </View>
     <View style={stack}>
       <Avatar size={56} />
-      <Typography variant="labelSmall">default icon</Typography>
+      <Typography variant="caption">default icon</Typography>
     </View>
     <View style={stack}>
       <Avatar size={56} icon="office-building-outline" variant="rounded" />
-      <Typography variant="labelSmall">icon</Typography>
+      <Typography variant="caption">icon</Typography>
     </View>
     <View style={stack}>
       <Avatar
@@ -87,7 +87,7 @@ export const Fallbacks = () => (
         backgroundColor="#00629E"
         textColor="#FFFFFF"
       />
-      <Typography variant="labelSmall">custom colors</Typography>
+      <Typography variant="caption">custom colors</Typography>
     </View>
   </View>
 );
@@ -105,8 +105,8 @@ export const TeamRoster = () => (
       >
         <Avatar name={member.name} size={44} status={member.status as any} />
         <View style={{ flexDirection: "column" }}>
-          <Typography variant="titleSmall">{member.name}</Typography>
-          <Typography variant="bodySmall">{member.role}</Typography>
+          <Typography variant="subtitle2">{member.name}</Typography>
+          <Typography variant="caption">{member.role}</Typography>
         </View>
       </View>
     ))}

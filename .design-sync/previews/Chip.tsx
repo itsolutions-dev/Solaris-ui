@@ -25,7 +25,7 @@ export const Modes = () => (
 
 export const FilterRow = () => (
   <div style={stack}>
-    <Typography variant="labelLarge">Filter invoices</Typography>
+    <Typography variant="subtitle2">Filter invoices</Typography>
     <div style={row}>
       <Chip
         label="Paid"
@@ -53,7 +53,7 @@ export const FilterRow = () => (
 
 export const Removable = () => (
   <div style={stack}>
-    <Typography variant="labelLarge">Recipients</Typography>
+    <Typography variant="subtitle2">Recipients</Typography>
     <div style={row}>
       <Chip
         label="marta.rossi@example.com"

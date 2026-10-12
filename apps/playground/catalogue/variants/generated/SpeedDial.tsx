@@ -39,16 +39,16 @@ const actions: SpeedDialAction[] = [
 export const OnASurface = () => (
   <View style={screen}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">Shared drive</Typography>
-      <Typography variant="bodySmall">Team Design · 128 files</Typography>
+      <Typography variant="subtitle1">Shared drive</Typography>
+      <Typography variant="caption">Team Design · 128 files</Typography>
       <View style={{ height: 12 }} />
       <Divider contentSpacing={0} />
       <View style={{ height: 12 }} />
-      <Typography variant="bodyMedium">Brand guidelines.pdf</Typography>
+      <Typography variant="body2">Brand guidelines.pdf</Typography>
       <View style={{ height: 8 }} />
-      <Typography variant="bodyMedium">Q3 roadmap.key</Typography>
+      <Typography variant="body2">Q3 roadmap.key</Typography>
       <View style={{ height: 8 }} />
-      <Typography variant="bodyMedium">Component audit.xlsx</Typography>
+      <Typography variant="body2">Component audit.xlsx</Typography>
       <SpeedDial mainIcon="plus" actions={actions} />
     </Paper>
   </View>
@@ -58,8 +58,8 @@ export const OnASurface = () => (
 export const Expanded = () => (
   <View style={{ ...screen, height: 320 }}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">Shared drive</Typography>
-      <Typography variant="bodySmall">Team Design · 128 files</Typography>
+      <Typography variant="subtitle1">Shared drive</Typography>
+      <Typography variant="caption">Team Design · 128 files</Typography>
       <SpeedDial mainIcon="plus" actions={actions} defaultOpen />
     </Paper>
   </View>
@@ -68,11 +68,11 @@ export const Expanded = () => (
 export const BottomLeft = () => (
   <View style={{ ...screen, height: 200 }}>
     <Paper elevation={1} outline style={{ flex: 1 }}>
-      <Typography variant="labelMedium">
+      <Typography variant="caption">
         position=&quot;bottom-left&quot;
       </Typography>
       <View style={{ height: 8 }} />
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         The trigger anchors to the chosen corner; the labelled actions expand
         above it on press.
       </Typography>

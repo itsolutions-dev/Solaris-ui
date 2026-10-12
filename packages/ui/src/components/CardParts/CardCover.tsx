@@ -53,10 +53,10 @@ export default CardCover;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     bleed: {
-      // Card applies spacing.m padding; pull the media back out to the edges.
-      marginHorizontal: -theme.spacing.m,
-      marginTop: -theme.spacing.m,
-      marginBottom: theme.spacing.m,
+      // Card applies spacing(2) padding; pull the media back out to the edges.
+      marginHorizontal: -theme.spacing(2),
+      marginTop: -theme.spacing(2),
+      marginBottom: theme.spacing(2),
       overflow: "hidden",
     },
   });

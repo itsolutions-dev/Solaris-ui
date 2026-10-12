@@ -25,30 +25,30 @@ export const Onboarding = () => (
     <Carousel showDots>
       <Card variant="filled" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="titleMedium">
+          <Typography style={{ textAlign: "center" }} variant="subtitle1">
             Track every shipment
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Live courier updates land in one timeline, no tab hopping.
           </Typography>
         </View>
       </Card>
       <Card variant="filled" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="titleMedium">
+          <Typography style={{ textAlign: "center" }} variant="subtitle1">
             Invoice in two taps
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Turn a delivered order into a sent invoice without retyping it.
           </Typography>
         </View>
       </Card>
       <Card variant="filled" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="titleMedium">
+          <Typography style={{ textAlign: "center" }} variant="subtitle1">
             Share with your team
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Invite teammates as guests and scope them to single projects.
           </Typography>
         </View>
@@ -62,30 +62,30 @@ export const WithArrows = () => (
     <Carousel showArrows showDots>
       <Card variant="outlined" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="headlineSmall">
+          <Typography style={{ textAlign: "center" }} variant="h5">
             €18,420
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Revenue, March 2026
           </Typography>
         </View>
       </Card>
       <Card variant="outlined" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="headlineSmall">
+          <Typography style={{ textAlign: "center" }} variant="h5">
             312
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Orders shipped
           </Typography>
         </View>
       </Card>
       <Card variant="outlined" style={{ width: "100%" }}>
         <View style={slide}>
-          <Typography style={{ textAlign: "center" }} variant="headlineSmall">
+          <Typography style={{ textAlign: "center" }} variant="h5">
             4.7 / 5
           </Typography>
-          <Typography style={{ textAlign: "center" }} variant="bodySmall">
+          <Typography style={{ textAlign: "center" }} variant="caption">
             Average review score
           </Typography>
         </View>
@@ -116,9 +116,9 @@ export const Testimonials = () => (
             <Avatar name={person.name} size={44} />
             <Typography
               style={{ textAlign: "center" }}
-              variant="bodyMedium"
+              variant="body2"
             >{`“${person.quote}”`}</Typography>
-            <Typography style={{ textAlign: "center" }} variant="labelSmall">
+            <Typography style={{ textAlign: "center" }} variant="caption">
               {`${person.name} — ${person.role}`}
             </Typography>
           </View>

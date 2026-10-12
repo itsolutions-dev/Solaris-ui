@@ -11,9 +11,9 @@ export const Spacing = () => (
         bg="surfaceContainerLow"
         radius="medium"
       >
-        <Typography variant="labelSmall">spacing=&quot;{gap}&quot;</Typography>
-        <Typography variant="bodySmall">First line</Typography>
-        <Typography variant="bodySmall">Second line</Typography>
+        <Typography variant="caption">spacing=&quot;{gap}&quot;</Typography>
+        <Typography variant="caption">First line</Typography>
+        <Typography variant="caption">Second line</Typography>
       </VStack>
     ))}
   </VStack>
@@ -30,7 +30,7 @@ export const Alignment = () => (
         bg="surfaceContainerLow"
         radius="medium"
       >
-        <Typography variant="labelSmall">align=&quot;{align}&quot;</Typography>
+        <Typography variant="caption">align=&quot;{align}&quot;</Typography>
         <Button mode="tonal" onPress={() => {}}>
           Continue
         </Button>
@@ -41,8 +41,8 @@ export const Alignment = () => (
 
 export const FormColumn = () => (
   <VStack spacing="s" p="m" bg="surfaceContainerLow" radius="large" width={360}>
-    <Typography variant="titleMedium">Delete workspace</Typography>
-    <Typography variant="bodyMedium">
+    <Typography variant="subtitle1">Delete workspace</Typography>
+    <Typography variant="body2">
       This removes every component, token and screen. It cannot be undone.
     </Typography>
     <VStack spacing="xs" align="stretch">

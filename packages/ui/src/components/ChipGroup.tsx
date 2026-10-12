@@ -101,6 +101,6 @@ export default ChipGroup;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    row: { flexDirection: "row", gap: theme.spacing.s },
+    row: { flexDirection: "row", gap: theme.spacing(1) },
     wrap: { flexWrap: "wrap" },
   });

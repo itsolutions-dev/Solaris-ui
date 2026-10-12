@@ -157,14 +157,14 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
               </View>
               <View>
                 <Typography
-                  variant="titleMedium"
+                  variant="subtitle1"
                   style={{ color: theme.colors.onSurface }}
                 >
                   Solaris
                 </Typography>
                 {!layout.isCompact && (
                   <Typography
-                    variant="labelSmall"
+                    variant="caption"
                     style={{ color: theme.colors.onSurfaceVariant }}
                   >
                     Material for React Native
@@ -195,7 +195,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
               color={theme.colors.onSurfaceVariant}
             />
             <Typography
-              variant="bodySmall"
+              variant="caption"
               style={{ color: theme.colors.onSurfaceVariant }}
             >
               Search
@@ -303,7 +303,7 @@ const NavSurface = ({
       >
         {showLabels && (
           <Typography
-            variant="labelSmall"
+            variant="caption"
             style={[
               styles.navHeading,
               { color: theme.colors.onSurfaceVariant },
@@ -351,7 +351,7 @@ const NavSurface = ({
                         }
                       />
                       <Typography
-                        variant="labelLarge"
+                        variant="subtitle2"
                         style={{
                           color: selected
                             ? theme.colors.onPrimaryContainer
@@ -388,7 +388,7 @@ const NavSurface = ({
                         />
                       </View>
                       <Typography
-                        variant="labelSmall"
+                        variant="caption"
                         style={{
                           color: selected
                             ? theme.colors.onSurface
@@ -426,7 +426,7 @@ const NavFooter = ({ showLabels }: { showLabels: boolean }) => {
     <View style={[styles.navFooter, !showLabels && styles.navFooterRail]}>
       {showLabels && (
         <Typography
-          variant="labelSmall"
+          variant="caption"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           {LIBRARY_NAME} v{LIBRARY_VERSION}
@@ -515,9 +515,9 @@ const makeStyles = (theme: Theme) =>
     topBar: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
-      paddingHorizontal: theme.spacing.s,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(0.5),
+      paddingHorizontal: theme.spacing(1),
+      paddingVertical: theme.spacing(1),
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
       backgroundColor: theme.colors.surface,
@@ -525,9 +525,9 @@ const makeStyles = (theme: Theme) =>
     brand: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingHorizontal: theme.spacing.s,
-      paddingVertical: theme.spacing.xs,
+      gap: theme.spacing(1),
+      paddingHorizontal: theme.spacing(1),
+      paddingVertical: theme.spacing(0.5),
       borderRadius: theme.shape.medium,
     },
     brandMark: {
@@ -542,10 +542,10 @@ const makeStyles = (theme: Theme) =>
     searchButton: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingLeft: theme.spacing.m,
-      paddingRight: theme.spacing.s,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(1),
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(1),
+      paddingVertical: theme.spacing(1),
       borderRadius: 999,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
@@ -566,22 +566,22 @@ const makeStyles = (theme: Theme) =>
       borderRightWidth: 1,
       borderRightColor: theme.colors.outlineVariant,
     },
-    navScroll: { paddingVertical: theme.spacing.m, gap: theme.spacing.xs },
+    navScroll: { paddingVertical: theme.spacing(2), gap: theme.spacing(0.5) },
     navHeading: {
       textTransform: "uppercase",
       letterSpacing: 1.4,
       fontWeight: "700",
-      paddingHorizontal: theme.spacing.l,
-      paddingBottom: theme.spacing.s,
+      paddingHorizontal: theme.spacing(3),
+      paddingBottom: theme.spacing(1),
     },
     // Material 3 drawer destination: a 56dp fully rounded container.
     drawerItem: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
       height: 56,
-      paddingHorizontal: theme.spacing.l,
-      marginHorizontal: theme.spacing.s,
+      paddingHorizontal: theme.spacing(3),
+      marginHorizontal: theme.spacing(1),
       borderRadius: 28,
       borderWidth: 1,
       borderColor: "transparent",
@@ -589,7 +589,7 @@ const makeStyles = (theme: Theme) =>
     railItem: {
       alignItems: "center",
       gap: 4,
-      paddingVertical: theme.spacing.xs,
+      paddingVertical: theme.spacing(0.5),
     },
     // Material 3 rail indicator: 56×32 behind the icon, label outside it.
     railIndicator: {
@@ -600,17 +600,17 @@ const makeStyles = (theme: Theme) =>
       justifyContent: "center",
     },
     navFooter: {
-      gap: theme.spacing.xs,
-      paddingHorizontal: theme.spacing.l,
-      paddingVertical: theme.spacing.m,
+      gap: theme.spacing(0.5),
+      paddingHorizontal: theme.spacing(3),
+      paddingVertical: theme.spacing(2),
       borderTopWidth: 1,
       borderTopColor: theme.colors.outlineVariant,
     },
     navFooterRail: {
       alignItems: "center",
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
     },
-    navFooterLinks: { flexDirection: "row", gap: theme.spacing.xs },
+    navFooterLinks: { flexDirection: "row", gap: theme.spacing(0.5) },
     content: { flex: 1 },
     scrim: {
       position: "absolute",

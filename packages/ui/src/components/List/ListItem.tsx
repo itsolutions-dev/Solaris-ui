@@ -87,7 +87,7 @@ export default ListItem;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     outerContainer: {
-      padding: theme.spacing.xs,
+      padding: theme.spacing(0.5),
     },
     itemContainer: {
       backgroundColor: theme.colors.primaryContainer,
@@ -101,9 +101,9 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
-      gap: theme.spacing.m,
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
+      gap: theme.spacing(2),
     },
     textBlock: {
       flex: 1,
@@ -115,8 +115,8 @@ const makeStyles = (theme: Theme) =>
       justifyContent: "center",
     },
     itemText: {
-      ...theme.typography.titleMedium,
-      padding: theme.spacing.m,
+      ...theme.typography.subtitle1,
+      padding: theme.spacing(2),
       textAlign: "center",
       color: theme.colors.primary,
     },
@@ -127,7 +127,7 @@ const makeStyles = (theme: Theme) =>
       color: theme.colors.onPrimaryContainer,
     },
     secondaryText: {
-      ...theme.typography.bodyMedium,
+      ...theme.typography.body2,
       marginTop: 2,
       color: theme.colors.onSurfaceVariant,
     },

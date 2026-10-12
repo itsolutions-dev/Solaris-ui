@@ -42,7 +42,7 @@ export const ShortcutsDialog = ({
               <Text style={styles.key}>{shortcut.label}</Text>
             </View>
             <Typography
-              variant="bodyMedium"
+              variant="body2"
               style={{ color: theme.colors.onSurfaceVariant, flex: 1 }}
             >
               {shortcut.description}
@@ -56,11 +56,11 @@ export const ShortcutsDialog = ({
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    list: { gap: theme.spacing.s, minWidth: 280 },
+    list: { gap: theme.spacing(1), minWidth: 280 },
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
     },
     keys: { flexDirection: "row", gap: 4, minWidth: 72 },
     key: {

@@ -58,7 +58,7 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
     },
     slot: {
       justifyContent: "center",
@@ -67,11 +67,11 @@ const makeStyles = (theme: Theme) =>
       flex: 1,
     },
     title: {
-      ...theme.typography.titleMedium,
+      ...theme.typography.subtitle1,
       color: theme.colors.onSurface,
     },
     subtitle: {
-      ...theme.typography.bodyMedium,
+      ...theme.typography.body2,
       color: theme.colors.onSurfaceVariant,
     },
   });

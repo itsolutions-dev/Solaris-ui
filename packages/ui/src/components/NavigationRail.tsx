@@ -100,14 +100,15 @@ const NavigationRail = ({
                     ]}
                   >
                     <Icon
-                      source={icon}
-                      size={24}
+                      fontSize={24}
                       color={
                         active
                           ? theme.colors.onPrimaryContainer
                           : theme.colors.onSurfaceVariant
                       }
-                    />
+                    >
+                      {icon}
+                    </Icon>
                     {item.badgeCount != null && item.badgeCount > 0 && (
                       <View style={styles.badge}>
                         <Badge count={item.badgeCount} />
@@ -116,7 +117,7 @@ const NavigationRail = ({
                   </View>
                   {showLabel && (
                     <Typography
-                      variant="labelMedium"
+                      variant="caption"
                       numberOfLines={1}
                       style={{
                         color: active
@@ -146,26 +147,26 @@ const makeStyles = (theme: Theme) =>
       width: RAIL_WIDTH,
       alignSelf: "stretch",
       alignItems: "center",
-      paddingVertical: theme.spacing.m,
-      gap: theme.spacing.m,
+      paddingVertical: theme.spacing(2),
+      gap: theme.spacing(2),
       backgroundColor: theme.colors.surface,
     },
     header: {
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     items: {
       flex: 1,
       alignSelf: "stretch",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     item: {
       alignSelf: "stretch",
       alignItems: "center",
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
       minHeight: 56,
-      paddingVertical: theme.spacing.xs,
+      paddingVertical: theme.spacing(0.5),
       ...Platform.select({ web: { cursor: "pointer" } }),
     },
     indicator: {
@@ -190,6 +191,6 @@ const makeStyles = (theme: Theme) =>
     },
     footer: {
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
   });

@@ -61,7 +61,7 @@ const FormControl = ({
         {!!label && (
           <Text
             style={[
-              theme.typography.bodySmall,
+              theme.typography.caption,
               styles.label,
               {
                 color: error
@@ -90,7 +90,7 @@ export default FormControl;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    wrapper: { marginBottom: theme.spacing.m, width: "100%" },
-    label: { marginBottom: theme.spacing.xs, marginLeft: theme.spacing.xs },
+    wrapper: { marginBottom: theme.spacing(2), width: "100%" },
+    label: { marginBottom: theme.spacing(0.5), marginLeft: theme.spacing(0.5) },
     disabled: { opacity: 0.38 },
   });

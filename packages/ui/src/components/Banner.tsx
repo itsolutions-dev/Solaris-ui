@@ -65,7 +65,7 @@ const Banner = ({
             style={styles.leadingIcon}
           />
         )}
-        <Text style={[theme.typography.bodyMedium, styles.messageText]}>
+        <Text style={[theme.typography.body2, styles.messageText]}>
           {message}
         </Text>
         {dismissable && onDismiss && (

@@ -518,7 +518,7 @@ const Calendar = ({
           >
             <Text
               style={[
-                theme.typography.bodyMedium,
+                theme.typography.body2,
                 {
                   color: selected
                     ? theme.colors.onPrimary
@@ -559,7 +559,7 @@ const Calendar = ({
         <Text
           key={`${name}-${index}`}
           style={[
-            theme.typography.labelSmall,
+            theme.typography.caption,
             styles.weekdayLabel,
             { color: theme.colors.onSurfaceVariant },
           ]}
@@ -615,7 +615,7 @@ const Calendar = ({
           >
             <Text
               style={[
-                theme.typography.titleMedium,
+                theme.typography.subtitle1,
                 { color: theme.colors.onSurface },
               ]}
             >
@@ -640,7 +640,7 @@ const Calendar = ({
         >
           <Text
             style={[
-              theme.typography.titleMedium,
+              theme.typography.subtitle1,
               { color: theme.colors.onSurface },
             ]}
           >
@@ -702,7 +702,7 @@ const Calendar = ({
             <View style={styles.monthItem}>
               <Text
                 style={[
-                  theme.typography.titleSmall,
+                  theme.typography.subtitle2,
                   styles.monthTitle,
                   { color: theme.colors.onSurfaceVariant },
                 ]}
@@ -755,7 +755,7 @@ const Calendar = ({
           >
             <Text
               style={[
-                theme.typography.bodyMedium,
+                theme.typography.body2,
                 {
                   color: active
                     ? theme.colors.onPrimary
@@ -802,7 +802,7 @@ const Calendar = ({
             >
               <Text
                 style={[
-                  theme.typography.bodyMedium,
+                  theme.typography.body2,
                   {
                     color: active
                       ? theme.colors.onPrimary
@@ -865,7 +865,7 @@ const Calendar = ({
           >
             <Text
               style={[
-                theme.typography.labelLarge,
+                theme.typography.subtitle2,
                 { color: theme.colors.primary },
               ]}
             >
@@ -899,27 +899,27 @@ const isYearOutOfRange = (year: number, minimum?: Date, maximum?: Date) =>
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
-      width: CELL * 7 + theme.spacing.s * 2,
-      paddingHorizontal: theme.spacing.s,
-      paddingVertical: theme.spacing.s,
+      width: CELL * 7 + theme.spacing(1) * 2,
+      paddingHorizontal: theme.spacing(1),
+      paddingVertical: theme.spacing(1),
     },
     header: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: theme.spacing.s,
+      marginBottom: theme.spacing(1),
     },
     headerCenter: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     headerButton: {
       flexDirection: "row",
       alignItems: "center",
       gap: 2,
       borderRadius: theme.shape.small,
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
       paddingVertical: 2,
     },
     navButton: {
@@ -940,7 +940,7 @@ const makeStyles = (theme: Theme) =>
     monthTitle: {
       height: MONTH_TITLE_HEIGHT,
       lineHeight: MONTH_TITLE_HEIGHT,
-      paddingHorizontal: theme.spacing.xs,
+      paddingHorizontal: theme.spacing(0.5),
     },
     grid: { flexDirection: "row", flexWrap: "wrap" },
     cellWrapper: {
@@ -981,12 +981,12 @@ const makeStyles = (theme: Theme) =>
       flexDirection: "row",
       justifyContent: "flex-end",
       borderTopWidth: 1,
-      marginTop: theme.spacing.s,
-      paddingTop: theme.spacing.s,
+      marginTop: theme.spacing(1),
+      paddingTop: theme.spacing(1),
     },
     footerButton: {
       paddingVertical: 6,
-      paddingHorizontal: theme.spacing.s,
+      paddingHorizontal: theme.spacing(1),
       borderRadius: theme.shape.small,
     },
     faded: { opacity: 0.38 },

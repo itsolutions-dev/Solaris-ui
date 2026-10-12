@@ -106,7 +106,7 @@ const Pagination = ({
               <View style={styles.itemInner}>
                 <Text
                   style={[
-                    theme.typography.bodyMedium,
+                    theme.typography.body2,
                     { color: theme.colors.onSurfaceVariant },
                   ]}
                 >
@@ -141,7 +141,7 @@ const Pagination = ({
               >
                 <Text
                   style={[
-                    theme.typography.labelLarge,
+                    theme.typography.subtitle2,
                     {
                       color: active
                         ? theme.colors.onPrimary

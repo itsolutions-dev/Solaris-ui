@@ -12,8 +12,8 @@ const Dialog = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Component library</Typography>
-      <Typography variant="bodyMedium">
+      <Typography variant="h5">Component library</Typography>
+      <Typography variant="body2">
         34 components · last synced 4 minutes ago
       </Typography>
       <Button mode="filled" iconName="publish" onPress={show}>
@@ -37,22 +37,20 @@ const RichContent = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Team</Typography>
-      <Typography variant="bodyMedium">
-        3 members · 2 pending invites
-      </Typography>
+      <Typography variant="h5">Team</Typography>
+      <Typography variant="body2">3 members · 2 pending invites</Typography>
       <Button mode="tonal" iconName="account-plus-outline" onPress={show}>
         Invite your team
       </Button>
       <Modal visible={open} title="Invite your team" onDismiss={hide}>
         <View style={demo.stack}>
-          <Typography variant="bodyMedium">
+          <Typography variant="body2">
             Everyone you invite gets read access to the shared component
             library. You can raise their role later from Settings.
           </Typography>
-          <Typography variant="labelLarge">Invitees</Typography>
-          <Typography variant="bodySmall">marta@itsol.it · Viewer</Typography>
-          <Typography variant="bodySmall">luca@itsol.it · Viewer</Typography>
+          <Typography variant="subtitle2">Invitees</Typography>
+          <Typography variant="caption">marta@itsol.it · Viewer</Typography>
+          <Typography variant="caption">luca@itsol.it · Viewer</Typography>
           <Divider contentSpacing={0} />
           <View
             style={{ flexDirection: "row", gap: 8, justifyContent: "flex-end" }}
@@ -79,8 +77,8 @@ const Untitled = () => {
 
   return (
     <View style={demo.panel}>
-      <Typography variant="headlineSmall">Release notes</Typography>
-      <Typography variant="bodyMedium">@its/solaris-ui 0.1.0</Typography>
+      <Typography variant="h5">Release notes</Typography>
+      <Typography variant="body2">@its/solaris-ui 0.1.0</Typography>
       <Button mode="outlined" iconName="text-box-outline" onPress={show}>
         What changed
       </Button>

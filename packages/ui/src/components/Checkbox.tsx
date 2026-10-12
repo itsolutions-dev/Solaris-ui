@@ -44,7 +44,7 @@ const Checkbox = ({
     return (
       <Text
         style={[
-          theme.typography.bodyLarge,
+          theme.typography.body1,
           { color: theme.colors.onSurface },
           labelPosition === "left" ? { marginRight: 12 } : { marginLeft: 12 },
         ]}

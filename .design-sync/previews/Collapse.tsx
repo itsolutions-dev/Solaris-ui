@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Collapse, Typography, VStack } from "@its/solaris-ui";
 
 const body = (
-  <Typography variant="bodyMedium">
+  <Typography variant="body2">
     Invoices are issued on the first working day of each month and charged to
     the card on file. Changing the card mid-cycle applies from the next invoice;
     the current one is already committed.
@@ -12,13 +12,11 @@ const body = (
 export const OpenAndClosed = () => (
   <VStack spacing="m" width={380}>
     <Box bg="surfaceContainerLow" p="m" radius="medium">
-      <Typography variant="labelSmall">open</Typography>
+      <Typography variant="caption">open</Typography>
       <Collapse open>{body}</Collapse>
     </Box>
     <Box bg="surfaceContainerLow" p="m" radius="medium">
-      <Typography variant="labelSmall">
-        closed — height animates to 0
-      </Typography>
+      <Typography variant="caption">closed — height animates to 0</Typography>
       <Collapse open={false}>{body}</Collapse>
     </Box>
   </VStack>
@@ -27,7 +25,7 @@ export const OpenAndClosed = () => (
 /** `collapsedHeight` leaves a teaser visible instead of hiding everything. */
 export const Peek = () => (
   <Box bg="surfaceContainerLow" p="m" radius="medium" width={380}>
-    <Typography variant="labelSmall">collapsedHeight = 40</Typography>
+    <Typography variant="caption">collapsedHeight = 40</Typography>
     <Collapse open={false} collapsedHeight={40} animateOpacity={false}>
       {body}
     </Collapse>
@@ -44,7 +42,7 @@ export const Interactive = () => {
       radius="medium"
       width={380}
     >
-      <Typography variant="titleMedium">Billing preferences</Typography>
+      <Typography variant="subtitle1">Billing preferences</Typography>
       <Collapse open={open}>{body}</Collapse>
       <Button mode="text" onPress={() => setOpen((o) => !o)}>
         {open ? "Show less" : "Show more"}

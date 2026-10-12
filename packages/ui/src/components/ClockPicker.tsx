@@ -170,7 +170,7 @@ const ClockPicker = ({
           selectTextOnFocus
           style={[
             shared,
-            theme.typography.displayMedium,
+            theme.typography.h3,
             styles.readoutText,
             { color: textColor },
           ]}
@@ -192,7 +192,7 @@ const ClockPicker = ({
       >
         <Text
           style={[
-            theme.typography.displayMedium,
+            theme.typography.h3,
             styles.readoutText,
             { color: textColor },
           ]}
@@ -214,7 +214,7 @@ const ClockPicker = ({
         )}
         <Text
           style={[
-            theme.typography.displayMedium,
+            theme.typography.h3,
             styles.separator,
             { color: theme.colors.onSurface },
           ]}
@@ -267,7 +267,7 @@ const ClockPicker = ({
                 >
                   <Text
                     style={[
-                      theme.typography.titleMedium,
+                      theme.typography.subtitle1,
                       {
                         color: active
                           ? theme.colors.onPrimaryContainer
@@ -312,11 +312,11 @@ const READOUT_HEIGHT = 76;
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    container: { alignItems: "center", gap: theme.spacing.l },
+    container: { alignItems: "center", gap: theme.spacing(3) },
     readoutRow: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
     },
     readout: {
       width: READOUT_WIDTH,
@@ -326,9 +326,9 @@ const makeStyles = (theme: Theme) =>
       justifyContent: "center",
     },
     readoutText: { textAlign: "center", lineHeight: READOUT_HEIGHT },
-    separator: { width: theme.spacing.l, textAlign: "center" },
+    separator: { width: theme.spacing(3), textAlign: "center" },
     periodGroup: {
-      marginLeft: theme.spacing.s,
+      marginLeft: theme.spacing(1),
       borderWidth: 1,
       borderRadius: theme.shape.small,
       overflow: "hidden",
@@ -339,6 +339,6 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    dial: { marginBottom: theme.spacing.s },
+    dial: { marginBottom: theme.spacing(1) },
     faded: { opacity: 0.38 },
   });

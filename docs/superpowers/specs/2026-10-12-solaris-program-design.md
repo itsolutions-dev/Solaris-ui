@@ -50,8 +50,11 @@ Each sub-project has its own spec, plan and implementation.
    Also in scope: `variant` values (Button `contained` default, `outlined`, `text`, M3 extras
    such as `tonal` kept as extra values), `color` with the six MUI colours, Typography
    variants `h1`–`h6`, `subtitle1/2`, `body1/2` (default), `caption`, `overline`, `button`
-   with `color` accepting palette paths (`"text.secondary"`), `theme.spacing(n)` = 8·n, the
-   organization's component defaults (Paper elevation 3), docs URLs following the new names.
+   **at MUI's own sizes** (h1 96 … `button` 14 UPPERCASE; decided 2026-10-12), with `color`
+   accepting palette paths (`"text.secondary"`), `theme.spacing(n)` = 8·n, the organization's
+   component defaults (Paper elevation 3), docs URLs following the new names. ButtonGroup
+   becomes **SegmentedButtons** (MUI's ButtonGroup is a layout wrapper); **Toolbar** keeps its
+   name. Detailed spec: `2026-10-12-solaris-mui-api-design.md`.
    **The first npm publish happens at the end of this sub-project**, so the first published
    API is the MUI one.
 3. **Ported components**, in three batches, each with its own plan:

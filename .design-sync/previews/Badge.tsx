@@ -28,21 +28,21 @@ export const OnIconButtons = () => (
         <Button mode="tonal" iconName="email-outline" onPress={() => {}} />
         <Badge count={3} style={{ top: -2, right: -2 }} />
       </div>
-      <Typography variant="labelSmall">Inbox</Typography>
+      <Typography variant="caption">Inbox</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Button mode="tonal" iconName="bell-outline" onPress={() => {}} />
         <Badge count={12} style={{ top: -2, right: -2 }} />
       </div>
-      <Typography variant="labelSmall">Alerts</Typography>
+      <Typography variant="caption">Alerts</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Button mode="tonal" iconName="cart-outline" onPress={() => {}} />
         <Badge count={128} style={{ top: -2, right: -2 }} />
       </div>
-      <Typography variant="labelSmall">Cart</Typography>
+      <Typography variant="caption">Cart</Typography>
     </div>
   </div>
 );
@@ -54,14 +54,14 @@ export const Sizes = () => (
         <Button mode="outlined" iconName="message-outline" onPress={() => {}} />
         <Badge count={7} size="large" style={{ top: -2, right: -2 }} />
       </div>
-      <Typography variant="labelSmall">large (count)</Typography>
+      <Typography variant="caption">large (count)</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Button mode="outlined" iconName="message-outline" onPress={() => {}} />
         <Badge size="small" style={{ top: 2, right: 2 }} />
       </div>
-      <Typography variant="labelSmall">small (dot)</Typography>
+      <Typography variant="caption">small (dot)</Typography>
     </div>
   </div>
 );
@@ -73,28 +73,28 @@ export const OverflowAndZero = () => (
         <Avatar name="Ada Lovelace" size={44} variant="rounded" />
         <Badge count={250} max={99} style={{ top: -4, right: -8 }} />
       </div>
-      <Typography variant="labelSmall">250, max 99</Typography>
+      <Typography variant="caption">250, max 99</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Avatar name="Grace Hopper" size={44} variant="rounded" />
         <Badge count={9} max={5} style={{ top: -4, right: -8 }} />
       </div>
-      <Typography variant="labelSmall">9, max 5</Typography>
+      <Typography variant="caption">9, max 5</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Avatar name="Alan Turing" size={44} variant="rounded" />
         <Badge count={0} showZero style={{ top: -4, right: -8 }} />
       </div>
-      <Typography variant="labelSmall">0, showZero</Typography>
+      <Typography variant="caption">0, showZero</Typography>
     </div>
     <div style={stack}>
       <div style={anchor}>
         <Avatar name="Marie Curie" size={44} variant="rounded" />
         <Badge count={0} style={{ top: -4, right: -8 }} />
       </div>
-      <Typography variant="labelSmall">0, hidden</Typography>
+      <Typography variant="caption">0, hidden</Typography>
     </div>
   </div>
 );
@@ -106,8 +106,8 @@ export const OnAvatar = () => (
       <Badge count={4} style={{ top: 0, right: -4 }} />
     </div>
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Typography variant="titleSmall">Katherine Johnson</Typography>
-      <Typography variant="bodySmall">4 unread messages</Typography>
+      <Typography variant="subtitle2">Katherine Johnson</Typography>
+      <Typography variant="caption">4 unread messages</Typography>
     </div>
   </div>
 );

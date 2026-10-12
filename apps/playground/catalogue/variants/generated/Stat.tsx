@@ -79,7 +79,7 @@ export const Bare = () => (
 export const OnAPanel = () => (
   <View style={column}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">This quarter</Typography>
+      <Typography variant="subtitle1">This quarter</Typography>
       <View style={{ height: 12 }} />
       <View style={{ flexDirection: "row", gap: 24, flexWrap: "wrap" }}>
         <Stat

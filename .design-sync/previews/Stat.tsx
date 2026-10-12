@@ -75,7 +75,7 @@ export const Bare = () => (
 export const OnAPanel = () => (
   <div style={column}>
     <Paper elevation={1} style={{ flex: 1 }}>
-      <Typography variant="titleMedium">This quarter</Typography>
+      <Typography variant="subtitle1">This quarter</Typography>
       <div style={{ height: 12 }} />
       <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
         <Stat

@@ -107,7 +107,7 @@ const Input = ({
       {!!label && variant === "outlined" && (
         <Text
           style={[
-            theme.typography.bodySmall,
+            theme.typography.caption,
             {
               color: isFocused ? activeColor : theme.colors.onSurfaceVariant,
               marginBottom: 4,
@@ -149,7 +149,7 @@ const Input = ({
           {!!label && variant === "filled" && (
             <Text
               style={[
-                theme.typography.labelSmall,
+                theme.typography.caption,
                 {
                   color: isFocused
                     ? activeColor
@@ -172,7 +172,7 @@ const Input = ({
             maxLength={maxLength}
             style={[
               styles.textInput,
-              theme.typography.bodyLarge,
+              theme.typography.body1,
               {
                 color: theme.colors.onSurface,
                 paddingVertical: variant === "filled" ? 2 : 12,

@@ -3199,15 +3199,17 @@
       "extends": [],
       "props": [
         {
-          "name": "source",
-          "type": "IconSource",
-          "required": true,
+          "name": "children",
+          "type": "string",
+          "required": false,
+          "description": "A MaterialCommunityIcons glyph name, as MUI's Icon takes its ligature: `<Icon>plus</Icon>`.",
           "deprecated": false
         },
         {
           "name": "color",
           "type": "string",
           "required": false,
+          "description": "A palette name, a palette path, a Material 3 role or any raw colour.",
           "deprecated": false
         },
         {
@@ -3219,10 +3221,18 @@
           "deprecated": false
         },
         {
-          "name": "size",
-          "type": "number",
+          "name": "fontSize",
+          "type": "keyof typeof FONT_SIZES | number",
           "required": false,
-          "default": "24",
+          "default": "\"medium\"",
+          "description": "MUI's sizes: small 20, medium 24, large 35 — or any number.",
+          "deprecated": false
+        },
+        {
+          "name": "source",
+          "type": "| ImageSourcePropType | ((props: IconRenderProps) => React.ReactNode) | React.ReactElement",
+          "required": false,
+          "description": "A bitmap, a render function or a ready-made element, when the icon is not a glyph.",
           "deprecated": false
         },
         {
@@ -3686,8 +3696,8 @@
           "name": "variant",
           "type": "keyof Theme[\"typography\"]",
           "required": false,
-          "default": "\"bodyMedium\"",
-          "description": "M3 typography variant for the label. Defaults to `\"bodyMedium\"`.",
+          "default": "\"body2\"",
+          "description": "MUI typography variant for the label. Defaults to `\"body2\"`.",
           "deprecated": false
         }
       ]
@@ -6511,11 +6521,47 @@
           "deprecated": false
         },
         {
+          "name": "align",
+          "type": "\"left\" | \"center\" | \"right\" | \"justify\"",
+          "required": false,
+          "values": [
+            "left",
+            "center",
+            "right",
+            "justify"
+          ],
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "required": false,
+          "default": "\"text.primary\"",
+          "description": "A palette name (`\"primary\"`), a palette path (`\"text.secondary\"`), a\nMaterial 3 role or any raw colour. Defaults to `\"text.primary\"`.",
+          "deprecated": false
+        },
+        {
+          "name": "gutterBottom",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Adds MUI's 0.35em bottom margin.",
+          "deprecated": false
+        },
+        {
+          "name": "noWrap",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "One line, truncated with an ellipsis.",
+          "deprecated": false
+        },
+        {
           "name": "variant",
           "type": "TypographyVariant",
           "required": false,
-          "default": "\"displayLarge\"",
-          "description": "M3 type-scale role. Defaults to `\"displayLarge\"`.",
+          "default": "\"body1\"",
+          "description": "MUI type-scale step. Defaults to `\"body1\"`.",
           "deprecated": false
         }
       ]

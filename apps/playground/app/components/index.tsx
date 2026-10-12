@@ -142,7 +142,7 @@ export default function ComponentsIndex() {
 
         {needle ? (
           <Typography
-            variant="labelMedium"
+            variant="caption"
             style={{ color: theme.colors.onSurfaceVariant }}
           >
             {shown} of {TOTAL_COUNT} match “{query}”
@@ -152,7 +152,7 @@ export default function ComponentsIndex() {
 
       {groups.length === 0 ? (
         <Typography
-          variant="bodyMedium"
+          variant="body2"
           style={{ color: theme.colors.onSurfaceVariant }}
         >
           Nothing matches “{query}”{category !== ALL ? ` in ${category}` : ""}.
@@ -167,14 +167,14 @@ export default function ComponentsIndex() {
                 color={theme.colors.primary}
               />
               <Typography
-                variant="titleMedium"
+                variant="subtitle1"
                 style={{ color: theme.colors.onSurface }}
               >
                 {group.label}
               </Typography>
               <View style={styles.groupRule} />
               <Typography
-                variant="labelMedium"
+                variant="caption"
                 style={{ color: theme.colors.onSurfaceVariant }}
               >
                 {group.items.length}
@@ -249,7 +249,7 @@ const CategoryChip = ({
         />
       ) : null}
       <Typography
-        variant="labelLarge"
+        variant="subtitle2"
         style={{
           color: active
             ? theme.colors.onPrimaryContainer
@@ -259,7 +259,7 @@ const CategoryChip = ({
         {label}
       </Typography>
       <Typography
-        variant="labelSmall"
+        variant="caption"
         style={{
           color: active
             ? theme.colors.onPrimaryContainer
@@ -319,13 +319,13 @@ const GalleryCard = ({ name, columns }: { name: string; columns: number }) => {
 
               <View style={styles.cardFooter}>
                 <Typography
-                  variant="titleSmall"
+                  variant="subtitle2"
                   style={{ color: theme.colors.onSurface, flex: 1 }}
                 >
                   {name}
                 </Typography>
                 <Typography
-                  variant="labelSmall"
+                  variant="caption"
                   style={{ color: theme.colors.onSurfaceVariant }}
                 >
                   {doc ? `${doc.props.length} props` : `${variants} demos`}
@@ -358,19 +358,19 @@ const ListRow = ({ name }: { name: string }) => {
             ]}
           >
             <Typography
-              variant="bodyLarge"
+              variant="body1"
               style={{ color: theme.colors.onSurface, flex: 1 }}
             >
               {name}
             </Typography>
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={{ color: theme.colors.onSurfaceVariant }}
             >
               {CATEGORY_OF[name]}
             </Typography>
             <Typography
-              variant="labelSmall"
+              variant="caption"
               style={[styles.rowMeta, { color: theme.colors.onSurfaceVariant }]}
             >
               {doc ? `${doc.props.length} props` : "—"} · {variants} demos
@@ -389,30 +389,30 @@ const ListRow = ({ name }: { name: string }) => {
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
-    toolbar: { gap: theme.spacing.s },
+    toolbar: { gap: theme.spacing(1) },
     searchRow: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
+      gap: theme.spacing(2),
       flexWrap: "wrap",
     },
     searchField: { flexGrow: 1, flexBasis: 260 },
-    chipRow: { gap: theme.spacing.s, paddingVertical: theme.spacing.xs },
+    chipRow: { gap: theme.spacing(1), paddingVertical: theme.spacing(0.5) },
     chip: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.xs,
+      gap: theme.spacing(0.5),
       borderRadius: 999,
       borderWidth: 1,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
     },
 
-    group: { gap: theme.spacing.m },
+    group: { gap: theme.spacing(2) },
     groupHeader: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
     // A rule that fills the space between the group's name and its count, so
     // the sections read as bands rather than as a stack of loose headings.
@@ -425,7 +425,10 @@ const makeStyles = (theme: Theme) =>
     grid: { flexDirection: "row", flexWrap: "wrap" },
     // The gutter lives on the slot, not between slots: percentage widths plus a
     // row gap would overflow at every column count.
-    cardSlot: { paddingRight: theme.spacing.m, paddingBottom: theme.spacing.m },
+    cardSlot: {
+      paddingRight: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
+    },
     card: {
       borderRadius: theme.shape.large,
       borderWidth: 1,
@@ -441,7 +444,7 @@ const makeStyles = (theme: Theme) =>
       backgroundColor: theme.colors.surfaceContainerLow,
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
-      padding: theme.spacing.s,
+      padding: theme.spacing(1),
     },
     wellInner: {
       alignItems: "center",
@@ -451,9 +454,9 @@ const makeStyles = (theme: Theme) =>
     cardFooter: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.s,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(1),
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
     },
 
     list: {
@@ -465,9 +468,9 @@ const makeStyles = (theme: Theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap: theme.spacing.m,
-      paddingHorizontal: theme.spacing.m,
-      paddingVertical: theme.spacing.s,
+      gap: theme.spacing(2),
+      paddingHorizontal: theme.spacing(2),
+      paddingVertical: theme.spacing(1),
     },
     rowMeta: { minWidth: 120, textAlign: "right" },
   });

@@ -50,7 +50,7 @@ const WithAction = () => {
       >
         Raise a retryable error
       </Button>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         The action stays on the toast until it is dismissed or times out.
       </Typography>
     </View>
@@ -83,7 +83,7 @@ const Queued = () => {
       >
         Repeat one id
       </Button>
-      <Typography variant="bodySmall">
+      <Typography variant="caption">
         Toasts queue one at a time; passing the same `id` replaces the queued
         one instead of stacking.
       </Typography>

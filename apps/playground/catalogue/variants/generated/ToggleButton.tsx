@@ -21,7 +21,7 @@ const stack: ViewStyle = {
 
 export const Segments = () => (
   <View style={stack}>
-    <Typography variant="labelLarge">View</Typography>
+    <Typography variant="subtitle2">View</Typography>
     <View style={segments}>
       <ToggleButton
         label="List"
@@ -49,7 +49,7 @@ export const Segments = () => (
 
 export const IconOnly = () => (
   <View style={stack}>
-    <Typography variant="labelLarge">Text alignment</Typography>
+    <Typography variant="subtitle2">Text alignment</Typography>
     <View style={segments}>
       <ToggleButton
         icon="format-align-left"

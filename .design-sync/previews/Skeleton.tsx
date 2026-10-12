@@ -6,7 +6,7 @@ const col: React.CSSProperties = { display: "flex", flexDirection: "column" };
 export const Variants = () => (
   <div style={{ ...col, gap: 20, width: 340 }}>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         circle — avatar placeholder
       </Typography>
       <div style={{ display: "flex", flexDirection: "row", gap: 12 }}>
@@ -16,7 +16,7 @@ export const Variants = () => (
       </div>
     </div>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         text — copy placeholder
       </Typography>
       <div style={{ ...col, gap: 8 }}>
@@ -26,7 +26,7 @@ export const Variants = () => (
       </div>
     </div>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         rect — media placeholder
       </Typography>
       <Skeleton variant="rect" width={320} height={96} />
@@ -97,19 +97,19 @@ export const ListPlaceholder = () => (
 export const Shapes = () => (
   <div style={{ ...col, gap: 20, width: 340 }}>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 0 — table cell
       </Typography>
       <Skeleton variant="rect" width={320} height={40} borderRadius={0} />
     </div>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 8 — default
       </Typography>
       <Skeleton variant="rect" width={320} height={40} />
     </div>
     <div style={col}>
-      <Typography variant="labelSmall" style={{ marginBottom: 8 }}>
+      <Typography variant="caption" style={{ marginBottom: 8 }}>
         borderRadius 20 — pill, standing in for a chip row
       </Typography>
       <div style={{ display: "flex", flexDirection: "row", gap: 8 }}>

@@ -235,11 +235,11 @@ export default Button;
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     buttonContainer: {
-      marginTop: theme.spacing.xs,
-      marginBottom: theme.spacing.xs,
-      marginLeft: theme.spacing.xs,
-      marginRight: theme.spacing.xs,
-      padding: theme.spacing.m,
+      marginTop: theme.spacing(0.5),
+      marginBottom: theme.spacing(0.5),
+      marginLeft: theme.spacing(0.5),
+      marginRight: theme.spacing(0.5),
+      padding: theme.spacing(2),
       borderRadius: theme.shape.full,
       alignItems: "center",
       justifyContent: "center",
@@ -250,9 +250,9 @@ const makeStyles = (theme: Theme) =>
     },
     buttonText: {
       color: theme.colors.onPrimary,
-      ...theme.typography.labelMedium,
-      marginLeft: theme.spacing.xs,
-      marginRight: theme.spacing.xs,
+      ...theme.typography.button,
+      marginLeft: theme.spacing(0.5),
+      marginRight: theme.spacing(0.5),
     },
     itemsContainer: {
       flexDirection: "row",

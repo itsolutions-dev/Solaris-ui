@@ -298,7 +298,7 @@ export const createTheme = (options: ThemeOptions = {}): ThemeSchemes => {
     return {
       ...deriveScheme(input, mode === "dark"),
       typography,
-      spacing: themeConfig.spacing,
+      spacing: (n: number) => n * 8,
       shape: themeConfig.shape,
       isDark: mode === "dark",
     };

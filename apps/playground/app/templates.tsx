@@ -332,7 +332,7 @@ const DashboardTemplate = () => {
         <CardContent>
           <View style={styles.formGap}>
             <Typography
-              variant="labelMedium"
+              variant="caption"
               style={{ color: theme.colors.onSurfaceVariant }}
             >
               Overall completion
@@ -351,7 +351,7 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     frame: {
       alignItems: "center",
-      padding: theme.spacing.l,
+      padding: theme.spacing(3),
       borderRadius: theme.shape.large,
       borderWidth: 1,
       borderColor: theme.colors.outlineVariant,
@@ -365,17 +365,17 @@ const makeStyles = (theme: Theme) =>
       backgroundColor: theme.colors.surface,
       overflow: "hidden",
     },
-    formGap: { gap: theme.spacing.m },
+    formGap: { gap: theme.spacing(2) },
     row: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      gap: theme.spacing.s,
+      gap: theme.spacing(1),
     },
-    inlineControl: { padding: theme.spacing.m },
-    dashboard: { gap: theme.spacing.m },
-    tiles: { flexDirection: "row", gap: theme.spacing.m },
+    inlineControl: { padding: theme.spacing(2) },
+    dashboard: { gap: theme.spacing(2) },
+    tiles: { flexDirection: "row", gap: theme.spacing(2) },
     tilesStacked: { flexDirection: "column" },
     tile: { flexGrow: 1, flexBasis: 160 },
   });

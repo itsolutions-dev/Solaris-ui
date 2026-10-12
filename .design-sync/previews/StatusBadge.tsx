@@ -53,8 +53,8 @@ export const InvoiceList = () => (
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Typography variant="titleSmall">{invoice.id}</Typography>
-            <Typography variant="bodySmall">{invoice.amount}</Typography>
+            <Typography variant="subtitle2">{invoice.id}</Typography>
+            <Typography variant="caption">{invoice.amount}</Typography>
           </div>
           <StatusBadge label={invoice.label} type={invoice.type as any} />
         </div>
