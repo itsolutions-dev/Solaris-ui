@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme } from "../providers/ThemeProvider";
 
 export type HelperTextType = "info" | "error";
@@ -86,7 +86,9 @@ const HelperText = ({
       ]}
     >
       {type === "error" && (
-        <Icons name="alert-circle-outline" size={14} color={color} />
+        <Icon fontSize={14} color={color}>
+          alert-circle-outline
+        </Icon>
       )}
       <View style={styles.textWrapper}>
         <Animated.Text style={[theme.typography.caption, { color }, style]}>

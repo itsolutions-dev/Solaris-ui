@@ -112,6 +112,9 @@ export interface PaletteColor {
   contrastText: string;
 }
 
+/** The drawing set `Icon` uses for a glyph name: Material Design Icons, or Eva outline. */
+export type IconSetName = "material" | "eva";
+
 /** MUI's `theme.palette`, resolved for the current scheme. */
 export interface Palette {
   mode: "light" | "dark";
@@ -121,6 +124,8 @@ export interface Palette {
   warning: PaletteColor;
   info: PaletteColor;
   success: PaletteColor;
+  /** A Solaris extension: MUI has no tertiary. */
+  tertiary: PaletteColor;
   background: { default: string; paper: string };
   text: { primary: string; secondary: string; disabled: string };
   divider: string;
@@ -134,6 +139,8 @@ export interface Theme {
   /** MUI's spacing function: `spacing(2)` = 16. Fractions and negatives allowed. */
   spacing: (n: number) => number;
   shape: ThemeShapeTokens;
+  /** Which icon set `Icon` draws with. */
+  icons: IconSetName;
   isDark: boolean;
 }
 

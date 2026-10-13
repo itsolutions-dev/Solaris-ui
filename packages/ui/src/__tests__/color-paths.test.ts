@@ -5,18 +5,18 @@ const theme = createTheme().light;
 
 describe("resolveColor", () => {
   it("reads a dotted path into the MUI palette", () => {
-    expect(resolveColor(theme, "text.secondary")).toBe("#64748B");
+    expect(resolveColor(theme, "text.secondary")).toBe("#556579");
     expect(resolveColor(theme, "primary.main")).toBe("#1D5B9D");
     expect(resolveColor(theme, "background.paper")).toBe("#FFFFFF");
   });
 
   it("reads a palette colour name as its main", () => {
     expect(resolveColor(theme, "primary")).toBe("#1D5B9D");
-    expect(resolveColor(theme, "secondary")).toBe("#61B340");
+    expect(resolveColor(theme, "secondary")).toBe("#556579");
   });
 
   it("reads a palette leaf that is itself a colour", () => {
-    expect(resolveColor(theme, "divider")).toBe("rgba(0, 0, 0, 0.12)");
+    expect(resolveColor(theme, "divider")).toBe("#DDE1E7");
   });
 
   it("still reads a Material 3 role", () => {

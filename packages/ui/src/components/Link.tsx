@@ -8,7 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 
@@ -127,12 +127,9 @@ const Link = ({
             {children}
           </Text>
           {withIcon && (
-            <Icons
-              name={externalIcon}
-              size={14}
-              color={labelColor}
-              style={styles.icon}
-            />
+            <Icon fontSize={14} color={labelColor} style={styles.icon}>
+              {externalIcon}
+            </Icon>
           )}
         </>
       )}

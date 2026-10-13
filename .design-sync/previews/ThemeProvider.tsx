@@ -166,7 +166,7 @@ export const TypeScale = () => {
         <Typography variant="subtitle1">Type scale</Typography>
         <Typography variant="caption">
           {
-            "MUI's thirteen steps on theme.typography, at MUI's own sizes; Typography takes the step name as its variant."
+            "MUI's thirteen variant names on theme.typography, at the CRM's sizes; Typography takes the step name as its variant."
           }
         </Typography>
       </div>

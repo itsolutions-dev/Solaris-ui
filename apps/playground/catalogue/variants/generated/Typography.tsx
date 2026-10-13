@@ -12,7 +12,7 @@ const stack: ViewStyle = {
   maxWidth: 560,
 };
 
-// MUI's thirteen steps at MUI's own sizes: h1 96 light down to caption 12.
+// MUI's thirteen variant names on the CRM's scale: h4 32/700 down to caption 12.
 export const Headings = () => (
   <View style={stack}>
     <Typography variant="h1">h1</Typography>

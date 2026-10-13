@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 
@@ -58,7 +58,9 @@ const Stepper = ({ steps, activeStep, onStepPress, style }: StepperProps) => {
             ]}
           >
             {isCompleted ? (
-              <Icons name="check" size={16} color={theme.colors.onPrimary} />
+              <Icon fontSize={16} color={theme.colors.onPrimary}>
+                check
+              </Icon>
             ) : (
               <Text
                 style={[
@@ -71,15 +73,16 @@ const Stepper = ({ steps, activeStep, onStepPress, style }: StepperProps) => {
                 ]}
               >
                 {icon ? (
-                  <Icons
-                    name={icon as any}
-                    size={16}
+                  <Icon
+                    fontSize={16}
                     color={
                       isActive
                         ? theme.colors.primary
                         : theme.colors.onSurfaceVariant
                     }
-                  />
+                  >
+                    {icon as any}
+                  </Icon>
                 ) : (
                   index + 1
                 )}

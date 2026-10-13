@@ -8,7 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs } from "./types";
 
@@ -49,12 +49,13 @@ const SearchBar = ({
         style,
       ]}
     >
-      <Icons
-        name={leadingIcon}
-        size={24}
+      <Icon
+        fontSize={24}
         color={theme.colors.onSurfaceVariant}
         style={styles.leadingIcon}
-      />
+      >
+        {leadingIcon}
+      </Icon>
 
       <TextInput
         value={value}
@@ -82,7 +83,9 @@ const SearchBar = ({
           accessibilityRole="button"
           style={styles.clearButton}
         >
-          <Icons name="close" size={20} color={theme.colors.onSurfaceVariant} />
+          <Icon fontSize={20} color={theme.colors.onSurfaceVariant}>
+            close
+          </Icon>
         </Pressable>
       )}
     </View>

@@ -9,7 +9,7 @@ import {
   ViewStyle,
   DimensionValue,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme } from "../providers/ThemeProvider";
 import Skeleton from "./Skeleton";
 import { MaterialCommunityIconsGlyphs } from "./types";
@@ -104,11 +104,9 @@ const Image = ({
     <View style={[styles.frame, frameStyle, style]} testID={testID}>
       {showBrokenState ? (
         <View style={styles.broken} accessibilityLabel={alt}>
-          <Icons
-            name={fallbackIcon}
-            size={28}
-            color={theme.colors.onSurfaceVariant}
-          />
+          <Icon fontSize={28} color={theme.colors.onSurfaceVariant}>
+            {fallbackIcon}
+          </Icon>
         </View>
       ) : (
         <RNImage

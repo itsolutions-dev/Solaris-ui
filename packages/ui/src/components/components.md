@@ -28,12 +28,18 @@ The theme is MUI-shaped in, Material 3 out. `createTheme(options)` takes MUI v6'
 | Input                       | Light                    | Dark                           |
 | --------------------------- | ------------------------ | ------------------------------ |
 | primary                     | `#1D5B9D`                | `#5893D4`                      |
-| secondary                   | `#61B340`                | `#61B340`                      |
-| error / warning             | `#D32F2F` / `#ED6C02`    | `#F44336` / `#FFA726`          |
-| info / success              | `#0288D1` / `#2E7D32`    | `#29B6F6` / `#66BB6A`          |
+| secondary (slate)           | `#556579`                | `#94A3B8`                      |
+| tertiary (brand green)      | `#61B340`                | `#61B340`                      |
+| error / warning             | `#B00020` / `#A94E08`    | `#F2B8B5` / `#FCA600`          |
+| info / success              | `#0A6C94` / `#2F7A1B`    | `#7CC4E6` / `#61B340`          |
 | background.default / paper  | `#F0F2F5` / `#FFFFFF`    | `#111111` / `#171717`          |
-| text.secondary              | `#64748B`                | derived                        |
-| divider                     | `rgba(0, 0, 0, 0.12)`    | `rgba(255, 255, 255, 0.12)`    |
+| text.primary / secondary    | `#15181D` / `#556579`    | `#EDEDED` / `#94A3B8`          |
+| divider                     | `#DDE1E7`                | `#2E2E2E`                      |
+
+This is **Proposta A** of the design review (`docs/design/solaris-ui-themes.pdf`). The
+default theme also pins the sheet's exact roles (`theme.json` `colors`, 35 per scheme,
+checked against `docs/design/solaris-themes.json`), for the values the derivation below cannot
+guess, such as `primaryContainer` `#E8F0FA`.
 
 Derivation, for each of primary, secondary, error, warning, info, success:
 
@@ -43,30 +49,34 @@ Derivation, for each of primary, secondary, error, warning, info, success:
   of `main`'s hue at chroma 48.
 - `background` / `surface` = `background.default` / `paper`; `onSurface` = `text.primary` or
   a neutral tone; `onSurfaceVariant` = `text.secondary`; `outlineVariant` = `divider`.
-- Tertiary, the surface containers, inverse roles and `outline` come from the primary hue.
+- Tertiary (unless given), the surface containers, inverse roles and `outline` come from the primary hue.
+- An app that passes a palette colour replaces the default's pinned roles for that colour's family (for `primary`: also the roles derived from its hue); roles it does not touch keep the default's pins. `createTheme` also takes `typography.<step>`, `shape`, `colorSchemes.<mode>.colors` (exact roles) and `icons`.
 
 Selection and tonal states (navigation indicators, selected chips, tonal buttons) use the
-**primary** container roles: `secondary` is the brand green.
+**primary** container roles: `secondary` is slate; the brand green is `tertiary`.
 
-### 1.3 Typography scale (MUI)
+### 1.3 Typography scale (Proposta A)
 
 `fontFamily`: Roboto on Android and web, the system font on iOS unless the app embeds Roboto and passes `createTheme({ typography: { fontFamily: Platform.OS === "ios" ? "Roboto" : undefined } })`. `variant` prop selects one.
 
 | Variant   | Size | Line | Weight | Tracking | Case      |
 | --------- | ---- | ---- | ------ | -------- | --------- |
-| h1        | 96   | 112  | 300    | -1.5     |           |
-| h2        | 60   | 72   | 300    | -0.5     |           |
-| h3        | 48   | 56   | 400    | 0        |           |
-| h4        | 34   | 42   | 400    | 0.25     |           |
-| h5        | 24   | 32   | 400    | 0        |           |
-| h6        | 20   | 32   | 500    | 0.15     |           |
-| subtitle1 | 16   | 28   | 400    | 0.15     |           |
-| subtitle2 | 14   | 22   | 500    | 0.1      |           |
-| body1     | 16   | 24   | 400    | 0.15     |           |
-| body2     | 14   | 20   | 400    | 0.15     |           |
-| button    | 14   | 25   | 500    | 0.4      | uppercase |
-| caption   | 12   | 20   | 400    | 0.4      |           |
-| overline  | 12   | 32   | 400    | 1        | uppercase |
+| h1        | 32   | 40   | 700    | 0        |           |
+| h2        | 32   | 40   | 700    | 0        |           |
+| h3        | 32   | 40   | 700    | 0        |           |
+| h4        | 32   | 40   | 700    | 0        |           |
+| h5        | 24   | 32   | 700    | 0        |           |
+| h6        | 22   | 28   | 500    | 0        |           |
+| subtitle1 | 16   | 24   | 500    | 0        |           |
+| subtitle2 | 14   | 20   | 500    | 0        |           |
+| body1     | 16   | 24   | 400    | 0        |           |
+| body2     | 14   | 20   | 400    | 0        |           |
+| button    | 14   | 20   | 500    | 0        | sentence  |
+| caption   | 12   | 16   | 400    | 0        |           |
+| overline  | 11   | 16   | 500    | 0.5      | uppercase |
+
+MUI's variant names carry the Material 3 sizes of the CRM (Roboto, three weights). h1–h3 and
+caption are not on the sheet: h1–h3 repeat h4, caption is 12/16.
 
 ### 1.4 Spacing & Shape
 

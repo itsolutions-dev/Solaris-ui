@@ -8,7 +8,7 @@ import {
   Platform,
   LayoutChangeEvent,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme, getGlowStyles } from "../providers/ThemeProvider";
 
 import Popover from "./Popover";
@@ -132,12 +132,13 @@ const Select = ({
     return (
       <View style={styles.leftSlot}>
         {selectedOption && !!selectedOption.icon && (
-          <Icons
-            name={selectedOption.icon}
-            size={20}
+          <Icon
+            fontSize={20}
             color={theme.colors.primary}
             style={styles.leadingIcon}
-          />
+          >
+            {selectedOption.icon}
+          </Icon>
         )}
         <Text
           style={[theme.typography.body1, { color: placeholderColor }]}
@@ -199,11 +200,12 @@ const Select = ({
         )}
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Icons
-            name={visible ? "menu-up" : "menu-down"}
-            size={24}
+          <Icon
+            fontSize={24}
             color={error ? theme.colors.error : theme.colors.onSurfaceVariant}
-          />
+          >
+            {visible ? "menu-up" : "menu-down"}
+          </Icon>
         </View>
       </View>
     </Pressable>
@@ -291,16 +293,17 @@ const Select = ({
 
                       <View style={styles.leftSlot}>
                         {!!option.icon && (
-                          <Icons
-                            name={option.icon}
-                            size={20}
+                          <Icon
+                            fontSize={20}
                             color={
                               value === option.value
                                 ? theme.colors.primary
                                 : theme.colors.onSurfaceVariant
                             }
                             style={styles.leadingIcon}
-                          />
+                          >
+                            {option.icon}
+                          </Icon>
                         )}
                         <Text
                           style={[
@@ -319,11 +322,9 @@ const Select = ({
                     </View>
                   )}
                   {!multiSelect && value === option.value && !!option.value && (
-                    <Icons
-                      name="check"
-                      size={18}
-                      color={theme.colors.primary}
-                    />
+                    <Icon fontSize={18} color={theme.colors.primary}>
+                      check
+                    </Icon>
                   )}
                 </View>
               </Pressable>

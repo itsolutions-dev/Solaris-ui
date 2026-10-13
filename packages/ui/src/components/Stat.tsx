@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs } from "./types";
 
@@ -60,7 +60,9 @@ const Stat = ({
     >
       <View style={styles.labelRow}>
         {!!icon && (
-          <Icons name={icon} size={16} color={theme.colors.onSurfaceVariant} />
+          <Icon fontSize={16} color={theme.colors.onSurfaceVariant}>
+            {icon}
+          </Icon>
         )}
         <Text
           style={[
@@ -79,7 +81,9 @@ const Stat = ({
         {!!delta && (
           <View style={styles.deltaRow}>
             {!!trend && (
-              <Icons name={TREND_ICONS[trend]} size={16} color={trendColor} />
+              <Icon fontSize={16} color={trendColor}>
+                {TREND_ICONS[trend]}
+              </Icon>
             )}
             <Text style={[theme.typography.subtitle2, { color: trendColor }]}>
               {delta}

@@ -2,9 +2,9 @@ import { ScrollViewStyleReset } from "expo-router/html";
 import type { PropsWithChildren } from "react";
 
 /**
- * The root HTML of every prerendered page. Expo's default, plus Roboto: the
- * theme's web font stack starts with it, and unlike Android the browser does
- * not ship it.
+ * The root HTML of every prerendered page. Expo's default, plus Roboto and
+ * Geist: the themes' web font stacks start with them, and unlike Android the
+ * browser ships neither.
  */
 export default function Root({ children }: PropsWithChildren) {
   return (
@@ -26,6 +26,11 @@ export default function Root({ children }: PropsWithChildren) {
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        />
+        {/* Geist: the web font of Proposta B (see site/themePresets.ts). */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
         />
       </head>
       <body>{children}</body>

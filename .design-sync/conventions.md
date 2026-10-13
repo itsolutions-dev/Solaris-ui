@@ -39,7 +39,7 @@ The real token vocabulary, all under `theme`:
 | ------------ | ----- |
 | `colors`     | The Material 3 roles: `primary`, `onPrimary`, `primaryContainer`, `onPrimaryContainer`, and the same four for `secondary` / `tertiary` / `error` / `warning` / `info` / `success`; `background`, `onBackground`, `surface`, `onSurface`, `surfaceVariant`, `onSurfaceVariant`, `surfaceContainer`, `surfaceContainerLow`, `surfaceContainerHigh`, `surfaceContainerHighest`, `surfaceDim`, `inverseSurface`, `inverseOnSurface`, `inversePrimary`, `outline`, `outlineVariant`, `shadow`, `scrim` |
 | `palette`    | The same colours in MUI's shape: `primary` … `success` as `{ main, light, dark, contrastText }`, `background.default` / `paper`, `text.primary` / `secondary` / `disabled`, `divider` |
-| `typography` | MUI's steps at MUI's own sizes: `h1`–`h6`, `subtitle1`, `subtitle2`, `body1`, `body2`, `button` (uppercase), `caption`, `overline` (uppercase) |
+| `typography` | MUI's variant names on the CRM's Roboto scale (`h4` 32/700 … `caption` 12): `h1`–`h6`, `subtitle1`, `subtitle2`, `body1`, `body2`, `button` (sentence case), `caption`, `overline` (uppercase) |
 | `spacing`    | a function, as in MUI: `theme.spacing(n)` = 8 × n (`spacing(2)` = 16) |
 | `shape`      | `borderRadius` 4 (MUI's base), `small` 8, `medium` 12, `large` 16, `extraLarge` 24, `full` 9999 — fields 12, cards 16, dialogs and sheets 24, buttons fully rounded |
 |              | `isDark` — boolean; the scheme follows the OS, `toggleTheme()` overrides it |
@@ -49,8 +49,8 @@ Helpers: `getStateColor(base, on, "hover" | "press" | "focus")` for M3 state lay
 
 ### The theme
 
-With no props, `ThemeProvider` renders the organization's theme: primary `#1D5B9D`
-(dark `#5893D4`), secondary the brand green `#61B340`, page background `#F0F2F5`.
+With no props, `ThemeProvider` renders the organization's theme (Proposta A): primary `#1D5B9D`
+(dark `#5893D4`), secondary slate `#556579`, tertiary the brand green `#61B340`, page background `#F0F2F5`.
 Selection and tonal states (navigation indicators, selected chips, tonal buttons) use the
 **primary** container roles. To render a design in other colours, build a theme with
 `createTheme` in MUI's `colorSchemes` shape, passing only what differs; never override

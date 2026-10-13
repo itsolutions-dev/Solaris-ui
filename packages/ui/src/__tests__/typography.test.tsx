@@ -23,14 +23,18 @@ describe("Typography", () => {
     const { getByText } = await renderText(
       <Typography color="text.secondary">Muted</Typography>,
     );
-    expect(flat(getByText("Muted")).color).toBe("#64748B");
+    expect(flat(getByText("Muted")).color).toBe("#556579");
   });
 
-  it("sets button text in uppercase", async () => {
+  it("sets button text in sentence case and overline in uppercase", async () => {
     const { getByText } = await renderText(
-      <Typography variant="button">Save</Typography>,
+      <>
+        <Typography variant="button">Save</Typography>
+        <Typography variant="overline">Section</Typography>
+      </>,
     );
-    expect(flat(getByText("Save")).textTransform).toBe("uppercase");
+    expect(flat(getByText("Save")).textTransform).toBe("none");
+    expect(flat(getByText("Section")).textTransform).toBe("uppercase");
   });
 
   it("aligns, adds a bottom gutter and truncates on noWrap", async () => {

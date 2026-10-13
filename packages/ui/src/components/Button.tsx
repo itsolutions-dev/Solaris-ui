@@ -15,7 +15,7 @@ import {
   type StyleProp,
   type TextStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import CircularProgress from "./Progress/CircularProgress";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 
@@ -205,11 +205,12 @@ const Button = ({
         ) : (
           <>
             {!!iconName && iconPosition === "left" && (
-              <Icons
-                name={iconName}
-                size={size || theme.shape.medium}
+              <Icon
+                fontSize={size || theme.shape.medium}
                 style={[styles.icon, { color: on }, iconStyle]}
-              />
+              >
+                {iconName}
+              </Icon>
             )}
             {children != null && children !== "" && (
               <Text style={[styles.buttonText, { color: on }, labelStyle]}>
@@ -217,11 +218,12 @@ const Button = ({
               </Text>
             )}
             {!!iconName && iconPosition === "right" && (
-              <Icons
-                name={iconName}
-                size={size || theme.shape.medium}
+              <Icon
+                fontSize={size || theme.shape.medium}
                 style={[styles.icon, { color: on }, iconStyle]}
-              />
+              >
+                {iconName}
+              </Icon>
             )}
           </>
         )}

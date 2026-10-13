@@ -52,8 +52,19 @@ Two checks keep the types honest:
   `ThemeColorTokens` and to `deriveScheme`.**
 
 Selection and tonal states use the **primary** container roles: navigation indicators,
-selected chips, tonal buttons. `secondary` is the brand green, not Material 3's quiet
-companion colour.
+selected chips, tonal buttons. `secondary` is slate (the CRM's `#556579`); the brand green is
+`tertiary`.
+
+The default theme is **Proposta A** from `docs/design/`: `theme.json` holds the palette inputs and
+also pins the designers' exact roles (`colors`, checked against `docs/design/solaris-themes.json`
+by a test). An app that passes a palette colour replaces the default's pins for that colour's
+family, so a partial override never mixes the old container with the new colour.
+
+Icons: `Icon` is the only renderer of glyph names (components pass `<Icon>name</Icon>`, never
+vector-icons directly). `theme.icons` (`"material"` default, `"eva"`) picks the drawing; names
+stay Material Design Icons names, mapped to Eva in `components/icons/iconMap.json`. Add a glyph
+to a component → add it to the map (a test renders every demo under the Eva theme and fails on an
+unmapped one), then `npm run icons:eva -w @its/solaris-ui`.
 
 Fonts: `typography.fontFamily` defaults to Roboto on Android and web, and to the system font
 on iOS, where an unregistered family is an error. Apps that embed Roboto opt in with

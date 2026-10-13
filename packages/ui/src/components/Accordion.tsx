@@ -8,7 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 import Collapse from "./Collapse";
@@ -70,11 +70,9 @@ const Accordion = ({
         >
           {title}
         </Text>
-        <Icons
-          name={expanded ? "chevron-up" : "chevron-down"}
-          size={24}
-          color={theme.colors.onSurfaceVariant}
-        />
+        <Icon fontSize={24} color={theme.colors.onSurfaceVariant}>
+          {expanded ? "chevron-up" : "chevron-down"}
+        </Icon>
       </Pressable>
 
       {/* Collapse animates this panel alone; LayoutAnimation, used before,

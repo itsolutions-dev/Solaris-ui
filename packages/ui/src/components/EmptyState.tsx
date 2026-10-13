@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, StyleSheet } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 import Typography from "./Typography";
 import Button from "./Button";
@@ -31,7 +31,9 @@ const EmptyState = ({
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
-        <Icons name={icon} size={40} color={theme.colors.onSurfaceVariant} />
+        <Icon fontSize={40} color={theme.colors.onSurfaceVariant}>
+          {icon}
+        </Icon>
       </View>
 
       <Typography variant="subtitle1" style={styles.title}>

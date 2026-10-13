@@ -30,6 +30,7 @@ import {
 } from "./useKeyboardShortcuts";
 import { activeRouteFor, GITHUB_URL, NPM_URL, SITE_ROUTES } from "./siteNav";
 import { LIBRARY_NAME, LIBRARY_VERSION } from "./propsData";
+import { SolarisLogo } from "./SolarisLogo";
 
 const RAIL_WIDTH = 80;
 const DRAWER_WIDTH = 232;
@@ -146,31 +147,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
                 style into `{}` and throws on an array. See expo-router's own
                 Slot shim (build/ui/Slot.js). */}
             <View style={styles.brand}>
-              <View style={styles.brandMark}>
-                {/* The same four-pointed spark the favicon and app icons are
-                  drawn from, so the tab and the header carry one mark. */}
-                <Icons
-                  name="star-four-points"
-                  size={18}
-                  color={theme.colors.onPrimaryContainer}
-                />
-              </View>
-              <View>
-                <Typography
-                  variant="subtitle1"
-                  style={{ color: theme.colors.onSurface }}
-                >
-                  Solaris
-                </Typography>
-                {!layout.isCompact && (
-                  <Typography
-                    variant="caption"
-                    style={{ color: theme.colors.onSurfaceVariant }}
-                  >
-                    Material for React Native
-                  </Typography>
-                )}
-              </View>
+              <SolarisLogo height={32} />
             </View>
           </Pressable>
         </Link>
@@ -529,14 +506,6 @@ const makeStyles = (theme: Theme) =>
       paddingHorizontal: theme.spacing(1),
       paddingVertical: theme.spacing(0.5),
       borderRadius: theme.shape.medium,
-    },
-    brandMark: {
-      width: 32,
-      height: 32,
-      borderRadius: theme.shape.small,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: theme.colors.primaryContainer,
     },
     topBarSpacer: { flex: 1 },
     searchButton: {

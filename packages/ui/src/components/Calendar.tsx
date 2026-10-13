@@ -18,7 +18,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 import {
@@ -601,7 +601,9 @@ const Calendar = ({
           view === "days" && !canStepBack && styles.faded,
         ]}
       >
-        <Icons name="chevron-left" size={22} color={theme.colors.onSurface} />
+        <Icon fontSize={22} color={theme.colors.onSurface}>
+          chevron-left
+        </Icon>
       </Pressable>
 
       <View style={styles.headerCenter}>
@@ -621,11 +623,9 @@ const Calendar = ({
             >
               {monthNames[visibleMonth.getMonth()]}
             </Text>
-            <Icons
-              name={view === "months" ? "menu-up" : "menu-down"}
-              size={18}
-              color={theme.colors.onSurfaceVariant}
-            />
+            <Icon fontSize={18} color={theme.colors.onSurfaceVariant}>
+              {view === "months" ? "menu-up" : "menu-down"}
+            </Icon>
           </Pressable>
         )}
         <Pressable
@@ -646,11 +646,9 @@ const Calendar = ({
           >
             {visibleMonth.getFullYear()}
           </Text>
-          <Icons
-            name={view === "years" ? "menu-up" : "menu-down"}
-            size={18}
-            color={theme.colors.onSurfaceVariant}
-          />
+          <Icon fontSize={18} color={theme.colors.onSurfaceVariant}>
+            {view === "years" ? "menu-up" : "menu-down"}
+          </Icon>
         </Pressable>
       </View>
 
@@ -672,7 +670,9 @@ const Calendar = ({
           view === "days" && !canStepForward && styles.faded,
         ]}
       >
-        <Icons name="chevron-right" size={22} color={theme.colors.onSurface} />
+        <Icon fontSize={22} color={theme.colors.onSurface}>
+          chevron-right
+        </Icon>
       </Pressable>
     </View>
   );

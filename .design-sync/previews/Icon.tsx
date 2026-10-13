@@ -1,5 +1,11 @@
 import React from "react";
-import { Icon, Typography, Paper } from "@its/solaris-ui";
+import {
+  createTheme,
+  Icon,
+  Paper,
+  ThemeProvider,
+  Typography,
+} from "@its/solaris-ui";
 
 const row: React.CSSProperties = {
   display: "flex",
@@ -78,5 +84,43 @@ export const CustomSources = () => (
         <Typography variant="caption">inline SVG, themed colour</Typography>
       </div>
     </Paper>
+  </div>
+);
+
+const eva = createTheme({ icons: "eva" });
+
+// The same glyph names, drawn by the theme's icon set: Material Design Icons by
+// default, Eva (thin outline) under createTheme({ icons: "eva" }).
+export const IconSets = () => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    {[
+      ["Material", undefined],
+      ["Eva", eva],
+    ].map(([label, theme]) => (
+      <div
+        key={label as string}
+        style={{ display: "flex", flexDirection: "column", gap: 6 }}
+      >
+        <Typography variant="caption">{label as string}</Typography>
+        <ThemeProvider theme={theme as typeof eva | undefined}>
+          <div style={row}>
+            {[
+              "phone",
+              "email",
+              "bell-outline",
+              "magnify",
+              "cog",
+              "delete",
+              "star",
+              "home",
+            ].map((name) => (
+              <Icon key={name} fontSize={28}>
+                {name}
+              </Icon>
+            ))}
+          </div>
+        </ThemeProvider>
+      </div>
+    ))}
   </div>
 );

@@ -15,7 +15,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 
 export interface CarouselProps {
@@ -132,11 +132,9 @@ const Carousel = ({
               accessibilityLabel="Previous slide"
               style={[styles.arrow, styles.arrowLeft]}
             >
-              <Icons
-                name="chevron-left"
-                size={24}
-                color={theme.colors.onSurface}
-              />
+              <Icon fontSize={24} color={theme.colors.onSurface}>
+                chevron-left
+              </Icon>
             </Pressable>
           )}
           {activeIndex < pages.length - 1 && (
@@ -146,11 +144,9 @@ const Carousel = ({
               accessibilityLabel="Next slide"
               style={[styles.arrow, styles.arrowRight]}
             >
-              <Icons
-                name="chevron-right"
-                size={24}
-                color={theme.colors.onSurface}
-              />
+              <Icon fontSize={24} color={theme.colors.onSurface}>
+                chevron-right
+              </Icon>
             </Pressable>
           )}
         </>

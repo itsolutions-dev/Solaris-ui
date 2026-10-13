@@ -10,7 +10,7 @@ import {
   TextStyle,
 } from "react-native";
 
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 
@@ -94,15 +94,16 @@ const Spinner = ({
             },
           ]}
         >
-          <Icons
-            name="minus"
-            size={20}
+          <Icon
+            fontSize={20}
             color={
               disabled || value - step < min
                 ? theme.colors.onSurfaceVariant
                 : theme.colors.primary
             }
-          />
+          >
+            minus
+          </Icon>
         </Pressable>
 
         <View style={styles.inputWrapper}>
@@ -149,15 +150,16 @@ const Spinner = ({
             },
           ]}
         >
-          <Icons
-            name="plus"
-            size={20}
+          <Icon
+            fontSize={20}
             color={
               disabled || value + step > max
                 ? theme.colors.onSurfaceVariant
                 : theme.colors.primary
             }
-          />
+          >
+            plus
+          </Icon>
         </Pressable>
       </View>
     </View>

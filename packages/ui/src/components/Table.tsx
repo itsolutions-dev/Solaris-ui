@@ -8,7 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 
@@ -130,18 +130,17 @@ export const TableHeaderCell = ({
         {sortable && (
           <View style={styles.sortIconContainer}>
             {sortDirection ? (
-              <Icons
-                name={sortDirection === "asc" ? "chevron-up" : "chevron-down"}
-                size={18}
-                color={theme.colors.primary}
-              />
+              <Icon fontSize={18} color={theme.colors.primary}>
+                {sortDirection === "asc" ? "chevron-up" : "chevron-down"}
+              </Icon>
             ) : (
-              <Icons
-                name="chevron-up"
-                size={18}
+              <Icon
+                fontSize={18}
                 color={theme.colors.outlineVariant}
                 style={{ opacity: 0.5 }}
-              />
+              >
+                chevron-up
+              </Icon>
             )}
           </View>
         )}
@@ -150,20 +149,16 @@ export const TableHeaderCell = ({
       <View style={styles.reorderContainer}>
         {onMoveLeft && (
           <Pressable onPress={onMoveLeft} style={styles.reorderButton}>
-            <Icons
-              name="chevron-left"
-              size={14}
-              color={theme.colors.onSurfaceVariant}
-            />
+            <Icon fontSize={14} color={theme.colors.onSurfaceVariant}>
+              chevron-left
+            </Icon>
           </Pressable>
         )}
         {onMoveRight && (
           <Pressable onPress={onMoveRight} style={styles.reorderButton}>
-            <Icons
-              name="chevron-right"
-              size={14}
-              color={theme.colors.onSurfaceVariant}
-            />
+            <Icon fontSize={14} color={theme.colors.onSurfaceVariant}>
+              chevron-right
+            </Icon>
           </Pressable>
         )}
       </View>

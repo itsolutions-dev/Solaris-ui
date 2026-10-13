@@ -1,6 +1,12 @@
 import { View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
-import { Icon, Paper, Typography } from "@its/solaris-ui";
+import {
+  createTheme,
+  Icon,
+  Paper,
+  ThemeProvider,
+  Typography,
+} from "@its/solaris-ui";
 import type { Variant } from "../types";
 import { demo } from "./shared";
 
@@ -69,9 +75,53 @@ const CustomSources = () => (
   </View>
 );
 
+const eva = createTheme({ icons: "eva" });
+
+// The same glyph names, drawn by the theme's icon set. Nested providers on
+// purpose: only these rows change set, the page around them keeps its own.
+const IconSets = () => (
+  <View style={demo.panel}>
+    {(
+      [
+        ["Material (default)", undefined],
+        ['Eva (createTheme({ icons: "eva" }))', eva],
+      ] as const
+    ).map(([label, theme]) => (
+      <View key={label} style={demo.panel}>
+        <Typography variant="caption">{label}</Typography>
+        <ThemeProvider theme={theme}>
+          <View style={demo.row}>
+            {[
+              "phone",
+              "email",
+              "bell-outline",
+              "magnify",
+              "cog",
+              "delete",
+              "star",
+              "home",
+            ].map((name) => (
+              <Icon key={name} fontSize={28}>
+                {name}
+              </Icon>
+            ))}
+          </View>
+        </ThemeProvider>
+      </View>
+    ))}
+  </View>
+);
+
 export const variants: Variant[] = [
   { name: "Glyphs", title: "Glyphs", render: Glyphs },
   { name: "Sizes", title: "Sizes", render: Sizes },
+  {
+    name: "IconSets",
+    title: "Icon sets",
+    description:
+      'The glyph name never changes; the theme picks the drawing. Material Design Icons by default, Eva Icons under createTheme({ icons: "eva" }).',
+    render: IconSets,
+  },
   {
     name: "CustomSources",
     title: "Custom sources",

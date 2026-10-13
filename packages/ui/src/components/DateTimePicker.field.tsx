@@ -8,7 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 import HelperText from "./HelperText";
@@ -105,11 +105,12 @@ const PickerField = forwardRef<View, PickerFieldProps>(
           hovered && { backgroundColor: theme.colors.surfaceContainerHighest },
         ]}
       >
-        <Icons
-          name={icon}
-          size={20}
+        <Icon
+          fontSize={20}
           color={error ? theme.colors.error : theme.colors.onSurfaceVariant}
-        />
+        >
+          {icon}
+        </Icon>
       </Pressable>
     );
 
@@ -167,7 +168,9 @@ const PickerField = forwardRef<View, PickerFieldProps>(
           },
         ]}
       >
-        <Icons name="close" size={18} color={theme.colors.onSurfaceVariant} />
+        <Icon fontSize={18} color={theme.colors.onSurfaceVariant}>
+          close
+        </Icon>
       </Pressable>
     );
 
@@ -216,13 +219,14 @@ const PickerField = forwardRef<View, PickerFieldProps>(
               style={styles.trigger}
             >
               {body}
-              <Icons
-                name={icon}
-                size={20}
+              <Icon
+                fontSize={20}
                 color={
                   error ? theme.colors.error : theme.colors.onSurfaceVariant
                 }
-              />
+              >
+                {icon}
+              </Icon>
             </Pressable>
             {clearButton}
             {children}

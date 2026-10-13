@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Pressable, Text, StyleSheet, View, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 
 import {
   useTheme,
@@ -48,11 +48,14 @@ const Chip = ({
     let backgroundColor, onColor, borderColor, androidRippleColor;
     switch (mode) {
       case "filled":
+        // Selected is the neutral container: tertiary is the brand green now,
+        // not a selection colour (selection follows primary, and primary is
+        // already the unselected fill).
         backgroundColor = selected
-          ? theme.colors.tertiaryContainer
+          ? theme.colors.secondaryContainer
           : theme.colors.primaryContainer;
         onColor = selected
-          ? theme.colors.onTertiaryContainer
+          ? theme.colors.onSecondaryContainer
           : theme.colors.onPrimaryContainer;
         androidRippleColor = theme.colors.onPrimary; // A common ripple for filled
         break;
@@ -145,12 +148,13 @@ const Chip = ({
         })}
       >
         {!!icon && (
-          <Icons
-            name={icon}
-            size={iconSize}
+          <Icon
+            fontSize={iconSize}
             color={on}
             style={[styles.icon, disabled && styles.disabledText]}
-          />
+          >
+            {icon}
+          </Icon>
         )}
         <Text
           style={[
@@ -162,12 +166,13 @@ const Chip = ({
           {label}
         </Text>
         {selected && (
-          <Icons
-            name="check"
-            size={iconSize}
+          <Icon
+            fontSize={iconSize}
             color={on}
             style={[styles.checkIcon, disabled && styles.disabledText]}
-          />
+          >
+            check
+          </Icon>
         )}
       </Pressable>
       {onClose && (
@@ -180,12 +185,13 @@ const Chip = ({
             { opacity: disabled ? 0.38 : pressed ? 0.7 : hovered ? 0.5 : 1 },
           ]}
         >
-          <Icons
-            name="close"
-            size={iconSize}
+          <Icon
+            fontSize={iconSize}
             color={on}
             style={[styles.closeIcon, disabled && styles.disabledText]}
-          />
+          >
+            close
+          </Icon>
         </Pressable>
       )}
     </View>

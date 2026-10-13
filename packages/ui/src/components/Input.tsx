@@ -5,10 +5,11 @@ import {
   TextInput,
   StyleSheet,
   Platform,
+  Pressable,
   StyleProp,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs } from "./types";
 import HelperText from "./HelperText";
@@ -73,6 +74,14 @@ const Input = ({
   const [isFocused, setIsFocused] = useState(false);
   const { theme } = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
+  const trailingGlyph = trailingIcon ? (
+    <Icon
+      fontSize={20}
+      color={!!error ? theme.colors.error : theme.colors.onSurfaceVariant}
+    >
+      {trailingIcon}
+    </Icon>
+  ) : null;
   const activeColor = error ? theme.colors.error : theme.colors.primary;
 
   const handleTextChange = useCallback(
@@ -136,11 +145,9 @@ const Input = ({
         ) : (
           leadingIcon && (
             <View style={styles.iconLeft}>
-              <Icons
-                name={leadingIcon}
-                size={20}
-                color={theme.colors.onSurfaceVariant}
-              />
+              <Icon fontSize={20} color={theme.colors.onSurfaceVariant}>
+                {leadingIcon}
+              </Icon>
             </View>
           )
         )}
@@ -206,14 +213,16 @@ const Input = ({
         ) : (
           trailingIcon && (
             <View style={styles.iconRight}>
-              <Icons
-                name={trailingIcon}
-                size={20}
-                color={
-                  !!error ? theme.colors.error : theme.colors.onSurfaceVariant
-                }
-                onPress={onTrailingIconPress}
-              />
+              {onTrailingIconPress ? (
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={onTrailingIconPress}
+                >
+                  {trailingGlyph}
+                </Pressable>
+              ) : (
+                trailingGlyph
+              )}
             </View>
           )
         )}

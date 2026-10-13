@@ -3202,7 +3202,7 @@
           "name": "children",
           "type": "string",
           "required": false,
-          "description": "A MaterialCommunityIcons glyph name, as MUI's Icon takes its ligature: `<Icon>plus</Icon>`.",
+          "description": "A glyph name (a MaterialCommunityIcons name), as MUI's Icon takes its\nligature: `<Icon>plus</Icon>`. The theme picks the drawing: Material, or\nEva (`createTheme({ icons: \"eva\" })`). A glyph Eva has no drawing for is\ndrawn in Material, with a warning in development.",
           "deprecated": false
         },
         {
@@ -3237,8 +3237,9 @@
         },
         {
           "name": "style",
-          "type": "StyleProp<ImageStyle>",
+          "type": "StyleProp<ImageStyle & TextStyle>",
           "required": false,
+          "description": "A `color` in the style tints the glyph, as it does on a vector-icons glyph.",
           "deprecated": false
         },
         {

@@ -50,7 +50,7 @@ Each sub-project has its own spec, plan and implementation.
    Also in scope: `variant` values (Button `contained` default, `outlined`, `text`, M3 extras
    such as `tonal` kept as extra values), `color` with the six MUI colours, Typography
    variants `h1`–`h6`, `subtitle1/2`, `body1/2` (default), `caption`, `overline`, `button`
-   **at MUI's own sizes** (h1 96 … `button` 14 UPPERCASE; decided 2026-10-12), with `color`
+   **at MUI's own sizes** (h1 96 … `button` 14 UPPERCASE; decided 2026-10-12, **superseded 2026-10-13** by the design review's Proposta A scale, sentence-case buttons), with `color`
    accepting palette paths (`"text.secondary"`), `theme.spacing(n)` = 8·n, the organization's
    component defaults (Paper elevation 3), docs URLs following the new names. ButtonGroup
    becomes **SegmentedButtons** (MUI's ButtonGroup is a layout wrapper); **Toolbar** keeps its

@@ -6,7 +6,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import { useStateLayer } from "./TouchableRipple";
@@ -76,11 +76,12 @@ const FAB = ({
         customStyle,
       ]}
     >
-      <Icons
-        name={icon}
-        size={size === "large" ? 36 : 24}
+      <Icon
+        fontSize={size === "large" ? 36 : 24}
         color={theme.colors.onPrimaryContainer}
-      />
+      >
+        {icon}
+      </Icon>
       {isExtended && label && (
         <Text
           style={[

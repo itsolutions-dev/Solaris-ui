@@ -19,6 +19,7 @@ import {
   StatusBadge,
   Tabs,
   Toggle,
+  ToggleButtonGroup,
   Typography,
   useTheme,
   type NavigationBarItem,
@@ -29,6 +30,8 @@ import {
 import { CodeBlock } from "../site/CodeBlock";
 import { Page, Section } from "../site/Page";
 import { useLayout } from "../site/breakpoints";
+import { usePreset } from "../site/ThemePresetContext";
+import { PRESETS, parsePresetId } from "../site/themePresets";
 
 /**
  * The colour roles, grouped the way M3 groups them. Tokens the theme has but
@@ -184,6 +187,7 @@ const colorToken = (theme: Theme, token: string): string | undefined =>
 
 export default function Theming() {
   const { theme, toggleTheme } = useTheme();
+  const { preset, setPreset } = usePreset();
   const layout = useLayout();
   const styles = useMemo(() => makeStyles(theme), [theme]);
 
@@ -220,6 +224,25 @@ export default function Theming() {
         </Button>
       </View>
 
+      <View style={styles.toggleRow}>
+        <Typography
+          variant="body2"
+          style={{ color: theme.colors.onSurfaceVariant }}
+        >
+          Design proposal: the colours, type and radii of the whole site, and
+          the icons of its components.
+        </Typography>
+        <ToggleButtonGroup
+          accessibilityLabel="Design proposal"
+          options={Object.entries(PRESETS).map(([value, { label }]) => ({
+            value,
+            label,
+          }))}
+          value={preset}
+          onValueChange={(value) => setPreset(parsePresetId(value))}
+        />
+      </View>
+
       <Section
         title="Components in this theme"
         description="Real components, not pictures of them. Switch the scheme and every one of them re-renders from the other set of roles."
@@ -254,7 +277,7 @@ export default function Theming() {
 
       <Section
         title="Type scale"
-        description="MUI's thirteen steps at MUI's own sizes, on the theme's font family: Roboto on Android and the web, the system font on iOS unless the app embeds Roboto. Typography takes the step name as its variant."
+        description="MUI's thirteen variant names at the active proposal's sizes, on its font family (Roboto for A and Geist for B on the web; the system font on iOS unless the app embeds the font). Typography takes the step name as its variant."
       >
         <View style={styles.typeList}>
           {TYPE_SCALE.map((variant) => {

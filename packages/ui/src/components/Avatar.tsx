@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 
 export interface AvatarProps {
@@ -111,11 +111,12 @@ const Avatar = ({
             {initials}
           </Text>
         ) : (
-          <Icons
-            name={icon}
-            size={size * 0.6}
+          <Icon
+            fontSize={size * 0.6}
             color={textColor || theme.colors.onPrimaryContainer}
-          />
+          >
+            {icon}
+          </Icon>
         )}
       </Pressable>
       {status && statusColor && (
@@ -143,7 +144,9 @@ const Avatar = ({
             />
           )}
           {status === "away" && dotSize > 12 && (
-            <Icons name="clock-outline" size={dotSize * 0.8} color="white" />
+            <Icon fontSize={dotSize * 0.8} color="white">
+              clock-outline
+            </Icon>
           )}
         </View>
       )}

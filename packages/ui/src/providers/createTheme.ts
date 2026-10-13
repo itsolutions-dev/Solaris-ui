@@ -1,13 +1,16 @@
-import { Platform } from "react-native";
+import { Platform, type TextStyle } from "react-native";
 import { parseToRgb, readableColor, rgba } from "polished";
 
 import themeConfig from "./theme.json";
 import { hexToLch, tone } from "./tonal";
 import type {
+  IconSetName,
   Palette,
   PaletteColor,
   Theme,
   ThemeColorTokens,
+  ThemeShapeTokens,
+  TypographyVariant,
 } from "./ThemeProvider";
 
 /** One colour as an app passes it: MUI's `PaletteColorOptions`, minus `light`/`dark`. */
@@ -25,18 +28,39 @@ export interface PaletteOptions {
   warning?: PaletteColorOptions;
   info?: PaletteColorOptions;
   success?: PaletteColorOptions;
+  /** A Solaris extension. Omitted: derived from primary's hue, as before. */
+  tertiary?: PaletteColorOptions;
   background?: { default?: string; paper?: string };
   text?: { primary?: string; secondary?: string };
   divider?: string;
 }
 
-/** MUI v6's `colorSchemes` shape, plus the one typography setting the theme carries. */
+/** One scheme as an app passes it: MUI's `palette`, plus exact Material 3 roles. */
+export interface SchemeOptions {
+  palette?: PaletteOptions;
+  /**
+   * Exact Material 3 roles, applied after derivation, for values the
+   * derivation cannot guess (a designer's `primaryContainer`). The six
+   * colours' `main`s are still normalised to `#RRGGBB`; every value must be a
+   * colour.
+   */
+  colors?: Partial<ThemeColorTokens>;
+}
+
+/** MUI v6's `colorSchemes` shape, plus typography, shape and icon-set settings. */
 export interface ThemeOptions {
   colorSchemes?: {
-    light?: { palette?: PaletteOptions };
-    dark?: { palette?: PaletteOptions };
+    light?: SchemeOptions;
+    dark?: SchemeOptions;
   };
-  typography?: { fontFamily?: string };
+  /** `fontFamily` for every step, and any step's own style (`h4: { fontSize: 24 }`). */
+  typography?: { fontFamily?: string } & Partial<
+    Record<TypographyVariant, TextStyle>
+  >;
+  /** Radii; each given key replaces the default. */
+  shape?: Partial<ThemeShapeTokens>;
+  /** Which drawing set `Icon` uses. Default `"material"`. */
+  icons?: IconSetName;
 }
 
 /** Both schemes of a theme. `ThemeProvider` renders the one the OS, or `toggleTheme()`, asks for. */
@@ -57,6 +81,7 @@ type ColorKey = (typeof COLOR_KEYS)[number];
 
 /** A palette after merging over `theme.json`, which supplies every required key. */
 type ResolvedPalette = Record<ColorKey, PaletteColorOptions> & {
+  tertiary?: PaletteColorOptions;
   background: { default: string; paper: string };
   text?: { primary?: string; secondary?: string };
   divider?: string;
@@ -127,9 +152,17 @@ const muiDark = (hex: string) =>
  * colours: a typo would otherwise pass here and throw later, deep in a
  * press or hover handler. `parseToRgb` throws on anything it cannot read.
  */
-const assertColors = (p: PaletteOptions) => {
+const assertColors = (
+  p: PaletteOptions,
+  overrides: Partial<ThemeColorTokens> = {},
+) => {
   const given = [
     ...COLOR_KEYS.map((key) => p[key]?.contrastText),
+    p.tertiary?.contrastText,
+    // boxShadow is a CSS shadow, the one role that is not a colour.
+    ...Object.entries(overrides)
+      .filter(([key]) => key !== "boxShadow")
+      .map(([, value]) => value),
     p.background?.default,
     p.background?.paper,
     p.text?.primary,
@@ -138,6 +171,42 @@ const assertColors = (p: PaletteOptions) => {
   ];
   given.forEach((color) => color !== undefined && parseToRgb(color));
 };
+
+/**
+ * Roles a palette entry fixes. `theme.json` pins exact roles for the default
+ * theme (a designer's `primaryContainer`); an app that passes the matching
+ * palette entry means a different colour, so the default's pins for that
+ * family would only tint it with the old one.
+ */
+/** Roles derived from primary's hue: they go with it, so a grey brand does not keep the default's blue-grey surfaces. */
+const PRIMARY_DERIVED = [
+  "inversePrimary",
+  "surfaceTint",
+  "surfaceVariant",
+  "surfaceContainerLow",
+  "surfaceContainer",
+  "surfaceContainerHigh",
+  "surfaceContainerHighest",
+  "surfaceDim",
+  "inverseSurface",
+  "inverseOnSurface",
+  "outline",
+];
+const familyOf = (key: string): string[] => {
+  const cap = key[0].toUpperCase() + key.slice(1);
+  const family = [key, `on${cap}`, `${key}Container`, `on${cap}Container`];
+  return key === "primary" ? [...family, ...PRIMARY_DERIVED] : family;
+};
+const shadowedBy = (palette: PaletteOptions = {}): string[] => [
+  ...[...COLOR_KEYS, "tertiary" as const]
+    .filter((key) => palette[key])
+    .flatMap(familyOf),
+  ...(palette.background?.default ? ["background"] : []),
+  ...(palette.background?.paper ? ["surface"] : []),
+  ...(palette.text?.primary ? ["onSurface", "onBackground"] : []),
+  ...(palette.text?.secondary ? ["onSurfaceVariant"] : []),
+  ...(palette.divider ? ["outlineVariant"] : []),
+];
 
 /** Two levels deep, which is all a palette has. */
 const mergePalette = (
@@ -159,6 +228,7 @@ const mergePalette = (
 const deriveScheme = (
   p: ResolvedPalette,
   isDark: boolean,
+  overrides: Partial<ThemeColorTokens> = {},
 ): Pick<Theme, "colors" | "palette"> => {
   const containerTone = isDark ? 30 : 90;
   const onContainerTone = isDark ? 90 : 10;
@@ -170,26 +240,32 @@ const deriveScheme = (
   const t3 = (t: number) =>
     tone((primaryHue + TERTIARY_HUE_SHIFT) % 360, tint(TERTIARY_CHROMA), t);
 
-  const roles = {} as Record<ColorKey, ColorRoles>;
-  COLOR_KEYS.forEach((key) => {
-    const main = toHex(p[key].main);
+  const rolesOf = (option: PaletteColorOptions): ColorRoles => {
+    const main = toHex(option.main);
     const { h, c } = hexToLch(main);
     const chroma = c < ACHROMATIC ? 0 : CHROMA;
-    roles[key] = {
+    return {
       main,
       on:
-        p[key].contrastText ?? readableColor(main, "#000000", "#FFFFFF", false),
+        option.contrastText ?? readableColor(main, "#000000", "#FFFFFF", false),
       container: tone(h, chroma, containerTone),
       onContainer: tone(h, chroma, onContainerTone),
     };
+  };
+  const roles = {} as Record<ColorKey, ColorRoles>;
+  COLOR_KEYS.forEach((key) => {
+    roles[key] = rolesOf(p[key]);
   });
   const { primary, secondary, error, warning, info, success } = roles;
+  // A given tertiary is derived like the six colours; otherwise it keeps the
+  // hue-shifted derivation every component already renders.
+  const given = p.tertiary ? rolesOf(p.tertiary) : undefined;
 
   const onSurface = p.text?.primary ?? n(isDark ? 90 : 10);
   const onSurfaceVariant = p.text?.secondary ?? nv(isDark ? 80 : 30);
   const outlineVariant = p.divider ?? nv(isDark ? 30 : 80);
 
-  const colors: ThemeColorTokens = {
+  const derived: ThemeColorTokens = {
     primary: primary.main,
     onPrimary: primary.on,
     primaryContainer: primary.container,
@@ -199,10 +275,10 @@ const deriveScheme = (
     onSecondary: secondary.on,
     secondaryContainer: secondary.container,
     onSecondaryContainer: secondary.onContainer,
-    tertiary: t3(isDark ? 80 : 40),
-    onTertiary: t3(isDark ? 20 : 100),
-    tertiaryContainer: t3(containerTone),
-    onTertiaryContainer: t3(onContainerTone),
+    tertiary: given?.main ?? t3(isDark ? 80 : 40),
+    onTertiary: given?.on ?? t3(isDark ? 20 : 100),
+    tertiaryContainer: given?.container ?? t3(containerTone),
+    onTertiaryContainer: given?.onContainer ?? t3(onContainerTone),
     error: error.main,
     onError: error.on,
     errorContainer: error.container,
@@ -240,28 +316,39 @@ const deriveScheme = (
     boxShadow: BOX_SHADOW,
   };
 
-  const paletteColor = (key: ColorKey): PaletteColor => ({
-    main: roles[key].main,
-    light: muiLight(roles[key].main),
-    dark: muiDark(roles[key].main),
-    contrastText: roles[key].on,
+  // The six colours' `main`s stay `#RRGGBB` even when overridden: components
+  // append hex alpha to them (`${primary}33`).
+  const fixed: Partial<ThemeColorTokens> = { ...overrides };
+  [...COLOR_KEYS, "tertiary"].forEach((key) => {
+    const k = key as keyof ThemeColorTokens;
+    if (fixed[k] !== undefined) fixed[k] = toHex(fixed[k] as string);
+  });
+  const colors: ThemeColorTokens = { ...derived, ...fixed };
+
+  // Built from the final roles, so `palette` and `colors` never disagree.
+  const paletteColor = (main: string, contrastText: string): PaletteColor => ({
+    main,
+    light: muiLight(main),
+    dark: muiDark(main),
+    contrastText,
   });
 
   const palette: Palette = {
     mode: isDark ? "dark" : "light",
-    primary: paletteColor("primary"),
-    secondary: paletteColor("secondary"),
-    error: paletteColor("error"),
-    warning: paletteColor("warning"),
-    info: paletteColor("info"),
-    success: paletteColor("success"),
-    background: { default: p.background.default, paper: p.background.paper },
+    primary: paletteColor(colors.primary, colors.onPrimary),
+    secondary: paletteColor(colors.secondary, colors.onSecondary),
+    error: paletteColor(colors.error, colors.onError),
+    warning: paletteColor(colors.warning, colors.onWarning),
+    info: paletteColor(colors.info, colors.onInfo),
+    success: paletteColor(colors.success, colors.onSuccess),
+    tertiary: paletteColor(colors.tertiary, colors.onTertiary),
+    background: { default: colors.background, paper: colors.surface },
     text: {
-      primary: onSurface,
-      secondary: onSurfaceVariant,
-      disabled: rgba(onSurface, 0.38),
+      primary: colors.onSurface,
+      secondary: colors.onSurfaceVariant,
+      disabled: rgba(colors.onSurface, 0.38),
     },
-    divider: outlineVariant,
+    divider: colors.outlineVariant,
   };
 
   return { colors, palette };
@@ -285,21 +372,35 @@ export const createTheme = (options: ThemeOptions = {}): ThemeSchemes => {
   const typography = Object.fromEntries(
     Object.entries(themeConfig.typography).map(([variant, style]) => [
       variant,
-      { ...style, fontFamily },
+      {
+        ...style,
+        ...options.typography?.[variant as TypographyVariant],
+        fontFamily,
+      },
     ]),
   ) as Theme["typography"];
+  const shape: ThemeShapeTokens = { ...themeConfig.shape, ...options.shape };
 
   const build = (mode: "light" | "dark"): Theme => {
     const input = mergePalette(
       themeConfig.colorSchemes[mode].palette as PaletteOptions,
       options.colorSchemes?.[mode]?.palette,
     ) as ResolvedPalette;
-    assertColors(input);
+    const appScheme = options.colorSchemes?.[mode];
+    const pinned = Object.entries(
+      (themeConfig.colorSchemes[mode] as SchemeOptions).colors ?? {},
+    ).filter(([key]) => !shadowedBy(appScheme?.palette).includes(key));
+    const overrides: Partial<ThemeColorTokens> = {
+      ...Object.fromEntries(pinned),
+      ...appScheme?.colors,
+    };
+    assertColors(input, overrides);
     return {
-      ...deriveScheme(input, mode === "dark"),
+      ...deriveScheme(input, mode === "dark", overrides),
       typography,
       spacing: (n: number) => n * 8,
-      shape: themeConfig.shape,
+      shape,
+      icons: options.icons ?? "material",
       isDark: mode === "dark",
     };
   };

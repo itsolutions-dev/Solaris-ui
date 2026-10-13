@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 
@@ -100,11 +100,9 @@ const Checkbox = ({
               ]}
             >
               {filled && (
-                <Icons
-                  name={indeterminate ? "minus" : "check"}
-                  size={14}
-                  color={theme.colors.onPrimary}
-                />
+                <Icon fontSize={14} color={theme.colors.onPrimary}>
+                  {indeterminate ? "minus" : "check"}
+                </Icon>
               )}
             </View>
           </View>

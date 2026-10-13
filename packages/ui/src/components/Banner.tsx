@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 import Button from "./Button";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
@@ -58,12 +58,9 @@ const Banner = ({
     >
       <View style={styles.messageRow}>
         {!!iconName && (
-          <Icons
-            name={iconName}
-            size={24}
-            color={iconColor}
-            style={styles.leadingIcon}
-          />
+          <Icon fontSize={24} color={iconColor} style={styles.leadingIcon}>
+            {iconName}
+          </Icon>
         )}
         <Text style={[theme.typography.body2, styles.messageText]}>
           {message}
@@ -78,7 +75,9 @@ const Banner = ({
               { opacity: pressed ? 0.7 : hovered ? 0.5 : 1 },
             ]}
           >
-            <Icons name="close" size={20} color={iconColor} />
+            <Icon fontSize={20} color={iconColor}>
+              close
+            </Icon>
           </Pressable>
         )}
       </View>
@@ -113,9 +112,9 @@ const makeStyles = (theme: Theme, type: BannerType) => {
     textColor = theme.colors.onErrorContainer;
     iconColor = theme.colors.error;
   } else if (type === "warning") {
-    backgroundColor = theme.colors.tertiaryContainer;
-    textColor = theme.colors.onTertiaryContainer;
-    iconColor = theme.colors.onTertiaryContainer;
+    backgroundColor = theme.colors.warningContainer;
+    textColor = theme.colors.onWarningContainer;
+    iconColor = theme.colors.onWarningContainer;
   } else if (type === "info") {
     backgroundColor = theme.colors.primaryContainer;
     textColor = theme.colors.onPrimaryContainer;

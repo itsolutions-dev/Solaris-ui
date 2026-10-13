@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 import Badge from "./Badge";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
@@ -63,15 +63,16 @@ const NavigationBar = ({
                       },
                   ]}
                 >
-                  <Icons
-                    name={iconName}
-                    size={24}
+                  <Icon
+                    fontSize={24}
                     color={
                       active
                         ? theme.colors.onPrimaryContainer
                         : theme.colors.onSurfaceVariant
                     }
-                  />
+                  >
+                    {iconName}
+                  </Icon>
                   {item.badgeCount != null && item.badgeCount > 0 && (
                     <View style={styles.badge}>
                       <Badge count={item.badgeCount} />

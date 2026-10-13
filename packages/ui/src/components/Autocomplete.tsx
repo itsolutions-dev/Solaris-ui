@@ -17,7 +17,7 @@ import {
   ViewStyle,
   useWindowDimensions,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { Theme, useTheme, getGlowStyles } from "../providers/ThemeProvider";
 import CircularProgress from "./Progress/CircularProgress";
 import HelperText from "./HelperText";
@@ -260,11 +260,9 @@ const Autocomplete = ({
           ]}
         >
           {!!leadingIcon && (
-            <Icons
-              name={leadingIcon}
-              size={20}
-              color={theme.colors.onSurfaceVariant}
-            />
+            <Icon fontSize={20} color={theme.colors.onSurfaceVariant}>
+              {leadingIcon}
+            </Icon>
           )}
           <TextInput
             ref={inputRef}
@@ -307,11 +305,9 @@ const Autocomplete = ({
                 },
               ]}
             >
-              <Icons
-                name="close"
-                size={18}
-                color={theme.colors.onSurfaceVariant}
-              />
+              <Icon fontSize={18} color={theme.colors.onSurfaceVariant}>
+                close
+              </Icon>
             </Pressable>
           )}
         </View>
@@ -357,11 +353,12 @@ const Autocomplete = ({
                       ]}
                     >
                       {!!option.icon && (
-                        <Icons
-                          name={option.icon}
-                          size={20}
+                        <Icon
+                          fontSize={20}
                           color={theme.colors.onSurfaceVariant}
-                        />
+                        >
+                          {option.icon}
+                        </Icon>
                       )}
                       <View style={styles.optionText}>
                         <Text

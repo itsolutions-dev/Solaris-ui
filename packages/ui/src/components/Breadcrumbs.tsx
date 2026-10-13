@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs, PressableState } from "./types";
 
@@ -60,16 +60,17 @@ const Breadcrumbs = ({
               {({ hovered }: PressableState) => (
                 <>
                   {!!item.icon && (
-                    <Icons
-                      name={item.icon}
-                      size={16}
+                    <Icon
+                      fontSize={16}
                       color={
                         isLast
                           ? theme.colors.onSurface
                           : theme.colors.onSurfaceVariant
                       }
                       style={styles.itemIcon}
-                    />
+                    >
+                      {item.icon}
+                    </Icon>
                   )}
                   <Text
                     style={[
@@ -96,12 +97,13 @@ const Breadcrumbs = ({
             </Pressable>
 
             {!isLast && (
-              <Icons
-                name={separator}
-                size={16}
+              <Icon
+                fontSize={16}
                 color={theme.colors.onSurfaceVariant}
                 style={styles.separator}
-              />
+              >
+                {separator}
+              </Icon>
             )}
           </React.Fragment>
         );

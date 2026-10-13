@@ -2,12 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, type ViewStyle } from "react-native";
 import { fireEvent, render } from "@testing-library/react-native";
 import {
+  Banner,
   Button,
   Card,
+  Chip,
   ConfirmDialog,
   createTheme,
   HelperText,
   Icon,
+  Input,
   ListItem,
   ListSection,
   Modal,
@@ -453,5 +456,69 @@ describe("ThemeProvider", () => {
       getByTestId("branded").props.style as ViewStyle,
     )?.backgroundColor;
     expect(fill).toBe("#B00020");
+  });
+});
+
+describe("status and selection colours", () => {
+  const colors = createTheme().light.colors;
+  interface Host {
+    props: { style?: unknown };
+    parent: Host | null;
+  }
+  /** The fill of the nearest ancestor that has one. */
+  const surfaceBehind = (node: Host | null) => {
+    const fill = (n: Host) =>
+      StyleSheet.flatten(n.props.style as ViewStyle)?.backgroundColor;
+    let current = node;
+    while (current && fill(current) === undefined) current = current.parent;
+    return current && fill(current);
+  };
+
+  it("paints a warning banner with the warning roles, not the tertiary brand colour", async () => {
+    const { getByText } = await wrap(
+      <Banner visible type="warning" message="Heads up" />,
+    );
+    expect(surfaceBehind(getByText("Heads up").parent)).toBe(
+      colors.warningContainer,
+    );
+  });
+
+  it("paints a selected filled chip with a neutral container, not the tertiary brand colour", async () => {
+    const { getByText } = await wrap(
+      <Chip label="Picked" mode="filled" selected onPress={() => {}} />,
+    );
+    const fill = surfaceBehind(getByText("Picked").parent);
+    expect(fill).toBe(colors.secondaryContainer);
+    expect(fill).not.toBe(colors.tertiaryContainer);
+  });
+});
+
+describe("Input trailing icon", () => {
+  it("is plain decoration, not a disabled button, when nothing handles a press", async () => {
+    const { toJSON, queryByRole } = await wrap(
+      <Input
+        label="Search"
+        value=""
+        onChangeText={() => {}}
+        trailingIcon="magnify"
+      />,
+    );
+    expect(queryByRole("button")).toBeNull();
+    expect(JSON.stringify(toJSON())).not.toContain('"disabled":true');
+  });
+
+  it("is a button that calls the handler when one is given", async () => {
+    const onPress = jest.fn();
+    const { getByRole } = await wrap(
+      <Input
+        label="Search"
+        value=""
+        onChangeText={() => {}}
+        trailingIcon="magnify"
+        onTrailingIconPress={onPress}
+      />,
+    );
+    await fireEvent.press(getByRole("button"));
+    expect(onPress).toHaveBeenCalledTimes(1);
   });
 });

@@ -56,6 +56,8 @@ These rules decide every case the per-component tables do not spell out.
 
 ### Type scale
 
+> **Superseded 2026-10-13.** The type scale is now the design review's Proposta A (Roboto, h4 32/700 … `button` 14/500 in sentence case); the table below is G0's original MUI scale and is kept for the history. See `docs/superpowers/plans/2026-10-13-solaris-theme-proposals.md`.
+
 `theme.typography` becomes MUI's 13 styles at **MUI's own sizes**. These are the values from
 MUI 9's `createTypography`, converted to React Native: `lineHeight` becomes `fontSize × ratio`
 rounded, `letterSpacing` is in px, and casing uses `textTransform`.

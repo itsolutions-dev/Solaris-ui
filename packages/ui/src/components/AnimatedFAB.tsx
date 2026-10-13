@@ -9,7 +9,7 @@ import {
   Text,
   ViewStyle,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getGlowStyles, useTheme } from "../providers/ThemeProvider";
 import { useStateLayer } from "./TouchableRipple";
@@ -200,12 +200,13 @@ const AnimatedFAB = ({
           </Animated.Text>
         )}
 
-        <Icons
-          name={icon}
-          size={ICON_SIZE}
+        <Icon
+          fontSize={ICON_SIZE}
           color={theme.colors.onPrimaryContainer}
           style={styles.icon}
-        />
+        >
+          {icon}
+        </Icon>
 
         {growsFromRight && (
           <Animated.Text

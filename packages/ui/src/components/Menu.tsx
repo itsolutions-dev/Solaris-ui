@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 
 import Popover from "./Popover";
@@ -92,12 +92,13 @@ const Menu = ({
                 >
                   <View style={styles.itemRow}>
                     {!!item.icon && (
-                      <Icons
-                        name={item.icon}
-                        size={20}
+                      <Icon
+                        fontSize={20}
                         color={iconColor}
                         style={styles.leadingIcon}
-                      />
+                      >
+                        {item.icon}
+                      </Icon>
                     )}
                     <Text
                       style={[

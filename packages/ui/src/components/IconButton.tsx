@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import {
   useTheme,
   getStateColor,
@@ -138,7 +138,9 @@ const IconButton = ({
       {loading ? (
         <CircularProgress size={iconSize} color={foreground} />
       ) : (
-        <Icons name={icon} size={iconSize} color={foreground} />
+        <Icon fontSize={iconSize} color={foreground}>
+          {icon}
+        </Icon>
       )}
     </Pressable>
   );

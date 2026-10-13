@@ -182,7 +182,7 @@ Theme tokens:
   inverse pair; outline and scrim.
 - **`theme.palette`** — the same colours in MUI's shape (`main` / `light` / `dark` /
   `contrastText`, `background`, `text`, `divider`).
-- **Type scale** — MUI's thirteen steps at MUI's own sizes (`h1` 96 … `caption` 12; `button` and `overline` uppercase).
+- **Type scale** — MUI's thirteen variant names on the CRM's Roboto scale (`h4` 32/700 … `caption` 12; `button` in sentence case, `overline` uppercase).
 - **Spacing** — `theme.spacing(n)` = 8 × n, as in MUI (`spacing(2)` = 16).
 - **Shape radii** — `borderRadius:4` (MUI's base) and `small:8 medium:12 large:16 extraLarge:24 full:9999`.
 
@@ -277,6 +277,16 @@ bundled bitmap, an SVG render function, a ready-made element.
 <Icon fontSize="large" color="primary">camera</Icon>
 <Icon source={require("./logo.png")} />
 ```
+
+**Icon sets.** The glyph name is always a Material Design Icons name; the theme picks the
+drawing. `createTheme({ icons: "eva" })` draws the glyphs in [Eva Icons](https://github.com/akveo/eva-icons)
+(outline; the filled drawing where a component needs an on/off pair, such as `star`/`star-outline`)
+through `react-native-svg`, with no font and no native module. A glyph Eva has no drawing for is
+drawn in Material, with one warning in development. The mapping is
+`src/components/icons/iconMap.json`; `npm run icons:eva -w @its/solaris-ui` regenerates
+`evaGlyphs.generated.ts` from the `eva-icons` package.
+
+Eva Icons are © Akveo, MIT licence.
 
 #### `TouchableRipple`
 

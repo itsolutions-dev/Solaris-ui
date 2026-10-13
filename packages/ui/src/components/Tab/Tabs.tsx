@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "../Icon";
 import { useTheme, getGlowStyles } from "../../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs, PressableState } from "../types";
 
@@ -94,15 +94,16 @@ const Tabs = ({ tabs, activeTab, onChange }: TabProps) => {
                     ]}
                   />
                 )}
-                <Icons
-                  name={iconName as MaterialCommunityIconsGlyphs}
-                  size={24}
+                <Icon
+                  fontSize={24}
                   color={
                     isActive
                       ? theme.colors.onPrimaryContainer
                       : theme.colors.onSurfaceVariant
                   }
-                />
+                >
+                  {iconName as MaterialCommunityIconsGlyphs}
+                </Icon>
               </View>
             )}
             <Text

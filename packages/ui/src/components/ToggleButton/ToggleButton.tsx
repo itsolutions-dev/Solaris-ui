@@ -7,7 +7,7 @@ import {
   ViewStyle,
   StyleProp,
 } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "../Icon";
 import { useTheme, getGlowStyles } from "../../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs, PressableState } from "../types";
 
@@ -88,7 +88,11 @@ const ToggleButton = ({
           android_ripple: { color: theme.colors.onPrimary },
         })}
     >
-      {!!glyph && <Icons name={glyph} size={18} color={contentColor} />}
+      {!!glyph && (
+        <Icon fontSize={18} color={contentColor}>
+          {glyph}
+        </Icon>
+      )}
       {!!label && (
         <Text
           numberOfLines={1}

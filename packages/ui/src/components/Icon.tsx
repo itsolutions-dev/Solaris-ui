@@ -5,11 +5,27 @@ import {
   StyleProp,
   I18nManager,
   ImageStyle,
+  StyleSheet,
+  TextStyle,
+  ViewStyle,
 } from "react-native";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Svg, { Path } from "react-native-svg";
 import { useTheme } from "../providers/ThemeProvider";
 import { resolveColor } from "./Layout/tokens";
+import { EVA_GLYPHS } from "./icons/evaGlyphs.generated";
+import iconMap from "./icons/iconMap.json";
 import { MaterialCommunityIconsGlyphs } from "./types";
+
+const EVA_NAMES = iconMap as Record<string, string>;
+
+const warned = new Set<string>();
+/** One development warning per problem, however many icons hit it. */
+const warnOnce = (key: string, message: string) => {
+  if (!__DEV__ || warned.has(key)) return;
+  warned.add(key);
+  console.warn(message);
+};
 
 /** Props handed to a render-function icon source. */
 export interface IconRenderProps {
@@ -34,7 +50,12 @@ export type IconSource =
 const FONT_SIZES = { small: 20, medium: 24, large: 35 } as const;
 
 export interface IconProps {
-  /** A MaterialCommunityIcons glyph name, as MUI's Icon takes its ligature: `<Icon>plus</Icon>`. */
+  /**
+   * A glyph name (a MaterialCommunityIcons name), as MUI's Icon takes its
+   * ligature: `<Icon>plus</Icon>`. The theme picks the drawing: Material, or
+   * Eva (`createTheme({ icons: "eva" })`). A glyph Eva has no drawing for is
+   * drawn in Material, with a warning in development.
+   */
   children?: string;
   /** A bitmap, a render function or a ready-made element, when the icon is not a glyph. */
   source?:
@@ -47,7 +68,8 @@ export interface IconProps {
   color?: string;
   /** Mirror the glyph when the layout direction is RTL (arrows, chevrons). */
   flipForRTL?: boolean;
-  style?: StyleProp<ImageStyle>;
+  /** A `color` in the style tints the glyph, as it does on a vector-icons glyph. */
+  style?: StyleProp<ImageStyle & TextStyle>;
   testID?: string;
 }
 
@@ -79,7 +101,11 @@ const Icon = ({
 }: IconProps) => {
   const { theme } = useTheme();
   const size = typeof fontSize === "number" ? fontSize : FONT_SIZES[fontSize];
-  const tint = resolveColor(theme, color) ?? theme.colors.onSurface;
+  const styleColor = StyleSheet.flatten(style)?.color as string | undefined;
+  // A colour in `style` wins over the `color` prop, as on a vector-icons glyph:
+  // components pass both (a default in `color`, a state in `style`).
+  const tint =
+    resolveColor(theme, styleColor ?? color) ?? theme.colors.onSurface;
 
   const transform = useMemo(
     () => (flipForRTL && I18nManager.isRTL ? [{ scaleX: -1 }] : undefined),
@@ -87,6 +113,32 @@ const Icon = ({
   );
 
   if (children !== undefined) {
+    const evaName = theme.icons === "eva" ? EVA_NAMES[children] : undefined;
+    const paths = evaName ? EVA_GLYPHS[evaName] : undefined;
+    if (theme.icons === "eva" && !paths) {
+      warnOnce(
+        `eva:${children}`,
+        `Icon: no Eva glyph for "${children}", drawing the Material one.`,
+      );
+    }
+    if (paths) {
+      return (
+        <Svg
+          testID={testID}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          style={[
+            transform ? { transform } : null,
+            style as StyleProp<ViewStyle>,
+          ]}
+        >
+          {paths.map((d, index) => (
+            <Path key={index} d={d} fill={tint} />
+          ))}
+        </Svg>
+      );
+    }
     return (
       <Icons
         testID={testID}
@@ -99,6 +151,14 @@ const Icon = ({
         ]}
       />
     );
+  }
+
+  if (typeof source === "string") {
+    warnOnce(
+      `source:${source}`,
+      `Icon: pass the glyph as children: <Icon>${source}</Icon>`,
+    );
+    return null;
   }
 
   if (typeof source === "function") {
@@ -118,7 +178,7 @@ const Icon = ({
         style={[{ width: size, height: size, transform }, style]}
         // A tint only makes sense on a monochrome glyph; callers pass a
         // full-colour bitmap by leaving `color` unset.
-        tintColor={color ? tint : undefined}
+        tintColor={(color ?? styleColor) ? tint : undefined}
       />
     );
   }

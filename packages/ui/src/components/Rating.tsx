@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Pressable, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme } from "../providers/ThemeProvider";
 import { MaterialCommunityIconsGlyphs } from "./types";
 
@@ -60,15 +60,16 @@ const Rating = ({
           accessibilityLabel={`${starNumber} ${starNumber === 1 ? "star" : "stars"}`}
           style={interactive && styles.starPressable}
         >
-          <Icons
-            name={icon}
-            size={size}
+          <Icon
+            fontSize={size}
             color={
               icon === "star-outline"
                 ? theme.colors.onSurfaceVariant
                 : theme.colors.primary
             }
-          />
+          >
+            {icon}
+          </Icon>
         </Pressable>
       ))}
     </View>

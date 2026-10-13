@@ -6,13 +6,9 @@ import {
   ThemeProvider as NavigationThemeProvider,
 } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import {
-  AlertProvider,
-  ThemeProvider,
-  ToastProvider,
-  useTheme,
-} from "@its/solaris-ui";
+import { AlertProvider, ToastProvider, useTheme } from "@its/solaris-ui";
 
+import { PresetProvider } from "../site/ThemePresetContext";
 import { SiteShell } from "../site/SiteShell";
 import { ThemeStatusBar } from "../site/ThemeStatusBar";
 
@@ -26,7 +22,7 @@ import { ThemeStatusBar } from "../site/ThemeStatusBar";
  */
 export default function RootLayout() {
   return (
-    <ThemeProvider>
+    <PresetProvider>
       <SafeAreaProvider>
         <AlertProvider>
           <ToastProvider>
@@ -35,7 +31,7 @@ export default function RootLayout() {
           </ToastProvider>
         </AlertProvider>
       </SafeAreaProvider>
-    </ThemeProvider>
+    </PresetProvider>
   );
 }
 

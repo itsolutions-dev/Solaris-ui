@@ -1,7 +1,12 @@
 import React, { type ComponentType, type ReactNode } from "react";
 import { render } from "@testing-library/react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AlertProvider, ThemeProvider, ToastProvider } from "@its/solaris-ui";
+import {
+  AlertProvider,
+  ThemeProvider,
+  ToastProvider,
+  type ThemeSchemes,
+} from "@its/solaris-ui";
 
 import ComponentPreview from "../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../catalogue/registry";
@@ -9,6 +14,7 @@ import { CATEGORIES, FLAT_ORDER, TOTAL_COUNT } from "../catalogue/categories";
 import { buildSnippet } from "../catalogue/snippet";
 import { VARIANTS_BY_COMPONENT } from "../catalogue/variants";
 import { COMPONENT_DOCS, requiredPropsOf } from "../site/propsData";
+import { PRESETS } from "../site/themePresets";
 
 /** The panel's opening state for a component: every prop at its default. */
 const defaultsOf = (name: string) => {
@@ -25,14 +31,20 @@ const defaultsOf = (name: string) => {
 // all of it. The router is deliberately not mounted: what has to keep working
 // is that every catalogue entry renders, and rendering it through a navigator
 // only adds ways for the test to fail for reasons that are not that.
-const Providers = ({ children }: { children: ReactNode }) => (
+const Providers = ({
+  children,
+  theme,
+}: {
+  children: ReactNode;
+  theme?: ThemeSchemes;
+}) => (
   <SafeAreaProvider
     initialMetrics={{
       frame: { x: 0, y: 0, width: 1280, height: 900 },
       insets: { top: 0, left: 0, right: 0, bottom: 0 },
     }}
   >
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <AlertProvider>
         <ToastProvider>{children}</ToastProvider>
       </AlertProvider>
@@ -260,6 +272,76 @@ describe("Playground catalogue", () => {
     const { toJSON } = await renderDemo(name);
     expect(toJSON()).toBeTruthy();
   });
+
+  // Glyphs the library draws that Eva has no drawing for; they fall back to
+  // Material. Anything else the catalogue renders must be in iconMap.json.
+  // Eva has no drawing for these (no sensible equivalent). star-half-full is the
+  // one the library itself uses (Rating's half star); the rest are demo glyphs.
+  const WITHOUT_EVA: string[] = [
+    "bookshelf",
+    "cash-multiple",
+    "close-octagon-outline",
+    "cloud-check-outline",
+    "cloud-off-outline",
+    "cloud-sync-outline",
+    "domain",
+    "file-search-outline",
+    "fingerprint",
+    "flag-outline",
+    "format-align-center",
+    "format-align-justify",
+    "format-align-left",
+    "format-align-right",
+    "format-bold",
+    "format-italic",
+    "format-list-bulleted",
+    "format-strikethrough",
+    "format-underline",
+    "office-building-outline",
+    "play",
+    "rocket-launch-outline",
+    "slash-forward",
+    "sort",
+    "star-half-full",
+    "text-box-outline",
+    "wrench-outline",
+  ];
+
+  it("renders every demo and gallery entry under Proposta B without an unmapped Eva glyph", async () => {
+    const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
+    try {
+      for (const name of CATALOGUE) {
+        await render(
+          <Providers theme={PRESETS.b.theme}>
+            <ComponentPreview
+              selectedComponentName={name}
+              activeMeta={ComponentRegistry[name]}
+              componentProps={defaultsOf(name)}
+              updateProp={() => {}}
+            />
+          </Providers>,
+        );
+      }
+      for (const [, Demo] of GALLERY) {
+        await render(
+          <Providers theme={PRESETS.b.theme}>
+            <Demo />
+          </Providers>,
+        );
+      }
+      const missing = [
+        ...new Set(
+          warn.mock.calls
+            .map((call) => /no Eva glyph for "([^"]+)"/.exec(String(call[0])))
+            .filter((match): match is RegExpExecArray => match !== null)
+            .map((match) => match[1]),
+        ),
+      ].sort();
+      expect(missing).toEqual(WITHOUT_EVA);
+    } finally {
+      warn.mockRestore();
+    }
+  }, 180000);
 
   it.each(CATALOGUE)("builds a usage snippet for %s", (name) => {
     const snippet = buildSnippet(

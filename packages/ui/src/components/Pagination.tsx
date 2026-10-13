@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme, Theme } from "../providers/ThemeProvider";
 import { PressableState } from "./types";
 
@@ -85,7 +85,9 @@ const Pagination = ({
               },
           ]}
         >
-          <Icons name={icon} size={20} color={theme.colors.onSurfaceVariant} />
+          <Icon fontSize={20} color={theme.colors.onSurfaceVariant}>
+            {icon}
+          </Icon>
         </View>
       )}
     </Pressable>

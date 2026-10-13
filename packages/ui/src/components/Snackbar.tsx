@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useMemo, useState } from "react";
 import { Animated, StyleSheet, View, Text, Platform } from "react-native";
 import { useTheme, Theme, getGlowStyles } from "../providers/ThemeProvider";
 import Button from "./Button";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { MaterialCommunityIconsGlyphs } from "./types";
 
 export interface SnackbarProps {
@@ -113,20 +113,14 @@ const Snackbar = ({
       <View style={[styles.content, glowStyles]}>
         <View style={styles.messageRow}>
           {!!icon && (
-            <Icons
-              name={icon}
-              size={20}
-              color={iconColor}
-              style={styles.leadingIcon}
-            />
+            <Icon fontSize={20} color={iconColor} style={styles.leadingIcon}>
+              {icon}
+            </Icon>
           )}
           {!icon && type !== "default" && (
-            <Icons
-              name={type === "success" ? "check-circle" : "alert-circle"}
-              size={20}
-              color={iconColor}
-              style={styles.leadingIcon}
-            />
+            <Icon fontSize={20} color={iconColor} style={styles.leadingIcon}>
+              {type === "success" ? "check-circle" : "alert-circle"}
+            </Icon>
           )}
           <Text
             style={[theme.typography.body2, styles.messageText]}

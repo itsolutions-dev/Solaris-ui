@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Icons from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "./Icon";
 import { useTheme } from "../providers/ThemeProvider";
 
 export interface StatusBadgeProps {
@@ -36,7 +36,9 @@ const StatusBadge = ({ label, icon, type = "success" }: StatusBadgeProps) => {
       accessibilityRole="text"
       accessibilityLabel={`${type}: ${label}`}
     >
-      <Icons name={(icon || ICONS[type]) as any} size={14} color={on} />
+      <Icon fontSize={14} color={on}>
+        {(icon || ICONS[type]) as any}
+      </Icon>
       <Text style={[styles.statusText, { color: on }]}>{label}</Text>
     </View>
   );
