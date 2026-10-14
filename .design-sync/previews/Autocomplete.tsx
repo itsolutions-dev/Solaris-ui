@@ -1,5 +1,5 @@
 import React from "react";
-import { Autocomplete, VStack } from "@its/solaris-ui";
+import { Autocomplete, Stack } from "@its/solaris-ui";
 import type { AutocompleteOption } from "@its/solaris-ui";
 
 const cities: AutocompleteOption[] = [
@@ -68,7 +68,7 @@ export const Suggestions = () => (
 );
 
 export const ClosedField = () => (
-  <VStack spacing="m" width={380}>
+  <Stack spacing="m" width={380}>
     <Autocomplete
       value="Milan"
       onChangeText={noop}
@@ -87,11 +87,11 @@ export const ClosedField = () => (
       placeholder="Start typing a city"
       required
     />
-  </VStack>
+  </Stack>
 );
 
 export const States = () => (
-  <VStack spacing="m" width={380}>
+  <Stack spacing="m" width={380}>
     <Autocomplete
       value="Mila"
       onChangeText={noop}
@@ -117,5 +117,5 @@ export const States = () => (
       label="City"
       disabled
     />
-  </VStack>
+  </Stack>
 );

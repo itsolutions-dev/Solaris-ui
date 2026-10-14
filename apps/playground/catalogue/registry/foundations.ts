@@ -8,7 +8,6 @@ import {
   CardCover,
   CardTitle,
   Icon,
-  TouchableRipple,
 } from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 
@@ -187,15 +186,6 @@ export const foundations: Record<string, ComponentMetadata> = {
       },
       color: { type: "text", default: "text.primary", label: "Color" },
       flipForRTL: { type: "boolean", default: false, label: "Flip for RTL" },
-    },
-  },
-  TouchableRipple: {
-    name: "TouchableRipple",
-    Component: TouchableRipple,
-    props: {
-      borderless: { type: "boolean", default: false, label: "Borderless" },
-      borderRadius: { type: "number", default: 12, label: "Border radius" },
-      disabled: { type: "boolean", default: false, label: "Disabled" },
     },
   },
 };

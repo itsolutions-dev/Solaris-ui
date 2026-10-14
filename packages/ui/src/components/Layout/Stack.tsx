@@ -45,15 +45,3 @@ const Stack = ({
 );
 
 export default Stack;
-
-export type StackAxisProps = Omit<StackProps, "direction">;
-
-/** `Stack` locked to the horizontal axis. */
-export const HStack = (props: StackAxisProps) => (
-  <Stack {...props} direction="horizontal" />
-);
-
-/** `Stack` locked to the vertical axis. */
-export const VStack = (props: StackAxisProps) => (
-  <Stack {...props} direction="vertical" />
-);

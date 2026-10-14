@@ -3,15 +3,10 @@ import {
   Avatar,
   DataGrid,
   Tooltip,
-  Carousel,
   Accordion,
-  StatusBadge,
   ListItem,
-  Image,
   Link,
-  Stat,
   ListSection,
-  ListSubheader,
   Table,
 } from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
@@ -78,24 +73,6 @@ export const dataDisplay: Record<string, ComponentMetadata> = {
       },
     },
   },
-  StatusBadge: {
-    name: "StatusBadge",
-    Component: StatusBadge,
-    props: {
-      label: { type: "text", default: "Active", label: "Label" },
-      type: {
-        type: "select",
-        default: "success",
-        label: "Type",
-        options: [
-          { label: "Success", value: "success" },
-          { label: "Error", value: "error" },
-          { label: "Warning", value: "warning" },
-        ],
-      },
-      icon: { type: "text", default: "", label: "Icon Override" },
-    },
-  },
   DataGrid: {
     name: "DataGrid",
     Component: DataGrid,
@@ -133,13 +110,6 @@ export const dataDisplay: Record<string, ComponentMetadata> = {
     props: {
       title: { type: "text", default: "Notifications", label: "Title" },
       divider: { type: "boolean", default: false, label: "Divider below" },
-    },
-  },
-  ListSubheader: {
-    name: "ListSubheader",
-    Component: ListSubheader,
-    props: {
-      children: { type: "text", default: "Preferences", label: "Text" },
     },
   },
   Tooltip: {
@@ -181,79 +151,6 @@ export const dataDisplay: Record<string, ComponentMetadata> = {
         default: "Hidden content revealed when expanded.",
         label: "Content",
       },
-    },
-  },
-  Carousel: {
-    name: "Carousel",
-    Component: Carousel,
-    props: {
-      showDots: { type: "boolean", default: true, label: "Show Dots" },
-      showArrows: { type: "boolean", default: false, label: "Show Arrows" },
-      autoPlayInterval: {
-        type: "number",
-        default: 0,
-        label: "Auto-play (ms, 0 = off)",
-      },
-    },
-  },
-  Stat: {
-    name: "Stat",
-    Component: Stat,
-    props: {
-      label: { type: "text", default: "Monthly revenue", label: "Label" },
-      value: { type: "text", default: "128,400", label: "Value" },
-      delta: { type: "text", default: "12.5%", label: "Delta" },
-      trend: {
-        type: "select",
-        default: "up",
-        label: "Trend",
-        options: [
-          { label: "Up", value: "up" },
-          { label: "Down", value: "down" },
-          { label: "Flat", value: "flat" },
-        ],
-        // The arrow lives in the delta row, which needs a delta.
-        appliesWhen: (values) => !!values.delta,
-      },
-      invertTrendColors: {
-        type: "boolean",
-        default: false,
-        label: "Invert trend colors",
-        // Flat is the neutral role either way round.
-        appliesWhen: (values) => !!values.delta && values.trend !== "flat",
-      },
-      helpText: { type: "text", default: "vs. last month", label: "Help Text" },
-      icon: { type: "text", default: "cash-multiple", label: "Icon" },
-    },
-  },
-  Image: {
-    name: "Image",
-    Component: Image,
-    props: {
-      alt: { type: "text", default: "A placeholder photo", label: "Alt text" },
-      ratio: { type: "number", default: 1.5, label: "Aspect Ratio" },
-      radius: {
-        type: "select",
-        default: "large",
-        label: "Radius",
-        options: [
-          { label: "None", value: 0 },
-          { label: "Small", value: "small" },
-          { label: "Medium", value: "medium" },
-          { label: "Large", value: "large" },
-        ],
-      },
-      resizeMode: {
-        type: "select",
-        default: "cover",
-        label: "Resize Mode",
-        options: [
-          { label: "Cover", value: "cover" },
-          { label: "Contain", value: "contain" },
-        ],
-      },
-      showLoader: { type: "boolean", default: true, label: "Show Loader" },
-      broken: { type: "boolean", default: false, label: "Simulate broken URL" },
     },
   },
   Link: {

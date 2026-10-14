@@ -1,22 +1,14 @@
 import {
   Button,
   Menu,
-  BottomSheet,
   Skeleton,
   Banner,
-  EmptyState,
   Snackbar,
-  CircularProgress,
-  LinearProgress,
   Modal,
   ConfirmDialog,
-  Popover,
-  Collapse,
   Portal,
-  SideSheet,
 } from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
-import { SideSheetDemo } from "../demos";
 
 /** Feedback: 15 catalogue entries. */
 export const feedback: Record<string, ComponentMetadata> = {
@@ -100,27 +92,6 @@ export const feedback: Record<string, ComponentMetadata> = {
       cancelText: { type: "text", default: "Cancel", label: "Cancel Text" },
     },
   },
-  Popover: {
-    name: "Popover",
-    Component: Popover,
-    props: {
-      visible: { type: "boolean", default: false, label: "Visible" },
-    },
-  },
-  BottomSheet: {
-    name: "BottomSheet",
-    Component: BottomSheet,
-    props: {
-      visible: { type: "boolean", default: false, label: "Visible" },
-      title: { type: "text", default: "Sheet Title", label: "Title" },
-      showHandle: { type: "boolean", default: true, label: "Show Handle" },
-      dismissOnScrimTap: {
-        type: "boolean",
-        default: true,
-        label: "Dismiss On Scrim Tap",
-      },
-    },
-  },
   Menu: {
     name: "Menu",
     Component: Menu,
@@ -159,49 +130,6 @@ export const feedback: Record<string, ComponentMetadata> = {
       animate: { type: "boolean", default: true, label: "Animate" },
     },
   },
-  CircularProgress: {
-    name: "CircularProgress",
-    Component: CircularProgress,
-    props: {
-      size: { type: "number", default: 48, label: "Size" },
-      strokeWidth: { type: "number", default: 4, label: "Stroke Width" },
-      duration: { type: "number", default: 1000, label: "Duration (ms)" },
-      color: { type: "text", default: "", label: "Color" },
-    },
-  },
-  LinearProgress: {
-    name: "LinearProgress",
-    Component: LinearProgress,
-    props: {
-      progress: {
-        type: "number",
-        default: 0.6,
-        label: "Progress (0-1)",
-        // The indeterminate bar reports no value, to the eye or to a11y.
-        appliesWhen: (values) => !values.indeterminate,
-      },
-      indeterminate: {
-        type: "boolean",
-        default: false,
-        label: "Indeterminate",
-      },
-      height: { type: "number", default: 4, label: "Height" },
-      color: { type: "text", default: "", label: "Color" },
-    },
-  },
-  EmptyState: {
-    name: "EmptyState",
-    Component: EmptyState,
-    props: {
-      icon: { type: "text", default: "inbox-outline", label: "Icon" },
-      title: { type: "text", default: "No items yet", label: "Title" },
-      description: {
-        type: "text",
-        default: "Items you add will show up here.",
-        label: "Description",
-      },
-    },
-  },
   Toast: {
     name: "Toast",
     Component: Button,
@@ -211,40 +139,9 @@ export const feedback: Record<string, ComponentMetadata> = {
       withAction: { type: "boolean", default: false, label: "With action" },
     },
   },
-  Collapse: {
-    name: "Collapse",
-    Component: Collapse,
-    props: {
-      collapsedHeight: {
-        type: "number",
-        default: 0,
-        label: "Collapsed Height",
-      },
-      duration: { type: "number", default: 200, label: "Duration (ms)" },
-      animateOpacity: { type: "boolean", default: true, label: "Fade" },
-    },
-  },
   Portal: {
     name: "Portal",
     Component: Portal,
     props: {},
-  },
-  SideSheet: {
-    name: "SideSheet",
-    Component: SideSheet,
-    Demo: SideSheetDemo,
-    props: {
-      title: { type: "text", default: "Filters", label: "Title" },
-      modal: { type: "boolean", default: true, label: "Modal" },
-      side: {
-        type: "select",
-        default: "end",
-        label: "Side",
-        options: [
-          { label: "End", value: "end" },
-          { label: "Start", value: "start" },
-        ],
-      },
-    },
   },
 };

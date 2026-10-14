@@ -10,22 +10,17 @@ import {
   CardTitle,
   Checkbox,
   Chip,
-  CircularProgress,
   Input,
-  LinearProgress,
   NavigationBar,
-  RadioButton,
-  Slider,
-  StatusBadge,
   Tabs,
   Toggle,
-  ToggleButtonGroup,
   Typography,
   useTheme,
   type NavigationBarItem,
   type Theme,
   type TypographyVariant,
 } from "@its/solaris-ui";
+import ChoiceChips from "../site/ChoiceChips";
 
 import { CodeBlock } from "../site/CodeBlock";
 import { Page, Section } from "../site/Page";
@@ -232,7 +227,7 @@ export default function Theming() {
           Design proposal: the colours, type and radii of the whole site, and
           the icons of its components.
         </Typography>
-        <ToggleButtonGroup
+        <ChoiceChips
           accessibilityLabel="Design proposal"
           options={Object.entries(PRESETS).map(([value, { label }]) => ({
             value,
@@ -400,8 +395,6 @@ const Gallery = () => {
   const [name, setName] = useState("Mario Rossi");
   const [notify, setNotify] = useState(true);
   const [remember, setRemember] = useState(true);
-  const [plan, setPlan] = useState<"monthly" | "annual">("annual");
-  const [volume, setVolume] = useState(40);
   const [tab, setTab] = useState(0);
   const [nav, setNav] = useState("home");
 
@@ -438,9 +431,6 @@ const Gallery = () => {
       <View style={styles.galleryRow}>
         <Chip label="All" mode="outlined" onPress={noop} />
         <Chip label="Selected" mode="tonal" selected onPress={noop} />
-        <StatusBadge label="Active" type="success" />
-        <StatusBadge label="Pending" type="warning" />
-        <StatusBadge label="Failed" type="error" />
       </View>
       <View style={styles.galleryRow}>
         {/* Badge is absolutely positioned: it needs an anchor. */}
@@ -456,37 +446,12 @@ const Gallery = () => {
           label="Remember me"
         />
       </View>
-      <View style={styles.galleryRow}>
-        <RadioButton
-          label="Monthly"
-          selected={plan === "monthly"}
-          onPress={() => setPlan("monthly")}
-        />
-        <RadioButton
-          label="Annual"
-          selected={plan === "annual"}
-          onPress={() => setPlan("annual")}
-        />
-      </View>
       <Input
         label="Name"
         value={name}
         onChangeText={setName}
         helperText="As it appears on the contract"
       />
-      <Slider
-        label="Volume"
-        value={volume}
-        onValueChange={setVolume}
-        min={0}
-        max={100}
-      />
-      <View style={styles.progressRow}>
-        <View style={styles.grow}>
-          <LinearProgress progress={0.6} />
-        </View>
-        <CircularProgress progress={0.6} size={32} />
-      </View>
       <Card variant="elevated">
         <CardTitle title="Card" subtitle="An elevated surface" />
         <CardContent>
@@ -561,12 +526,6 @@ const makeStyles = (theme: Theme) =>
       alignItems: "center",
       gap: theme.spacing(1),
     },
-    progressRow: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: theme.spacing(2),
-    },
-    grow: { flex: 1 },
     swatchGrid: { flexDirection: "row", flexWrap: "wrap" },
     swatch: {
       gap: 2,

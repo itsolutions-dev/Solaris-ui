@@ -4,13 +4,13 @@ import { Link, router, useLocalSearchParams } from "expo-router";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Divider,
-  EmptyState,
-  ToggleButtonGroup,
   Typography,
   useTheme,
   type PressableState,
   type Theme,
 } from "@its/solaris-ui";
+import ChoiceChips from "../../site/ChoiceChips";
+import Notice from "../../site/Notice";
 
 import ComponentPreview from "../../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../../catalogue/registry";
@@ -108,7 +108,7 @@ export default function ComponentPage() {
           title="Component not found"
           description="This component is not in the Solaris catalogue."
         />
-        <EmptyState
+        <Notice
           icon="magnify-close"
           title="No such component"
           description={`“${name}” is not in the catalogue.`}
@@ -197,10 +197,10 @@ export default function ComponentPage() {
             >
               Live demo
             </Typography>
-            <ToggleButtonGroup
+            <ChoiceChips
               accessibilityLabel="Stage width"
               value={stageWidth}
-              onValueChange={(value) => setStageWidth(value as StageWidth)}
+              onValueChange={setStageWidth}
               options={[
                 { value: "phone", icon: "cellphone", label: "360" },
                 { value: "tablet", icon: "tablet", label: "720" },

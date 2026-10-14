@@ -1,12 +1,9 @@
 import type { Variant } from "../types";
-import { variants as AnimatedFAB } from "./AnimatedFAB";
 import { variants as Autocomplete } from "./Autocomplete";
-import { variants as BottomSheet } from "./BottomSheet";
 import { variants as ConfirmDialog } from "./ConfirmDialog";
 import { variants as Icon } from "./Icon";
 import { variants as Menu } from "./Menu";
 import { variants as Modal } from "./Modal";
-import { variants as Popover } from "./Popover";
 import { variants as Toast } from "./Toast";
 import { variants as Tooltip } from "./Tooltip";
 import {
@@ -16,14 +13,8 @@ import {
   cardTitleVariants,
 } from "./CardParts";
 import {
-  buttonGroupVariants,
-  chipGroupVariants,
   navigationDrawerVariants,
-  navigationRailVariants,
-  sideSheetVariants,
-  splitButtonVariants,
   tableVariants,
-  toolbarVariants,
   topAppBarVariants,
 } from "./fromDemos";
 
@@ -48,14 +39,11 @@ import {
  * matter of deleting its file.
  */
 export const MANUAL_VARIANTS: Record<string, Variant[]> = {
-  AnimatedFAB,
   Autocomplete,
-  BottomSheet,
   ConfirmDialog,
   Icon,
   Menu,
   Modal,
-  Popover,
   Toast,
   Tooltip,
   CardTitle: cardTitleVariants,
@@ -64,13 +52,7 @@ export const MANUAL_VARIANTS: Record<string, Variant[]> = {
   CardActions: cardActionsVariants,
   // Components added after the design-sync previews: no authored preview, so
   // their galleries are their stage demos with fixed values (./fromDemos).
-  ButtonGroup: buttonGroupVariants,
-  ChipGroup: chipGroupVariants,
   NavigationDrawer: navigationDrawerVariants,
-  NavigationRail: navigationRailVariants,
-  SideSheet: sideSheetVariants,
-  SplitButton: splitButtonVariants,
   Table: tableVariants,
-  Toolbar: toolbarVariants,
   TopAppBar: topAppBarVariants,
 };

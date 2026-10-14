@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Grid, Stat, Typography } from "@its/solaris-ui";
+import { Box, Grid, Typography } from "@its/solaris-ui";
+
+// A labelled figure for the dashboard story (Stat is parked, roadmap v2).
+const Figure = ({ label, value }: { label: string; value: string }) => (
+  <Box bg="surface" p="s" radius="medium">
+    <Typography variant="caption">{label}</Typography>
+    <Typography variant="h6">{value}</Typography>
+  </Box>
+);
 
 const tile = (n: number) => (
   <Box key={n} bg="secondaryContainer" p="m" radius="medium">
@@ -29,15 +37,9 @@ export const StatBoard = () => (
     radius="large"
     width={420}
   >
-    <Stat label="Revenue" value="€18,420" delta="12.5%" trend="up" />
-    <Stat label="Orders" value="1,204" delta="9.2%" trend="up" />
-    <Stat
-      label="Refunds"
-      value="18"
-      delta="3.1%"
-      trend="down"
-      invertTrendColors
-    />
-    <Stat label="Active seats" value="128" delta="0" trend="flat" />
+    <Figure label="Revenue" value="€18,420" />
+    <Figure label="Orders" value="1,204" />
+    <Figure label="Refunds" value="18" />
+    <Figure label="Active seats" value="128" />
   </Grid>
 );

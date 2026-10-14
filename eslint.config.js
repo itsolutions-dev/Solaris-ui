@@ -24,6 +24,9 @@ module.exports = defineConfig([
       ".design-sync/docs/**",
       ".design-sync/guidelines/**",
       "**/.design-sync-entry.mjs",
+      // Parked components (roadmap v2): not built, not maintained; see
+      // packages/ui/parked/README.md.
+      "packages/ui/parked/**",
     ],
   },
   {

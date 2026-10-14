@@ -31,15 +31,15 @@ export default function App() {
   );
 }`;
 
-const FIRST_SCREEN = `import { Button, Typography, VStack } from "@its/solaris-ui";
+const FIRST_SCREEN = `import { Button, Stack, Typography } from "@its/solaris-ui";
 
 export const Screens = () => (
-  <VStack p="m" spacing="s">
+  <Stack p="m" spacing="s">
     <Typography variant="h5">Hello</Typography>
     <Button iconName="check" onPress={() => {}}>
       Tap me
     </Button>
-  </VStack>
+  </Stack>
 );`;
 
 const THEME_HOOK = `import { useTheme } from "@its/solaris-ui";

@@ -4,12 +4,12 @@ import { act, fireEvent, render } from "@testing-library/react-native";
 import {
   Alert,
   AlertProvider,
-  Collapse,
   Input,
   Link,
   ThemeProvider,
   useTheme,
 } from "../index";
+import Collapse from "../components/Collapse";
 import type { Theme } from "../index";
 
 const wrap = (ui: React.ReactElement) =>

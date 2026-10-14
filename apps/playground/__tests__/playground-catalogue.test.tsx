@@ -106,92 +106,52 @@ const CATALOGUE = [
   "CardCover",
   "CardActions",
   "Icon",
-  "TouchableRipple",
   // Actions
   "Button",
-  "ProgressButton",
   "IconButton",
   "Chip",
-  "ChipGroup",
   "FAB",
-  "AnimatedFAB",
   "SpeedDial",
-  "ToggleButton",
-  "ToggleButtonGroup",
-  "ButtonGroup",
-  "SplitButton",
   // Inputs
   "Input",
   "Select",
   "Checkbox",
-  "RadioButton",
-  "RadioGroup",
   "Toggle",
-  "Slider",
   "Spinner",
   "SearchBar",
   "Autocomplete",
-  "PinInput",
-  "FormControl",
   "DateTimePicker",
   "DatePicker",
-  "DatePickerInput",
-  "DateRangePicker",
-  "TimePicker",
-  "Calendar",
-  "ClockPicker",
-  "ClockDial",
-  "Rating",
-  "HelperText",
   // Data Display
   "Avatar",
   "Badge",
-  "StatusBadge",
   "DataGrid",
   "Table",
   "ListItem",
   "ListSection",
-  "ListSubheader",
   "Tooltip",
   "Accordion",
-  "Carousel",
-  "Stat",
-  "Image",
   "Link",
   // Feedback
   "Snackbar",
   "Banner",
   "Modal",
   "ConfirmDialog",
-  "Popover",
-  "BottomSheet",
-  "SideSheet",
   "Menu",
   "Skeleton",
-  "CircularProgress",
-  "LinearProgress",
-  "EmptyState",
   "Toast",
-  "Collapse",
   "Portal",
   // Navigation
   "TopAppBar",
   "NavigationBar",
-  "NavigationRail",
   "NavigationDrawer",
-  "Toolbar",
   "Tabs",
-  "TabContent",
   "Breadcrumbs",
-  "Pagination",
   "Stepper",
   // Layout
   "Box",
   "Stack",
   "Grid",
-  "AspectRatio",
-  "Center",
-  "Spacer",
 ];
 
 // Catalogued, but not a component the extractor can document: `Toast` is the
@@ -275,34 +235,16 @@ describe("Playground catalogue", () => {
 
   // Glyphs the library draws that Eva has no drawing for; they fall back to
   // Material. Anything else the catalogue renders must be in iconMap.json.
-  // Eva has no drawing for these (no sensible equivalent). star-half-full is the
-  // one the library itself uses (Rating's half star); the rest are demo glyphs.
+  // Eva has no drawing for these (no sensible equivalent); all are demo glyphs.
   const WITHOUT_EVA: string[] = [
     "bookshelf",
-    "cash-multiple",
-    "close-octagon-outline",
-    "cloud-check-outline",
     "cloud-off-outline",
     "cloud-sync-outline",
     "domain",
-    "file-search-outline",
     "fingerprint",
     "flag-outline",
-    "format-align-center",
-    "format-align-justify",
-    "format-align-left",
-    "format-align-right",
-    "format-bold",
-    "format-italic",
-    "format-list-bulleted",
-    "format-strikethrough",
-    "format-underline",
     "office-building-outline",
-    "play",
-    "rocket-launch-outline",
     "slash-forward",
-    "sort",
-    "star-half-full",
     "text-box-outline",
     "wrench-outline",
   ];
@@ -477,14 +419,7 @@ describe("Playground catalogue", () => {
     },
 
     // Every field in the kit hides its helper text while an error shows.
-    ...[
-      "Input",
-      "Autocomplete",
-      "PinInput",
-      "FormControl",
-      "DatePickerInput",
-      "DateTimePicker",
-    ].map((component) => ({
+    ...["Input", "Autocomplete", "DateTimePicker"].map((component) => ({
       component,
       off: { error: "Something is wrong" },
       on: { error: "" },
@@ -512,25 +447,6 @@ describe("Playground catalogue", () => {
     },
 
     {
-      component: "ClockPicker",
-      off: { inputType: "keyboard" },
-      on: { inputType: "picker" },
-      props: ["minuteInterval"],
-    },
-    {
-      component: "ClockDial",
-      off: { unit: "hours" },
-      on: { unit: "minutes" },
-      props: ["minuteInterval"],
-    },
-    {
-      component: "ClockDial",
-      off: { unit: "minutes" },
-      on: { unit: "hours" },
-      props: ["use24HourClock"],
-    },
-
-    {
       component: "DataGrid",
       off: { empty: false },
       on: { empty: true, loading: false },
@@ -544,36 +460,10 @@ describe("Playground catalogue", () => {
     },
 
     {
-      component: "Stat",
-      off: { delta: "" },
-      on: { delta: "12.5%" },
-      props: ["trend", "invertTrendColors"],
-    },
-    {
-      component: "Stat",
-      off: { trend: "flat" },
-      on: { trend: "up" },
-      props: ["invertTrendColors"],
-    },
-
-    {
       component: "Skeleton",
       off: { animate: false },
       on: { animate: true },
       props: ["duration"],
-    },
-    // Progress and the per-status labels only mean something in their status.
-    {
-      component: "ProgressButton",
-      off: { status: "idle" },
-      on: { status: "loading" },
-      props: ["progress", "loadingLabel"],
-    },
-    {
-      component: "LinearProgress",
-      off: { indeterminate: true },
-      on: { indeterminate: false },
-      props: ["progress"],
     },
     {
       component: "Grid",
@@ -582,30 +472,10 @@ describe("Playground catalogue", () => {
       props: ["columns"],
     },
     {
-      component: "Slider",
-      off: { step: 0 },
-      on: { step: 10 },
-      props: ["marks"],
-    },
-    {
       component: "Avatar",
       off: { name: "Ada Lovelace" },
       on: { name: "" },
       props: ["icon"],
-    },
-    // `required` only guards the last selected chip of a single-select group.
-    {
-      component: "ChipGroup",
-      off: { multiSelect: true },
-      on: { multiSelect: false },
-      props: ["required"],
-    },
-    // Colour, orientation and the FAB belong to the floating toolbar.
-    {
-      component: "Toolbar",
-      off: { variant: "docked" },
-      on: { variant: "floating" },
-      props: ["color", "orientation", "withFab"],
     },
   ];
 
@@ -638,10 +508,7 @@ describe("Playground catalogue", () => {
     const HIDDEN_AT_REST = [
       "DateTimePicker.minuteInterval", // Mode → Time / Date & Time
       "DateTimePicker.use24HourClock", // Mode → Time / Date & Time
-      "ClockDial.minuteInterval", // Unit → Minutes
       "DataGrid.emptyMessage", // Empty Data → on
-      "ProgressButton.progress", // Status → Loading
-      "ProgressButton.loadingLabel", // Status → Loading
     ];
 
     const hidden = Object.entries(ComponentRegistry).flatMap(([name, meta]) =>

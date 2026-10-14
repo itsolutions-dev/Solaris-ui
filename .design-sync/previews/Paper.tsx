@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Paper,
-  Typography,
-  Divider,
-  StatusBadge,
-  Button,
-} from "@its/solaris-ui";
+import { Paper, Typography, Divider, Button, Chip } from "@its/solaris-ui";
 
 const grid: React.CSSProperties = {
   display: "flex",
@@ -75,7 +69,7 @@ export const AsPanel = () => (
         }}
       >
         <Typography variant="subtitle1">Build #418</Typography>
-        <StatusBadge label="Passed" type="success" />
+        <Chip label="Passed" size="small" mode="tonal" />
       </div>
       <div style={{ height: 12 }} />
       <Divider contentSpacing={0} />

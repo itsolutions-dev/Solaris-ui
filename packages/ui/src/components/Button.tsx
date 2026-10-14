@@ -108,6 +108,9 @@ export interface ButtonProps {
 
 const noop = () => {};
 
+/** Icon size when `size` is not given: a pixel size, not a theme radius. */
+const ICON_SIZE = 12;
+
 const Button = ({
   onPress,
   iconName,
@@ -206,7 +209,7 @@ const Button = ({
           <>
             {!!iconName && iconPosition === "left" && (
               <Icon
-                fontSize={size || theme.shape.medium}
+                fontSize={size || ICON_SIZE}
                 style={[styles.icon, { color: on }, iconStyle]}
               >
                 {iconName}
@@ -219,7 +222,7 @@ const Button = ({
             )}
             {!!iconName && iconPosition === "right" && (
               <Icon
-                fontSize={size || theme.shape.medium}
+                fontSize={size || ICON_SIZE}
                 style={[styles.icon, { color: on }, iconStyle]}
               >
                 {iconName}

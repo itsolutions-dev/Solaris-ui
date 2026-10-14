@@ -109,7 +109,7 @@ const Chip = ({
           borderColor: border || theme.colors.outlineVariant,
         };
 
-  const iconSize = size === "small" ? theme.shape.medium : theme.shape.large;
+  const iconSize = size === "small" ? 12 : 16;
 
   return (
     // Plain container: keeps the close icon a SIBLING of the body press target

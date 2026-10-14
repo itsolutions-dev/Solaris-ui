@@ -3,10 +3,10 @@
 // Regenerate with `npm run variants -w @its/solaris-playground`.
 import React from "react";
 import type { Variant } from "../types";
-import { Link, Typography, VStack } from "@its/solaris-ui";
+import { Link, Typography, Stack } from "@its/solaris-ui";
 
 export const Underline = () => (
-  <VStack spacing="s" width={420}>
+  <Stack spacing="s" width={420}>
     <Link href="https://m3.material.io" underline="always">
       Always underlined
     </Link>
@@ -16,22 +16,22 @@ export const Underline = () => (
     <Link href="https://m3.material.io" underline="none">
       Never underlined
     </Link>
-  </VStack>
+  </Stack>
 );
 
 export const InProse = () => (
-  <VStack spacing="xs" width={420}>
+  <Stack spacing="xs" width={420}>
     <Typography variant="body2">
       {"Colours follow the Material 3 roles; type follows MUI's scale."}
     </Typography>
     <Link href="https://m3.material.io/styles/color/roles">
       Read the colour-role reference
     </Link>
-  </VStack>
+  </Stack>
 );
 
 export const Variants = () => (
-  <VStack spacing="s" width={420}>
+  <Stack spacing="s" width={420}>
     <Link onPress={() => {}} variant="subtitle1">
       subtitle1, in-app press handler
     </Link>
@@ -41,7 +41,7 @@ export const Variants = () => (
     <Link href="https://m3.material.io" disabled>
       Disabled
     </Link>
-  </VStack>
+  </Stack>
 );
 
 export const variants: Variant[] = [

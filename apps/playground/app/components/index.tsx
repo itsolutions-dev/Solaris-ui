@@ -4,12 +4,12 @@ import { Link } from "expo-router";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   SearchBar,
-  ToggleButtonGroup,
   Typography,
   useTheme,
   type PressableState,
   type Theme,
 } from "@its/solaris-ui";
+import ChoiceChips from "../../site/ChoiceChips";
 
 import ComponentPreview from "../../catalogue/ComponentPreview";
 import { ComponentRegistry } from "../../catalogue/registry";
@@ -106,10 +106,10 @@ export default function ComponentsIndex() {
               placeholder="Search components…"
             />
           </View>
-          <ToggleButtonGroup
+          <ChoiceChips
             accessibilityLabel="Catalogue layout"
             value={mode}
-            onValueChange={(value) => setMode(value as LayoutMode)}
+            onValueChange={setMode}
             options={[
               { value: "gallery", icon: "view-grid-outline", label: "Gallery" },
               { value: "list", icon: "view-list-outline", label: "List" },

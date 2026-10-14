@@ -460,6 +460,12 @@ standalone meaning, and `Card.tsx`'s stories compose all four in place. They sti
 their own doc from the shared heading. Recorded here so the next sweep does not read it
 as an oversight.
 
+**Parked (roadmap v2, 2026-10-14).** The 32 components that are not on the owner's list, and
+the previews of the 10 that stayed as internals (CircularProgress, Calendar, ClockPicker,
+ClockDial, Collapse, HelperText, Image, Popover, ListSubheader, TouchableRipple), moved to
+`packages/ui/parked/`, with their `config.json` keys removed. See its README before bringing
+one back.
+
 ### Authoring notes for the six
 
 - `ClockDial` is fully controlled and wants `hours` **and** `minutes` whichever `unit` is

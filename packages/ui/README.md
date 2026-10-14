@@ -37,7 +37,7 @@ import {
   ToastProvider,
   Button,
   Typography,
-  VStack,
+  Stack,
 } from "@its/solaris-ui";
 
 export default function App() {
@@ -45,10 +45,10 @@ export default function App() {
     <ThemeProvider>
       <AlertProvider>
         <ToastProvider>
-          <VStack p="m" spacing="s">
+          <Stack p="m" spacing="s">
             <Typography variant="h5">Hello</Typography>
             <Button onPress={() => {}}>Tap me</Button>
-          </VStack>
+          </Stack>
         </ToastProvider>
       </AlertProvider>
     </ThemeProvider>
@@ -58,7 +58,7 @@ export default function App() {
 
 ### Layout
 
-`Box`, `Stack`/`HStack`/`VStack`, `Center`, `Spacer`, `Grid` and `AspectRatio` take spacing,
+`Box`, `Stack` and `Grid` take spacing,
 shape and color as **token names** rather than numbers, so screens never hardcode a magic value:
 
 ```tsx
@@ -132,14 +132,14 @@ src/
 ├── index.ts          # public API barrel — everything importable from "@its/solaris-ui"
 ├── components/        # the components
 │   ├── CardParts/     # CardTitle, CardContent, CardCover, CardActions
-│   ├── List/          # ListItem, ListSection, ListSubheader
+│   ├── List/          # ListItem, ListSection (ListSubheader is internal)
 │   ├── Modal/         # Modal, ConfirmDialog
-│   ├── Progress/      # CircularProgress, LinearProgress
-│   ├── Tab/           # Tabs, TabContent
-│   ├── ToggleButton/  # ToggleButton, ToggleButtonGroup
-│   ├── Layout/        # Box, Stack/HStack/VStack, Center, Spacer, Grid, AspectRatio
+│   ├── Progress/      # CircularProgress (internal)
+│   ├── Tab/           # Tabs
+│   ├── Layout/        # Box, Stack, Grid
 │   ├── types.ts       # shared component types (e.g. PressableState)
 │   └── *.tsx          # Button, Card, Input, Chip, Select, DataGrid, Snackbar, ...
+packages/ui/parked/    # components not on the current list (roadmap v2): not built, see its README
 └── providers/         # theme + alert infrastructure
     ├── ThemeProvider.tsx   # Theme types, ThemeProvider, useTheme(), getStateColor(), getGlowStyles()
     ├── createTheme.ts      # createTheme(): MUI colorSchemes in, Material 3 roles + MUI palette out
@@ -288,23 +288,6 @@ drawn in Material, with one warning in development. The mapping is
 
 Eva Icons are © Akveo, MIT licence.
 
-#### `TouchableRipple`
-
-A `Pressable` that paints the M3 state layer — 8% hover, 10% focus, 12% press — over a surface,
-with the platform ripple on Android. Reach for it instead of re-deriving hover/press colours.
-
-| Prop          | Type                                                       | Default     |
-| ------------- | ---------------------------------------------------------- | ----------- |
-| children      | ReactNode (required)                                       | —           |
-| underlayColor | string (the surface the layer sits on)                     | `surface`   |
-| rippleColor   | string (the "on" role of that surface)                     | `onSurface` |
-| borderless    | boolean (tint only, no container background)               | `false`     |
-| borderRadius  | number (match the parent so the layer doesn't bleed out)   |             |
-| activeStyle   | ViewStyle (applied while hovered or pressed)               |             |
-
-Plus every `Pressable` prop except `style`/`children`. The `useStateLayer(base, on)` hook exports
-the same colours for a component that already owns its `Pressable`.
-
 #### `Portal` / `Portal.Host`
 
 Renders an overlay at the host instead of in place, so it escapes a clipping parent, sits above
@@ -354,10 +337,10 @@ covered by a prop still goes through `style`.
 | width / height            | ViewStyle dimensions                   |         |
 | row / wrap                | boolean                                | `false` |
 
-#### `Stack` / `HStack` / `VStack`
+#### `Stack`
 
 Evenly spaced children via `gap`, so spacing stays right when children are conditionally
-rendered. `HStack` and `VStack` lock the axis. Takes every `Box` prop except `row` and `gap`.
+rendered. Takes every `Box` prop except `row` and `gap`.
 
 | Prop      | Type                         | Default    |
 | --------- | ---------------------------- | ---------- |
@@ -365,13 +348,9 @@ rendered. `HStack` and `VStack` lock the axis. Takes every `Box` prop except `ro
 | spacing   | SpacingValue                 | `"s"`      |
 | reverse   | boolean                      |            |
 
-#### `Center` / `Spacer` / `AspectRatio` / `Grid`
+#### `Grid`
 
-- **`Center`** — centres children on both axes; every `Box` prop except `align`/`justify`.
-- **`Spacer`** — `size` (SpacingValue) for a fixed gap on `axis`, or no props to absorb the
-  leftover space and push siblings apart.
-- **`AspectRatio`** — `ratio` (default `1`), e.g. `16 / 9`.
-- **`Grid`** — equal-width grid: `columns` (default `2`) or a responsive `minChildWidth`, plus
+Equal-width grid: `columns` (default `2`) or a responsive `minChildWidth`, plus
   `spacing`. Children are chunked into explicit rows rather than left to wrap, so the gap never
   pushes a cell onto the next line and a short last row keeps its cells at column width.
 
@@ -448,36 +427,6 @@ Floating by default: absolutely positioned, respecting safe-area insets. Set
 | position  | `"bottom-right" \| "bottom-left" \| "top-right" \| "top-left"` | `bottom-right` |
 | disabled  | boolean                                                        |                |
 
-#### `AnimatedFAB`
-
-A FAB that animates between an icon-only circle and a labelled pill. Drive `extended` from a
-scroll offset to get the M3 shrink-on-scroll behaviour.
-
-| Prop        | Type                                                           | Default        |
-| ----------- | -------------------------------------------------------------- | -------------- |
-| icon        | icon (required)                                                | —              |
-| label       | string (required — it is the label that animates)              | —              |
-| onPress     | () => void (required)                                          | —              |
-| extended    | boolean                                                        | `true`         |
-| animateFrom | `"left" \| "right"` (edge the label grows from)                | `right`        |
-| iconMode    | `"static" \| "dynamic"` (icon stays put, or travels)           | `static`       |
-| placement   | `"floating" \| "inline"`                                       | `floating`     |
-| position    | `"bottom-right" \| "bottom-left" \| "top-right" \| "top-left"` | `bottom-right` |
-| duration    | number (ms)                                                    | `150`          |
-| disabled    | boolean                                                        | `false`        |
-
-```tsx
-const [extended, setExtended] = useState(true);
-
-<ScrollView
-  onScroll={(e) => setExtended(e.nativeEvent.contentOffset.y <= 0)}
-  scrollEventThrottle={16}
->
-  …
-</ScrollView>
-<AnimatedFAB icon="plus" label="Nuovo intervento" extended={extended} onPress={create} />
-```
-
 #### `SpeedDial`
 
 FAB that expands a stack of labeled actions.
@@ -487,40 +436,6 @@ FAB that expands a stack of labeled actions.
 | actions  | `SpeedDialAction[]` = `{ id, label, icon, onPress }` (required) | —              |
 | mainIcon | icon (rotates 45° when open, required)                          | —              |
 | position | same values as FAB                                              | `bottom-right` |
-
-#### `ToggleButton`
-
-Single segment; usually used via `ToggleButtonGroup`.
-
-| Prop              | Type                                                | Default  |
-| ----------------- | --------------------------------------------------- | -------- |
-| active            | boolean (required)                                  | —        |
-| onPress           | () => void (required)                               | —        |
-| label             | string                                              |          |
-| icon              | icon                                                |          |
-| isFirst / isLast  | boolean (rounds outer corners in a group)           |          |
-| disabled          | boolean                                             | `false`  |
-| grow              | boolean (equal share of the group width)            | `false`  |
-| showSelectedCheck | boolean (check mark replaces the glyph when active) | `false`  |
-| accessibilityRole | `"radio" \| "checkbox" \| "button"`                 | `button` |
-
-#### `ToggleButtonGroup`
-
-Segmented button set (single or multi select).
-
-Announces itself correctly: a single-select group is a `radiogroup` of `radio`s, a multi-select
-one a set of `checkbox`es.
-
-| Prop               | Type                                                            | Default |
-| ------------------ | --------------------------------------------------------------- | ------- |
-| options            | `{ label?, icon?, value, disabled? }[]` (required)              | —       |
-| value              | string \| string[] (array when `multiSelect`, required)         | —       |
-| onValueChange      | (val) => void (required)                                        | —       |
-| multiSelect        | boolean                                                         | `false` |
-| disabled           | boolean (whole group)                                           | `false` |
-| fullWidth          | boolean (segments share the row equally)                        | `false` |
-| showSelectedCheck  | boolean (M3 segmented-button check mark)                        | `false` |
-| accessibilityLabel | string (names the group — a set of choices needs a question)     |         |
 
 #### `Chip`
 
@@ -534,22 +449,6 @@ one a set of `checkbox`es.
 | mode     | `"filled" \| "tonal" \| "outlined"`  | `filled` |
 | size     | `"small" \| "medium"` (small = 24px) | `medium` |
 | disabled | boolean                              | `false`  |
-
-#### `ButtonGroup`
-
-M3 Expressive button group — `type="standard"` or `"connected"` (the successor of segmented
-buttons), single or `multiSelect`, sizes `xs` / `s` / `m`. Same `options` / `value` /
-`onValueChange` shape as `ToggleButtonGroup`.
-
-#### `SplitButton`
-
-A primary action (`children`, `iconName`, `onPress`) joined to a trailing button that opens a
-`Menu` of `items`.
-
-#### `ChipGroup`
-
-Filter chips with the selection handled: single (optionally `required`) or `multiSelect`,
-wrapping or horizontally scrolling.
 
 ### Inputs & forms
 
@@ -609,24 +508,6 @@ Dropdown built on `Popover`; single or multi select, optional chip display.
 | indeterminate    | boolean (mixed state)      |         |
 | disabled / error | boolean                    |         |
 
-#### `RadioButton` / `RadioGroup`
-
-`RadioButton` is a single control; `RadioGroup` (named export) manages a set.
-
-RadioButton: `selected` (required), `onPress` (required), `label`, `labelPosition` (`right`),
-`disabled`, `error`.
-
-RadioGroup:
-
-| Prop          | Type                                                           | Default  |
-| ------------- | -------------------------------------------------------------- | -------- |
-| options       | `RadioOption[]` = `{ id, label, value, disabled? }` (required) | —        |
-| value         | any (required)                                                 | —        |
-| onValueChange | (value) => void (required)                                     | —        |
-| label         | string                                                         |          |
-| direction     | `"column" \| "row"`                                            | `column` |
-| error         | string (group-level message)                                   |          |
-
 #### `Toggle` — Switch
 
 Animated M3 switch with fully configurable dimensions.
@@ -640,20 +521,6 @@ Animated M3 switch with fully configurable dimensions.
 | trackBorderWidth                     | number                     | `2`           |
 | animationDuration                    | number (ms)                | `200`         |
 | thumbOffSizeRatio / thumbOnSizeRatio | number                     | `0.8` / `0.9` |
-
-#### `Slider`
-
-| Prop              | Type                                     | Default     |
-| ----------------- | ---------------------------------------- | ----------- |
-| value             | number (required)                        | —           |
-| onValueChange     | (value) => void (required)               | —           |
-| onSlidingComplete | (value) => void                          |             |
-| min / max         | number                                   | `0` / `100` |
-| step              | number (0/undefined = continuous)        |             |
-| label             | string                                   |             |
-| showValueLabel    | boolean                                  |             |
-| marks             | boolean (ticks at each step, needs step) |             |
-| disabled          | boolean                                  |             |
 
 #### `Spinner` — number stepper
 
@@ -680,7 +547,7 @@ Numeric field with +/- steppers. (Distinct from the progress spinners below.)
 | leadingIcon          | icon                                   |         |
 | disabled / autoFocus | boolean                                |         |
 
-#### `DateTimePicker` / `DatePicker` / `DatePickerInput` / `DateRangePicker` / `TimePicker`
+#### `DateTimePicker` / `DatePicker`
 
 Field that opens a Material 3 date/time picker. There is no OS picker underneath: the same
 in-house surface renders on iOS, Android and web — as a dialog on native, as a popover docked to
@@ -689,8 +556,8 @@ ships. Everything locale-dependent — month and weekday names, week start, 12h/
 typed-entry field order, the per-day screen-reader announcement — is derived from `Intl` and
 memoized per locale. Relative labels (Today/Yesterday/Tomorrow) come from `Intl.RelativeTimeFormat`.
 
-`DatePicker`, `DateRangePicker` and `TimePicker` are the same component with `mode`/`selectionMode`
-locked; `DatePickerInput` is `DatePicker` with typed entry always on.
+`DatePicker` is the same component with `mode` locked to `"date"` (the range, time and
+typed-entry wrappers are parked: see `packages/ui/parked/README.md`).
 
 | Prop                          | Type                                                                          | Default       |
 | ----------------------------- | ----------------------------------------------------------------------------- | ------------- |
@@ -726,16 +593,6 @@ toggle in its header.
 Keyboard (web): arrows = day/week, PageUp/PageDown = month (Shift = year), Home/End = ends of the
 week, Enter/Space = select, Escape = close.
 
-#### `Calendar` / `ClockPicker` / `ClockDial`
-
-The surfaces `DateTimePicker` composes, exported on their own for inline use. All three are pure
-React Native — no SVG, no native modules — so they render identically on web and native.
-`Calendar` adds month and year sub-views, single/range/multiple selection, virtualized endless
-month scrolling and the keyboard navigation above; `ClockPicker` is the M3 hour/minute readout
-with its AM/PM switch, over `ClockDial` (the analog face, drag to set) or two text fields.
-Full prop tables in
-[`components.md`](https://github.com/itsolutions-dev/Solaris-ui/blob/master/packages/ui/src/components/components.md).
-
 #### `Autocomplete`
 
 Text field with a suggestion list — free text allowed, unlike `Select`. Accent-insensitive
@@ -761,63 +618,6 @@ With a `Portal.Host` mounted the suggestion list renders through it, so it escap
 clipping or scrolling parent and flips above the field when there is no room below;
 with no host it stays anchored under the field as before. It deliberately does not use a
 native `Modal` like `Select` does — that would take focus off the field being typed into.
-
-#### `PinInput`
-
-One-time-code / PIN entry: single-character cells that behave as one field. Typing advances,
-Backspace retreats, and pasting a whole code into any cell fills the row.
-
-| Prop                                             | Type                                           | Default   |
-| ------------------------------------------------ | ---------------------------------------------- | --------- |
-| value / onChangeText                             | string / (value) => void (required)            | —         |
-| length                                           | number                                         | `6`       |
-| onComplete                                       | (value) => void — fired once, on becoming full |           |
-| type                                             | `"numeric" \| "alphanumeric"`                  | `numeric` |
-| mask                                             | boolean                                        | `false`   |
-| label / error / helperText / required / disabled | as `Input`                                     |           |
-| autoFocus                                        | boolean (first cell only)                      |           |
-| cellSize                                         | number                                         | `48`      |
-
-#### `FormControl`
-
-Groups a label, a control and its supporting text, and shares invalid/disabled/required state with
-descendants via `useFormControl()`. For controls with no `label`/`error` props of their own —
-`Checkbox`, `RadioGroup`, `Slider`, custom composites.
-
-| Prop                       | Type                 | Default |
-| -------------------------- | -------------------- | ------- |
-| children                   | ReactNode (required) | —       |
-| label / helperText / error | string               |         |
-| required / disabled        | boolean              | `false` |
-
-#### `HelperText`
-
-The supporting text under a form control. `Input`, `FormControl`, `PinInput`, `Autocomplete` and
-the date/time picker field render this internally via their own `helperText` / `error` props —
-use it directly for a control that has neither.
-
-| Prop           | Type                                                   | Default  |
-| -------------- | ------------------------------------------------------ | -------- |
-| children       | ReactNode (required)                                   | —        |
-| type           | `"info" \| "error"` (error adds the alert glyph)        | `info`   |
-| visible        | boolean (fades out instead of unmounting)              | `true`   |
-| disabled       | boolean (dims to match a disabled field)               | `false`  |
-| padding        | `"normal" \| "none"` (the 16px field gutter)           | `normal` |
-
-Hiding it keeps the text mounted so the field height doesn't jump, but takes it out of the
-accessibility tree.
-
-#### `Rating`
-
-Star rating; renders half-stars, sets whole values on tap.
-
-| Prop     | Type                                         | Default |
-| -------- | -------------------------------------------- | ------- |
-| value    | number (supports halves, e.g. 3.5, required) | —       |
-| onChange | (value) => void (interactive when provided)  |         |
-| max      | number                                       | `5`     |
-| size     | number                                       | `24`    |
-| disabled | boolean                                      |         |
 
 ### Data display
 
@@ -845,16 +645,6 @@ Small count/dot overlay (position it over its target).
 | max      | number (shows `max+` when exceeded) | `99`    |
 | showZero | boolean                             | `false` |
 | visible  | boolean                             | `true`  |
-
-#### `StatusBadge`
-
-Small labeled status pill with its own semantic colors (light/dark aware).
-
-| Prop  | Type                                  | Default   |
-| ----- | ------------------------------------- | --------- |
-| label | string (required)                     | —         |
-| type  | `"success" \| "error" \| "warning"`   | `success` |
-| icon  | icon (override default per-type icon) |           |
 
 #### `DataGrid`
 
@@ -884,7 +674,7 @@ Single pressable list row.
 | onPress                                                                  | () => void (adds hover/press states) |         |
 | itemContainerStyle / itemTextStyle / itemPressedStyle / itemHoveredStyle | object                               |         |
 
-#### `ListSection` / `ListSubheader`
+#### `ListSection`
 
 Groups related `ListItem`s under a heading. Use this for a settings screen rather than wrapping
 each group in a `Card` — a sequence of labelled groups, not a pile of equal surfaces.
@@ -892,7 +682,6 @@ each group in a `Card` — a sequence of labelled groups, not a pile of equal su
 | Component        | Props                                                                    |
 | ---------------- | ------------------------------------------------------------------------ |
 | `ListSection`    | `children` (required), `title` (heading above the rows), `divider` (`false`) |
-| `ListSubheader`  | `children` (required) — a standalone group label, marked as a heading    |
 
 #### `Tooltip`
 
@@ -922,50 +711,6 @@ Expandable section with animated height.
 | children      | ReactNode (content, required) | —       |
 | startExpanded | boolean                       | `false` |
 | onPress       | (expanded) => void            |         |
-
-#### `Carousel`
-
-Paged horizontal slider.
-
-| Prop             | Type                                      | Default |
-| ---------------- | ----------------------------------------- | ------- |
-| children         | ReactNode (each child = a page, required) | —       |
-| showDots         | boolean                                   | `true`  |
-| showArrows       | boolean (overlay prev/next)               | `false` |
-| autoPlayInterval | number (ms, 0 = off)                      | `0`     |
-| height           | number (fixed; else tallest page)         |         |
-| onIndexChange    | (index) => void                           |         |
-
-#### `Stat`
-
-A single labelled metric with an optional trend delta.
-
-| Prop              | Type                                                   | Default |
-| ----------------- | ------------------------------------------------------ | ------- |
-| label / value     | string (both required)                                 | —       |
-| delta             | string, e.g. `"12.5%"`                                 |         |
-| trend             | `"up" \| "down" \| "flat"` — arrow + color for `delta` |         |
-| invertTrendColors | boolean — for metrics where down is good               | `false` |
-| helpText          | string                                                 |         |
-| icon              | icon                                                   |         |
-
-#### `Image`
-
-`react-native`'s Image plus a skeleton placeholder, a fallback for broken sources, and
-token-driven corner radius.
-
-| Prop             | Type                                                                | Default                |
-| ---------------- | ------------------------------------------------------------------- | ---------------------- |
-| source           | ImageSourcePropType (required)                                      | —                      |
-| alt              | string (required — a nameless image is invisible to screen readers) | —                      |
-| fallbackSource   | ImageSourcePropType                                                 |                        |
-| fallbackIcon     | icon (used when there is no `fallbackSource`)                       | `image-broken-variant` |
-| width / height   | DimensionValue                                                      | `100%` / —             |
-| ratio            | number — width ÷ height; use instead of `height` for fluid layouts  |                        |
-| radius           | RadiusValue                                                         | `0`                    |
-| resizeMode       | ImageResizeMode                                                     | `cover`                |
-| showLoader       | boolean                                                             | `true`                 |
-| onLoad / onError | () => void                                                          |                        |
 
 #### `Table`, `TableHead`, `TableRow`, `TableHeaderCell`, `TableCell`
 
@@ -1038,32 +783,6 @@ Modal preset with confirm/cancel actions.
 | icon            | `IconSource` (hero glyph)             |           |
 | dismissable     | boolean (scrim tap and ESC cancel)    | `true`    |
 
-#### `Popover`
-
-Anchored floating panel; auto-positions within the viewport.
-
-| Prop             | Type                                | Default |
-| ---------------- | ----------------------------------- | ------- |
-| anchor           | ReactElement (trigger, required)    | —       |
-| children         | ReactNode (panel content, required) | —       |
-| visible          | boolean (required)                  | —       |
-| onDismiss        | () => void (required)               | —       |
-| matchAnchorWidth | boolean (constrain to anchor width) | `false` |
-
-#### `BottomSheet`
-
-Draggable bottom sheet with scrim.
-
-| Prop              | Type                        | Default |
-| ----------------- | --------------------------- | ------- |
-| visible           | boolean (required)          | —       |
-| onDismiss         | () => void (required)       | —       |
-| children          | ReactNode (required)        | —       |
-| title             | string                      |         |
-| showHandle        | boolean (drag handle)       | `true`  |
-| dismissOnScrimTap | boolean                     | `true`  |
-| maxHeightRatio    | number (fraction of window) |         |
-
 #### `Menu`
 
 Anchored action menu.
@@ -1088,56 +807,6 @@ Loading placeholder with pulse.
 | duration       | number (ms, pulse cycle)       |         |
 | animate        | boolean (false = static)       | `true`  |
 
-#### `CircularProgress`
-
-Indeterminate SVG spinner.
-
-| Prop        | Type                         | Default   |
-| ----------- | ---------------------------- | --------- |
-| size        | number                       | `48`      |
-| strokeWidth | number                       | `4`       |
-| color       | string                       | `primary` |
-| duration    | number (ms, rotation period) | `1000`    |
-
-#### `LinearProgress`
-
-Determinate or indeterminate bar.
-
-| Prop                  | Type                                | Default                   |
-| --------------------- | ----------------------------------- | ------------------------- |
-| progress              | number 0–1 (determinate value)      | `0`                       |
-| indeterminate         | boolean                             | `false`                   |
-| height                | number                              | `4`                       |
-| color                 | string                              | `primary`                 |
-| trackColor            | string                              | `surfaceContainerHighest` |
-| duration              | number (ms, determinate transition) | `500`                     |
-| indeterminateDuration | number (ms)                         | `1500`                    |
-
-#### `EmptyState`
-
-Placeholder for empty content.
-
-| Prop        | Type                                         | Default         |
-| ----------- | -------------------------------------------- | --------------- |
-| title       | string (required)                            | —               |
-| icon        | icon                                         | `inbox-outline` |
-| description | string                                       |                 |
-| action      | `{ label, onPress, iconName? }` (CTA button) |                 |
-
-#### `Collapse`
-
-Animates its children between `collapsedHeight` and their _measured_ natural height, so it
-survives text reflow without a hardcoded height.
-
-| Prop            | Type                                            | Default |
-| --------------- | ----------------------------------------------- | ------- |
-| children        | ReactNode (required)                            | —       |
-| open            | boolean (required)                              | —       |
-| duration        | number (ms)                                     | `200`   |
-| collapsedHeight | number — a peek/teaser height                   | `0`     |
-| animateOpacity  | boolean                                         | `true`  |
-| keepMounted     | boolean — keep children mounted while collapsed | `false` |
-
 #### `ToastProvider` / `useToast()`
 
 Imperative toasts from anywhere in the tree — no `visible` state to thread through the screen.
@@ -1160,24 +829,12 @@ toast.hide(); // clears the queue
 | action         | `{ label, onPress }`                                                  |             |
 | id             | string — replaces a queued toast with the same id instead of stacking |             |
 
-#### `SideSheet`
-
-M3 side sheet: `modal` (over a scrim, from the `end` or `start` edge) or standard (inline beside
-the content), with back / close buttons and an `actions` row.
-
 ### Navigation
 
 > The library is **navigation-agnostic**: it ships navigation *widgets* (app bar, bottom bar,
 > tabs, breadcrumbs, pagination, stepper) but no navigator. `DrawerNavigation` and
 > `StackNavigation` were removed in `0.5.0`; the changelog entry for that release shows the
 > app-side wiring that replaces them.
-
-#### `AppBar`
-
-`TopAppBar` behind react-navigation's header contract (drawer/back button, title, right
-actions). Its props are navigator-shaped
-(`navigation`, `route`, `options`, `back`, `isPinned`) and structurally typed, so it drops
-into a React Navigation `header` renderer without the library depending on the navigator.
 
 #### `NavigationBar`
 
@@ -1190,10 +847,9 @@ Bottom navigation bar.
 | onItemPress | (id) => void (required)                                                          | —        |
 | showLabels  | `"always" \| "selected"`                                                         | `always` |
 
-#### `Tabs` / `TabContent`
+#### `Tabs`
 
-`Tabs` is a top tab bar with an animated indicator (text-only or icon tabs). `TabContent`
-renders the child at the active index.
+`Tabs` is a top tab bar with an animated indicator (text-only or icon tabs).
 
 Tabs:
 
@@ -1203,7 +859,6 @@ Tabs:
 | activeTab | number (index, required)                     | —       |
 | onChange  | (index) => void (required)                   | —       |
 
-TabContent: `activeTab` (index, required), `children` (required), `style`.
 
 #### `Breadcrumbs`
 
@@ -1212,17 +867,6 @@ TabContent: `activeTab` (index, required), `children` (required), `style`.
 | items     | `BreadcrumbItem[]` = `{ id, label, icon?, onPress? }` (required) | —               |
 | separator | icon                                                             | `chevron-right` |
 | maxItems  | number (collapse middle behind ellipsis)                         |                 |
-
-#### `Pagination`
-
-| Prop          | Type                                | Default |
-| ------------- | ----------------------------------- | ------- |
-| page          | number (1-based, required)          | —       |
-| totalPages    | number (required)                   | —       |
-| onPageChange  | (page) => void (required)           | —       |
-| siblingCount  | number (pages each side of current) | `1`     |
-| showFirstLast | boolean (first/last arrows)         | `false` |
-| disabled      | boolean                             |         |
 
 #### `Stepper`
 
@@ -1239,20 +883,10 @@ Horizontal progress steps.
 The navigator-agnostic top app bar `AppBar` is built on: `small`, `center`, `medium`, `large`,
 with `leading` and `actions` slots and an `elevated` on-scroll state.
 
-#### `NavigationRail`
-
-The side-mounted counterpart of `NavigationBar` for medium and expanded windows — same item
-shape, `header` / `footer` slots for a menu button or a FAB.
-
 #### `NavigationDrawer`, `DrawerItem`, `DrawerSection`
 
 M3 navigation drawer, `variant="standard"` (inline) or `"modal"` (over a scrim; Escape and Android
 back close it).
-
-#### `Toolbar`
-
-M3 Expressive toolbar: `docked` along the bottom edge or `floating` (standard or vibrant,
-horizontal or vertical, with an optional FAB).
 
 ### System
 

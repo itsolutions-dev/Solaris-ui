@@ -5,61 +5,20 @@ import { useState } from "react";
 import { View } from "react-native";
 import {
   Button,
-  ButtonGroup,
-  ChipGroup,
   DrawerItem,
   DrawerSection,
-  FAB,
   IconButton,
   NavigationDrawer,
-  NavigationRail,
-  SideSheet,
-  SplitButton,
   Table,
   TableCell,
   TableHead,
   TableHeaderCell,
   TableRow,
-  Toolbar,
   TopAppBar,
-  Typography,
-  useTheme,
 } from "@its/solaris-ui";
 import type { DemoProps } from "./types";
 
 const noop = () => {};
-
-const RAIL_ITEMS = [
-  { id: "home", label: "Home", icon: "home-outline" as const },
-  { id: "search", label: "Search", icon: "magnify" as const },
-  {
-    id: "inbox",
-    label: "Inbox",
-    icon: "inbox-outline" as const,
-    badgeCount: 4,
-  },
-  { id: "settings", label: "Settings", icon: "cog-outline" as const },
-];
-
-export const NavigationRailDemo = ({ props, updateProp }: DemoProps) => (
-  <View style={{ height: 420, flexDirection: "row" }}>
-    <NavigationRail
-      items={RAIL_ITEMS}
-      activeId={props.activeId}
-      onItemPress={(id) => updateProp("activeId", id)}
-      showLabels={props.showLabels}
-      alignment={props.alignment}
-      header={
-        props.withFab ? (
-          <>
-            <IconButton icon="menu" accessibilityLabel="Menu" onPress={noop} />
-            <FAB icon="pencil-outline" placement="inline" onPress={noop} />
-          </>
-        ) : undefined
-      }
-    />
-  </View>
-);
 
 const DrawerContent = ({
   selected,
@@ -178,172 +137,6 @@ export const TopAppBarDemo = ({ props }: DemoProps) => (
     />
   </View>
 );
-
-const VIEWS = [
-  { value: "day", label: "Day" },
-  { value: "week", label: "Week" },
-  { value: "month", label: "Month" },
-];
-
-export const ButtonGroupDemo = ({ props }: DemoProps) => {
-  const [single, setSingle] = useState("week");
-  const [many, setMany] = useState<string[]>(["day"]);
-  return (
-    <ButtonGroup
-      options={VIEWS}
-      value={props.multiSelect ? many : single}
-      onValueChange={props.multiSelect ? setMany : setSingle}
-      multiSelect={props.multiSelect}
-      type={props.type}
-      mode={props.mode}
-      size={props.size}
-      accessibilityLabel="Calendar view"
-    />
-  );
-};
-
-export const SplitButtonDemo = ({ props }: DemoProps) => (
-  <SplitButton
-    mode={props.mode}
-    disabled={props.disabled}
-    iconName="content-save-outline"
-    onPress={noop}
-    items={[
-      {
-        id: "copy",
-        label: "Save a copy",
-        icon: "content-copy",
-        onPress: noop,
-      },
-      {
-        id: "draft",
-        label: "Save as draft",
-        icon: "file-outline",
-        onPress: noop,
-      },
-      {
-        id: "discard",
-        label: "Discard",
-        icon: "delete-outline",
-        destructive: true,
-        dividerAbove: true,
-        onPress: noop,
-      },
-    ]}
-  >
-    {props.children}
-  </SplitButton>
-);
-
-export const ToolbarDemo = ({ props }: DemoProps) => {
-  const { theme } = useTheme();
-  const vibrant = props.variant === "floating" && props.color === "vibrant";
-  const actions = [
-    "format-bold",
-    "format-italic",
-    "format-underline",
-    "link",
-  ].map((icon) => (
-    <IconButton
-      key={icon}
-      icon={icon as any}
-      accessibilityLabel={icon.replace("format-", "")}
-      onPress={noop}
-    />
-  ));
-  return (
-    <View style={{ width: "100%", maxWidth: 480, alignItems: "center" }}>
-      <Toolbar
-        variant={props.variant}
-        color={props.color}
-        orientation={props.orientation}
-        safeArea={false}
-        accessibilityLabel="Formatting"
-        fab={
-          props.variant === "floating" && props.withFab ? (
-            <FAB icon="plus" placement="inline" onPress={noop} />
-          ) : undefined
-        }
-      >
-        {actions}
-      </Toolbar>
-      {vibrant && (
-        <Typography
-          variant="caption"
-          style={{ color: theme.colors.onSurfaceVariant, marginTop: 8 }}
-        >
-          Vibrant sits on primaryContainer.
-        </Typography>
-      )}
-    </View>
-  );
-};
-
-export const SideSheetDemo = ({ props }: DemoProps) => {
-  const [open, setOpen] = useState(false);
-  const sheet = (
-    <SideSheet
-      visible={open}
-      onDismiss={() => setOpen(false)}
-      modal={props.modal}
-      side={props.side}
-      title={props.title}
-      actions={
-        <>
-          <Button onPress={() => setOpen(false)}>Apply</Button>
-          <Button mode="outlined" onPress={() => setOpen(false)}>
-            Reset
-          </Button>
-        </>
-      }
-    >
-      <Typography variant="body2">
-        Filters, details or a secondary form, beside the main content.
-      </Typography>
-    </SideSheet>
-  );
-  if (!props.modal) {
-    return <View style={{ height: 360, alignSelf: "stretch" }}>{sheet}</View>;
-  }
-  return (
-    <>
-      <Button
-        mode="tonal"
-        iconName="filter-variant"
-        onPress={() => setOpen(true)}
-      >
-        Open side sheet
-      </Button>
-      {sheet}
-    </>
-  );
-};
-
-const STATUSES = [
-  { value: "open", label: "Open" },
-  { value: "review", label: "In review" },
-  { value: "closed", label: "Closed" },
-  { value: "archived", label: "Archived", disabled: true },
-];
-
-export const ChipGroupDemo = ({ props }: DemoProps) => {
-  const [single, setSingle] = useState<string | null>("open");
-  const [many, setMany] = useState<string[]>(["open", "review"]);
-  return (
-    <View style={{ width: "100%", maxWidth: 420 }}>
-      <ChipGroup
-        options={STATUSES}
-        value={props.multiSelect ? many : single}
-        onValueChange={props.multiSelect ? setMany : setSingle}
-        multiSelect={props.multiSelect}
-        required={props.required}
-        wrap={props.wrap}
-        mode={props.mode}
-        accessibilityLabel="Status"
-      />
-    </View>
-  );
-};
 
 const COLUMNS = [
   { key: "name", label: "Name", width: 180 },

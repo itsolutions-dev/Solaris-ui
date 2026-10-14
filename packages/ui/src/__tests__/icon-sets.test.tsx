@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
 
-import { createTheme, Icon, ThemeProvider } from "../index";
+import { Button, Chip, createTheme, Icon, ThemeProvider } from "../index";
 import {
   EVA_GLYPHS,
   EVA_LICENSE,
@@ -72,6 +72,18 @@ describe("icon sets", () => {
     expect(other).toContain(closePath);
     expect(other).not.toBe(json);
     expect(json).toContain('"width":30');
+  });
+
+  it("sizes component icons independently of the theme's corner radii", async () => {
+    // Button and Chip used to size their icons with theme.shape.medium/large.
+    const square = createTheme({
+      icons: "eva",
+      shape: { small: 0, medium: 0, large: 0 },
+    });
+    const button = await tree(<Button iconName="plus">Add</Button>, square);
+    expect(button).toContain('"width":12');
+    const chip = await tree(<Chip label="Add" icon="plus" />, square);
+    expect(chip).toContain('"width":16');
   });
 
   it("falls back to Material and warns once for a glyph Eva does not have", async () => {

@@ -8,9 +8,8 @@ radius comes from the theme object at runtime. Class names you invent will not r
 ### Wrap the app, or nothing is styled
 
 Three providers, in this order. `ThemeProvider` supplies every token — without it
-components mount but render unthemed. `SafeAreaProvider` is required by `TopAppBar`
-(and `AppBar`, which wraps it), `Toolbar`, `FAB`, `AnimatedFAB`, `SpeedDial`, and the
-modal `NavigationDrawer` / `SideSheet` (they read insets and throw without it). `AlertProviderWrapper` is what binds
+components mount but render unthemed. `SafeAreaProvider` is required by `TopAppBar`,
+`FAB`, `SpeedDial` and the modal `NavigationDrawer` (they read insets and throw without it). `AlertProviderWrapper` is what binds
 the imperative `Alert()` singleton; omit it and every `Alert()` call is a no-op warning.
 
 ```tsx
@@ -66,19 +65,17 @@ const theme = createTheme({
 
 ### Progress inside a button
 
-For an action that runs a task the user waits on (route, upload, payment), use
-`ProgressButton`, not a `Button` next to a `LinearProgress`: `status` is controlled
-(`"idle" | "loading" | "success" | "error"`), `progress` is 0–1 (omit it for an
-indeterminate sweep), `indicator="fill" | "bar"`. It takes every `Button` mode.
+For an action that runs a task the user waits on (route, upload, payment), give the
+`Button` itself `loading` (spinner, presses blocked) or `busy` (presses blocked, label kept);
+there is no separate progress-button or progress-bar component in the library.
 
 **Text goes in `<Typography variant="...">`**, never a bare string — that is the only way
 type picks up the scale. **Icons** are MaterialCommunityIcons kebab-case name strings
 (`iconName="plus"`, `leadingIcon="email-outline"`); outline variants take `-outline`.
 
-**Layout comes from the library, not from `<div>`.** `Stack` (`direction`, `reverse`,
-`wrap`), `HStack` / `VStack` (`spacing`, `align`, `justify`), `Box` (`p` / `px` / `py`,
-`bg`, `radius`, `gap`, `justify`, `align`), `Grid` (`columns`, `spacing`), `Center`,
-`Spacer` (`size`, or flexible to push siblings apart) and `AspectRatio` (`ratio`) all take
+**Layout comes from the library, not from `<div>`.** `Stack` (`direction`, `spacing`,
+`reverse`, `wrap`), `Box` (`p` / `px` / `py`, `bg`, `radius`, `gap`, `justify`, `align`) and
+`Grid` (`columns`, `spacing`) all take
 the spacing names `xs`/`s`/`m`/`l`/`xl` (4/8/16/24/32) and `bg` colour-role names. There is
 no `View` and no `Text` export: reach for these first, and drop to a plain `<div>` with
 inline styles only for glue they cannot express (react-native-web renders real DOM, so

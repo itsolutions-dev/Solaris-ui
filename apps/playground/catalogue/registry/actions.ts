@@ -1,19 +1,5 @@
-import {
-  Button,
-  ProgressButton,
-  Chip,
-  FAB,
-  SpeedDial,
-  ToggleButtonGroup,
-  IconButton,
-  AnimatedFAB,
-  ToggleButton,
-  ButtonGroup,
-  SplitButton,
-  ChipGroup,
-} from "@its/solaris-ui";
+import { Button, Chip, FAB, SpeedDial, IconButton } from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
-import { ButtonGroupDemo, SplitButtonDemo, ChipGroupDemo } from "../demos";
 
 /** Actions: 12 catalogue entries. */
 export const actions: Record<string, ComponentMetadata> = {
@@ -46,80 +32,6 @@ export const actions: Record<string, ComponentMetadata> = {
       fullWidth: { type: "boolean", default: false, label: "Full Width" },
       disabled: { type: "boolean", default: false, label: "Disabled" },
       loading: { type: "boolean", default: false, label: "Loading" },
-    },
-  },
-  ProgressButton: {
-    name: "ProgressButton",
-    Component: ProgressButton,
-    props: {
-      children: {
-        type: "text",
-        default: "Start navigation",
-        label: "Label",
-      },
-      status: {
-        type: "select",
-        default: "idle",
-        label: "Status",
-        options: [
-          { label: "Idle", value: "idle" },
-          { label: "Loading", value: "loading" },
-          { label: "Success", value: "success" },
-          { label: "Error", value: "error" },
-        ],
-      },
-      progress: {
-        type: "number",
-        // Unset, like the component's own default: an indeterminate sweep.
-        default: undefined,
-        label: "Progress (0-1, empty = indeterminate)",
-        appliesWhen: (values) => values.status === "loading",
-      },
-      loadingLabel: {
-        type: "text",
-        // Empty falls back to the label, which is what the component does
-        // without one — so the snippet only writes it once it says something.
-        default: "",
-        label: "Loading label",
-        appliesWhen: (values) => values.status === "loading",
-      },
-      successLabel: {
-        type: "text",
-        default: "Done",
-        label: "Success label",
-      },
-      errorLabel: {
-        type: "text",
-        default: "Try again",
-        label: "Error label",
-      },
-      indicator: {
-        type: "select",
-        default: "fill",
-        label: "Indicator",
-        options: [
-          { label: "Fill", value: "fill" },
-          { label: "Bar", value: "bar" },
-        ],
-      },
-      mode: {
-        type: "select",
-        default: "filled",
-        label: "Mode",
-        options: [
-          { label: "Filled", value: "filled" },
-          { label: "Tonal", value: "tonal" },
-          { label: "Outlined", value: "outlined" },
-          { label: "Text", value: "text" },
-        ],
-      },
-      iconName: {
-        type: "text",
-        default: "",
-        label: "Icon Name",
-      },
-      fullWidth: { type: "boolean", default: false, label: "Full Width" },
-      disabled: { type: "boolean", default: false, label: "Disabled" },
     },
   },
   IconButton: {
@@ -212,43 +124,6 @@ export const actions: Record<string, ComponentMetadata> = {
       disabled: { type: "boolean", default: false, label: "Disabled" },
     },
   },
-  AnimatedFAB: {
-    name: "AnimatedFAB",
-    Component: AnimatedFAB,
-    props: {
-      icon: { type: "text", default: "plus", label: "Icon" },
-      label: { type: "text", default: "New ticket", label: "Label" },
-      extended: { type: "boolean", default: true, label: "Extended" },
-      animateFrom: {
-        type: "select",
-        default: "right",
-        label: "Animate from",
-        options: [
-          { label: "Right", value: "right" },
-          { label: "Left", value: "left" },
-        ],
-      },
-      iconMode: {
-        type: "select",
-        default: "static",
-        label: "Icon mode",
-        options: [
-          { label: "Static", value: "static" },
-          { label: "Dynamic", value: "dynamic" },
-        ],
-      },
-      placement: {
-        type: "select",
-        default: "inline",
-        label: "Placement",
-        options: [
-          { label: "Inline", value: "inline" },
-          { label: "Floating", value: "floating" },
-        ],
-      },
-      disabled: { type: "boolean", default: false, label: "Disabled" },
-    },
-  },
   SpeedDial: {
     name: "SpeedDial",
     Component: SpeedDial,
@@ -263,108 +138,6 @@ export const actions: Record<string, ComponentMetadata> = {
           { label: "Bottom Left", value: "bottom-left" },
           { label: "Top Right", value: "top-right" },
           { label: "Top Left", value: "top-left" },
-        ],
-      },
-    },
-  },
-  ToggleButton: {
-    name: "ToggleButton",
-    Component: ToggleButton,
-    props: {
-      active: { type: "boolean", default: true, label: "Active" },
-      label: { type: "text", default: "Grid", label: "Label" },
-      icon: { type: "text", default: "view-grid-outline", label: "Icon" },
-      showSelectedCheck: {
-        type: "boolean",
-        default: false,
-        label: "Selected check",
-      },
-      disabled: { type: "boolean", default: false, label: "Disabled" },
-    },
-  },
-  ToggleButtonGroup: {
-    name: "ToggleButtonGroup",
-    Component: ToggleButtonGroup,
-    props: {
-      value: { type: "text", default: "list", label: "Value" },
-    },
-  },
-  ButtonGroup: {
-    name: "ButtonGroup",
-    Component: ButtonGroup,
-    Demo: ButtonGroupDemo,
-    props: {
-      type: {
-        type: "select",
-        default: "standard",
-        label: "Type",
-        options: [
-          { label: "Standard", value: "standard" },
-          { label: "Connected", value: "connected" },
-        ],
-      },
-      mode: {
-        type: "select",
-        default: "tonal",
-        label: "Unselected look",
-        options: [
-          { label: "Tonal", value: "tonal" },
-          { label: "Outlined", value: "outlined" },
-        ],
-      },
-      size: {
-        type: "select",
-        default: "s",
-        label: "Size",
-        options: [
-          { label: "Extra small", value: "xs" },
-          { label: "Small", value: "s" },
-          { label: "Medium", value: "m" },
-        ],
-      },
-      multiSelect: { type: "boolean", default: false, label: "Multi select" },
-    },
-  },
-  SplitButton: {
-    name: "SplitButton",
-    Component: SplitButton,
-    Demo: SplitButtonDemo,
-    props: {
-      children: { type: "text", default: "Save", label: "Label" },
-      mode: {
-        type: "select",
-        default: "filled",
-        label: "Mode",
-        options: [
-          { label: "Filled", value: "filled" },
-          { label: "Tonal", value: "tonal" },
-          { label: "Outlined", value: "outlined" },
-        ],
-      },
-      disabled: { type: "boolean", default: false, label: "Disabled" },
-    },
-  },
-  ChipGroup: {
-    name: "ChipGroup",
-    Component: ChipGroup,
-    Demo: ChipGroupDemo,
-    props: {
-      multiSelect: { type: "boolean", default: false, label: "Multi select" },
-      required: {
-        type: "boolean",
-        default: false,
-        label: "Required",
-        appliesWhen: (values) => !values.multiSelect,
-      },
-      wrap: { type: "boolean", default: true, label: "Wrap" },
-      mode: {
-        type: "select",
-        default: "outlined",
-        label: "Mode",
-        options: [
-          { label: "Outlined", value: "outlined" },
-          { label: "Tonal", value: "tonal" },
-          { label: "Filled", value: "filled" },
         ],
       },
     },

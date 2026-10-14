@@ -40,7 +40,6 @@ export const Basic = () => (
 /**
  * Only `mode` is locked, so `selectionMode` still switches the shape of the
  * value: one `Date`, a `{ startDate, endDate }` pair, or an array of days.
- * (`DateRangePicker` is this same component with the range mode fixed too.)
  */
 export const SelectionModes = () => (
   <View style={stack}>
@@ -96,7 +95,7 @@ export const variants: Variant[] = [
     name: "SelectionModes",
     title: "Selection modes",
     description:
-      "Only `mode` is locked, so `selectionMode` still switches the shape of the value: one `Date`, a `{ startDate, endDate }` pair, or an array of days. (`DateRangePicker` is this same component with the range mode fixed too.)",
+      "Only `mode` is locked, so `selectionMode` still switches the shape of the value: one `Date`, a `{ startDate, endDate }` pair, or an array of days.",
     render: SelectionModes,
   },
   {

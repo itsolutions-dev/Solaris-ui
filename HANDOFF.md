@@ -83,19 +83,42 @@ All of it is in one commit on `dev`. Nothing is published.
 ## Gates at the end of the session
 
 `npm run lint` (0 warnings), `type-check`, `build`, `validate-package -w @its/solaris-ui`,
-`export:web` all pass; generators leave no diff on a second run; tests: **150** in the library,
-**719** in the playground. A catalogue test renders every demo and gallery entry under Proposta B
+`export:web` all pass; generators leave no diff on a second run; tests: **150** in the library
+(151 after the 2026-10-14 fixes), **719** in the playground. A catalogue test renders every demo and gallery entry under Proposta B
 and fails on any Eva glyph that is neither mapped nor on its allow-list.
 
-## NOT verified (nobody has looked yet)
+## Visual pass (2026-10-14, Gabriele's session)
 
-- **The look in a browser or on a device.** The plan's Task 7 (check `/theming`, `/components/Button`,
-  `/components/Typography`, `/components/Icon`, `/components/NavigationBar`, `/components/Select` in
-  light and dark, under A and under B) was **not** done: this session had no browser. The static
-  export does contain the logo and Geist in its HTML. Do the visual pass before calling the theme done.
-- Geist actually loading, Eva icon box heights next to text (an Eva `Svg` is exactly the glyph
-  size; vector-icons' text box is slightly taller), the logo at 32 px height on a phone.
-- Native (iOS/Android): Eva uses plain `Path` elements, but it has not been run on a device.
+Done on the static export in Chrome at 1280 px. Pages: `/theming` under A and B, in light and
+dark, plus `/components/Icon`, `/components/Select` and `/components/Button` under B. The logo and
+both fonts load (Roboto for A, Geist for B), and the sentence-case buttons, bold headings and Eva
+icons render.
+
+**Found and fixed** (uncommitted, one new test):
+- The dropdown caret (`menu-down` / `menu-up`, in Select and Calendar) mapped to Eva's
+  `arrowhead-*`, which is a **double** chevron. It now maps to `chevron-*`.
+- `Button` and `Chip` sized their icons with **corner radii**: `theme.shape.medium` / `.large`,
+  inherited from Glowup. Under B, Chip icons grew to 24 px, and a square-cornered theme would have
+  drawn them at 0 px. They now use fixed sizes with A's values (Button 12, Chip 12 / 16). The
+  test `icon-sets.test.tsx` "sizes component icons independently of the theme's corner radii"
+  covers this.
+
+**Seen, not fixed:**
+- **G2: button icon size.** Button icons are 12 px; Material 3 uses 18 and MUI 20. Settle it
+  together with the Button size presets.
+- **G2: disabled buttons.** A disabled filled Button in A dark is a dark label on dark blue,
+  almost invisible. It is opacity 0.38 over the primary colour, where Material 3 uses `onSurface`
+  at 12% / 38%.
+- **Designers: on-colours in B.** B's filled error and success buttons get a **black** label,
+  because white on `#E5484D` / `#45A557` is under 4.5:1. That is AA-correct, but the designers may
+  prefer darker reds and greens.
+- **Site: scheme not remembered.** The light/dark choice is lost on a full page load; the
+  proposal choice is kept.
+
+**Still not verified:**
+- native iOS/Android (Eva uses plain `Path` elements);
+- the 360 px width;
+- the Typography and NavigationBar pages.
 
 ## Known limits and deferred items
 
@@ -136,14 +159,24 @@ and fails on any Eva glyph that is neither mapped nor on its allow-list.
 
 ## What to do next
 
-1. Do the visual pass (Task 7 of the plan) and fix what looks wrong.
-2. Then continue the program: **G1 Layout & surfaces → G2 Actions → G3 Inputs → G4 Dates → G5
-   Navigation → G6 Overlays & feedback → G7 Display → G8 Release `0.1.0`**, one plan per group,
-   written just before it runs (see the MUI-API spec Part C and the roadmap table at the end of the
-   plan). A group is done only when Part D holds: library, tests, registry/demos, previews,
-   generated files, all gates, and now a browser check in light and dark **under both presets**.
-3. Sub-project 3 (DBE-CRM components: 3a extensions + CaptionValue/gradient button/tint, 3b mobile
-   pieces, 3c charts) after that.
+> **The roadmap changed on 2026-10-14 (Gabriele's session).** The owner gave the list of
+> components Solaris needs for now; the rest are parked. Read
+> `docs/superpowers/specs/2026-10-14-solaris-roadmap-v2-design.md` first: it replaces the group
+> order below and in the theme plan's roadmap table.
+
+1. ~~Do the visual pass~~ (done on web on 2026-10-14, see above; native is still open).
+2. ~~Group 0, Park~~ (done 2026-10-14, plan `docs/superpowers/plans/2026-10-14-solaris-park.md`):
+   32 components moved to `packages/ui/parked/` (see its README), 10 more kept only as internals.
+   The library exports 49 components; the docs site's own switches use `site/ChoiceChips.tsx`,
+   and `site/Notice.tsx` / `site/StatFigure.tsx` stand in for the parked EmptyState and Stat.
+3. Next: **group 1, Layout** (Paper, Box, Divider, Stack, Grid, Skeleton, Card + parts), plan
+   `docs/superpowers/plans/2026-10-14-solaris-mui-g1-layout-surfaces.md` (already trimmed for
+   roadmap v2; it now also fixes the Card that marks its content disabled). Then **2 Other**
+   (Dialog, ConfirmDialog, Menu, Tooltip, Snackbar, Alert), **3 Charts** (after the library
+   choice), **4 Display**, **5 Navigation**; groups 6–9 (Buttons, Base inputs, Special inputs,
+   Dates) wait for the owner's Figma designs; **10** reviews the parked components and releases
+   `0.1.0`. A group is done only when the MUI-API spec's Part D holds, with a browser check in
+   light and dark **under both presets**.
 
 ## Where things are
 

@@ -39,24 +39,11 @@
       "primaryStory": "BindsTheSingleton",
       "viewport": "560x420"
     },
-    "AnimatedFAB": {
-      "cardMode": "column"
-    },
-    "AppBar": {
-      "cardMode": "column"
-    },
-    "AspectRatio": {
-      "cardMode": "column"
-    },
     "Autocomplete": {
       "cardMode": "column"
     },
     "Banner": {
       "cardMode": "column"
-    },
-    "BottomSheet": {
-      "cardMode": "single",
-      "viewport": "420x620"
     },
     "Box": {
       "cardMode": "column"
@@ -64,35 +51,13 @@
     "Breadcrumbs": {
       "cardMode": "column"
     },
-    "Calendar": {
-      "cardMode": "column",
-      "viewport": "1100x480"
-    },
     "Card": {
-      "cardMode": "column"
-    },
-    "Carousel": {
-      "cardMode": "column"
-    },
-    "Center": {
       "cardMode": "column"
     },
     "Checkbox": {
       "cardMode": "column"
     },
     "Chip": {
-      "cardMode": "column"
-    },
-    "CircularProgress": {
-      "cardMode": "column"
-    },
-    "ClockDial": {
-      "cardMode": "column"
-    },
-    "ClockPicker": {
-      "cardMode": "column"
-    },
-    "Collapse": {
       "cardMode": "column"
     },
     "ConfirmDialog": {
@@ -105,46 +70,22 @@
     "DatePicker": {
       "cardMode": "column"
     },
-    "DatePickerInput": {
-      "cardMode": "column"
-    },
-    "DateRangePicker": {
-      "cardMode": "column"
-    },
     "DateTimePicker": {
       "cardMode": "column"
     },
     "Divider": {
       "cardMode": "column"
     },
-    "EmptyState": {
-      "cardMode": "column"
-    },
     "FAB": {
       "cardMode": "column"
     },
-    "FormControl": {
-      "cardMode": "column"
-    },
     "Grid": {
-      "cardMode": "column"
-    },
-    "HelperText": {
-      "cardMode": "column"
-    },
-    "HStack": {
       "cardMode": "column"
     },
     "Icon": {
       "cardMode": "column"
     },
     "IconButton": {
-      "cardMode": "column"
-    },
-    "Image": {
-      "cardMode": "column"
-    },
-    "LinearProgress": {
       "cardMode": "column"
     },
     "Link": {
@@ -155,10 +96,6 @@
     },
     "ListSection": {
       "cardMode": "column"
-    },
-    "ListSubheader": {
-      "cardMode": "single",
-      "viewport": "420x420"
     },
     "Menu": {
       "cardMode": "single",
@@ -171,36 +108,13 @@
     "NavigationBar": {
       "cardMode": "column"
     },
-    "Pagination": {
-      "cardMode": "column"
-    },
     "Paper": {
       "cardMode": "column"
-    },
-    "PinInput": {
-      "cardMode": "column"
-    },
-    "Popover": {
-      "cardMode": "single",
-      "viewport": "480x420"
     },
     "Portal": {
       "cardMode": "single",
       "primaryStory": "EscapesAClippingParent",
       "viewport": "460x260"
-    },
-    "ProgressButton": {
-      "cardMode": "column",
-      "primaryStory": "Statuses"
-    },
-    "RadioButton": {
-      "cardMode": "column"
-    },
-    "RadioGroup": {
-      "cardMode": "column"
-    },
-    "Rating": {
-      "cardMode": "column"
     },
     "SearchBar": {
       "cardMode": "column"
@@ -211,13 +125,7 @@
     "Skeleton": {
       "cardMode": "column"
     },
-    "Slider": {
-      "cardMode": "column"
-    },
     "Snackbar": {
-      "cardMode": "column"
-    },
-    "Spacer": {
       "cardMode": "column"
     },
     "SpeedDial": {
@@ -226,22 +134,13 @@
     "Stack": {
       "cardMode": "column"
     },
-    "Stat": {
-      "cardMode": "column"
-    },
     "Stepper": {
-      "cardMode": "column"
-    },
-    "TabContent": {
       "cardMode": "column"
     },
     "Tabs": {
       "cardMode": "column"
     },
     "ThemeProvider": {
-      "cardMode": "column"
-    },
-    "TimePicker": {
       "cardMode": "column"
     },
     "ToastProvider": {
@@ -251,12 +150,6 @@
       "cardMode": "column"
     },
     "Tooltip": {
-      "cardMode": "column"
-    },
-    "TouchableRipple": {
-      "cardMode": "column"
-    },
-    "VStack": {
       "cardMode": "column"
     }
   },

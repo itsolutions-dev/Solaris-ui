@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { router } from "expo-router";
-import { EmptyState } from "@its/solaris-ui";
+import Notice from "../site/Notice";
 import { PageHead } from "../site/Page";
 
 /**
@@ -15,7 +15,7 @@ export default function NotFound() {
         title="Page not found"
         description="This page does not exist on the Solaris documentation site."
       />
-      <EmptyState
+      <Notice
         icon="compass-off-outline"
         title="Page not found"
         description="That URL is not part of the documentation."

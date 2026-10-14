@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  StatusBadge,
+  Chip,
   Table,
   TableCell,
   TableHead,
@@ -113,10 +113,7 @@ export const RichCells = () => (
           <TableCell width={140}>{r.id}</TableCell>
           <TableCell width={120}>{r.amount}</TableCell>
           <TableCell width={140}>
-            <StatusBadge
-              type={r.status as "success" | "warning" | "error"}
-              label={r.label}
-            />
+            <Chip label={r.label} size="small" mode="tonal" />
           </TableCell>
         </TableRow>
       ))}

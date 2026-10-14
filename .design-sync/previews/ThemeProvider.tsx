@@ -6,9 +6,7 @@ import {
   Paper,
   Button,
   Chip,
-  StatusBadge,
   Divider,
-  ProgressButton,
 } from "@its/solaris-ui";
 
 // ThemeProvider renders no UI of its own — it supplies the Solaris token
@@ -290,7 +288,7 @@ export const WrapsTheApp = () => (
             Renew
           </Button>
           <Chip label="Annual" mode="tonal" size="small" onPress={() => {}} />
-          <StatusBadge label="Active" type="success" />
+          <Chip label="Active" size="small" mode="tonal" />
         </div>
       </Paper>
     </ThemeProvider>
@@ -320,9 +318,9 @@ const SchemeSwitch = () => {
             Tonal
           </Button>
           <Chip label="Selected" mode="tonal" selected onPress={() => {}} />
-          <ProgressButton status="loading" progress={0.6}>
+          <Button loading onPress={() => {}}>
             Loading
-          </ProgressButton>
+          </Button>
         </div>
       </Paper>
     </div>

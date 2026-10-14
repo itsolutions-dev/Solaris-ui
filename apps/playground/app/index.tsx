@@ -4,7 +4,6 @@ import { Link } from "expo-router";
 import Icons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Button,
-  Stat,
   Typography,
   useTheme,
   type PressableState,
@@ -14,6 +13,7 @@ import {
 import { TOTAL_COUNT } from "../catalogue/categories";
 import { VARIANT_COUNT } from "../catalogue/variants";
 import { CodeBlock } from "../site/CodeBlock";
+import StatFigure from "../site/StatFigure";
 import { Page, Section } from "../site/Page";
 import { useLayout } from "../site/breakpoints";
 import { TOTAL_PROP_COUNT } from "../site/propsData";
@@ -60,14 +60,14 @@ export default function Home() {
 
       <View style={[styles.stats, layout.isCompact && styles.statsStacked]}>
         <View style={styles.statItem}>
-          <Stat
+          <StatFigure
             label="Components"
             value={String(TOTAL_COUNT)}
             icon="shape-outline"
           />
         </View>
         <View style={styles.statItem}>
-          <Stat
+          <StatFigure
             label="Documented props"
             value={String(TOTAL_PROP_COUNT)}
             icon="format-list-bulleted-type"
@@ -75,14 +75,14 @@ export default function Home() {
           />
         </View>
         <View style={styles.statItem}>
-          <Stat
+          <StatFigure
             label="Variant demos"
             value={String(VARIANT_COUNT)}
             icon="view-carousel-outline"
           />
         </View>
         <View style={styles.statItem}>
-          <Stat
+          <StatFigure
             label="Platforms"
             value="3"
             icon="cellphone-link"

@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, AspectRatio, Center, Spacer } from "@its/solaris-ui";
+import { Box, Grid, Stack } from "@its/solaris-ui";
 import type { ComponentMetadata } from "../types";
 
 /** Layout: 6 catalogue entries. */
@@ -99,34 +99,6 @@ export const layout: Record<string, ComponentMetadata> = {
           { label: "s", value: "s" },
           { label: "m", value: "m" },
           { label: "l", value: "l" },
-        ],
-      },
-    },
-  },
-  AspectRatio: {
-    name: "AspectRatio",
-    Component: AspectRatio,
-    props: {
-      ratio: { type: "number", default: 1.78, label: "Ratio (w / h)" },
-    },
-  },
-  Center: {
-    name: "Center",
-    Component: Center,
-    props: {},
-  },
-  Spacer: {
-    name: "Spacer",
-    Component: Spacer,
-    props: {
-      size: { type: "number", default: 24, label: "Size" },
-      axis: {
-        type: "select",
-        default: "vertical",
-        label: "Axis",
-        options: [
-          { label: "Vertical", value: "vertical" },
-          { label: "Horizontal", value: "horizontal" },
         ],
       },
     },

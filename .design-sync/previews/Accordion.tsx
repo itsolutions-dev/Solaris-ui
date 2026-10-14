@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Typography, StatusBadge, Divider } from "@its/solaris-ui";
+import { Accordion, Typography, Divider, Chip } from "@its/solaris-ui";
 
 const panel: React.CSSProperties = {
   display: "flex",
@@ -30,7 +30,7 @@ export const RichContent = () => (
           }}
         >
           <Typography variant="body2">api-gateway</Typography>
-          <StatusBadge label="Live" type="success" />
+          <Chip label="Live" size="small" mode="tonal" />
         </div>
         <Divider contentSpacing={0} />
         <div
@@ -41,7 +41,7 @@ export const RichContent = () => (
           }}
         >
           <Typography variant="body2">billing-worker</Typography>
-          <StatusBadge label="Rolling out" type="warning" />
+          <Chip label="Rolling out" size="small" mode="tonal" />
         </div>
         <Divider contentSpacing={0} />
         <div
@@ -52,7 +52,7 @@ export const RichContent = () => (
           }}
         >
           <Typography variant="body2">report-exporter</Typography>
-          <StatusBadge label="Failed" type="error" />
+          <Chip label="Failed" size="small" mode="tonal" />
         </div>
       </div>
     </Accordion>

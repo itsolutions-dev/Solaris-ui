@@ -1,20 +1,16 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, View } from "react-native";
+import { useMemo, useState } from "react";
+import { View } from "react-native";
 import {
   useTheme,
   useToast,
   Typography,
   Button,
-  ProgressButton,
-  Checkbox,
-  Chip,
   Avatar,
   Card,
   ListItem,
   IconButton,
   CardTitle,
   Portal,
-  Center,
   EMPTY_RANGE,
 } from "@its/solaris-ui";
 import type { DateRange } from "@its/solaris-ui";
@@ -50,9 +46,7 @@ const ComponentPreview = ({
   const [dateValue, setDateValue] = useState<Date | null>(() => new Date());
   const [dateRange, setDateRange] = useState<DateRange>(() => EMPTY_RANGE);
   const [dateList, setDateList] = useState<Date[]>([]);
-  const [pinValue, setPinValue] = useState("");
   const [autocompleteQuery, setAutocompleteQuery] = useState("");
-  const [collapseOpen, setCollapseOpen] = useState(false);
 
   const gridData = useMemo(
     () => [
@@ -87,23 +81,6 @@ const ComponentPreview = ({
 
   if (selectedComponentName === "Checkbox") {
     props.onValueChange = (v: boolean) => updateProp("checked", v);
-  }
-
-  if (selectedComponentName === "RadioGroup") {
-    props.options = [
-      { id: "a", label: "Option A", value: "a" },
-      { id: "b", label: "Option B (disabled)", value: "b", disabled: true },
-      { id: "c", label: "Option C", value: "c" },
-    ];
-    props.onValueChange = (v: any) => updateProp("value", v);
-  }
-
-  if (selectedComponentName === "Slider") {
-    props.value = Number(props.value) || 0;
-    props.min = Number(props.min) || 0;
-    props.max = Number(props.max) || 100;
-    props.step = Number(props.step) || undefined;
-    props.onValueChange = (v: number) => updateProp("value", v);
   }
 
   if (selectedComponentName === "Spinner") {
@@ -149,23 +126,6 @@ const ComponentPreview = ({
       </Button>
     );
     return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "BottomSheet") {
-    props.onDismiss = () => updateProp("visible", false);
-    return (
-      <>
-        <Button mode="tonal" onPress={() => updateProp("visible", true)}>
-          Open Bottom Sheet
-        </Button>
-        <Component {...props}>
-          <Typography variant="body2">
-            Bottom sheet content goes here. Drag the handle down or tap the
-            scrim to dismiss.
-          </Typography>
-        </Component>
-      </>
-    );
   }
 
   if (selectedComponentName === "NavigationBar") {
@@ -221,85 +181,9 @@ const ComponentPreview = ({
     ];
   }
 
-  if (selectedComponentName === "Pagination") {
-    props.page = Number(props.page) || 1;
-    props.totalPages = Number(props.totalPages) || 1;
-    props.siblingCount = Number(props.siblingCount) || 1;
-    props.onPageChange = (p: number) => updateProp("page", p);
-  }
-
-  if (selectedComponentName === "Rating") {
-    props.value = Number(props.value) || 0;
-    props.max = Number(props.max) || 5;
-    props.size = Number(props.size) || 24;
-    props.onChange = (v: number) => updateProp("value", v);
-  }
-
-  if (selectedComponentName === "EmptyState") {
-    props.action = {
-      label: "Add item",
-      iconName: "plus",
-      onPress: () => {},
-    };
-  }
-
-  if (selectedComponentName === "Carousel") {
-    props.autoPlayInterval = Number(props.autoPlayInterval) || 0;
-    return (
-      <View style={{ width: "100%", maxWidth: 480 }}>
-        <Component {...props}>
-          {["primaryContainer", "secondaryContainer", "tertiaryContainer"].map(
-            (colorKey, i) => (
-              <View
-                key={colorKey}
-                style={{
-                  height: 160,
-                  borderRadius: 16,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: (theme.colors as any)[colorKey],
-                }}
-              >
-                <Typography variant="subtitle1">{`Slide ${i + 1}`}</Typography>
-              </View>
-            ),
-          )}
-        </Component>
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "ClockPicker") {
-    if (!props.locale) delete props.locale;
-    props.minuteInterval = Number(props.minuteInterval) || 1;
-    // The surface edits an instant, so it needs a non-null value.
-    props.value = dateValue ?? new Date();
-    props.onChange = (d: Date) => setDateValue(d);
-    // The M3 time surface has an intrinsic ~278px width (it is sized for a
-    // 328dp dialog); the stage is narrower than that below ~1400px, so let it
-    // scroll rather than clipping the AM/PM switch off the edge.
-    return (
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 4,
-          flexGrow: 1,
-          justifyContent: "center",
-        }}
-      >
-        <Component {...props} />
-      </ScrollView>
-    );
-  }
-
   if (
     selectedComponentName === "DateTimePicker" ||
-    selectedComponentName === "DatePicker" ||
-    selectedComponentName === "TimePicker" ||
-    selectedComponentName === "DatePickerInput" ||
-    selectedComponentName === "DateRangePicker" ||
-    selectedComponentName === "Calendar"
+    selectedComponentName === "DatePicker"
   ) {
     // limitToThisMonth / noWeekends are playground switches, not component
     // props — they stand in for a real validRange / isDateDisabled.
@@ -321,50 +205,29 @@ const ComponentPreview = ({
     }
 
     // Each selection mode reports through its own callback and reads from
-    // its own state, so the three are wired separately. `DateRangePicker`
-    // locks the mode away as a prop, hence the name check.
-    const selection =
-      selectedComponentName === "DateRangePicker"
-        ? "range"
-        : (props.selectionMode ?? "single");
+    // its own state, so the three are wired separately.
+    const selection = props.selectionMode ?? "single";
 
     if (selection === "range") {
-      if (selectedComponentName === "Calendar") {
-        props.range = dateRange;
-        props.onRangeChange = setDateRange;
-      } else {
-        props.value = dateRange;
-        props.onChange = setDateRange;
-        props.onClear = () => setDateRange(EMPTY_RANGE);
-      }
+      props.value = dateRange;
+      props.onChange = setDateRange;
+      props.onClear = () => setDateRange(EMPTY_RANGE);
     } else if (selection === "multiple") {
-      if (selectedComponentName === "Calendar") {
-        props.dates = dateList;
-        props.onDatesChange = setDateList;
-      } else {
-        props.value = dateList;
-        props.onChange = setDateList;
-        props.onClear = () => setDateList([]);
-      }
+      props.value = dateList;
+      props.onChange = setDateList;
+      props.onClear = () => setDateList([]);
     } else {
       props.value = dateValue;
       props.onChange = (d: Date) => setDateValue(d);
       props.onClear = () => setDateValue(null);
     }
 
-    if (selectedComponentName === "Calendar") {
-      return <Component {...props} />;
-    }
     props.minuteInterval = Number(props.minuteInterval) || 1;
     return (
       <View style={{ width: "100%", maxWidth: 360 }}>
         <Component {...props} />
       </View>
     );
-  }
-
-  if (selectedComponentName === "ProgressButton") {
-    return <ProgressButtonStage props={props} updateProp={updateProp} />;
   }
 
   if (selectedComponentName === "IconButton") {
@@ -381,30 +244,6 @@ const ComponentPreview = ({
     const { children, ...linkProps } = props;
     if (!linkProps.href) delete linkProps.href;
     return <Component {...linkProps}>{children}</Component>;
-  }
-
-  if (selectedComponentName === "Stat") {
-    if (!props.icon) delete props.icon;
-    if (!props.delta) delete props.delta;
-    if (!props.helpText) delete props.helpText;
-    return (
-      <View style={{ minWidth: 240 }}>
-        <Component {...props} />
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "PinInput") {
-    props.length = Math.max(2, Math.min(10, Number(props.length) || 6));
-    props.value = pinValue;
-    props.onChangeText = setPinValue;
-    if (!props.error) delete props.error;
-    if (!props.helperText) delete props.helperText;
-    return (
-      <View style={{ alignItems: "center" }}>
-        <Component {...props} />
-      </View>
-    );
   }
 
   if (selectedComponentName === "Autocomplete") {
@@ -432,68 +271,6 @@ const ComponentPreview = ({
     return (
       <View style={{ width: "100%", maxWidth: 360, minHeight: 300 }}>
         <Component {...props} />
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "FormControl") {
-    if (!props.error) delete props.error;
-    if (!props.helperText) delete props.helperText;
-    return (
-      <View style={{ width: "100%", maxWidth: 360 }}>
-        <Component {...props}>
-          <Checkbox
-            label="Email me about incidents"
-            checked
-            onValueChange={() => {}}
-          />
-          <Checkbox
-            label="Email me a weekly digest"
-            checked={false}
-            onValueChange={() => {}}
-          />
-        </Component>
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "Collapse") {
-    props.collapsedHeight = Number(props.collapsedHeight) || 0;
-    props.duration = Number(props.duration) || 200;
-    return (
-      <View style={{ width: "100%", maxWidth: 420, gap: 12 }}>
-        <Button mode="tonal" onPress={() => setCollapseOpen((o) => !o)}>
-          {collapseOpen ? "Collapse" : "Expand"}
-        </Button>
-        <Component {...props} open={collapseOpen}>
-          <View
-            style={{
-              padding: 16,
-              borderRadius: 16,
-              backgroundColor: theme.colors.primaryContainer,
-            }}
-          >
-            <Typography variant="body2">
-              The height is measured from the content, so this animates
-              correctly however much text it holds — no fixed height needed.
-            </Typography>
-          </View>
-        </Component>
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "Image") {
-    const { broken, ...imageProps } = props;
-    imageProps.ratio = Number(imageProps.ratio) || 1.5;
-    imageProps.source = {
-      uri: broken
-        ? "https://example.invalid/missing.png"
-        : "https://picsum.photos/seed/solaris/640/420",
-    };
-    return (
-      <View style={{ width: "100%", maxWidth: 420 }}>
-        <Component {...imageProps} />
       </View>
     );
   }
@@ -635,46 +412,12 @@ const ComponentPreview = ({
     );
   }
 
-  if (selectedComponentName === "StatusBadge") {
-    if (!props.icon) delete props.icon;
-    return <Component {...props} />;
-  }
-
   if (selectedComponentName === "Tabs") {
     props.activeTab = Number(props.activeTab) || 0;
     props.tabs = ["Overview", "Specs", "Reviews"];
     props.onChange = (i: number) => updateProp("activeTab", i);
     return (
       <View style={{ width: "100%", maxWidth: 420 }}>
-        <Component {...props} />
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "ToggleButtonGroup") {
-    props.options = [
-      { label: "List", icon: "format-list-bulleted", value: "list" },
-      { label: "Grid", icon: "view-grid-outline", value: "grid" },
-      { label: "Cards", icon: "card-outline", value: "cards" },
-    ];
-    props.onValueChange = (v: any) => updateProp("value", v);
-    return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "CircularProgress") {
-    props.size = Number(props.size) || 48;
-    props.strokeWidth = Number(props.strokeWidth) || 4;
-    props.duration = Number(props.duration) || 1000;
-    if (!props.color) delete props.color;
-    return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "LinearProgress") {
-    props.progress = Number(props.progress) || 0;
-    props.height = Number(props.height) || 4;
-    if (!props.color) delete props.color;
-    return (
-      <View style={{ width: "100%", maxWidth: 400 }}>
         <Component {...props} />
       </View>
     );
@@ -734,24 +477,6 @@ const ComponentPreview = ({
     );
   }
 
-  if (selectedComponentName === "Popover") {
-    props.onDismiss = () => updateProp("visible", false);
-    props.anchor = (
-      <Button mode="tonal" onPress={() => updateProp("visible", true)}>
-        Open Popover
-      </Button>
-    );
-    return (
-      <Component {...props}>
-        <View style={{ padding: 16, maxWidth: 240 }}>
-          <Typography variant="body2">
-            Popover content anchored to the button above.
-          </Typography>
-        </View>
-      </Component>
-    );
-  }
-
   if (selectedComponentName === "Divider") {
     props.thickness = Number(props.thickness) || 1;
     props.inset = Number(props.inset) || 0;
@@ -800,21 +525,6 @@ const ComponentPreview = ({
 
   if (selectedComponentName === "Icon") {
     return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "TouchableRipple") {
-    props.borderRadius = Number(props.borderRadius) || 0;
-    return (
-      <Component
-        {...props}
-        onPress={() => {}}
-        accessibilityLabel="Tappable surface"
-      >
-        <View style={{ padding: 16 }}>
-          <Typography variant="body2">Hover or press this surface</Typography>
-        </View>
-      </Component>
-    );
   }
 
   // The Card parts only read correctly inside the surface they belong to.
@@ -872,83 +582,6 @@ const ComponentPreview = ({
           <Button onPress={() => {}}>Confirm</Button>
         </Component>
       </Card>
-    );
-  }
-
-  if (selectedComponentName === "RadioButton") {
-    props.onPress = () => updateProp("selected", !props.selected);
-    return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "ToggleButton") {
-    props.onPress = () => updateProp("active", !props.active);
-    return <Component {...props} />;
-  }
-
-  if (selectedComponentName === "AnimatedFAB") {
-    props.onPress = () => {};
-    // Floating pins it to the screen corner, so give it room to sit in.
-    return (
-      <View style={{ width: "100%", height: 160, justifyContent: "center" }}>
-        <Component {...props} />
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "AspectRatio") {
-    props.ratio = Number(props.ratio) || 1;
-    return (
-      <View style={{ width: "100%", maxWidth: 420 }}>
-        <Component {...props} radius="medium" bg="surfaceContainerHigh">
-          <Center style={{ flex: 1 }}>
-            <Typography variant="subtitle2">
-              {`ratio ${props.ratio.toFixed(2)}`}
-            </Typography>
-          </Center>
-        </Component>
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "Center") {
-    return (
-      <View style={{ width: "100%", maxWidth: 420, height: 140 }}>
-        <Component {...props} style={{ flex: 1 }} bg="surfaceContainerHigh">
-          <Typography variant="subtitle2">Centred on both axes</Typography>
-        </Component>
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "Spacer") {
-    props.size = Number(props.size) || 0;
-    const horizontal = props.axis === "horizontal";
-    return (
-      <View
-        style={{
-          width: "100%",
-          maxWidth: 420,
-          flexDirection: horizontal ? "row" : "column",
-          alignItems: horizontal ? "center" : "stretch",
-        }}
-      >
-        <Chip label="Before" />
-        <Component {...props} />
-        <Chip label="After" />
-      </View>
-    );
-  }
-
-  if (selectedComponentName === "TabContent") {
-    props.activeTab = Number(props.activeTab) || 0;
-    return (
-      <View style={{ width: "100%", maxWidth: 420 }}>
-        <Component {...props}>
-          <Typography variant="body2">Tab 0 content</Typography>
-          <Typography variant="body2">Tab 1 content</Typography>
-          <Typography variant="body2">Tab 2 content</Typography>
-        </Component>
-      </View>
     );
   }
 
@@ -1016,24 +649,6 @@ const ComponentPreview = ({
     );
   }
 
-  if (selectedComponentName === "ClockDial") {
-    const current = dateValue ?? new Date();
-    props.minuteInterval = Number(props.minuteInterval) || 1;
-    props.hours = current.getHours();
-    props.minutes = current.getMinutes();
-    props.onChangeHours = (hours: number) => {
-      const next = new Date(current);
-      next.setHours(hours);
-      setDateValue(next);
-    };
-    props.onChangeMinutes = (minutes: number) => {
-      const next = new Date(current);
-      next.setMinutes(minutes);
-      setDateValue(next);
-    };
-    return <Component {...props} />;
-  }
-
   if (isContainer) {
     const { children, ...otherProps } = props;
     return (
@@ -1048,81 +663,6 @@ const ComponentPreview = ({
   }
 
   return <Component {...props} onPress={() => console.log("Pressed")} />;
-};
-
-/**
- * ProgressButton's stage: the panel's props, plus a task to run. Pressing the
- * button (or the failure trigger) walks the panel through the statuses a real
- * caller would — loading with progress ticking up, then success or error —
- * by writing them back with `updateProp`, so the controls follow along.
- */
-const ProgressButtonStage = ({
-  props,
-  updateProp,
-}: {
-  props: Record<string, any>;
-  updateProp: (key: string, value: any) => void;
-}) => {
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-  const [running, setRunning] = useState(false);
-  const stop = () => {
-    if (timer.current) clearInterval(timer.current);
-    timer.current = null;
-    setRunning(false);
-  };
-  useEffect(() => stop, []);
-
-  const run = (failAt?: number) => {
-    stop();
-    setRunning(true);
-    let progress = 0;
-    updateProp("progress", 0);
-    updateProp("status", "loading");
-    timer.current = setInterval(() => {
-      progress = Math.min(1, progress + 0.04 + Math.random() * 0.08);
-      if (failAt !== undefined && progress >= failAt) {
-        stop();
-        updateProp("status", "error");
-        return;
-      }
-      updateProp("progress", Number(progress.toFixed(2)));
-      if (progress >= 1) {
-        stop();
-        updateProp("status", "success");
-      }
-    }, 180);
-  };
-
-  return (
-    <View style={{ alignItems: "center", gap: 16 }}>
-      <ProgressButton
-        {...props}
-        loadingLabel={props.loadingLabel || undefined}
-        iconName={props.iconName || undefined}
-        onPress={() => run()}
-        onSuccessEnd={() => updateProp("status", "idle")}
-      />
-      <View style={{ flexDirection: "row", gap: 8 }}>
-        <Button
-          mode="text"
-          iconName="play"
-          disabled={running}
-          onPress={() => run()}
-        >
-          Run the task
-        </Button>
-        <Button
-          mode="text"
-          tone="error"
-          iconName="alert-outline"
-          disabled={running}
-          onPress={() => run(0.7)}
-        >
-          Fail at 70%
-        </Button>
-      </View>
-    </View>
-  );
 };
 
 export default ComponentPreview;

@@ -4,13 +4,7 @@
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { Variant } from "../types";
-import {
-  Paper,
-  Typography,
-  Divider,
-  StatusBadge,
-  Button,
-} from "@its/solaris-ui";
+import { Paper, Typography, Divider, Button, Chip } from "@its/solaris-ui";
 
 const grid: ViewStyle = {
   flexDirection: "row",
@@ -80,7 +74,7 @@ export const AsPanel = () => (
         }}
       >
         <Typography variant="subtitle1">Build #418</Typography>
-        <StatusBadge label="Passed" type="success" />
+        <Chip label="Passed" size="small" mode="tonal" />
       </View>
       <View style={{ height: 12 }} />
       <Divider contentSpacing={0} />

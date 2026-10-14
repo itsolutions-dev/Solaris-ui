@@ -3,8 +3,8 @@ import {
   Button,
   ToastProvider,
   Typography,
-  VStack,
   useToast,
+  Stack,
 } from "@its/solaris-ui";
 
 type Toast = ReturnType<typeof useToast>;
@@ -29,7 +29,7 @@ const Raise = ({
 };
 
 const stage = (run: (t: Toast) => void, caption: string) => (
-  <VStack
+  <Stack
     spacing="s"
     p="m"
     bg="surfaceContainerLow"
@@ -43,7 +43,7 @@ const stage = (run: (t: Toast) => void, caption: string) => (
         <Typography variant="caption">{caption}</Typography>
       </Raise>
     </ToastProvider>
-  </VStack>
+  </Stack>
 );
 
 export const Success = () =>
@@ -76,13 +76,13 @@ export const Failure = () =>
   );
 
 export const TheApi = () => (
-  <VStack spacing="s" p="m" bg="surfaceContainerLow" radius="large" width={420}>
+  <Stack spacing="s" p="m" bg="surfaceContainerLow" radius="large" width={420}>
     <Typography variant="subtitle1">Raising a toast</Typography>
     <Typography variant="body2">
       Mount ToastProvider once near the root, then call useToast() from anywhere
       below it. There is no visible state to thread through a screen.
     </Typography>
-    <VStack spacing="xs" p="s" bg="surface" radius="medium">
+    <Stack spacing="xs" p="s" bg="surface" radius="medium">
       <Typography variant="caption">const toast = useToast();</Typography>
       <Typography variant="caption">
         toast.show({"{ message, type?, duration?, icon?, action?, id? }"})
@@ -90,7 +90,7 @@ export const TheApi = () => (
       <Typography variant="caption">
         toast.success(msg) · toast.error(msg) · toast.hide(key?)
       </Typography>
-    </VStack>
+    </Stack>
     <Typography variant="caption">
       Toasts play back FIFO, one at a time; a repeated event reuses its id
       instead of stacking up.
@@ -98,5 +98,5 @@ export const TheApi = () => (
     <Button mode="tonal" onPress={() => {}}>
       Publish
     </Button>
-  </VStack>
+  </Stack>
 );

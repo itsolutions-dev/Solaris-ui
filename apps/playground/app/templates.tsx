@@ -10,23 +10,17 @@ import {
   Checkbox,
   Chip,
   DataGrid,
-  Divider,
-  FormControl,
   Input,
-  LinearProgress,
   Link,
   ListItem,
   ListSection,
   Select,
-  Stat,
-  StatusBadge,
   Toggle,
-  Typography,
   useTheme,
   type Theme,
 } from "@its/solaris-ui";
+import StatFigure from "../site/StatFigure";
 
-import { CodeBlock } from "../site/CodeBlock";
 import { DemoErrorBoundary } from "../site/ErrorBoundary";
 import { Page, Section } from "../site/Page";
 import { useLayout } from "../site/breakpoints";
@@ -40,34 +34,6 @@ import { useLayout } from "../site/breakpoints";
  * generic on purpose: the playground carries no product code, no API client and
  * no domain model, so these are shapes to copy, not an app to run.
  */
-const NAVIGATION = `import { createDrawerNavigator } from "@react-navigation/drawer";
-import { AppBar, useTheme } from "@its/solaris-ui";
-
-const Drawer = createDrawerNavigator();
-
-export const AppNavigator = ({ routes }) => {
-  const { theme } = useTheme();
-  const { width } = useWindowDimensions();
-  const isPinned = width >= 840;
-
-  return (
-    <Drawer.Navigator
-      screenOptions={{
-        // AppBar renders the navigator's header: it reads navigation, route
-        // and options straight from the header contract.
-        header: (props) => <AppBar {...props} isPinned={isPinned} />,
-        drawerType: isPinned ? "permanent" : "front",
-        headerStyle: { backgroundColor: theme.colors.surface },
-        headerShadowVisible: false,
-      }}
-    >
-      {routes.map((route) => (
-        <Drawer.Screen key={route.name} {...route} />
-      ))}
-    </Drawer.Navigator>
-  );
-};`;
-
 export default function Templates() {
   return (
     <Page
@@ -77,7 +43,7 @@ export default function Templates() {
     >
       <Section
         title="Sign in"
-        description="Form controls, validation copy and the action row. FormControl owns the label, the required marker and the error line so no screen re-invents them."
+        description="Form controls, validation copy and the action row. Each field carries its own label, helper text and error line, so no screen re-invents them."
       >
         <TemplateFrame maxWidth={420} label="Sign in">
           <SignInTemplate />
@@ -91,13 +57,6 @@ export default function Templates() {
         <TemplateFrame maxWidth={520} label="Settings">
           <SettingsTemplate />
         </TemplateFrame>
-      </Section>
-
-      <Section
-        title="Navigation"
-        description="The library ships navigation widgets but no navigator — picking a router is the app's call. AppBar takes react-navigation's header contract, so wiring it up looks like this."
-      >
-        <CodeBlock code={NAVIGATION} title="AppNavigator.tsx" />
       </Section>
 
       <Section
@@ -153,28 +112,22 @@ const SignInTemplate = () => {
       />
       <CardContent>
         <View style={styles.formGap}>
-          <FormControl label="Email" required error={emailError}>
-            <Input
-              label="Email"
-              value={email}
-              onChangeText={setEmail}
-              leadingIcon="email-outline"
-              placeholder="you@example.com"
-            />
-          </FormControl>
-          <FormControl
+          <Input
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            leadingIcon="email-outline"
+            placeholder="you@example.com"
+            error={emailError}
+          />
+          <Input
             label="Password"
-            required
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            leadingIcon="lock-outline"
             helperText="At least 8 characters"
-          >
-            <Input
-              label="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              leadingIcon="lock-outline"
-            />
-          </FormControl>
+          />
           <View style={styles.row}>
             <Checkbox
               checked={remember}
@@ -300,25 +253,22 @@ const DashboardTemplate = () => {
     <View style={styles.dashboard}>
       <View style={[styles.tiles, layout.isCompact && styles.tilesStacked]}>
         <View style={styles.tile}>
-          <Stat
+          <StatFigure
             label="Active projects"
             value="12"
             icon="folder-outline"
-            trend="up"
-            delta="+2"
+            helpText="+2 this month"
           />
         </View>
         <View style={styles.tile}>
-          <Stat label="On track" value="8" icon="check-circle-outline" />
+          <StatFigure label="On track" value="8" icon="check-circle-outline" />
         </View>
         <View style={styles.tile}>
-          <Stat
+          <StatFigure
             label="At risk"
             value="3"
             icon="alert-circle-outline"
-            trend="down"
-            delta="-1"
-            invertTrendColors
+            helpText="-1 this month"
           />
         </View>
       </View>
@@ -327,18 +277,10 @@ const DashboardTemplate = () => {
         <CardTitle
           title="Delivery"
           subtitle="This quarter"
-          right={<StatusBadge label="Live" type="success" />}
+          right={<Chip label="Live" size="small" mode="tonal" />}
         />
         <CardContent>
           <View style={styles.formGap}>
-            <Typography
-              variant="caption"
-              style={{ color: theme.colors.onSurfaceVariant }}
-            >
-              Overall completion
-            </Typography>
-            <LinearProgress progress={0.63} height={8} />
-            <Divider />
             <DataGrid data={ROWS} columns={columns} density="dense" />
           </View>
         </CardContent>

@@ -5,8 +5,8 @@ device and exports to static HTML for GitHub Pages.
 
 The site is **English only** and carries no i18n layer: `i18n/` and the
 `@react-navigation`-based `navigation/` folder were removed once nothing rendered
-them. The navigator wiring survives as a snippet on /templates, because `AppBar`
-takes react-navigation's header contract and a consumer still needs to see it.
+them. The react-navigation header adapter (`AppBar`) is parked (roadmap v2), and its
+wiring snippet left /templates with it.
 
 ## Three generated artefacts, all committed
 

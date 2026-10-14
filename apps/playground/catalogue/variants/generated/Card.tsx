@@ -13,7 +13,6 @@ import {
   Typography,
   Divider,
   Avatar,
-  StatusBadge,
   Chip,
   Button,
 } from "@its/solaris-ui";
@@ -113,7 +112,7 @@ export const Pressable = () => (
             Visa ending 4021 · renews 12 Oct
           </Typography>
         </View>
-        <StatusBadge label="Active" type="success" />
+        <Chip label="Active" size="small" mode="tonal" />
       </View>
     </Card>
     <Card
@@ -132,7 +131,7 @@ export const Pressable = () => (
           <Typography variant="subtitle2">Payment method</Typography>
           <Typography variant="caption">Last charge was declined</Typography>
         </View>
-        <StatusBadge label="Action needed" type="error" />
+        <Chip label="Action needed" size="small" mode="tonal" />
       </View>
     </Card>
   </View>
@@ -187,7 +186,7 @@ export const ComposedFromParts = () => (
         title="Solaris 0.1.0"
         subtitle="Released 9 September"
         left={<Avatar name="Solaris UI" size={40} />}
-        right={<StatusBadge type="success" label="Stable" />}
+        right={<Chip label="Stable" size="small" mode="tonal" />}
       />
       <CardContent>
         <Typography variant="body2">
